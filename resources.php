@@ -1829,7 +1829,7 @@ Template Name:Resources
                 if( get_row_layout() == 'landing_page_not_gated_context' ):
                     
                     if( have_rows('context') ):
-                        echo '<div class="c-content-box c-size-md">';
+                        echo '<div class="c-content-box c-size-lg">';
                         echo '<div class="container">';
                         echo '<div class="row landingPage">';
                         // loop through the rows of data

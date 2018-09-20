@@ -313,8 +313,14 @@ summary {
 .fa-angle-left:before {
   content: "\f104";
 }
+.fa-angle-double-left:before {
+  content: "\f100";
+}
 .fa-angle-right:before {
   content: "\f105";
+}
+.fa-angle-double-right:before {
+  content: "\f101";
 }
 .fa-desktop:before {
   content: "\f108";
@@ -20957,7 +20963,7 @@ h5.resource-item--title {
   margin-top: 40px;
 }
 .pager {
-  padding-top: 90px;
+  padding-top: 0px;
   font-family: "Ubuntu Regular", sans-serif;
   color: #5e6d79;
   user-select: none;
@@ -20970,12 +20976,14 @@ h5.resource-item--title {
   cursor: default;
 }
 .pager .current,
-.pager span:hover {
+.pager span:not(.disabled):hover {
   color: #0094d4;
 }
+.first_page.disabled,
 .next_page.disabled,
-.prev_page.disabled {
-  opacity: 0;
+.prev_page.disabled,
+.last_page.disabled {
+  opacity: 0.5;
   cursor: default;
 }
 .landingPage__video {
