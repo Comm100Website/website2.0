@@ -214,7 +214,7 @@
 <script src="<?php bloginfo('template_url');?>/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery.easing.min.js?v=2.0.1" type="text/javascript"></script>
 <script src="<?php bloginfo('template_url');?>/assets/base/js/plugins.min.js?v=1.0.0" type="text/javascript"></script>
-<script src="<?php bloginfo('template_url');?>/assets/base/js/script.min.js?v=1.0.34" type="text/javascript"></script>
+<script src="<?php bloginfo('template_url');?>/assets/base/js/script.min.js?v=1.0.35" type="text/javascript"></script>
 
 <!-- END: THEME SCRIPTS -->
 

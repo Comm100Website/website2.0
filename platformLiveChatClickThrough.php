@@ -997,15 +997,15 @@ Template Name:Platform Live Chat Click Through
                         $icon = get_sub_field('icon');
                         
 
-                        if ($linkcontent !== ''):
-                            $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
-                        endif;
+                        // if ($linkcontent !== ''):
+                        //     $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
+                        // endif;
 
                         echo    '<div class="feature-column__item">' .
                                     '<div><img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" /></div>' .
                                     '<h5 class="feature-column__title highlight highlight--' . $color . '">' . $headline . '</h3>' .
                                     $body . 
-                                    $linkcontent .
+                                    // $linkcontent .
                                 '</div>';
                                 
                     endwhile;

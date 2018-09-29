@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name:Landing no menu no footer
+Template Name:Landing Chat Bot Demo
 */
 ?>
 <?php get_header('no-menu'); ?>
@@ -2160,4 +2160,4 @@ Template Name:Landing no menu no footer
                 
 </div>
 
-<?php get_footer('simple'); ?>
+<?php get_footer('simplechatbotdemo'); ?>
