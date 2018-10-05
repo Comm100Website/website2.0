@@ -23,7 +23,7 @@
              <div class="post" style="border-bottom: none">
                 <p><?php _e('No posts found. Try a search?'); ?></p>
                 <?php
-            include (TEMPLATEPATH . "/searchform.php");
+            get_template_part('template-parts/searchform');
            ?> 
              </div> 
             <?php endif; ?>
@@ -60,7 +60,7 @@
                                       <h2>Not found!</h2>
                                       <p><?php _e('Sorry, this page does not exist.'); ?></p>
                                       <?php
-                                       include (TEMPLATEPATH . "/searchform.php");
+                                       get_template_part('template-parts/searchform');
                                       ?>  
                                   </div>     
                                 <?php endif; ?>
@@ -72,7 +72,7 @@
               </div>
            </div>   
         </div>
-        <?php get_sidebar(); ?>
+        <?php get_template_part('template-parts/sidebar'); ?>
         </div>
     </div>
   </div>

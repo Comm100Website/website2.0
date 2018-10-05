@@ -56,7 +56,7 @@
                     <div class="post">
                       <p><?php _e('No posts found. Try a different search?'); ?></p>
                       <?php
-                        include (TEMPLATEPATH . "/searchform.php");
+                        get_template_part('template-parts/searchform');
                       ?>  
                     </div>
               
@@ -64,7 +64,7 @@
                   
                 </div>
             </div>
-            <?php get_sidebar(); ?>
+            <?php get_template_part('template-parts/sidebar'); ?>
           </div>
         </div>
     </div>

@@ -1,5 +1,57 @@
 <?php
 
+namespace Roots\Sage\Setup;
+
+use Roots\Sage\Assets;
+
+/**
+ * Theme setup
+ */
+function setup() {
+  // Make theme available for translation
+  // Community translations can be found at https://github.com/roots/sage-translations
+  load_theme_textdomain('sage', get_template_directory() . '/lang');
+
+  // Enable plugins to manage the document title
+  // http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
+  add_theme_support('title-tag');
+
+  // Enable HTML5 markup support
+  // http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
+  add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
+
+
+  register_nav_menus(array(
+    'primary' => 'utility',
+    'livechat' => 'top-menu',
+    'platformLiveChat' => 'live-chat-menu',
+    'platformMultichannel' => 'multichannel-menu',
+    'platformAI' => 'ai-menu',
+    'solutionUseCase' => 'use-case-menu',
+    'solutionIndustry' => 'industry-menu',
+    'company' => 'about-us-menu',
+    'footerPlatform' => 'footer-platform',
+    'footerSolutions' => 'footer-solutions',
+    'footerResources' => 'footer-resources',
+    'footerCompany' => 'footer-company',
+    'livechatresource' => 'Live Chat Resource Navigation',
+    'livechatblog' => 'Live Chat Blog Navigation',
+    'livechatnomenu' => 'Live Chat No Menu Navigation',
+    )
+  );
+
+  // remove header element
+  remove_action('wp_head', 'wp_generator');
+  remove_action('wp_head', 'wp_print_styles', 8);
+  remove_action('wp_head', 'rest_output_link_wp_head', 10 );//remove <link rel='https://api.w.org/' href='https://www.comm100.com/wp-json/' />
+  remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+
+  // Use main stylesheet for visual editor
+  // To add custom styles edit /assets/styles/layouts/_tinymce.scss
+  add_editor_style(Assets\asset_path('styles/main.css'));
+}
+
+add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
 //dequeue css from plugins
 function mytheme_dequeue_css_from_plugins() {
@@ -9,26 +61,18 @@ function mytheme_dequeue_css_from_plugins() {
     wp_dequeue_style( 'authorsure' );
     wp_deregister_style( 'authorsure' );
 }
-add_action( 'wp_print_scripts', 'mytheme_dequeue_css_from_plugins' );
-
-//Dequeue JavaScripts
-// function project_dequeue_unnecessary_scripts() {
-//     wp_dequeue_script( 'kbe_live_search' );
-//     wp_deregister_script( 'kbe_live_search' );
-// }
-// add_action( 'wp_print_scripts', 'project_dequeue_unnecessary_scripts' );
-
+add_action( 'wp_print_scripts', __NAMESPACE__.'\\mytheme_dequeue_css_from_plugins' );
 
 function add_menuclass($ulclass) {
    return $output = preg_replace('/<a /', '<a class="c-link dropdown-toggle" ', $ulclass);
 }
-add_filter('wp_nav_menu','add_menuclass');
+add_filter('wp_nav_menu',__NAMESPACE__.'\\add_menuclass');
 
 function change_submenu_class($menu) {
   $menu = preg_replace('/ class="sub-menu"/',' class="dropdown-menu c-menu-type-classic c-pull-left" ',$menu);
   return $menu;
 }
-add_filter('wp_nav_menu','change_submenu_class');
+add_filter('wp_nav_menu',__NAMESPACE__.'\\change_submenu_class');
 
 function roots_wp_nav_menu($text) {
   $replace = array(
@@ -43,50 +87,14 @@ function roots_wp_nav_menu($text) {
   $text = str_replace(array_keys($replace), $replace, $text);
   return $text;
 }
-
-add_filter('wp_nav_menu', 'roots_wp_nav_menu');
-
-register_nav_menus(array(
-    'primary' => 'utility',
-    'livechat' => 'top-menu',
-    'platformLiveChat' => 'live-chat-menu',
-    'platformMultichannel' => 'multichannel-menu',
-    'platformAI' => 'ai-menu',
-    'solutionUseCase' => 'use-case-menu',
-    'solutionIndustry' => 'industry-menu',
-    'company' => 'about-us-menu',
-    'footerPlatform' => 'footer-platform',
-    'footerSolutions' => 'footer-solutions',
-    'footerResources' => 'footer-resources',
-    'footerCompany' => 'footer-company',
-    // 'ticket' => 'Ticket Navigation',
-    // 'knowledgebase' => 'Knowledgebase Navigation',
-    // 'helpdesk' => 'Helpdesk Navigation',
-    // 'forum' => 'Forum Navigation',
-    'livechatresource' => 'Live Chat Resource Navigation',
-    'livechatblog' => 'Live Chat Blog Navigation',
-    'livechatnomenu' => 'Live Chat No Menu Navigation',
-    )
-);
+add_filter('wp_nav_menu', __NAMESPACE__.'\\roots_wp_nav_menu');
 
 
-// remove header element
-remove_action( 'wp_head', 'wp_generator' );
-remove_action( 'wp_head', 'wp_print_styles', 8 );
-// REMOVE WP EMOJI
-remove_action( 'wp_head', 'print_emoji_detection_script', 7);
-remove_action( 'wp_print_styles', 'print_emoji_styles');
-remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-remove_action( 'admin_print_styles', 'print_emoji_styles' );
-
-remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );//remove <link rel='https://api.w.org/' href='https://www.comm100.com/wp-json/' />
-remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
-
-add_action( 'widgets_init', 'my_remove_recent_comments_style' );
 function my_remove_recent_comments_style() {
-    global $wp_widget_factory;
-    remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'  ) );
+  global $wp_widget_factory;
+  remove_action('wp_head', array($wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'));
 }
+add_action( 'widgets_init', 'my_remove_recent_comments_style' );
 
 add_action('get_header', 'remove_admin_login_header');
 function remove_admin_login_header() {
@@ -1003,5 +1011,16 @@ function dedicatedrequestcallback(){
     wp_mail( $multiple_recipients, $subject, $body, $headers );
 }
 
+/**
+ * Theme assets
+ */
+function assets() {
+  wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, null);
 
-?>
+  if (is_single() && comments_open() && get_option('thread_comments')) {
+    wp_enqueue_script('comment-reply');
+  }
+
+  wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+}
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);

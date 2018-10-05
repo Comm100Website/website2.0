@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 </header>
-        <div class="c-layout-page">
+    <div class="c-layout-page">
         <!-- BEGIN: PAGE CONTENT -->
         <!-- BEGIN: LAYOUT/SLIDERS/REVO-SLIDER-1 -->
         <section class="c-layout-revo-slider c-layout-revo-slider-1">
