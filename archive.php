@@ -7,8 +7,24 @@
     <div class="c-content-box c-size-md">
         <div class="container">
       <div class="row"> 
-          <div class="col-md-9">
-            
+            <div class="col-md-9">
+            <?php
+                if ( function_exists( 'coauthors_posts_links' ) ) {
+                    global $post;
+                    $author_id=get_the_author_meta('ID');
+                    $userdata = get_userdata( $author_id ); 
+            ?>
+                    <div id="authorsure-author-profile" class="c-margin-b-60">
+                        <h1 class="authorsure-author-title">About <?php echo $userdata->display_name; ?></h1>
+                        <?php echo get_avatar( $userdata->user_email, 100 ); ?>
+                        <p>
+                            <?php echo $userdata->user_description; ?>
+                        </p>
+                        <div class="clear"></div>
+                    </div>
+            <?php
+                }
+            ?>
             <?php if (have_posts()) : ?>
             <?php $post = $posts[0]; ?>
             <?php if (is_category()) { ?><h1 class="c-post-list-h1">Archive for '<?php echo single_cat_title(); ?>'</h1>
