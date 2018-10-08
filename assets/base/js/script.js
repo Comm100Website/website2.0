@@ -1503,6 +1503,7 @@ var Pager = (function() {
 	var pageSize = 12;
 	var totalPages = 1;
 
+	var _ifScrollToPagerFirstItem = false;
 	function init(list, pagerSize) {
 		container = $(list);
 		pageSize = pagerSize || 12;
@@ -1559,29 +1560,38 @@ var Pager = (function() {
 		$('.first_page').on('click', function() {
 			if (currentPage === 1) return;
 			currentPage = 1;
+			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
 		$('.prev_page').on('click', function() {
 			if (currentPage === 1) return;
 			currentPage--;
+			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
 		$('.next_page').on('click', function() {
 			if (currentPage === totalPages) return;
 			currentPage++;
+			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
 		$('.last_page').on('click', function() {
 			if (currentPage === totalPages) return;
 			currentPage = totalPages;
+			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
 		$('.page_index').on('click', function() {
 			var clickIndex = $(this).index() - 1;
 			if (currentPage === clickIndex) return;
 			currentPage = clickIndex;
+			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		})
+	}
+
+	function ifScrollToPagerFirstItem() {
+		_ifScrollToPagerFirstItem = true;
 	}
 
 	function showItems () {
@@ -1592,9 +1602,10 @@ var Pager = (function() {
 				$(container).children().eq(i).hide();
 			}
 		}
-		$('html, body').animate({
-			scrollTop: $('.resource-list')[0].offsetTop,
-		}, 10);
+		_ifScrollToPagerFirstItem && 
+			$('html, body').animate({
+				scrollTop: $('.resource-list')[0].offsetTop,
+			}, 10);
 	}
 
 	return {

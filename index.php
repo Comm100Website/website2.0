@@ -31,10 +31,20 @@
                                     $catstr = substr($catstr,0,strlen($catstr)-2); 
 
                                     //author
-                                    $recent_author = get_user_by( 'ID', $recent["post_author"] );
-                                    $author_display_name = $recent_author->display_name;
-                                    $author_url = get_author_posts_url($recent["post_author"]);
-
+                                    $recent_author_str = '';
+                                    if ( function_exists( 'coauthors_posts_links' ) ) {
+                                        $recent_authors = get_coauthors($recent["ID"]);
+                                        foreach($recent_authors as $recent_author){
+                                            $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
+                                        }
+                                        $recent_author_str = substr($recent_author_str,0,strlen($recent_author_str)-2); 
+                                    } else {
+                                        $recent_author = get_user_by( 'ID', $recent["post_author"] );
+                                        $author_display_name = $recent_author->display_name;
+                                        $author_url = get_author_posts_url($recent["post_author"]);
+                                        $recent_author_str = '<a href="'.$author_url.'">'.$author_display_name.'</a>';
+                                    }
+                                    
                                     // $excerptstr = get_the_excerpt();
                                     $excerptstr = empty(get_post($recent["ID"])->post_excerpt) ? wp_trim_words(get_post($recent["ID"])->post_content, 55, '...')
                                                                                         : get_post($recent["ID"])->post_excerpt;
@@ -49,7 +59,7 @@
                                                 <a href="' . get_permalink($recent["ID"]) . '">' . $recent["post_title"].'</a></h4>
                                             <div class="c-author c-margin-t-15 c-margin-b-15">
                                                 <span>
-                                                   '. date( 'F jS, Y', strtotime( $recent['post_date'] ) ) .'</span> | '.$catstr.' | <a href="'.$author_url.'">'.$author_display_name.'</a> 
+                                                   '. date( 'F jS, Y', strtotime( $recent['post_date'] ) ) .'</span> | '.$catstr.' | ' . $recent_author_str . '
                                             </div>
                                             <div class="c-font-17 c-font-thin">
                                                 '. $excerptstr .' <a href="'. get_permalink($recent["ID"]) .'">Read More</a>
@@ -90,7 +100,26 @@
                                                     <a  href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
                                                 </div>
                                                 <div class="c-author">
-                                                    <span><?php the_time('F jS, Y'); ?> | <?php the_category(', '); ?> |  <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> </span>
+                                                    <span>
+                                                        <?php the_time('F jS, Y'); ?> | 
+                                                        <?php the_category(', '); ?> |  
+
+                                                        <?php
+                                                            //author
+                                                            $recent_author_str='';
+                                                            if ( function_exists( 'coauthors_posts_links' ) ) {
+                                                                $recent_authors = get_coauthors("ID");
+                                                                foreach($recent_authors as $recent_author){
+                                                                    $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
+                                                                }
+                                                                echo substr($recent_author_str,0,strlen($recent_author_str)-2); 
+                                                            } else {
+                                                                echo '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.
+                                                                    the_author().
+                                                                '</a>';
+                                                            }
+                                                        ?>
+                                                    </span>
                                                 </div>
                                                 <!-- <hr/>
                                                 <div class="postcontent">

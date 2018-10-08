@@ -23,22 +23,56 @@ Template Name Posts:Blog Template
                                         <?php the_title(); ?>
                                     </h1>
                                 </div>
-                          <div class="c-panel c-margin-b-30">
-                                    <span>
-                                        <?php the_time('F jS, Y'); ?> | <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> | 
-                                        <?php the_category(', ');?> | 
-                                        <?php echo do_shortcode('[rt_reading_time label="Estimated Reading Time:" postfix="minutes"]'); ?>
-                                    </span>
-                          </div>
+                                <div class="c-panel c-margin-b-30">
+                                            <span>
+                                                <?php the_time('F jS, Y'); ?> | 
+                                                <?php
+                                                    //author
+                                                    $recent_author_str='';
+                                                    if ( function_exists( 'coauthors_posts_links' ) ) {
+                                                        $recent_authors = get_coauthors();
+                                                        foreach($recent_authors as $recent_author){
+                                                            $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
+                                                        }
+                                                        echo substr($recent_author_str,0,strlen($recent_author_str)-2); 
+                                                    } else {
+                                                        echo '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.
+                                                            the_author().
+                                                        '</a>';
+                                                    }
+                                                ?> |
+                                                <!-- <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> |  -->
+                                                <?php the_category(', ');?> | 
+                                                <?php echo do_shortcode('[rt_reading_time label="Estimated Reading Time:" postfix="minutes"]'); ?>
+                                            </span>
+                                </div>
                                 <div class="c-desc c-article">
                                     <?php the_content(); ?>
                                 </div>
+                                <!-- begin author -->
+                                <?php 
+                                    $coauthors = get_coauthors();
+                                    foreach( $coauthors as $coauthor ):
+                                    $archive_link = get_author_posts_url( $coauthor->ID, $coauthor->user_nicename );
+                                    $userdata = get_userdata( $coauthor->ID ); 
+                                ?>
+                                <div class="authorsure-author-box">
+                                    <?php echo get_avatar( $userdata->user_email, 100 ); ?>
+                                    <h4>
+                                        About <a href="<?php echo $archive_link; ?>">
+                                            <?php echo $userdata->display_name; ?>
+                                        </a>
+                                    </h4>
+                                    <p ><?php echo $userdata->user_description; ?></p>
+                                </div>
+                                <?php endforeach;?>
+                                <!-- end author -->
                                 <div class="c-article__sharebutton">
-	                          <div class="c-article__sharebuttonText">
-	                            Find this article helpful? Don’t forget to share. 
-	                          </div>
-	                          <!-- Go to www.addthis.com/dashboard to customize your tools --> 
-	                          <div class="addthis_inline_share_toolbox_qf55"></div>
+                                    <div class="c-article__sharebuttonText">
+                                        Find this article helpful? Don’t forget to share. 
+                                    </div>
+                                    <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+                                    <div class="addthis_inline_share_toolbox_qf55"></div>
                                 </div>
                                 <!-- The following line set post view counts -->
                                 <?php setPostViews(get_the_ID()); ?>
