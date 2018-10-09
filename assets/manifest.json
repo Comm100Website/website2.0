@@ -17,8 +17,10 @@
         "scripts/customizer.js"
       ]
     },
-    "jquery.js": {
-      "bower": ["jquery"]
+    "marketo-form.js": {
+        "files": [
+            "scripts/marketo-form.js"
+        ]
     }
   },
   "config": {

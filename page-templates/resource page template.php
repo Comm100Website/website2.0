@@ -3,7 +3,7 @@
 Template Name:live chat resource
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 
   </header>
   <?php if (have_posts()) : ?>
@@ -20,4 +20,4 @@ Template Name:live chat resource
    
   <?php endif; ?>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

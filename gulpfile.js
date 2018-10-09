@@ -1,5 +1,6 @@
 // ## Globals
 var argv         = require('minimist')(process.argv.slice(2));
+var gulpCopy     = require('gulp-copy');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync  = require('browser-sync').create();
 var changed      = require('gulp-changed');
@@ -15,6 +16,7 @@ var cssNano      = require('gulp-cssnano');
 var plumber      = require('gulp-plumber');
 var rev          = require('gulp-rev');
 var runSequence  = require('run-sequence');
+var less         = require('gulp-less');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
@@ -189,6 +191,13 @@ gulp.task('styles', ['wiredep'], function() {
     .pipe(writeToManifest('styles'));
 });
 
+// ### Copy
+gulp.task('copy', function () {
+    gulp
+     .src(path.source + 'scripts/plugins/*.js')
+     .pipe(gulp.dest('dist/scripts/plugins'));
+});
+
 // ### Scripts
 // `gulp scripts` - Runs JSHint then compiles, combines, and optimizes Bower JS
 // and project JS.
@@ -201,6 +210,7 @@ gulp.task('scripts', ['jshint'], function() {
         .pipe(jsTasks(dep.name))
     );
   });
+
   return merged
     .pipe(writeToManifest('scripts'));
 });
@@ -262,7 +272,7 @@ gulp.task('watch', function() {
     }
   });
   gulp.watch([path.source + 'styles/**/*'], ['styles']);
-  gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
+  gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts', 'copy']);
   gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
   gulp.watch([path.source + 'images/**/*'], ['images']);
   gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
@@ -274,6 +284,7 @@ gulp.task('watch', function() {
 gulp.task('build', function(callback) {
   runSequence('styles',
               'scripts',
+              'copy',
               ['fonts', 'images'],
               callback);
 });

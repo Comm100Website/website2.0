@@ -3,7 +3,7 @@
 Template Name:customerstory
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 </header>
   
 <div class="c-layout-page c-layout-page-fixed">
@@ -420,4 +420,4 @@ Template Name:customerstory
 
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

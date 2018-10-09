@@ -2,12 +2,14 @@
 /*
 Template Name:Landing No Menu Simple Footer
 */
-?>
-<?php get_header('no-menu'); ?>
 
-  
+use Roots\Sage\Assets;
+?>
+<?php get_template_part('template-parts/header', 'no-menu'); ?>
+
+
 <div class="c-layout-page c-layout-page-fixed">
-    
+
 
     <?php
 
@@ -20,7 +22,7 @@ Template Name:Landing No Menu Simple Footer
 
                 // check if the nested repeater field has rows of data
                 if( have_rows('tab_content') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -39,7 +41,7 @@ Template Name:Landing No Menu Simple Footer
                     $tabMobileMC = '';
                     $tabMobileAI = '';
                     while ( have_rows('tab_content') ) : the_row();
-                        
+
                         $color = get_sub_field('color');
                         $tag = get_sub_field('tag');
                         $headline = get_sub_field('headline');
@@ -86,7 +88,7 @@ Template Name:Landing No Menu Simple Footer
                                         '</div>' .
                                     '</div>' .
                                 '</div>';
-                                
+
                     endwhile;
 
                     echo '</div>';
@@ -97,13 +99,13 @@ Template Name:Landing No Menu Simple Footer
                     echo $tabMobileLC;
                     echo '<div class="threeTab__Detail--col-wrap clearfix">';
                     while ( have_rows('pricing_details_live_chat') ) : the_row();
-                        
+
                         $title = get_sub_field('title');
                         $if_show_price = get_sub_field('if_show_price');
                         $price = get_sub_field('price');
                         $request_quote = get_sub_field('request_quote');
                         $feature_list_title = get_sub_field('feature_list_title');
-                        
+
                         $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
                         if ($if_show_price):
                             while ( have_rows('price') ) : the_row();
@@ -112,13 +114,13 @@ Template Name:Landing No Menu Simple Footer
                                 $priceContent = '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
                                 '<span class="threeTab__Detail--priceUnit">' . $price_unit . '</span>';
                             endwhile;
-                            
+
                         endif;
 
                         $li_feature_list = '';
                         while ( have_rows('feature_list') ) : the_row();
                             $feature_point = get_sub_field('feature_point');
-                            
+
                             $li_feature_list .= '<li>' . $feature_point . '</li>';
                         endwhile;
 
@@ -170,7 +172,7 @@ Template Name:Landing No Menu Simple Footer
                                     '</ul>' .
                                     $linkcontent .
                                 '</div>';
-                                
+
                     endwhile;
                     echo '</div>';
                     echo '</div>';
@@ -182,7 +184,7 @@ Template Name:Landing No Menu Simple Footer
                     echo '<div class="threeTab__Detail--col-wrap clearfix">';
                     $pricing_details_multichannel_note = get_sub_field('pricing_details_multichannel_note');
                     while ( have_rows('pricing_details_multichannel') ) : the_row();
-                        
+
                         $title = get_sub_field('title');
                         $if_show_price = get_sub_field('if_show_price');
                         $price = get_sub_field('price');
@@ -192,7 +194,7 @@ Template Name:Landing No Menu Simple Footer
                         if (trim($feature_list_title, ' ') == ''):
                             $feature_list_title = '&nbsp;';
                         endif;
-                        
+
                         $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
                         if ($if_show_price):
                             while ( have_rows('price') ) : the_row();
@@ -201,13 +203,13 @@ Template Name:Landing No Menu Simple Footer
                                 $priceContent = '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
                                 '<span class="threeTab__Detail--priceUnit">' . $price_unit . '</span>';
                             endwhile;
-                            
+
                         endif;
 
                         $li_feature_list = '';
                         while ( have_rows('feature_list') ) : the_row();
                             $feature_point = get_sub_field('feature_point');
-                            
+
                             $li_feature_list .= '<li>' . $feature_point . '</li>';
                         endwhile;
 
@@ -259,7 +261,7 @@ Template Name:Landing No Menu Simple Footer
                                     '</ul>' .
                                     $linkcontent .
                                 '</div>';
-                                
+
                     endwhile;
                     echo '<div class="clear"></div>'.
                           '<div class="threeTab__Detail--note">' . $pricing_details_multichannel_note . '</div>';
@@ -270,7 +272,7 @@ Template Name:Landing No Menu Simple Footer
 
                     // pricing AI details
                     while ( have_rows('pricing_details_ai') ) : the_row();
-                        
+
                         $pricing_details_ai_title = get_sub_field('title');
                         $ai_logo = get_sub_field('ai_logo');
                         $feature_list_title = get_sub_field('feature_list_title');
@@ -278,7 +280,7 @@ Template Name:Landing No Menu Simple Footer
                         $ai_logo_content = '';
                         if ($ai_logo):
                             $ai_logo_content = '<div class="ai-logo-wrap">' .
-                                                '<img src="' . $ai_logo['url'] . '" alt="' . $ai_logo['alt'] . '" width="276" height="209" />' . 
+                                                '<img src="' . $ai_logo['url'] . '" alt="' . $ai_logo['alt'] . '" width="276" height="209" />' .
                                             '</div>';
                         endif;
 
@@ -297,7 +299,7 @@ Template Name:Landing No Menu Simple Footer
                                         '</div>';
                         endwhile;
 
-                       
+
 
                         $columnSecond = '';
                         while ( have_rows('column_second') ) : the_row();
@@ -336,7 +338,7 @@ Template Name:Landing No Menu Simple Footer
                                     endif;
                                 endwhile;
                             endif;
-                            
+
                             $columnSecond = '<div class="col-sm-4 threeTab__Detail--col">' .
                                                 '<div class="threeTab__Detail--price">' .
                                                     '<span class="threeTab__Detail--priceQuote"><strong>' . $price . '</strong></span>' .
@@ -349,24 +351,24 @@ Template Name:Landing No Menu Simple Footer
 
                         echo    '<div class="threeTab__Detail clearfix">' .
                                     $tabMobileAI .
-                                    '<div class="threeTab__Detail--col-wrap clearfix">' . 
-                                        
+                                    '<div class="threeTab__Detail--col-wrap clearfix">' .
+
                                         '<div class="threeTab__Detail--title">' .
-                                            $pricing_details_ai_title . 
+                                            $pricing_details_ai_title .
                                         '</div>' .
-                                        
+
                                         $columnFirst .
                                         $columnSecond .
                                     '</div>' .
                                     $ai_logo_content .
                                 '</div>';
-                                
+
                     endwhile;
                     // end pricing AI details
-                    
+
 
                     echo '</div>';
-                    
+
                     $pricing_details_bottom_link = get_sub_field('pricing_details_bottom_link');
                     if ($pricing_details_bottom_link):
                         echo '<div class="threeTab__Detail--bottomLink">' .
@@ -375,7 +377,7 @@ Template Name:Landing No Menu Simple Footer
                                 '</a>' .
                             '</div>';
                     endif;
-                    
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -411,7 +413,7 @@ Template Name:Landing No Menu Simple Footer
 
                     if ($banner_icon):
                         echo '<div class="banner_icon">' .
-                                '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' . 
+                                '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' .
                             '</div>';
                     endif;
                     if ($banner_headline):
@@ -429,7 +431,7 @@ Template Name:Landing No Menu Simple Footer
                                 $banner_description .
                             '</div>';
                     endif;
-                    
+
                     if ($banner_cta):
 
                         while ( have_rows('cta') ) : the_row();
@@ -461,8 +463,8 @@ Template Name:Landing No Menu Simple Footer
                                 }
                             endif;
                         endwhile;
-                        
-                        
+
+
                     endif;
                     echo '</div>';
                     echo '</div>';
@@ -471,7 +473,7 @@ Template Name:Landing No Menu Simple Footer
                 endif;
                     // check current row layout
                 if( get_row_layout() == 'hero_head' ):
-                    
+
                     $header_align = get_sub_field('align');
                     $header_icon = get_sub_field('icon');
                     // $page_tag = get_sub_field('page_tag');
@@ -487,7 +489,7 @@ Template Name:Landing No Menu Simple Footer
 
                     if ($header_icon):
                         echo '<div class="header_icon">' .
-                                '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' . 
+                                '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' .
                             '</div>';
                     endif;
                     if ($header_headline):
@@ -505,7 +507,7 @@ Template Name:Landing No Menu Simple Footer
                                 $header_description .
                             '</div>';
                     endif;
-                    
+
                     if ($header_cta):
 
                         while ( have_rows('cta') ) : the_row();
@@ -537,17 +539,17 @@ Template Name:Landing No Menu Simple Footer
                                 }
                             endif;
                         endwhile;
-                        
-                        
+
+
                     endif;
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                endif;    
+                endif;
 
                 if( get_row_layout() == 'hero_banner_form' ):
-                        
+
                     $header_headline = get_sub_field('h1_title');
                     $header_slogan = get_sub_field('subtitle');
                     $header_background_image = get_sub_field('background_image');
@@ -565,7 +567,7 @@ Template Name:Landing No Menu Simple Footer
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 request-demo">';
 
-                    
+
                     if ($header_headline):
                         echo '<h1>' .
                                 $header_headline .
@@ -577,17 +579,16 @@ Template Name:Landing No Menu Simple Footer
                             '</h2>';
                     endif;
                     if ($header_form_code):
-                        echo '<div class="row">' . 
-                                '<div class="col-sm-5">' . 
-                                    '<link rel="stylesheet" href="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.css" type="text/css" media="screen, projection" />' .
-                                    $header_form_code . 
-                                    '<script src="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.js"></script>' .
-                                    '<div class="form-note">' . $form_note . '</div>'. 
-                                '</div>'. 
+                        echo '<div class="row">' .
+                                '<div class="col-sm-5">' .
+                                    $header_form_code .
+                                    '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                    '<div class="form-note">' . $form_note . '</div>'.
+                                '</div>'.
                             '</div>';
-                            
+
                     endif;
-                    
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -606,7 +607,7 @@ Template Name:Landing No Menu Simple Footer
                         $featureDescription = $row['feature_description'];
                         echo '<div class="col-sm-' . strval(12/$row_count) . '">' .
                             '<div class="c-content-feature-2 c-option-2 c-theme-bg-parent-hover">' .
-                                '<div class="c-icon-wrapper">' . 
+                                '<div class="c-icon-wrapper">' .
                                     '<span aria-hidden="true">' .
                                         '<img src="' . $featureImage['url'] . '" alt="' . $featureImage['alt'] . '" width="50" height="50">' .
                                     '</span>' .
@@ -618,7 +619,7 @@ Template Name:Landing No Menu Simple Footer
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                endif;   
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'card' ):
@@ -634,7 +635,7 @@ Template Name:Landing No Menu Simple Footer
                         echo '<div class="row">';
                         echo '<div class="col-sm-12 card card--block card-col-' . $row_count . '">';
 
-                        
+
                         echo '<h3>' . $headline . '</h3>';
                             // loop through the rows of data
                         while ( have_rows('cards') ) : the_row();
@@ -684,8 +685,8 @@ Template Name:Landing No Menu Simple Footer
                                         }
                                     endif;
                                 endwhile;
-                                
-                                
+
+
                             endif;
 
                             echo    '<div class="card-item card-item--platform card-item--' . $card_themecolor . '" data-link="' . $cta_link['url'] . '">' .
@@ -693,7 +694,7 @@ Template Name:Landing No Menu Simple Footer
                                         '<h3>' . $card_title . '</h3>' .
                                         $card_subtitle_wrap .
                                         $card_description .
-                                        '<div class="card-item__link">' . $linkcontent . '</div>' . 
+                                        '<div class="card-item__link">' . $linkcontent . '</div>' .
                                     '</div>';
                         endwhile;
 
@@ -711,7 +712,7 @@ Template Name:Landing No Menu Simple Footer
                 //     $paragraph_item = get_sub_field('paragraph_item');
                 //     $paragraph_itemClass = get_sub_field('paragraph_item')['paragraph_class'];
                 //     $paragraph_itemText = get_sub_field('paragraph_item')['paragraph_text'];
-                    
+
                 //     echo '<div class="col-sm-12"><p class="' . $paragraph_itemClass . '">' . $paragraph_itemText . '</p></div>';
 
                 // endif;
@@ -729,7 +730,7 @@ Template Name:Landing No Menu Simple Footer
                             // loop through the rows of data
                         while ( have_rows('btn_repeater') ) : the_row();
 
-                            
+
                             $btn_link = get_sub_field('button');
 
                             echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
@@ -747,7 +748,7 @@ Template Name:Landing No Menu Simple Footer
 
                 // check current row layout
                 if( get_row_layout() == 'cta' ):
-                    
+
                     $calltoaction_type = get_sub_field('type');
                     $calltoaction_title = get_sub_field('title');
                     $calltoaction_subtitle = get_sub_field('subtitle');
@@ -806,27 +807,27 @@ Template Name:Landing No Menu Simple Footer
                                 }
                             endif;
                         endwhile;
-                        
-                        
+
+
                     endif;
-                    
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                endif;  
-                
+                endif;
+
                 // check current row layout
                 if( get_row_layout() == 'logo' ):
-                    
+
                     $logo_repeater = get_sub_field('logo_repeater');
                     // check if the nested repeater field has rows of data
                     if( have_rows('logo_repeater') ):
-                        
+
                         echo '<div class="container">';
                         echo '<div class="row">';
                         echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="6" data-desktop-items="6" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1" data-auto-play="5000">';
-                        echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';            
+                        echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';
                             // loop through the rows of data
                         while ( have_rows('logo_repeater') ) : the_row();
 
@@ -843,13 +844,13 @@ Template Name:Landing No Menu Simple Footer
                         echo '</div>';
 
                     endif;
-                    
-                    
-                endif;  
+
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'resource' ):
-                    
+
                     $headline = get_sub_field('title');
                     $slogan = get_sub_field('subtitle');
                     $description = get_sub_field('description');
@@ -912,26 +913,26 @@ Template Name:Landing No Menu Simple Footer
                             endif;
                             echo '</div>';
                         endwhile;
-                        
-                        
+
+
                     endif;
-                    
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                endif;    
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'image-text_card' ):
-                    
+
                     // check if the nested repeater field has rows of data
                     if( have_rows('image_text_card_repeater') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
-                        echo '<div class="col-sm-12">';         
+                        echo '<div class="col-sm-12">';
                             // loop through the rows of data
                         while ( have_rows('image_text_card_repeater') ) : the_row();
 
@@ -983,7 +984,7 @@ Template Name:Landing No Menu Simple Footer
                                         '</div>' .
                                         '<div class="img-text-card__text">' .
                                             '<h3 class="highlight highlight--' . $color . '">' . $headline . '</h3>' .
-                                            '<p>' . $body . '</p>' . 
+                                            '<p>' . $body . '</p>' .
                                             '<div class="img-text-card__link">' . $linkcontent . '</div>' .
                                         '</div>' .
                                     '</div>';
@@ -996,15 +997,15 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;    
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'image-text' ):
-                    
+
                     // check if the nested repeater field has rows of data
                     if( have_rows('image_text_column_repeater') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
@@ -1077,19 +1078,19 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;    
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == '1-column' ):
-                    
+
                     $headimage = get_sub_field('image');
                     $headicon = get_sub_field('icon');
                     $headline = get_sub_field('title');
                     $body = get_sub_field('description');
                     $cta = get_sub_field('cta');
                     $btn_group = get_sub_field('btn_group');
-                    
+
 
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
@@ -1102,7 +1103,7 @@ Template Name:Landing No Menu Simple Footer
 
                     if ($headicon):
                         echo '<div class="header_icon">' .
-                                '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' . 
+                                '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' .
                             '</div>';
                     endif;
                     if ($headline):
@@ -1117,7 +1118,7 @@ Template Name:Landing No Menu Simple Footer
                         while ( have_rows('cta') ) : the_row();
                             $cta_link_type = get_sub_field('cta_link_type');
                             $cta_link = get_sub_field('cta_link');
-                            
+
                             if ($cta_link):
                                 switch ($cta_link_type) {
                                     case 'green' :
@@ -1144,39 +1145,39 @@ Template Name:Landing No Menu Simple Footer
                                 }
                             endif;
                         endwhile;
-                        
-                        
+
+
                     endif;
-                    
+
                     if ($btn_group):
                         while ( have_rows('btn_group') ) : the_row();
                             $type = get_sub_field('type');
                             // check if the nested repeater field has rows of data
                             if( have_rows('btn_repeater') ):
-                                
+
                                 echo '<div class="btn-link-group c-margin-t-60 btn-link-group--' . $type . '">';
-            
+
                                     // loop through the rows of data
                                 while ( have_rows('btn_repeater') ) : the_row();
-            
+
                                     $btn_link = get_sub_field('button');
-            
+
                                     echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
-            
+
                                 endwhile;
-            
+
                                 echo '</div>';
-            
+
                             endif;
                         endwhile;
                     endif;
-                    
+
 
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                endif;   
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == '2-column' ):
@@ -1185,7 +1186,7 @@ Template Name:Landing No Menu Simple Footer
                     $row_index = 0;
                     // check if the nested repeater field has rows of data
                     if( have_rows('columns') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
@@ -1207,7 +1208,7 @@ Template Name:Landing No Menu Simple Footer
                                                 '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="64" height="64" />' .
                                             '</div>';
                             endif;
-                            
+
                             $linkcontent = '';
 
                             if ($cta):
@@ -1245,7 +1246,7 @@ Template Name:Landing No Menu Simple Footer
                             echo    '<div class="col-sm-5 ' . $push . '">' .
                                         $headerIcon .
                                         '<h3>' . $headline . '</h3>' .
-                                        $body . 
+                                        $body .
                                         '<div class="c-margin-t-30">' . $linkcontent . '</div>' .
                                     '</div>';
                         endwhile;
@@ -1256,17 +1257,17 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;    
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'testimonial' ):
-                    
+
                     $quote = get_sub_field('quote');
                     $signature = get_sub_field('signature');
                     $story_link = get_sub_field('story_link');
                     $background_color = get_sub_field('background_color');
-                    
+
 
                     echo '<div class="c-content-box c-size-xlg c-content-box--' . $background_color . ' ">';
                     echo '<div class="container">';
@@ -1275,7 +1276,7 @@ Template Name:Landing No Menu Simple Footer
 
                     if ($quote):
                         echo '<div class="c-quote__content">' .
-                                $quote . 
+                                $quote .
                             '</div>';
                     endif;
                     if ($signature):
@@ -1290,36 +1291,36 @@ Template Name:Landing No Menu Simple Footer
                                 '</a>' .
                             '</div>';
                     endif;
-                    
-                    
+
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                
-                endif;    
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == '3-column' ):
-                    
+
                     // check if the nested repeater field has rows of data
                     $title = get_sub_field('title');
                     if( have_rows('columns') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
 
-                        
+
                         if ($title):
                             echo '<h3 class="three-column-title">' . $title . '</h3>';
                         endif;
 
                         echo '<div class="col-sm-12 three-column">';
                             // loop through the rows of data
-                        
+
                         while ( have_rows('columns') ) : the_row();
-                            
+
                             $headline = get_sub_field('headline');
                             $body = get_sub_field('body');
                             $icon = get_sub_field('icon');
@@ -1365,7 +1366,7 @@ Template Name:Landing No Menu Simple Footer
                             echo    '<div class="three-column__item">' .
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
                                         '<h5 class="three-column__title">' . $headline . '</h3>' .
-                                        $body . 
+                                        $body .
                                         $linkcontent .
                                     '</div>';
                         endwhile;
@@ -1377,27 +1378,27 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;  
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == '2-column_for_feature' ):
-                    $color = get_sub_field('color');                                
+                    $color = get_sub_field('color');
                     // check if the nested repeater field has rows of data
                     if( have_rows('column') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                         echo '<div class="col-sm-12 feature-column">';
                             // loop through the rows of data
-                        
+
                         while ( have_rows('column') ) : the_row();
-                            
+
                             $headline = get_sub_field('headline');
                             $body = get_sub_field('body');
                             $icon = get_sub_field('icon');
-                            
+
 
                             if ($linkcontent !== ''):
                                 $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
@@ -1406,10 +1407,10 @@ Template Name:Landing No Menu Simple Footer
                             echo    '<div class="feature-column__item">' .
                                         '<div><img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" /></div>' .
                                         '<h5 class="feature-column__title highlight highlight--' . $color . '">' . $headline . '</h5>' .
-                                        $body . 
+                                        $body .
                                         $linkcontent .
                                     '</div>';
-                                    
+
                         endwhile;
 
                         $cta = get_sub_field('cta');
@@ -1457,8 +1458,8 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;   
+
+                endif;
 
 
                 // check current row layout
@@ -1469,7 +1470,7 @@ Template Name:Landing No Menu Simple Footer
 
                     // check if the nested repeater field has rows of data
                     if( have_rows('pricing_tab') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
@@ -1484,9 +1485,9 @@ Template Name:Landing No Menu Simple Footer
                         echo '<div class="col-sm-12">';
                         echo '<div class="threeTab__Index--Wrap clearfix" data-wheel="true">';
                             // loop through the rows of data
-                        
+
                         while ( have_rows('pricing_tab') ) : the_row();
-                            
+
                             $color = get_sub_field('color');
                             $tag = get_sub_field('tag');
                             $headline = get_sub_field('headline');
@@ -1505,7 +1506,7 @@ Template Name:Landing No Menu Simple Footer
                                             '</div>' .
                                         '</div>' .
                                     '</div>';
-                                    
+
                         endwhile;
 
                         echo '</div>';
@@ -1514,13 +1515,13 @@ Template Name:Landing No Menu Simple Footer
                         // pricing live chat details
                         echo '<div class="threeTab__Detail clearfix">';
                         while ( have_rows('pricing_details_live_chat') ) : the_row();
-                            
+
                             $title = get_sub_field('title');
                             $if_show_price = get_sub_field('if_show_price');
                             $price = get_sub_field('price');
                             $request_quote = get_sub_field('request_quote');
                             $feature_list_title = get_sub_field('feature_list_title');
-                            
+
                             $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
                             if ($if_show_price):
                                 while ( have_rows('price') ) : the_row();
@@ -1529,13 +1530,13 @@ Template Name:Landing No Menu Simple Footer
                                     $priceContent = '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
                                     '<span class="threeTab__Detail--priceUnit">' . $price_unit . '</span>';
                                 endwhile;
-                                
+
                             endif;
 
                             $li_feature_list = '';
                             while ( have_rows('feature_list') ) : the_row();
                                 $feature_point = get_sub_field('feature_point');
-                                
+
                                 $li_feature_list .= '<li>' . $feature_point . '</li>';
                             endwhile;
 
@@ -1587,15 +1588,15 @@ Template Name:Landing No Menu Simple Footer
                                         '</ul>' .
                                         $linkcontent .
                                     '</div>';
-                                    
+
                         endwhile;
-                        
+
                         echo '</div>';
                         // end pricing live chat details
 
                         // pricing multichannel details
                         while ( have_rows('pricing_details_multichannel') ) : the_row();
-                            
+
                             $pricing_details_multichannel_title = get_sub_field('title');
 
                             $columnFirst = '';
@@ -1666,7 +1667,7 @@ Template Name:Landing No Menu Simple Footer
                                         endif;
                                     endwhile;
                                 endif;
-                                
+
                                 $columnThird = '<div class="col-sm-4 threeTab__Detail--col">' .
                                                     '<div class="threeTab__Detail--price">' .
                                                         '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
@@ -1679,23 +1680,23 @@ Template Name:Landing No Menu Simple Footer
                             endwhile;
 
                             echo    '<div class="threeTab__Detail clearfix">' .
-                                        
+
                                         '<div class="threeTab__Detail--title">' .
-                                            $pricing_details_multichannel_title . 
+                                            $pricing_details_multichannel_title .
                                         '</div>' .
-                                        
+
                                         $columnFirst .
                                         $columnSecond .
                                         $columnThird .
                                     '</div>';
-                                    
+
                         endwhile;
                         // end pricing multichannel details
 
 
                         // pricing AI details
                         while ( have_rows('pricing_details_ai') ) : the_row();
-                            
+
                             $pricing_details_ai_title = get_sub_field('title');
 
                             $columnFirst = '';
@@ -1776,7 +1777,7 @@ Template Name:Landing No Menu Simple Footer
                                         endif;
                                     endwhile;
                                 endif;
-                                
+
                                 $columnThird = '<div class="col-sm-4 threeTab__Detail--col">' .
                                                     '<div class="threeTab__Detail--price">' .
                                                         '<span class="threeTab__Detail--priceQuote"><strong>' . $price . '</strong></span>' .
@@ -1788,22 +1789,22 @@ Template Name:Landing No Menu Simple Footer
                             endwhile;
 
                             echo    '<div class="threeTab__Detail clearfix">' .
-                                    
+
                                         '<div class="threeTab__Detail--title">' .
-                                            $pricing_details_ai_title . 
+                                            $pricing_details_ai_title .
                                         '</div>' .
-                                    
+
                                         $columnFirst .
                                         $columnSecond .
                                         $columnThird .
                                     '</div>';
-                                    
+
                         endwhile;
                         // end pricing AI details
-                        
+
 
                         echo '</div>';
-                        
+
                         $pricing_details_bottom_link = get_sub_field('pricing_details_bottom_link');
                         if ($pricing_details_bottom_link):
                             echo '<div class="threeTab__Detail--bottomLink">' .
@@ -1812,7 +1813,7 @@ Template Name:Landing No Menu Simple Footer
                                     '</a>' .
                                 '</div>';
                         endif;
-                        
+
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -1820,14 +1821,14 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;  
-                
-                
+
+                endif;
+
+
                 // check current row layout
                 if( get_row_layout() == 'feature_list' ):
                     if( have_rows('feature_list_repeater') ):
-                    
+
                         echo '<div class="c-content-box">';
                         echo '<div class="container">';
                         echo '<div class="row">';
@@ -1872,7 +1873,7 @@ Template Name:Landing No Menu Simple Footer
                                             else:
                                                 $featurename = $name_text;
                                             endif;
-                                            
+
                                             $tooltip = get_sub_field('tooltip');
                                             echo '<li class="option-title tooltips" data-placement="right" title="" data-original-title="' . $tooltip . '">' .
                                                     $featurename .
@@ -1888,7 +1889,7 @@ Template Name:Landing No Menu Simple Footer
                                         $feature_list_content_if_team_have = get_sub_field('feature_list_content_if_team_have');
                                         $feature_list_content_if_business_have = get_sub_field('feature_list_content_if_business_have');
                                         $feature_list_content_if_ent_have = get_sub_field('feature_list_content_if_ent_have');
-                                        
+
                                         if ($feature_list_content_if_team_have):
                                             $featurecontentTeam = '<i class="fa fa-check c-font-20"></i>';
                                         endif;
@@ -1903,7 +1904,7 @@ Template Name:Landing No Menu Simple Footer
                                         $featurecontentBusiness = get_sub_field('feature_list_content_for_business') == '' ? '&nbsp;' : get_sub_field('feature_list_content_for_business');
                                         $featurecontentEnt = get_sub_field('feature_list_content_for_ent') == '' ? '&nbsp;' : get_sub_field('feature_list_content_for_ent');
                                     endif;
-                                    
+
 
                                     echo '<li>' . $featurecontentTeam . '</li>';
                                     echo '<li>' . $featurecontentBusiness . '</li>';
@@ -1913,37 +1914,37 @@ Template Name:Landing No Menu Simple Footer
                                 endwhile;
                                 echo '</div>';
                             endif;
-                            
+
                         endwhile;
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
                     endif;
-                endif;  
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'frequent_questions' ):
-                    
+
                     $title = get_sub_field('title');
                     // check if the nested repeater field has rows of data
                     if( have_rows('questions') ):
-                        
+
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                         echo '<div class="col-sm-12">';
                             // loop through the rows of data
-                    
+
                         echo '<h3 class="c-center">' . $title . '</h3>';
                         echo '<div class="questions">';
-                        
+
                         while ( have_rows('questions') ) : the_row();
-                            
+
                             $question_title = get_sub_field('question_title');
                             $question_content = get_sub_field('question_content');
 
-                            
+
 
                             echo    '<div class="question-item">' .
                                         '<div class="question-item__title">' . $question_title . '</div>' .
@@ -1959,19 +1960,19 @@ Template Name:Landing No Menu Simple Footer
 
                     endif;
 
-                
-                endif;  
+
+                endif;
 
                 // check current row layout
                 if( get_row_layout() == 'user_review' ):
-                    
+
                     $logo = get_sub_field('logo');
                     $headline = get_sub_field('headline');
                     $quote = get_sub_field('quote');
                     $signature = get_sub_field('signature');
                     $user_review_link = get_sub_field('user_review_link');
                     $background_color = get_sub_field('background_color');
-                    
+
 
                     echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . ' ">';
                     echo '<div class="container">';
@@ -1984,14 +1985,14 @@ Template Name:Landing No Menu Simple Footer
 
                     if ($headline):
                         echo '<h4>' .
-                                $headline . 
+                                $headline .
                             '</h4>';
                     endif;
 
                     echo '<div class="simple-quote">';
                     if ($quote):
                         echo '<div class="simple-quote__content">' .
-                                $quote . 
+                                $quote .
                             '</div>';
                     endif;
                     if ($signature):
@@ -2008,15 +2009,15 @@ Template Name:Landing No Menu Simple Footer
                                 '</a>' .
                             '</div>';
                     endif;
-                    
-                    
+
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                
-                endif;   
-                
+
+                endif;
+
                 // check current row layout
                 if( get_row_layout() == 'leads_form' ):
                     $title = get_sub_field('title');
@@ -2029,10 +2030,9 @@ Template Name:Landing No Menu Simple Footer
                                     '<div class="col-sm-6 col-sm-push-3">' .
                                         '<div class="leads-form">' .
                                             '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
-                                            '<link rel="stylesheet" href="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.css" type="text/css" media="screen, projection" />' .
                                             $form .
-                                            '<script src="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.js"></script>' .
-                                            '<div class="form-note">' . $form_note . '</div>'. 
+                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                            '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
                                 '</div>' .
@@ -2051,18 +2051,17 @@ Template Name:Landing No Menu Simple Footer
                     echo '<div class="c-content-box c-size-md">' .
                             '<div class="container">' .
                                 '<div class="row">' .
-                                    
+
                                     '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
                                     '<div class="col-sm-7">' .
                                         '<div class="contact-form">' .
                                             '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
-                                            '<link rel="stylesheet" href="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.css" type="text/css" media="screen, projection" />' .
                                             $contact_form .
-                                            '<script src="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.js"></script>' .
-                                            '<div class="form-note">' . $form_note . '</div>'. 
+                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                            '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
-                                    
+
                                 '</div>' .
                             '</div>' .
                         '</div>';
@@ -2080,7 +2079,7 @@ Template Name:Landing No Menu Simple Footer
                     echo '<div class="threeTab__Detail-wrap">';
                     echo '<div class="threeTab__Detail clearfix">';
                     echo '<div class="threeTab__Detail--col-wrap clearfix">';
-                    
+
                     while ( have_rows('feature_list') ) : the_row();
                         $color = get_sub_field('color');
                         $compare_name = get_sub_field('compare_name');
@@ -2088,7 +2087,7 @@ Template Name:Landing No Menu Simple Footer
 
                         $if_show_price = get_sub_field('if_show_price');
                         $request_quote = get_sub_field('request_quote');
-                        
+
                         $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
                         if ($if_show_price):
                             while ( have_rows('price') ) : the_row();
@@ -2097,7 +2096,7 @@ Template Name:Landing No Menu Simple Footer
                                 $priceContent = '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
                                 '<span class="threeTab__Detail--priceUnit">' . $price_unit . '</span>';
                             endwhile;
-                            
+
                         endif;
 
                         echo '<div class="col-sm-6 threeTab__Detail--col">' .
@@ -2106,7 +2105,7 @@ Template Name:Landing No Menu Simple Footer
                             '<p class="threeTab__Detail--subTitle"> ' . $feature_list_title . ' </p>' .
                             '<ul class="threeTab__Detail--contentList">';
                         while ( have_rows('feature_pointer_list') ) : the_row();
-                            
+
                             echo '<li>' . get_sub_field('feature_pointer') . '</li>';
                         endwhile;
                         echo '</ul>' .
@@ -2125,10 +2124,10 @@ Template Name:Landing No Menu Simple Footer
 
                 // check current row layout
                 if( get_row_layout() == 'line' ):
-                    
+
                     $height = get_sub_field('height');
                     $color = get_sub_field('color');
-                    
+
 
                     echo '<div class="c-content-box">';
                     echo '<div class="container">';
@@ -2138,15 +2137,15 @@ Template Name:Landing No Menu Simple Footer
                     if ($height):
                         echo '<hr style="border-top-color: ' . $color . '; border-top-width: ' . $height . 'px " />';
                     endif;
-                    
-                    
-                    
+
+
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
-                
-                endif;   
+
+                endif;
             endwhile;
 
         else :
@@ -2155,9 +2154,22 @@ Template Name:Landing No Menu Simple Footer
 
         endif;
 
-        
+
     ?>
-                
+
 </div>
 
-<?php get_footer('simple'); ?>
+<?php get_template_part('template-parts/footer', 'simple'); ?>
+
+<!--Begin Comm100 Live Chat Code-->
+<div id="comm100-button-5000239"></div>
+<script type="text/javascript">
+var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:5000239,div_id:"comm100-button-5000239"}),t.site_id=10000,t.main_code_plan=5000239,e("https://chatserver.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://hostedmax.comm100.com/chatserver/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
+</script>
+<!--End Comm100 Live Chat Code-->
+<script>
+    $(document).ready(function()
+    {
+        App.init(); // init core
+    });
+</script>

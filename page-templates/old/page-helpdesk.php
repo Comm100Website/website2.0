@@ -3,7 +3,7 @@
 Template Name:helpdesk
 */
 ?>
-<?php get_header('helpdesk'); ?>
+<?php get_template_part('template-parts/header', 'helpdesk'); ?>
   </header>
   <?php if (have_posts()) : ?>
   <?php while (have_posts()) : the_post(); ?>
@@ -19,4 +19,4 @@ Template Name:helpdesk
    
   <?php endif; ?>
 
-<?php get_footer(''); ?>
+<?php get_template_part('template-parts/footer'); ?>

@@ -3,7 +3,7 @@
 Template Name:Platform Others
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 </header>
 
 <div class="c-layout-page c-layout-page-fixed secondary-page secondary-page--others">
@@ -1023,4 +1023,4 @@ Template Name:Platform Others
                 
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

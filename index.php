@@ -1,6 +1,7 @@
-<?php get_header(); ?>
+<?php use Roots\Sage\Navigation; ?>
+<?php get_template_part('template-parts/header'); ?>
 </header>
-        
+
 <!-- posts  -->
 <div class="c-layout-page c-layout-page-fixed">
         <!-- BEGIN: BLOG LISTING -->
@@ -15,7 +16,7 @@
                       ?>
                         <div class="c-margin-b-80 img-promotion-container">
                           <div class="img-promotion">
-                              <?php 
+                              <?php
                                 $args = array( 'numberposts' => '1', 'post_status' => 'publish, pending, private' );
                                 $recent_posts = wp_get_recent_posts($args);
                                 foreach( $recent_posts as $recent ){
@@ -28,7 +29,7 @@
                                         $category_link = get_category_link( $category_id );
                                         $catstr = '<a href="'.$category_link.'">'.$category_name.'</a>, ';
                                     }
-                                    $catstr = substr($catstr,0,strlen($catstr)-2); 
+                                    $catstr = substr($catstr,0,strlen($catstr)-2);
 
                                     //author
                                     $recent_author_str = '';
@@ -37,14 +38,14 @@
                                         foreach($recent_authors as $recent_author){
                                             $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
                                         }
-                                        $recent_author_str = substr($recent_author_str,0,strlen($recent_author_str)-2); 
+                                        $recent_author_str = substr($recent_author_str,0,strlen($recent_author_str)-2);
                                     } else {
                                         $recent_author = get_user_by( 'ID', $recent["post_author"] );
                                         $author_display_name = $recent_author->display_name;
                                         $author_url = get_author_posts_url($recent["post_author"]);
                                         $recent_author_str = '<a href="'.$author_url.'">'.$author_display_name.'</a>';
                                     }
-                                    
+
                                     // $excerptstr = get_the_excerpt();
                                     $excerptstr = empty(get_post($recent["ID"])->post_excerpt) ? wp_trim_words(get_post($recent["ID"])->post_content, 55, '...')
                                                                                         : get_post($recent["ID"])->post_excerpt;
@@ -65,20 +66,20 @@
                                                 '. $excerptstr .' <a href="'. get_permalink($recent["ID"]) .'">Read More</a>
                                             </div>
                                         </div>';
-                                    
+
                                 }
                               ?>
                           </div>
                         </div>
                       <?php  }?>
-                      
+
                       <div class="c-content-blog-post-card-1-grid">
                             <div class="row">
-                                
+
                                 <?php
                                     $current_page = (get_query_var('paged') ? get_query_var('paged') : 1);
                                     $maxposts = get_option('posts_per_page');
-                                    //if($current_page == 1){ 
+                                    //if($current_page == 1){
                                       query_posts('offset='. strval(($current_page-1)*$maxposts+1));
                                     //}
                                     if (have_posts()) : ?>
@@ -101,8 +102,8 @@
                                                 </div>
                                                 <div class="c-author">
                                                     <span>
-                                                        <?php the_time('F jS, Y'); ?> | 
-                                                        <?php the_category(', '); ?> |  
+                                                        <?php the_time('F jS, Y'); ?> |
+                                                        <?php the_category(', '); ?> |
 
                                                         <?php
                                                             //author
@@ -112,7 +113,7 @@
                                                                 foreach($recent_authors as $recent_author){
                                                                     $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
                                                                 }
-                                                                echo substr($recent_author_str,0,strlen($recent_author_str)-2); 
+                                                                echo substr($recent_author_str,0,strlen($recent_author_str)-2);
                                                             } else {
                                                                 echo '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.
                                                                     the_author().
@@ -126,7 +127,7 @@
                                                 <?php the_excerpt(); ?>
                                                     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">Read More</a>
                                                 </div>
-                                                
+
                                                 <div class="f-r c-margin-t-10">
                                                   <div class="addthis_sharing_toolbox" data-url="<?php the_permalink(); ?>" data-title="<?php the_title(); ?>"></div>
                                                 </div> -->
@@ -135,26 +136,26 @@
                                       </div>
                                     <?php endwhile; ?>
                                     <div class="clear"></div>
-                                    
+
                                     <?php else : ?>
                                     <div class="post">
                                         <h2>Not found!</h2>
                                         <p><?php _e('Sorry, this page does not exist.'); ?></p>
                                         <?php
                                                get_template_part('template-parts/searchform');
-                                      ?>    
-                                    </div>     
+                                      ?>
+                                    </div>
                                     <?php endif; ?>
-                                
+
                             </div>
                             <div class="c-pagination">
-                              <?php pagenavi(); ?>
+                              <?php Navigation\pagenavi(); ?>
                             </div>
                       </div>
                     </div>
-                    
+
                     <?php get_template_part('template-parts/sidebar'); ?>
-                   
+
                   </div>
             </div>
         </div>
@@ -162,4 +163,4 @@
 
 
 
-<?php get_footer(''); ?>
+<?php get_template_part('template-parts/footer'); ?>

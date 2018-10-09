@@ -3,7 +3,7 @@
 Template Name:acf demo Home
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
   <div class="c-topbar c-navbar">
         <div class="container">
             <div class="c-brand">
@@ -22,7 +22,7 @@ Template Name:acf demo Home
                 <span class="c-theme-link">&times;</span>
             </form>
             <!-- END: QUICK SEARCH -->
-           
+
             <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
             <?php
               $defaults = array(
@@ -53,25 +53,25 @@ Template Name:acf demo Home
           <!-- BEGIN: BRAND -->
         <div class="c-navbar-wrapper clearfix">
             <div class="c-brand c-pull-left">
-                
+
                   <a href="https://www.comm100.com/livechat/" class="c-logo">
                     <span class="c-logo-img"><img src="https://www.comm100.com/wp-content/uploads/images/logo-comm100.svg" alt="Comm100" class="c-desktop-logo"/></span>
                   </a>
-                  
-                
+
+
                 <button class="c-hor-nav-toggler" type="button" data-target=".c-top2-menu">
                     <span class="c-line"></span>
                     <span class="c-line"></span>
                     <span class="c-line"></span>
                 </button>
-                
+
             </div>
             <!-- END: BRAND -->
-            
+
             <!-- BEGIN: HOR NAV -->
             <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
             <!-- BEGIN: MEGA MENU -->
-            
+
             <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
             <?php
               $defaults = array(
@@ -103,7 +103,7 @@ Template Name:acf demo Home
   </div>
 </header>
 <div class="c-layout-page c-layout-page-fixed">
-    
+
 
     <?php
         // check if the flexible content field has rows of data
@@ -131,7 +131,7 @@ Template Name:acf demo Home
 
                 if ($banner_icon):
                     echo '<div class="banner_icon">' .
-                            '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($banner_headline):
@@ -149,7 +149,7 @@ Template Name:acf demo Home
                             $banner_description .
                         '</div>';
                 endif;
-                
+
                 if ($banner_cta):
 
                     while ( have_rows('cta') ) : the_row();
@@ -181,8 +181,8 @@ Template Name:acf demo Home
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
                 echo '</div>';
                 echo '</div>';
@@ -190,7 +190,7 @@ Template Name:acf demo Home
             endif;
                 // check current row layout
             if( get_row_layout() == 'hero_head' ):
-                
+
                 $header_align = get_sub_field('align');
                 $header_icon = get_sub_field('icon');
                 // $page_tag = get_sub_field('page_tag');
@@ -206,7 +206,7 @@ Template Name:acf demo Home
 
                 if ($header_icon):
                     echo '<div class="header_icon">' .
-                            '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($header_headline):
@@ -224,7 +224,7 @@ Template Name:acf demo Home
                             $header_description .
                         '</div>';
                 endif;
-                
+
                 if ($header_cta):
 
                     while ( have_rows('cta') ) : the_row();
@@ -256,14 +256,14 @@ Template Name:acf demo Home
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;    
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature_left_image' ):
@@ -277,7 +277,7 @@ Template Name:acf demo Home
                     $featureDescription = $row['feature_description'];
                     echo '<div class="col-sm-' . strval(12/$row_count) . '">' .
                         '<div class="c-content-feature-2 c-option-2 c-theme-bg-parent-hover">' .
-                            '<div class="c-icon-wrapper">' . 
+                            '<div class="c-icon-wrapper">' .
                                 '<span aria-hidden="true">' .
                                     '<img src="' . $featureImage['url'] . '" alt="' . $featureImage['alt'] . '" width="50" height="50">' .
                                 '</span>' .
@@ -289,7 +289,7 @@ Template Name:acf demo Home
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;   
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'card' ):
@@ -344,8 +344,8 @@ Template Name:acf demo Home
                                     }
                                 endif;
                             endwhile;
-                            
-                            
+
+
                         endif;
 
                         echo    '<div class="card-item card-item--' . $card_themecolor . '" data-link="' . $card_link['url'] . '">' .
@@ -353,7 +353,7 @@ Template Name:acf demo Home
                                     '<h3 class="hightlight hightlight--' . $card_themecolor . '">' . $card_title . '</h3>' .
                                     '<div class="card-item__subtitle">' . $card_subtitle . '</div>' .
                                     '<p>' . $card_description . '</p>' .
-                                    '<div class="card-item__link">' . $linkcontent . '</div>' . 
+                                    '<div class="card-item__link">' . $linkcontent . '</div>' .
                                 '</div>';
                     endwhile;
 
@@ -371,7 +371,7 @@ Template Name:acf demo Home
             //     $paragraph_item = get_sub_field('paragraph_item');
             //     $paragraph_itemClass = get_sub_field('paragraph_item')['paragraph_class'];
             //     $paragraph_itemText = get_sub_field('paragraph_item')['paragraph_text'];
-                
+
             //     echo '<div class="col-sm-12"><p class="' . $paragraph_itemClass . '">' . $paragraph_itemText . '</p></div>';
 
             // endif;
@@ -389,7 +389,7 @@ Template Name:acf demo Home
                         // loop through the rows of data
                     while ( have_rows('btn_repeater') ) : the_row();
 
-                        
+
                         $btn_link = get_sub_field('button');
 
                         echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
@@ -407,7 +407,7 @@ Template Name:acf demo Home
 
             // check current row layout
             if( get_row_layout() == 'cta' ):
-                
+
                 $calltoaction_type = get_sub_field('type');
                 $calltoaction_title = get_sub_field('title');
                 $calltoaction_subtitle = get_sub_field('subtitle');
@@ -466,27 +466,27 @@ Template Name:acf demo Home
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;  
-            
+            endif;
+
             // check current row layout
             if( get_row_layout() == 'logo' ):
-                
+
                 $logo_repeater = get_sub_field('logo_repeater');
                 // check if the nested repeater field has rows of data
                 if( have_rows('logo_repeater') ):
-                    
+
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="6" data-desktop-items="6" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1" data-auto-play="5000">';
-                    echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';            
+                    echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';
                         // loop through the rows of data
                     while ( have_rows('logo_repeater') ) : the_row();
 
@@ -503,13 +503,13 @@ Template Name:acf demo Home
                     echo '</div>';
 
                 endif;
-                
-                
-            endif;  
+
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'resource' ):
-                
+
                 $headline = get_sub_field('title');
                 $slogan = get_sub_field('subtitle');
                 $description = get_sub_field('description');
@@ -572,26 +572,26 @@ Template Name:acf demo Home
                         endif;
                         echo '</div>';
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;    
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'image-text_card' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_card_repeater') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="col-sm-12">';         
+                    echo '<div class="col-sm-12">';
                         // loop through the rows of data
                     while ( have_rows('image_text_card_repeater') ) : the_row();
 
@@ -640,7 +640,7 @@ Template Name:acf demo Home
                                     '</div>' .
                                     '<div class="img-text-card__text">' .
                                         '<div class="highlight highlight--lightBlue">' . $headline . '</div>' .
-                                        '<p>' . $body . '</p>' . 
+                                        '<p>' . $body . '</p>' .
                                         '<div class="img-text-card__link">' . $linkcontent . '</div>' .
                                     '</div>' .
                                 '</div>';
@@ -653,15 +653,15 @@ Template Name:acf demo Home
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -731,18 +731,18 @@ Template Name:acf demo Home
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '1-column' ):
-                
+
                 $headimage = get_sub_field('image');
                 $headicon = get_sub_field('icon');
                 $headline = get_sub_field('title');
                 $body = get_sub_field('description');
                 $cta = get_sub_field('cta');
-                
+
 
                 echo '<div class="c-content-box c-size-md">';
                 echo '<div class="container">';
@@ -755,7 +755,7 @@ Template Name:acf demo Home
 
                 if ($headicon):
                     echo '<div class="header_icon">' .
-                            '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($headline):
@@ -770,7 +770,7 @@ Template Name:acf demo Home
                     while ( have_rows('cta') ) : the_row();
                         $cta_link_type = get_sub_field('cta_link_type');
                         $cta_link = get_sub_field('cta_link');
-                        
+
                         if ($cta_link):
                             switch ($cta_link_type) {
                                 case 'green' :
@@ -797,15 +797,15 @@ Template Name:acf demo Home
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;   
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column' ):
@@ -814,7 +814,7 @@ Template Name:acf demo Home
                 $row_index = 0;
                 // check if the nested repeater field has rows of data
                 if( have_rows('columns') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -829,7 +829,7 @@ Template Name:acf demo Home
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
                         $cta = get_sub_field('cta');
-                        
+
                         $linkcontent = '';
 
                         if ($cta):
@@ -869,7 +869,7 @@ Template Name:acf demo Home
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="64" height="64" />' .
                                     '</div>' .
                                     '<h3>' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     '<div class="c-margin-t-30">' . $linkcontent . '</div>' .
                                 '</div>';
                     endwhile;
@@ -880,17 +880,17 @@ Template Name:acf demo Home
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'testimonial' ):
-                
+
                 $quote = get_sub_field('quote');
                 $signature = get_sub_field('signature');
                 $story_link = get_sub_field('story_link');
                 $background_color = get_sub_field('background_color');
-                
+
 
                 echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . ' ">';
                 echo '<div class="container">';
@@ -899,7 +899,7 @@ Template Name:acf demo Home
 
                 if ($quote):
                     echo '<div class="c-quote__text">' .
-                            $quote . 
+                            $quote .
                         '</div>';
                 endif;
                 if ($signature):
@@ -914,29 +914,29 @@ Template Name:acf demo Home
                             '</a>' .
                         '</div>';
                 endif;
-                
-                
+
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '3-column' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('columns') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 three-column">';
                         // loop through the rows of data
-                    
+
                     while ( have_rows('columns') ) : the_row();
-                        
+
                         $headline = get_sub_field('headline');
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
@@ -982,7 +982,7 @@ Template Name:acf demo Home
                         echo    '<div class="three-column__item">' .
                                     '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
                                     '<h5 class="three-column__title">' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     $linkcontent .
                                 '</div>';
                     endwhile;
@@ -994,27 +994,27 @@ Template Name:acf demo Home
 
                 endif;
 
-               
-            endif;  
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature' ):
-                $color = get_sub_field('color');                                
+                $color = get_sub_field('color');
                 // check if the nested repeater field has rows of data
                 if( have_rows('column') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 feature-column">';
                         // loop through the rows of data
-                    
+
                     while ( have_rows('column') ) : the_row();
-                        
+
                         $headline = get_sub_field('headline');
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
-                        
+
 
                         if ($linkcontent !== ''):
                             $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
@@ -1023,10 +1023,10 @@ Template Name:acf demo Home
                         echo    '<div class="feature-column__item">' .
                                     '<div><img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" /></div>' .
                                     '<h5 class="feature-column__title highlight highlight--' . $color . '">' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     $linkcontent .
                                 '</div>';
-                                
+
                     endwhile;
 
                     $cta = get_sub_field('cta');
@@ -1071,8 +1071,8 @@ Template Name:acf demo Home
 
                 endif;
 
-               
-            endif;    
+
+            endif;
         endwhile;
 
         else :
@@ -1081,7 +1081,7 @@ Template Name:acf demo Home
 
         endif;
     ?>
-                
+
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

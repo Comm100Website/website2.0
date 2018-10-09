@@ -1,5 +1,44 @@
-update wp_postmeta set meta_value = concat('page-templates/',meta_value) where meta_key = 'custom_post_template';
+//Enable gzip compression on static assets and html
+<configuration>
+  <system.webServer>
+    <httpCompression directory="%SystemDrive%\inetpub\temp\IIS Temporary Compressed Files">
+      <scheme name="gzip" dll="%Windir%\system32\inetsrv\gzip.dll" staticCompressionLevel="9" />
+      <dynamicTypes>
+        <add mimeType="text/*" enabled="true" />
+        <add mimeType="message/*" enabled="true" />
+        <add mimeType="application/x-javascript" enabled="true" />
+        <add mimeType="application/json" enabled="true" />
+        <add mimeType="*/*" enabled="false" />
+      </dynamicTypes>
+      <staticTypes>
+        <add mimeType="text/*" enabled="true" />
+        <add mimeType="message/*" enabled="true" />
+        <add mimeType="application/x-javascript" enabled="true" />
+        <add mimeType="application/atom+xml" enabled="true" />
+        <add mimeType="application/xaml+xml" enabled="true" />
+        <add mimeType="*/*" enabled="false" />
+      </staticTypes>
+    </httpCompression>
+    <urlCompression doStaticCompression="true" doDynamicCompression="true" />
+...
+  </system.webServer>
+...
+</configuration>
+
+//Enable static resource browser caching
+<system.webServer>
+...
+<staticContent>
+<clientCache cacheControlMaxAge="14.00:00:00" cacheControlMode="UseMaxAge"/>
+</staticContent>
+...
+</system.webServer>
+
+Remove "Custom Post Templates" plugin. We can use default Wordpress functionality for this.
+
+update wp_postmeta set meta_key = '_wp_page_template' where meta_key = 'custom_post_template';
 update wp_postmeta set meta_value = concat('page-templates/',meta_value) where meta_key = '_wp_page_template';
+delete from wp_postmeta where meta_key = '_wp_page_template' and meta_value = 'page-templates/single-blog.php';
 
 select distinct meta_value from wp_postmeta where meta_value in ('page-templates/acf-company.php',
 'page-templates/acf-home.php',

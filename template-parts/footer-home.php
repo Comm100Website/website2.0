@@ -1,3 +1,6 @@
+<?php
+use Roots\Sage\Assets;
+?>
 <!-- BEGIN: LAYOUT/FOOTERS/FOOTER-7 -->
 <a name="footer"></a>
 <footer class="c-layout-footer c-layout-footer-7">
@@ -51,7 +54,7 @@
                             <li>
                                 <a href="/knowledgebase/">Knowledge Base</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                     <div class="col-md-5 col-sm-6 col-xs-12">
@@ -107,12 +110,12 @@
             <div class="c-foot">
                 <div class="row">
                     <div class="col-md-10">
-                        
+
                         <div>
-                            <span><img src="https://www.comm100.com/wp-content/uploads/images/hipaa-logo.png" alt="HIPAA" width="127" height="44" class="c-sm-margin-t-10"></span>
-                            <span><img src="https://www.comm100.com/wp-content/uploads/images/logo-iso-27001.png?v=20180202" alt="ISO 27001" width="85" height="85" class="c-sm-margin-t-10"></span>
+                            <span><img src="/wp-content/uploads/images/hipaa-logo.png" alt="HIPAA" width="127" height="44" class="c-sm-margin-t-10"></span>
+                            <span><img src="/wp-content/uploads/images/logo-iso-27001.png?v=20180202" alt="ISO 27001" width="85" height="85" class="c-sm-margin-t-10"></span>
                             <span class="c-padding-left-10">
-                                        <img src="<?php bloginfo('template_url');?>/assets/base/img/content/security/pci.png" alt="PCI" width="100" height="43">
+                                        <img src="<?= Assets\asset_path('images/content/security/pci.png'); ?>" alt="PCI" width="100" height="43">
                                     </span>
                                     <span id="truste" class="c-padding-left-10">
                                    <a href="//privacy.truste.com/privacy-seal/validation?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" target="_blank"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" alt="TRUSTe"/></a>
@@ -121,12 +124,12 @@
                                         <a title="Click for the Business Review of Comm100 Network Corporation, a Computer Software Publishers &amp; Developers in Vancouver BC"
                                         href="//www.bbb.org/mbc/business-reviews/computer-software-publishers-and-developers/comm100-network-corporation-in-vancouver-bc-1264631#sealclick" target="_blank">
                                         <img alt="Click for the BBB Business Review of this Computer Software Publishers &amp; Developers in Vancouver BC"
-                                            style="border: 0;" src="<?php bloginfo('template_url');?>/assets/base/img/content/security/bbb.png?v=201606221634" width="114" height="43"/></a></span>
-                            <span class="c-padding-left-10"><a href="https://pinpoint.microsoft.com/en-us/companies/4297614086" target="_blank"><img src="<?php bloginfo('template_url');?>/assets/base/img/content/security/microsoft-partner.png?v=201606221634" alt="Microsoft Partner" width="215" height="43" class="c-sm-margin-t-10"></a></span> 
-                            <span class="c-padding-left-10"><img src="https://www.comm100.com/wp-content/uploads/images/logo-sfdc.svg" alt="Salesforce Partner" width="147" height="43" class="c-sm-margin-t-10"></span>
+                                            style="border: 0;" src="<?= Assets\asset_path('images/content/security/bbb.png'); ?>" width="114" height="43"/></a></span>
+                            <span class="c-padding-left-10"><a href="https://pinpoint.microsoft.com/en-us/companies/4297614086" target="_blank"><img src="<?= Assets\asset_path('images/content/security/microsoft-partner.png'); ?>" alt="Microsoft Partner" width="215" height="43" class="c-sm-margin-t-10"></a></span>
+                            <span class="c-padding-left-10"><img src="/wp-content/uploads/images/logo-sfdc.svg" alt="Salesforce Partner" width="147" height="43" class="c-sm-margin-t-10"></span>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -135,10 +138,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <p class="c-copyright c-font-grey">Copyright &copy;
-                        <script>
-                        document.write((new Date()).getFullYear());
-                        </script> Comm100 Network Corporation.
+                    <p class="c-copyright c-font-grey">Copyright &copy; <?= date('Y'); ?> Comm100 Network Corporation.
                         <span class="c-font-regular">All Rights Reserved.
                             <a class="c-font-regular" href="/sitemap_index.xml"
                                 title="Live Chat Site Map">Site Map</a> | <a  class="c-font-regular" href="/privacy/"
@@ -158,21 +158,6 @@
 </div>
 <!-- END: LAYOUT/FOOTERS/GO2TOP -->
 <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
-<!-- BEGIN: CORE PLUGINS -->
-<!--[if lt IE 9]>
-    <script src="..//assets/global/plugins/excanvas.min.js"></script> 
-    <![endif]-->
-<script src="<?php bloginfo('template_url');?>/assets/plugins/jquery.min.js" type="text/javascript"></script>
-<!-- <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script> -->
-<script src="<?php bloginfo('template_url');?>/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="<?php bloginfo('template_url');?>/assets/plugins/jquery.easing.min.js?v=2.0.1" type="text/javascript"></script>
-    <script src="<?php bloginfo('template_url');?>/assets/base/js/plugins.min.js?v=1.0.0" type="text/javascript"></script>
-<script src="<?php bloginfo('template_url');?>/assets/base/js/script.min.js?ver=20180522" type="text/javascript"></script>
-<!-- END: THEME SCRIPTS -->
-<!-- BEGIN: PAGE SCRIPTS -->
-<!--<script src="<?php bloginfo('template_url');?>/assets/base/js/scripts/pages/lightbox-gallery.js" type="text/javascript"></script>-->
-<!-- END: PAGE SCRIPTS -->
-<!-- <script type="text/javascript" src="/secure/js/showchatbutton.js?ver=20150608"></script>
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-5000239"></div>
 <script type="text/javascript">
@@ -183,12 +168,7 @@
 <!-- END: LAYOUT/BASE/BOTTOM -->
 <script>
 $(document).ready(function() {
-    App.init(); // init core    
+    App.init(); // init core
 });
 </script>
 <!-- END: THEME SCRIPTS -->
-
-
-</body>
-
-</html>

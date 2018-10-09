@@ -3,7 +3,7 @@
 Template Name:Solution Use Case Landing
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 <div class="c-navbar--secondary visible-md">
         <div class="container">
             <?php
@@ -1046,4 +1046,4 @@ Template Name:Solution Use Case Landing
                 
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

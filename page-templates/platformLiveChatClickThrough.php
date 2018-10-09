@@ -3,7 +3,7 @@
 Template Name:Platform Live Chat Click Through
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
     <div class="c-navbar--secondary visible-md">
         <div class="container">
             <?php
@@ -1093,4 +1093,4 @@ Template Name:Platform Live Chat Click Through
                 
 </div>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

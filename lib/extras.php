@@ -1,5 +1,4 @@
 <?php
-
 namespace Roots\Sage\Extras;
 
 use Roots\Sage\Setup;
@@ -18,3 +17,9 @@ function body_class($classes) {
   return $classes;
 }
 add_filter('body_class', __NAMESPACE__ . '\\body_class');
+
+//Remove [...] string using Filters
+function ellipsis_excerpt_more( $more ) {
+    return '...';
+}
+add_filter('excerpt_more', __NAMESPACE__.'\\ellipsis_excerpt_more');

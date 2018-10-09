@@ -1,11 +1,14 @@
 <?php
 /*
-Template Name Posts: Single Post No Sidebar
+Template Name: Single Post No Sidebar
+Template Post Type: post
 */
+
+use Roots\Sage\Analytics;
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 </header>
-        
+
 <!-- posts  -->
 <div class="c-layout-page c-layout-page-fixed">
     <!-- BEGIN: PAGE CONTENT -->
@@ -25,14 +28,14 @@ Template Name Posts: Single Post No Sidebar
                                     </div>
                                     <div class="c-desc c-article">
                                         <?php the_content(); ?>
-                                    </div> 
+                                    </div>
 
                                     <!-- The following line set post view counts -->
-                                    <?php setPostViews(get_the_ID()); ?>
+                                    <?php Analytics\setPostViews(get_the_ID()); ?>
                                 </div>
                             </div>
                         </div>
-                        
+
                     <?php endwhile; ?>
                 <?php else : ?>
                     <div class="post">
@@ -63,4 +66,4 @@ Template Name Posts: Single Post No Sidebar
  <!-- Go to www.addthis.com/dashboard to customize your tools -->
  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2faac9507104da"></script>
 
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

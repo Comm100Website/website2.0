@@ -1,3 +1,6 @@
+<?php
+use Roots\Sage\Assets;
+?>
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8">
@@ -10,17 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--<link href="<?php bloginfo('template_url');?>/assets/base/css/style.min.css?ver=1.0.3" id="style_components" rel="stylesheet"
-        type="text/css" />-->
-
-    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?ver=2.0.15" type="text/css" media="screen, projection" />
-
-    <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="<?= get_template_directory_uri(); ?>/dist/images/favicon.ico" />
-
-
+    <link rel="shortcut icon" href="<?= Assets\asset_path('images/favicon.ico'); ?>" />
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-    <script src="https://cdn.optimizely.com/js/9295172620.js"></script>
 
     <?php wp_head(); ?>
 

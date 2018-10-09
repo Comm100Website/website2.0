@@ -1,18 +1,19 @@
-<?php get_header(); ?>
+<?php use Roots\Sage\Navigation; ?>
+<?php get_template_part('template-parts/header'); ?>
 </header>
-        
+
 <!-- posts  -->
 <div class="c-layout-page c-layout-page-fixed">
     <!-- BEGIN: BLOG LISTING -->
     <div class="c-content-box c-size-md">
         <div class="container">
-      <div class="row"> 
+      <div class="row">
             <div class="col-md-9">
             <?php
                 if ( function_exists( 'coauthors_posts_links' ) ) {
                     global $post;
                     $author_id=get_the_author_meta('ID');
-                    $userdata = get_userdata( $author_id ); 
+                    $userdata = get_userdata( $author_id );
             ?>
                     <div id="authorsure-author-profile" class="c-margin-b-60">
                         <h1 class="authorsure-author-title">About <?php echo $userdata->display_name; ?></h1>
@@ -40,8 +41,8 @@
                 <p><?php _e('No posts found. Try a search?'); ?></p>
                 <?php
             get_template_part('template-parts/searchform');
-           ?> 
-             </div> 
+           ?>
+             </div>
             <?php endif; ?>
             <div class="c-content-blog-post-card-1-grid">
                         <div class="row">
@@ -70,23 +71,23 @@
                                       </div>
                                     <?php endwhile; ?>
                                     <div class="clear"></div>
-                                    
+
                                 <?php else : ?>
                                   <div class="post">
                                       <h2>Not found!</h2>
                                       <p><?php _e('Sorry, this page does not exist.'); ?></p>
                                       <?php
                                        get_template_part('template-parts/searchform');
-                                      ?>  
-                                  </div>     
+                                      ?>
+                                  </div>
                                 <?php endif; ?>
             </div>
               <div class="c-pagination">
                 <!--<?php next_posts_link('&laquo; Previous posts') ?> <?php previous_posts_link('Next posts &raquo;') ?><br/><br/>
                 <a href="#posts"><img src="<?php bloginfo('template_directory'); ?>/images/backtotopicon.gif" alt="Back to top" />Back to top</a>-->
-                 <?php pagenavi(); ?>
+                 <?php Navigation\pagenavi(); ?>
               </div>
-           </div>   
+           </div>
         </div>
         <?php get_template_part('template-parts/sidebar'); ?>
         </div>
@@ -105,4 +106,4 @@
 </script>
  <!-- Go to www.addthis.com/dashboard to customize your tools -->
  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2faac9507104da"></script>
-<?php get_footer(); ?>
+<?php get_template_part('template-parts/footer'); ?>

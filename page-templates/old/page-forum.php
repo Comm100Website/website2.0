@@ -3,7 +3,7 @@
 Template Name:forum
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
   <div class="c-topbar c-navbar">
         <div class="container">
             <div class="c-brand">
@@ -113,4 +113,4 @@ Template Name:forum
    
   <?php endif; ?>
 
-<?php get_footer('home'); ?>
+<?php get_template_part('template-parts/footer', 'home'); ?>

@@ -3,7 +3,7 @@
 Template Name:ticket
 */
 ?>
-<?php get_header(); ?>
+<?php get_template_part('template-parts/header'); ?>
 </header>
   <?php if (have_posts()) : ?>
   <?php while (have_posts()) : the_post(); ?>
@@ -19,4 +19,4 @@ Template Name:ticket
    
   <?php endif; ?>
 
-<?php get_footer('home'); ?>
+<?php get_template_part('template-parts/footer', 'home'); ?>

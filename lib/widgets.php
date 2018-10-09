@@ -1,38 +1,37 @@
 <?php
+namespace Roots\Sage\Widgets;
 
 //Customize Search Style
 function widget_web_search() {
-  ?>
-      <div class="sidebarbox">
-          <?php get_template_part('template-parts/searchform'); ?>
-      </div>
+?>
+    <div class="sidebarbox">
+        <?php get_template_part('template-parts/searchform'); ?>
+    </div>
+<?php
+}
+wp_register_sidebar_widget(__('Search'), __('Search'), __NAMESPACE__.'\\widget_web_search');
 
-  <?php
-  }
+//Customize Search Style in Post
+function widget_post_search() {
+    ?>
+    <div class="sidebarbox">
+        <?php get_template_part('template-parts/searchform'); ?>
+    </div>
+    <?php
+}
+wp_register_sidebar_widget(__('Post Search'), __('Post Search'), __NAMESPACE__.'\\widget_post_search', '');
 
-  if (function_exists('register_sidebar_widget')) {
-      register_sidebar_widget(__('Search'), 'widget_web_search');
-  }
+function popularposts() {
+    get_template_part('template-parts/popularposts');
+}
+wp_register_sidebar_widget('Popular Posts', 'Popular Posts',__NAMESPACE__.'\\popularposts', '');
 
-  //Customize Search Style in Post
-  function widget_post_search() {
-  ?>
-      <div class="sidebarbox">
-          <?php get_template_part('template-parts/searchform'); ?>
-      </div>
-  <?php
-  }
-  if ( function_exists('register_sidebar_widget') )
-      register_sidebar_widget(__('Post Search'), 'widget_post_search');
+function relatedposts() {
+    get_template_part('template-parts/relatedposts');
+}
+wp_register_sidebar_widget('Related Posts', 'Related Posts',__NAMESPACE__.'\\relatedposts', '');
 
-
-  // Add "Popular Posts" and "Related Posts" Widgets
-  if ( function_exists( 'register_sidebar_widget' ) ) {
-      register_sidebar_widget('Popular Posts','popularposts');
-      register_sidebar_widget('Related Posts','relatedposts');
-      register_sidebar_widget('Custom Recent Posts','recentposts');
-  }
-
-  function popularposts() { get_template_part('template-parts/popularposts'); }
-  function relatedposts() { get_template_part('template-parts/relatedposts'); }
-  function recentposts() { get_template_part('template-parts/recentposts'); }
+function recentposts() {
+    get_template_part('template-parts/recentposts');
+}
+wp_register_sidebar_widget('Custom Recent Posts', 'Custom Recent Posts',__NAMESPACE__.'\\recentposts', '');
