@@ -1,20 +1,13 @@
 {
-  "name": "sage",
-  "homepage": "https://roots.io/sage/",
+  "name": "comm100",
+  "homepage": "https://comm100.com/",
   "authors": [
-    "Ben Word <ben@benword.com>"
+    "RPS Studios <martin@rps.is>"
   ],
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0"
   },
-    "overrides": {
-    "bootstrap": {
-      "main": [
-        "./scss/bootstrap.scss",
-        "./dist/js/bootstrap.bundle.js"
-      ]
-    }
+  "overrides": {
   }
 }
