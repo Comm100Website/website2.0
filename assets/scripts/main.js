@@ -33,13 +33,13 @@ var App = function() {
 		F = !!navigator.userAgent.match(/MSIE 10.0/);
 		B = navigator.userAgent.indexOf("MSIE ") > -1 || navigator.userAgent.indexOf("Trident/") > -1;
 		if (F) {
-			$("html").addClass("ie10");
+			jQuery("html").addClass("ie10");
 		}
 		if (D) {
-			$("html").addClass("ie9");
+			jQuery("html").addClass("ie9");
 		}
 		if (B) {
-			$("html").addClass("ie");
+			jQuery("html").addClass("ie");
 		}
 	};
 	var E = function() {
@@ -49,39 +49,39 @@ var App = function() {
 		}
 	};
 	var C = function() {
-		$("[data-auto-height]").each(function() {
-			var b = $(this);
-			var c = $("[data-height]", b);
+		jQuery("[data-auto-height]").each(function() {
+			var b = jQuery(this);
+			var c = jQuery("[data-height]", b);
 			var d = 0;
 			var e = b.attr("data-mode");
 			var a = parseInt(b.attr("data-offset") ? b.attr("data-offset") : 0);
 			c.each(function() {
-				if ($(this).attr("data-height") == "height") {
-					$(this).css("height", "");
+				if (jQuery(this).attr("data-height") == "height") {
+					jQuery(this).css("height", "");
 				} else {
-					$(this).css("min-height", "");
+					jQuery(this).css("min-height", "");
 				}
-				var f = (e == "base-height" ? $(this).outerHeight() : $(this).outerHeight(true));
+				var f = (e == "base-height" ? jQuery(this).outerHeight() : jQuery(this).outerHeight(true));
 				if (f > d) {
 					d = f;
 				}
 			});
 			d = d + a;
 			c.each(function() {
-				if ($(this).attr("data-height") == "height") {
-					$(this).css("height", d);
+				if (jQuery(this).attr("data-height") == "height") {
+					jQuery(this).css("height", d);
 				} else {
-					$(this).css("min-height", d);
+					jQuery(this).css("min-height", d);
 				}
 			});
 			if (b.attr("data-related")) {
-				$(b.attr("data-related")).css("height", b.height());
+				jQuery(b.attr("data-related")).css("height", b.height());
 			}
 		});
 	};
 	var u = function() {
 		var a;
-		$(window).resize(function() {
+		jQuery(window).resize(function() {
 			if (a) {
 				clearTimeout(a);
 			}
@@ -91,85 +91,85 @@ var App = function() {
 		});
 	};
 	var y = function() {
-		$("body").on("click", ".c-checkbox > label, .c-radio > label", function() {
-			var a = $(this);
-			var b = $(this).children("span:first-child");
+		jQuery("body").on("click", ".c-checkbox > label, .c-radio > label", function() {
+			var a = jQuery(this);
+			var b = jQuery(this).children("span:first-child");
 			b.addClass("inc");
 			var c = b.clone(true);
 			b.before(c);
-			$("." + b.attr("class") + ":last", a).remove();
+			jQuery("." + b.attr("class") + ":last", a).remove();
 		});
 	};
 	var L = function() {
-		$("body").on("shown.bs.collapse", ".accordion.scrollable", function(a) {
-			Jango.scrollTo($(a.target));
+		jQuery("body").on("shown.bs.collapse", ".accordion.scrollable", function(a) {
+			Jango.scrollTo(jQuery(a.target));
 		});
 	};
 	var H = function() {
 		if (location.hash) {
 			var a = encodeURI(location.hash.substr(1));
-			$('a[href="#' + a + '"]').parents(".tab-pane:hidden").each(function() {
-				var b = $(this).attr("id");
-				$('a[href="#' + b + '"]').click();
+			jQuery('a[href="#' + a + '"]').parents(".tab-pane:hidden").each(function() {
+				var b = jQuery(this).attr("id");
+				jQuery('a[href="#' + b + '"]').click();
 			});
-			$('a[href="#' + a + '"]').click();
+			jQuery('a[href="#' + a + '"]').click();
 		}
 	};
 	var w = function() {
-		$("body").on("hide.bs.modal", function() {
-			if ($(".modal:visible").size() > 1 && $("html").hasClass("modal-open") === false) {
-				$("html").addClass("modal-open");
+		jQuery("body").on("hide.bs.modal", function() {
+			if (jQuery(".modal:visible").size() > 1 && jQuery("html").hasClass("modal-open") === false) {
+				jQuery("html").addClass("modal-open");
 			} else {
-				if ($(".modal:visible").size() <= 1) {
-					$("html").removeClass("modal-open");
+				if (jQuery(".modal:visible").size() <= 1) {
+					jQuery("html").removeClass("modal-open");
 				}
 			}
 		});
-		$("body").on("show.bs.modal", ".modal", function() {
-			if ($(this).hasClass("modal-scroll")) {
-				$("body").addClass("modal-open-noscroll");
+		jQuery("body").on("show.bs.modal", ".modal", function() {
+			if (jQuery(this).hasClass("modal-scroll")) {
+				jQuery("body").addClass("modal-open-noscroll");
 			}
 		});
-		$("body").on("hide.bs.modal", ".modal", function() {
-			$("body").removeClass("modal-open-noscroll");
+		jQuery("body").on("hide.bs.modal", ".modal", function() {
+			jQuery("body").removeClass("modal-open-noscroll");
 		});
-		$("body").on("hidden.bs.modal", ".modal:not(.modal-cached)", function() {
-			$(this).removeData("bs.modal");
+		jQuery("body").on("hidden.bs.modal", ".modal:not(.modal-cached)", function() {
+			jQuery(this).removeData("bs.modal");
 		});
 	};
 	var G = function() {
-		$(".tooltips").tooltip();
+		jQuery(".tooltips").tooltip();
 	};
 	var v = function() {
-		$("body").on("click", ".dropdown-menu.hold-on-click", function(a) {
+		jQuery("body").on("click", ".dropdown-menu.hold-on-click", function(a) {
 			a.stopPropagation();
 		});
 	};
 	var z = function() {
-		$("body").on("click", '[data-close="alert"]', function(a) {
-			$(this).parent(".alert").hide();
-			$(this).closest(".note").hide();
+		jQuery("body").on("click", '[data-close="alert"]', function(a) {
+			jQuery(this).parent(".alert").hide();
+			jQuery(this).closest(".note").hide();
 			a.preventDefault();
 		});
-		$("body").on("click", '[data-close="note"]', function(a) {
-			$(this).closest(".note").hide();
+		jQuery("body").on("click", '[data-close="note"]', function(a) {
+			jQuery(this).closest(".note").hide();
 			a.preventDefault();
 		});
-		$("body").on("click", '[data-remove="note"]', function(a) {
-			$(this).closest(".note").remove();
+		jQuery("body").on("click", '[data-remove="note"]', function(a) {
+			jQuery(this).closest(".note").remove();
 			a.preventDefault();
 		});
 	};
 	var N = function() {
-		$('[data-hover="dropdown"]').not(".hover-initialized").each(function() {
-			$(this).dropdownHover();
-			$(this).addClass("hover-initialized");
+		jQuery('[data-hover="dropdown"]').not(".hover-initialized").each(function() {
+			jQuery(this).dropdownHover();
+			jQuery(this).addClass("hover-initialized");
 		});
 	};
 	var I;
 	var A = function() {
-		$(".popovers").popover();
-		$(document).on("click.bs.popover.data-api", function(a) {
+		jQuery(".popovers").popover();
+		jQuery(document).on("click.bs.popover.data-api", function(a) {
 			if (I) {
 				I.popover("hide");
 			}
@@ -177,8 +177,8 @@ var App = function() {
 	};
 	var M = function() {
 		if (D || F) {
-			$("input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)").each(function() {
-				var a = $(this);
+			jQuery("input[placeholder]:not(.placeholder-no-fix), textarea[placeholder]:not(.placeholder-no-fix)").each(function() {
+				var a = jQuery(this);
 				if (a.val() === "" && a.attr("placeholder") !== "") {
 					a.addClass("placeholder").val(a.attr("placeholder"));
 				}
@@ -213,7 +213,7 @@ var App = function() {
 		},
 		changeLogo: function(b) {
 			var a = "../assets/jango/img/layout/logos/" + b + ".png";
-			$(".c-brand img.c-desktop-logo").attr("src", a);
+			jQuery(".c-brand img.c-desktop-logo").attr("src", a);
 		},
 		setLastPopedPopover: function(a) {
 			I = a;
@@ -227,12 +227,12 @@ var App = function() {
 		scrollTo: function(b, c) {
 			var a = (b && b.size() > 0) ? b.offset().top : 0;
 			if (b) {
-				if ($("body").hasClass("page-header-fixed")) {
-					a = a - $(".page-header").height();
+				if (jQuery("body").hasClass("page-header-fixed")) {
+					a = a - jQuery(".page-header").height();
 				}
 				a = a + (c ? c : -1 * b.height());
 			}
-			$("html,body").animate({
+			jQuery("html,body").animate({
 				scrollTop: a
 			}, "slow");
 		},
@@ -243,7 +243,7 @@ var App = function() {
 			handleFancybox();
 		},
 		getActualVal: function(a) {
-			a = $(a);
+			a = jQuery(a);
 			if (a.val() === a.attr("placeholder")) {
 				return "";
 			}
@@ -321,14 +321,14 @@ var revealAnimate = function() {
 var LayoutBrand = function() {
 	return {
 		init: function() {
-			$("body").on("click", ".c-hor-nav-toggler", function() {
-				$(this).toggleClass('c-hor-nav-toggler--opened');
-				var b = $(this).data("target");
-				if ($(b).hasClass("c-shown")) {
-					$(b).removeClass("c-shown");
+			    jQuery("body").on("click", ".c-hor-nav-toggler", function() {
+                    jQuery(this).toggleClass('c-hor-nav-toggler--opened');
+				var b = jQuery(this).data("target");
+				if (jQuery(b).hasClass("c-shown")) {
+					jQuery(b).removeClass("c-shown");
 				} else {
-					$(".c-mega-menu.c-shown").removeClass("c-shown");
-					$(b).addClass("c-shown");
+					jQuery(".c-mega-menu.c-shown").removeClass("c-shown");
+					jQuery(b).addClass("c-shown");
 				}
 			});
 		}
@@ -337,70 +337,69 @@ var LayoutBrand = function() {
 var LayoutHeaderCart = function() {
 	return {
 		init: function() {
-			var b = $(".c-cart-menu");
+			var b = jQuery(".c-cart-menu");
 			if (b.size() === 0) {
 				return;
 			}
 			if (App.getViewPort().width < App.getBreakpoint("md")) {
-				$("body").on("click", ".c-cart-toggler", function(a) {
+				jQuery("body").on("click", ".c-cart-toggler", function(a) {
 					a.preventDefault();
 					a.stopPropagation();
-					$("body").toggleClass("c-header-cart-shown");
+					jQuery("body").toggleClass("c-header-cart-shown");
 				});
-				$("body").on("click", function(a) {
+				jQuery("body").on("click", function(a) {
 					if (!b.is(a.target) && b.has(a.target).length === 0) {
-						$("body").removeClass("c-header-cart-shown");
+						jQuery("body").removeClass("c-header-cart-shown");
 					}
 				});
 			} else {
-				$("body").on("hover", ".c-cart-toggler, .c-cart-menu", function(a) {
-					$("body").addClass("c-header-cart-shown");
+				jQuery("body").on("hover", ".c-cart-toggler, .c-cart-menu", function(a) {
+					jQuery("body").addClass("c-header-cart-shown");
 				});
-				$("body").on("hover", ".c-mega-menu > .navbar-nav > li:not(.c-cart-toggler-wrapper)", function(a) {
-					$("body").removeClass("c-header-cart-shown");
+				jQuery("body").on("hover", ".c-mega-menu > .navbar-nav > li:not(.c-cart-toggler-wrapper)", function(a) {
+					jQuery("body").removeClass("c-header-cart-shown");
 				});
-				$("body").on("mouseleave", ".c-cart-menu", function(a) {
-					$("body").removeClass("c-header-cart-shown");
+                jQuery("body").on("mouseleave", ".c-cart-menu", function(a) {
+					jQuery("body").removeClass("c-header-cart-shown");
 				});
 			}
 		}
 	};
 }();
 var LayoutHeader = function() {
-	var f = parseInt($(".c-layout-header").attr("data-minimize-offset") > 0 ? parseInt($(".c-layout-header").attr("data-minimize-offset")) : 0);
+	var f = parseInt(jQuery(".c-layout-header").attr("data-minimize-offset") > 0 ? parseInt(jQuery(".c-layout-header").attr("data-minimize-offset")) : 0);
 	var prevScrollTop = 0;
 	var currentScrollTop = 0;
-	var $body = $("body");
-	var mainBarOffsetTop = $('.c-mainbar').offset().top;
+	var mainBarOffsetTop = jQuery('.c-mainbar').offset().top;
 	var d = function() {
-		currentScrollTop = $(window).scrollTop();
+		currentScrollTop = jQuery(window).scrollTop();
 
 		if (currentScrollTop > mainBarOffsetTop) {
-			$body.addClass("c-page-on-scroll");
+			jQuery("body").addClass("c-page-on-scroll");
 		} else {
-			$body.removeClass("c-page-on-scroll");
+			jQuery("body").removeClass("c-page-on-scroll");
 		}
 
 		if(prevScrollTop < currentScrollTop && currentScrollTop > f) {
-			$body.addClass("c-page-scrollUp");
+			jQuery("body").addClass("c-page-scrollUp");
 		} else if (prevScrollTop > currentScrollTop && currentScrollTop > f) {
-			$body.removeClass("c-page-scrollUp");
+			jQuery("body").removeClass("c-page-scrollUp");
 		}
 		prevScrollTop = currentScrollTop;
 	};
 	var e = function() {
-		$(".c-layout-header .c-topbar-toggler").on("click", function(a) {
-			$(".c-layout-header-topbar-collapse").toggleClass("c-topbar-expanded");
+		jQuery(".c-layout-header .c-topbar-toggler").on("click", function(a) {
+			jQuery(".c-layout-header-topbar-collapse").toggleClass("c-topbar-expanded");
 		});
 	};
 	return {
 		init: function() {
-			if ($("body").hasClass("c-layout-header-fixed-non-minimized")) {
+			if (jQuery("body").hasClass("c-layout-header-fixed-non-minimized")) {
 				return;
 			}
 			d();
 			e();
-			$(window).scroll(function() {
+			jQuery(window).scroll(function() {
 				d();
 			});
 		}
@@ -409,16 +408,16 @@ var LayoutHeader = function() {
 var LayoutMegaMenu = function() {
 	return {
 		init: function() {
-			$(".c-layout-header .c-hor-nav-toggler:not(.c-quick-sidebar-toggler)").on("click", function() {
-				$(".c-layout-header").toggleClass("c-mega-menu-shown");
-				if ($("body").hasClass("c-layout-header-mobile-fixed")) {
-					var b = App.getViewPort().height - $(".c-layout-header").outerHeight(true) - 60;
-					$(".c-mega-menu").css("max-height", b);
+			jQuery(".c-layout-header .c-hor-nav-toggler:not(.c-quick-sidebar-toggler)").on("click", function() {
+				jQuery(".c-layout-header").toggleClass("c-mega-menu-shown");
+				if (jQuery("body").hasClass("c-layout-header-mobile-fixed")) {
+					var b = App.getViewPort().height - jQuery(".c-layout-header").outerHeight(true) - 60;
+					jQuery(".c-mega-menu").css("max-height", b);
 				}
 			});
 			if (App.getViewPort().width < App.getBreakpoint("md")) {
-				$(".menu-item-has-children > a.c-link.dropdown-toggle").click(function() {
-					var b = $(this).parent();
+				jQuery(".menu-item-has-children > a.c-link.dropdown-toggle").click(function() {
+					var b = jQuery(this).parent();
 					if (b.hasClass("c-open")) {
 						b.removeClass("c-open");
 					} else {
@@ -433,9 +432,9 @@ var LayoutMegaMenu = function() {
 var LayoutSidebarMenu = function() {
 	return {
 		init: function() {
-			$(".c-layout-sidebar-menu > .c-sidebar-menu .c-toggler").on("click", function(b) {
+			jQuery(".c-layout-sidebar-menu > .c-sidebar-menu .c-toggler").on("click", function(b) {
 				b.preventDefault();
-				$(this).closest(".c-dropdown").toggleClass("c-open");
+				jQuery(this).closest(".c-dropdown").toggleClass("c-open");
 			});
 		}
 	};
@@ -443,23 +442,23 @@ var LayoutSidebarMenu = function() {
 var LayoutQuickSearch = function() {
 	return {
 		init: function() {
-			$(".c-layout-header").on("click", ".c-top-menu .c-search-toggler", function(b) {
+			jQuery(".c-layout-header").on("click", ".c-top-menu .c-search-toggler", function(b) {
 				b.preventDefault();
-				$("body").addClass("c-layout-quick-search-shown");
+				jQuery("body").addClass("c-layout-quick-search-shown");
 				if (App.isIE() === false) {
-					$(".c-quick-search > .form-control").focus();
+					jQuery(".c-quick-search > .form-control").focus();
 				}
 			});
-			$(".c-layout-header").on("click", ".c-brand .c-search-toggler", function(b) {
+			jQuery(".c-layout-header").on("click", ".c-brand .c-search-toggler", function(b) {
 				b.preventDefault();
-				$("body").addClass("c-layout-quick-search-shown");
+				jQuery("body").addClass("c-layout-quick-search-shown");
 				if (App.isIE() === false) {
-					$(".c-quick-search > .form-control").focus();
+					jQuery(".c-quick-search > .form-control").focus();
 				}
 			});
-			$(".c-quick-search").on("click", "> span", function(b) {
+			jQuery(".c-quick-search").on("click", "> span", function(b) {
 				b.preventDefault();
-				$("body").removeClass("c-layout-quick-search-shown");
+				jQuery("body").removeClass("c-layout-quick-search-shown");
 			});
 		}
 	};
@@ -467,17 +466,17 @@ var LayoutQuickSearch = function() {
 var LayoutCartMenu = function() {
 	return {
 		init: function() {
-			$(".c-layout-header").on("mouseenter", ".c-mega-menu .c-cart-toggler-wrapper", function(b) {
+			jQuery(".c-layout-header").on("mouseenter", ".c-mega-menu .c-cart-toggler-wrapper", function(b) {
 				b.preventDefault();
-				$(".c-cart-menu").addClass("c-layout-cart-menu-shown");
+				jQuery(".c-cart-menu").addClass("c-layout-cart-menu-shown");
 			});
-			$(".c-cart-menu, .c-layout-header").on("mouseleave", function(b) {
+			jQuery(".c-cart-menu, .c-layout-header").on("mouseleave", function(b) {
 				b.preventDefault();
-				$(".c-cart-menu").removeClass("c-layout-cart-menu-shown");
+				jQuery(".c-cart-menu").removeClass("c-layout-cart-menu-shown");
 			});
-			$(".c-layout-header").on("click", ".c-brand .c-cart-toggler", function(b) {
+			jQuery(".c-layout-header").on("click", ".c-brand .c-cart-toggler", function(b) {
 				b.preventDefault();
-				$(".c-cart-menu").toggleClass("c-layout-cart-menu-shown");
+				jQuery(".c-cart-menu").toggleClass("c-layout-cart-menu-shown");
 			});
 		}
 	};
@@ -485,52 +484,52 @@ var LayoutCartMenu = function() {
 var LayoutQuickSidebar = function() {
 	return {
 		init: function() {
-			$(".c-layout-header").on("click", ".c-quick-sidebar-toggler", function(b) {
+			jQuery(".c-layout-header").on("click", ".c-quick-sidebar-toggler", function(b) {
 				b.preventDefault();
 				b.stopPropagation();
-				if ($("body").hasClass("c-layout-quick-sidebar-shown")) {
-					$("body").removeClass("c-layout-quick-sidebar-shown");
+				if (jQuery("body").hasClass("c-layout-quick-sidebar-shown")) {
+					jQuery("body").removeClass("c-layout-quick-sidebar-shown");
 				} else {
-					$("body").addClass("c-layout-quick-sidebar-shown");
+					jQuery("body").addClass("c-layout-quick-sidebar-shown");
 				}
 			});
-			$(".c-layout-quick-sidebar").on("click", ".c-close", function(b) {
+			jQuery(".c-layout-quick-sidebar").on("click", ".c-close", function(b) {
 				b.preventDefault();
-				$("body").removeClass("c-layout-quick-sidebar-shown");
+				jQuery("body").removeClass("c-layout-quick-sidebar-shown");
 			});
-			$(".c-layout-quick-sidebar").on("click", function(b) {
+			jQuery(".c-layout-quick-sidebar").on("click", function(b) {
 				b.stopPropagation();
 			});
-			$(document).on("click", ".c-layout-quick-sidebar-shown", function(b) {
-				$(this).removeClass("c-layout-quick-sidebar-shown");
+			jQuery(document).on("click", ".c-layout-quick-sidebar-shown", function(b) {
+				jQuery(this).removeClass("c-layout-quick-sidebar-shown");
 			});
 		}
 	};
 }();
 var LayoutGo2Top = function() {
 	var b = function() {
-		var a = $(window).scrollTop();
+		var a = jQuery(window).scrollTop();
 		if (a > 300) {
-			$(".c-layout-go2top").show();
+			jQuery(".c-layout-go2top").show();
 		} else {
-			$(".c-layout-go2top").hide();
+			jQuery(".c-layout-go2top").hide();
 		}
 	};
 	return {
 		init: function() {
 			b();
 			if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-				$(window).bind("touchend touchcancel touchleave", function(a) {
+				jQuery(window).bind("touchend touchcancel touchleave", function(a) {
 					b();
 				});
 			} else {
-				$(window).scroll(function() {
+				jQuery(window).scroll(function() {
 					b();
 				});
 			}
-			$(".c-layout-go2top").on("click", function(a) {
+			jQuery(".c-layout-go2top").on("click", function(a) {
 				a.preventDefault();
-				$("html, body").animate({
+				jQuery("html, body").animate({
 					scrollTop: 0
 				}, 600);
 			});
@@ -543,41 +542,41 @@ var LayoutOnepageNav = function() {
 		var g;
 		var a;
 		var h;
-		$("body").addClass("c-page-on-scroll");
-		f = $(".c-layout-header-onepage").outerHeight(true);
-		$("body").removeClass("c-page-on-scroll");
-		if ($(".c-mega-menu-onepage-dots").size() > 0) {
-			if ($(".c-onepage-dots-nav").size() > 0) {
-				$(".c-onepage-dots-nav").css("margin-top", -($(".c-onepage-dots-nav").outerHeight(true) / 2));
+		jQuery("body").addClass("c-page-on-scroll");
+		f = jQuery(".c-layout-header-onepage").outerHeight(true);
+		jQuery("body").removeClass("c-page-on-scroll");
+		if (jQuery(".c-mega-menu-onepage-dots").size() > 0) {
+			if (jQuery(".c-onepage-dots-nav").size() > 0) {
+				jQuery(".c-onepage-dots-nav").css("margin-top", -(jQuery(".c-onepage-dots-nav").outerHeight(true) / 2));
 			}
-			g = $("body").scrollspy({
+			g = jQuery("body").scrollspy({
 				target: ".c-mega-menu-onepage-dots",
 				offset: f
 			});
-			a = parseInt($(".c-mega-menu-onepage-dots").attr("data-onepage-animation-speed"));
+			a = parseInt(jQuery(".c-mega-menu-onepage-dots").attr("data-onepage-animation-speed"));
 		} else {
-			g = $("body").scrollspy({
+			g = jQuery("body").scrollspy({
 				target: ".c-mega-menu-onepage",
 				offset: f
 			});
-			a = parseInt($(".c-mega-menu-onepage").attr("data-onepage-animation-speed"));
+			a = parseInt(jQuery(".c-mega-menu-onepage").attr("data-onepage-animation-speed"));
 		}
 		g.on("activate.bs.scrollspy", function() {
-			$(this).find(".c-onepage-link.c-active").removeClass("c-active");
-			$(this).find(".c-onepage-link.active").addClass("c-active");
+			jQuery(this).find(".c-onepage-link.c-active").removeClass("c-active");
+			jQuery(this).find(".c-onepage-link.active").addClass("c-active");
 		});
-		$(".c-onepage-link > a").on("click", function(c) {
-			var d = $(this).attr("href");
+		jQuery(".c-onepage-link > a").on("click", function(c) {
+			var d = jQuery(this).attr("href");
 			var e = 0;
 			if (d !== "#home") {
-				e = $(d).offset().top - f;
+				e = jQuery(d).offset().top - f;
 			}
-			$("html, body").stop().animate({
+			jQuery("html, body").stop().animate({
 				scrollTop: e,
 			}, a, "easeInExpo");
 			c.preventDefault();
 			if (App.getViewPort().width < App.getBreakpoint("md")) {
-				$(".c-hor-nav-toggler").click();
+				jQuery(".c-hor-nav-toggler").click();
 			}
 		});
 	};
@@ -589,17 +588,17 @@ var LayoutOnepageNav = function() {
 }();
 var LayoutSimpleOnepageNav = function() {
 	var b = function() {
-		var d = $('.c-layout-header .c-navbar:not(".c-topbar")').outerHeight(true);
+		var d = jQuery('.c-layout-header .c-navbar:not(".c-topbar")').outerHeight(true);
 		var a = 700;
-		$('.c-navbar-onepage a[href^="#"]').on("click", function(c) {
-			var e = $(this).attr("href");
+		jQuery('.c-navbar-onepage a[href^="#"]').on("click", function(c) {
+			var e = jQuery(this).attr("href");
 			var h = 0;
 			if (e !== "#top") {
-				h = $(e).offset().top - d;
+				h = jQuery(e).offset().top - d;
 			}
-			$(".c-navbar-onepage .c-active").removeClass("c-active");
-			$(this).parent().addClass("c-active");
-			$("html, body").stop().animate({
+			jQuery(".c-navbar-onepage .c-active").removeClass("c-active");
+			jQuery(this).parent().addClass("c-active");
+			jQuery("html, body").stop().animate({
 				scrollTop: h,
 			}, a, "easeInExpo");
 			c.preventDefault();
@@ -614,59 +613,59 @@ var LayoutSimpleOnepageNav = function() {
 }();
 var LayoutThemeSettings = function() {
 	var b = function() {
-		$(".c-settings .c-color").on("click", function() {
-			var a = $(this).attr("data-color");
-			$("#style_theme").attr("href", "assets/base/css/themes/" + a + ".css");
-			$(".c-settings .c-color").removeClass("c-active");
-			$(this).addClass("c-active");
+		jQuery(".c-settings .c-color").on("click", function() {
+			var a = jQuery(this).attr("data-color");
+			jQuery("#style_theme").attr("href", "assets/base/css/themes/" + a + ".css");
+			jQuery(".c-settings .c-color").removeClass("c-active");
+			jQuery(this).addClass("c-active");
 		});
-		$(".c-setting_header-type").on("click", function() {
-			var a = $(this).attr("data-value");
+		jQuery(".c-setting_header-type").on("click", function() {
+			var a = jQuery(this).attr("data-value");
 			if (a == "fluid") {
-				$(".c-layout-header .c-topbar > .container").removeClass("container").addClass("container-fluid");
-				$(".c-layout-header .c-navbar > .container").removeClass("container").addClass("container-fluid");
+				jQuery(".c-layout-header .c-topbar > .container").removeClass("container").addClass("container-fluid");
+				jQuery(".c-layout-header .c-navbar > .container").removeClass("container").addClass("container-fluid");
 			} else {
-				$(".c-layout-header .c-topbar > .container-fluid").removeClass("container-fluid").addClass("container");
-				$(".c-layout-header .c-navbar > .container-fluid").removeClass("container-fluid").addClass("container");
+				jQuery(".c-layout-header .c-topbar > .container-fluid").removeClass("container-fluid").addClass("container");
+				jQuery(".c-layout-header .c-navbar > .container-fluid").removeClass("container-fluid").addClass("container");
 			}
-			$(".c-setting_header-type").removeClass("active");
-			$(this).addClass("active");
+			jQuery(".c-setting_header-type").removeClass("active");
+			jQuery(this).addClass("active");
 		});
-		$(".c-setting_header-mode").on("click", function() {
-			var a = $(this).attr("data-value");
+		jQuery(".c-setting_header-mode").on("click", function() {
+			var a = jQuery(this).attr("data-value");
 			if (a == "static") {
-				$("body").removeClass("c-layout-header-fixed").addClass("c-layout-header-static");
+				jQuery("body").removeClass("c-layout-header-fixed").addClass("c-layout-header-static");
 			} else {
-				$("body").removeClass("c-layout-header-static").addClass("c-layout-header-fixed");
+				jQuery("body").removeClass("c-layout-header-static").addClass("c-layout-header-fixed");
 			}
-			$(".c-setting_header-mode").removeClass("active");
-			$(this).addClass("active");
+			jQuery(".c-setting_header-mode").removeClass("active");
+			jQuery(this).addClass("active");
 		});
-		$(".c-setting_font-style").on("click", function() {
-			var a = $(this).attr("data-value");
+		jQuery(".c-setting_font-style").on("click", function() {
+			var a = jQuery(this).attr("data-value");
 			if (a == "light") {
-				$(".c-font-uppercase").addClass("c-font-uppercase-reset").removeClass("c-font-uppercase");
-				$(".c-font-bold").addClass("c-font-bold-reset").removeClass("c-font-bold");
-				$(".c-fonts-uppercase").addClass("c-fonts-uppercase-reset").removeClass("c-fonts-uppercase");
-				$(".c-fonts-bold").addClass("c-fonts-bold-reset").removeClass("c-fonts-bold");
+				jQuery(".c-font-uppercase").addClass("c-font-uppercase-reset").removeClass("c-font-uppercase");
+				jQuery(".c-font-bold").addClass("c-font-bold-reset").removeClass("c-font-bold");
+				jQuery(".c-fonts-uppercase").addClass("c-fonts-uppercase-reset").removeClass("c-fonts-uppercase");
+				jQuery(".c-fonts-bold").addClass("c-fonts-bold-reset").removeClass("c-fonts-bold");
 			} else {
-				$(".c-font-uppercase-reset").addClass("c-font-uppercase").removeClass("c-font-uppercase-reset");
-				$(".c-font-bold-reset").addClass("c-font-bold").removeClass("c-font-bold-reset");
-				$(".c-fonts-uppercase-reset").addClass("c-fonts-uppercase").removeClass("c-fonts-uppercase-reset");
-				$(".c-fonts-bold-reset").addClass("c-fonts-bold").removeClass("c-fonts-bold-reset");
+				jQuery(".c-font-uppercase-reset").addClass("c-font-uppercase").removeClass("c-font-uppercase-reset");
+				jQuery(".c-font-bold-reset").addClass("c-font-bold").removeClass("c-font-bold-reset");
+				jQuery(".c-fonts-uppercase-reset").addClass("c-fonts-uppercase").removeClass("c-fonts-uppercase-reset");
+				jQuery(".c-fonts-bold-reset").addClass("c-fonts-bold").removeClass("c-fonts-bold-reset");
 			}
-			$(".c-setting_font-style").removeClass("active");
-			$(this).addClass("active");
+			jQuery(".c-setting_font-style").removeClass("active");
+			jQuery(this).addClass("active");
 		});
-		$(".c-setting_megamenu-style").on("click", function() {
-			var a = $(this).attr("data-value");
+		jQuery(".c-setting_megamenu-style").on("click", function() {
+			var a = jQuery(this).attr("data-value");
 			if (a == "dark") {
-				$(".c-mega-menu").removeClass("c-mega-menu-light").addClass("c-mega-menu-dark");
+				jQuery(".c-mega-menu").removeClass("c-mega-menu-light").addClass("c-mega-menu-dark");
 			} else {
-				$(".c-mega-menu").removeClass("c-mega-menu-dark").addClass("c-mega-menu-light");
+				jQuery(".c-mega-menu").removeClass("c-mega-menu-dark").addClass("c-mega-menu-light");
 			}
-			$(".c-setting_megamenu-style").removeClass("active");
-			$(this).addClass("active");
+			jQuery(".c-setting_megamenu-style").removeClass("active");
+			jQuery(this).addClass("active");
 		});
 	};
 	return {
@@ -677,8 +676,8 @@ var LayoutThemeSettings = function() {
 }();
 var ContentOwlcarousel = function() {
 	var b = function() {
-		$("[data-slider='owl'] .owl-carousel").each(function() {
-			var k = $(this).parent();
+		jQuery("[data-slider='owl'] .owl-carousel").each(function() {
+			var k = jQuery(this).parent();
 			var l;
 			var m;
 			var i;
@@ -699,7 +698,7 @@ var ContentOwlcarousel = function() {
 				n = [768, k.data("tablet-items") ? k.data("tablet-items") : 2];
 				a = [479, k.data("mobile-items") ? k.data("mobile-items") : 1];
 			}
-			$(this).owlCarousel({
+			jQuery(this).owlCarousel({
 				items: l,
 				itemsDesktop: m,
 				itemsDesktopSmall: i,
@@ -723,7 +722,7 @@ var ContentOwlcarousel = function() {
 }();
 var ContentCubeLatestPortfolio = function() {
 	var b = function() {
-		$(".c-content-latest-works").cubeportfolio({
+		jQuery(".c-content-latest-works").cubeportfolio({
 			filters: "#filters-container",
 			loadMore: "#loadMore-container",
 			loadMoreAction: "click",
@@ -759,7 +758,7 @@ var ContentCubeLatestPortfolio = function() {
 			singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
 			singlePageCallback: function(a, e) {
 				var f = this;
-				$.ajax({
+				jQuery.ajax({
 					url: a,
 					type: "GET",
 					dataType: "html",
@@ -771,7 +770,7 @@ var ContentCubeLatestPortfolio = function() {
 				});
 			},
 		});
-		$("#grid-container").cubeportfolio({
+		jQuery("#grid-container").cubeportfolio({
 			filters: "#filters-container",
 			loadMore: "#loadMore-container",
 			loadMoreAction: "click",
@@ -807,7 +806,7 @@ var ContentCubeLatestPortfolio = function() {
 			singlePageCounter: '<div class="cbp-popup-singlePage-counter">{{current}} of {{total}}</div>',
 			singlePageCallback: function(a, e) {
 				var f = this;
-				$.ajax({
+				jQuery.ajax({
 					url: a,
 					type: "GET",
 					dataType: "html",
@@ -819,7 +818,7 @@ var ContentCubeLatestPortfolio = function() {
 				});
 			},
 		});
-		$(".c-content-latest-works-fullwidth").cubeportfolio({
+		jQuery(".c-content-latest-works-fullwidth").cubeportfolio({
 			loadMoreAction: "auto",
 			layoutMode: "grid",
 			defaultFilter: "*",
@@ -860,7 +859,7 @@ var ContentCubeLatestPortfolio = function() {
 }();
 var ContentFancybox = function() {
 	var b = function() {
-		$("[data-lightbox='fancybox']").fancybox();
+		jQuery("[data-lightbox='fancybox']").fancybox();
 	};
 	return {
 		init: function() {
@@ -870,7 +869,7 @@ var ContentFancybox = function() {
 }();
 var ContentTwitter = function() {
 	var b = function() {
-		if ($(".twitter-timeline")[0]) {
+		if (jQuery(".twitter-timeline")[0]) {
 			! function(i, a, d) {
 				var j, l = i.getElementsByTagName(a)[0],
 					k = /^http:/.test(i.location) ? "http" : "https";
@@ -892,41 +891,41 @@ var ContentTwitter = function() {
 var featurelistscroll = function() {
 	return {
 		init: function() {
-			var s = $(".featurelist-bottom");
+			var s = jQuery(".featurelist-bottom");
 			if (s.length > 0) {
-				var t = $("#featurelist-header-administration");
-				var l = $("#featurelist-header-management");
-				var r = $("#featurelist-header-operator");
-				var p = $("#featurelist-header-visitor");
-				var m = $("#featurelist-header-support");
+				var t = jQuery("#featurelist-header-administration");
+				var l = jQuery("#featurelist-header-management");
+				var r = jQuery("#featurelist-header-operator");
+				var p = jQuery("#featurelist-header-visitor");
+				var m = jQuery("#featurelist-header-support");
 				var v = t.offset().top;
 				var u = l.offset().top;
 				var n = r.offset().top;
 				var q = p.offset().top;
 				var o = m.offset().top;
-				$(window).scroll(function() {
-					$windowscrolltop = $(this).scrollTop();
-					if ($windowscrolltop >= v - 81 && $windowscrolltop < u - 81) {
-						$(".featurelist-header-container.scrolled").removeClass("scrolled");
+				jQuery(window).scroll(function() {
+					var windowscrolltop = jQuery(this).scrollTop();
+					if (windowscrolltop >= v - 81 && windowscrolltop < u - 81) {
+						jQuery(".featurelist-header-container.scrolled").removeClass("scrolled");
 						t.addClass("scrolled");
 					} else {
-						if ($windowscrolltop >= u - 81 && $windowscrolltop < n - 81) {
-							$(".featurelist-header-container.scrolled").removeClass("scrolled");
+						if (windowscrolltop >= u - 81 && windowscrolltop < n - 81) {
+							jQuery(".featurelist-header-container.scrolled").removeClass("scrolled");
 							l.addClass("scrolled");
 						} else {
-							if ($windowscrolltop >= n - 81 && $windowscrolltop < q - 81) {
-								$(".featurelist-header-container.scrolled").removeClass("scrolled");
+							if (windowscrolltop >= n - 81 && windowscrolltop < q - 81) {
+								jQuery(".featurelist-header-container.scrolled").removeClass("scrolled");
 								r.addClass("scrolled");
 							} else {
-								if ($windowscrolltop >= q - 81 && $windowscrolltop < o - 81) {
-									$(".featurelist-header-container.scrolled").removeClass("scrolled");
+								if (windowscrolltop >= q - 81 && windowscrolltop < o - 81) {
+									jQuery(".featurelist-header-container.scrolled").removeClass("scrolled");
 									p.addClass("scrolled");
 								} else {
-									if ($windowscrolltop >= o - 81 && $windowscrolltop < s.offset().top - 121) {
-										$(".featurelist-header-container.scrolled").removeClass("scrolled");
+									if (windowscrolltop >= o - 81 && windowscrolltop < s.offset().top - 121) {
+										jQuery(".featurelist-header-container.scrolled").removeClass("scrolled");
 										m.addClass("scrolled");
 									} else {
-										$(".featurelist-header-container.scrolled").removeClass("scrolled");
+										jQuery(".featurelist-header-container.scrolled").removeClass("scrolled");
 									}
 								}
 							}
@@ -940,47 +939,47 @@ var featurelistscroll = function() {
 var tourscroll = function() {
 	return {
 		init: function() {
-			var k = $(".nav-bar");
+			var k = jQuery(".nav-bar");
 			if (k.length > 0) {
-				$(".nav-bar li").on("click", function() {
-					var b = $(this).attr("id");
-					var c = $("." + b);
+				jQuery(".nav-bar li").on("click", function() {
+					var b = jQuery(this).attr("id");
+					var c = jQuery("." + b);
 					var a = 0;
 					a = c.offset().top - 110;
-					$("html, body").animate({
+					jQuery("html, body").animate({
 						scrollTop: a
 					}, 0);
 				});
 				var i = k.offset().top;
-				var h = $(".content-i:last").offset().top;
-				var channelsContentTop = $("#channels").offset().top;
-				var l = $("#administration").offset().top;
-				var n = $("#management").offset().top;
-				var m = $("#operator").offset().top;
-				var j = $("#visitor").offset().top;
-				$(window).scroll(function() {
-					if ($(this).scrollTop() >= (i - 95) && $(this).scrollTop() <= h) {
+				var h = jQuery(".content-i:last").offset().top;
+				var channelsContentTop = jQuery("#channels").offset().top;
+				var l = jQuery("#administration").offset().top;
+				var n = jQuery("#management").offset().top;
+				var m = jQuery("#operator").offset().top;
+				var j = jQuery("#visitor").offset().top;
+				jQuery(window).scroll(function() {
+					if (jQuery(this).scrollTop() >= (i - 95) && jQuery(this).scrollTop() <= h) {
 						k.addClass("navbar-fixed");
 					} else {
 						k.removeClass("navbar-fixed");
 					}
-					if ($(this).scrollTop() <= channelsContentTop || ($(this).scrollTop() > channelsContentTop && $(this).scrollTop() < (l - 200))) {
-						$(".tab-sidebar .active").removeClass("active");
-						$("#nav-bar-channels").addClass("active");
-					} else if ($(this).scrollTop() >= (channelsContentTop - 200) && $(this).scrollTop() < (n - 200)) {
-						$(".tab-sidebar .active").removeClass("active");
-						$("#nav-bar-administration").addClass("active");
+					if (jQuery(this).scrollTop() <= channelsContentTop || (jQuery(this).scrollTop() > channelsContentTop && jQuery(this).scrollTop() < (l - 200))) {
+						jQuery(".tab-sidebar .active").removeClass("active");
+						jQuery("#nav-bar-channels").addClass("active");
+					} else if (jQuery(this).scrollTop() >= (channelsContentTop - 200) && jQuery(this).scrollTop() < (n - 200)) {
+						jQuery(".tab-sidebar .active").removeClass("active");
+						jQuery("#nav-bar-administration").addClass("active");
 					} else {
-						if ($(this).scrollTop() >= (l - 200) && $(this).scrollTop() < (m - 200)) {
-							$(".tab-sidebar .active").removeClass("active");
-							$("#nav-bar-management").addClass("active");
+						if (jQuery(this).scrollTop() >= (l - 200) && jQuery(this).scrollTop() < (m - 200)) {
+							jQuery(".tab-sidebar .active").removeClass("active");
+							jQuery("#nav-bar-management").addClass("active");
 						} else {
-							if ($(this).scrollTop() >= (m - 200) && $(this).scrollTop() < (j - 200)) {
-								$(".tab-sidebar .active").removeClass("active");
-								$("#nav-bar-operator").addClass("active");
+							if (jQuery(this).scrollTop() >= (m - 200) && jQuery(this).scrollTop() < (j - 200)) {
+								jQuery(".tab-sidebar .active").removeClass("active");
+								jQuery("#nav-bar-operator").addClass("active");
 							} else {
-								$(".tab-sidebar .active").removeClass("active");
-								$("#nav-bar-visitor").addClass("active");
+								jQuery(".tab-sidebar .active").removeClass("active");
+								jQuery("#nav-bar-visitor").addClass("active");
 							}
 						}
 					}
@@ -989,13 +988,14 @@ var tourscroll = function() {
 		}
 	};
 }();
-$(document).ready(function() {
+
+jQuery(document).ready(function() {
 	revealAnimate.init();
 	new WOW({
 		mobile: false
 	}).init();
-	var r = $(".c-layout-revo-slider-1 .tp-banner");
-	var j = $(".c-layout-revo-slider-1 .tp-banner-container");
+	var r = jQuery(".c-layout-revo-slider-1 .tp-banner");
+	var j = jQuery(".c-layout-revo-slider-1 .tp-banner-container");
 	var n = r.show().revolution({
 		delay: 15,
 		startwidth: 1170,
@@ -1022,7 +1022,7 @@ $(document).ready(function() {
 		hideArrowsOnMobile: "on",
 		hideThumbsUnderResolution: 0
 	});
-	var k = $(".c-layout-revo-slider-4 .fixheight-banner");
+	var k = jQuery(".c-layout-revo-slider-4 .fixheight-banner");
 	var p = (App.getViewPort().width < App.getBreakpoint("md") ? 250 : 620);
 	var n = k.show().revolution({
 		delay: 8000,
@@ -1073,54 +1073,54 @@ $(document).ready(function() {
 		}, 3000);
 	}
 	if(getCookies('ifshownotify') === null || getCookies('ifshownotify') !== '0'){
-		$('.notify').show();
-		// $('.c-layout-header-fixed .c-layout-header').css('top', '50px');
+		jQuery('.notify').show();
+		// jQuery('.c-layout-header-fixed .c-layout-header').css('top', '50px');
 	}
-	$(".notify .close").on('click', function(){
-		$('.notify').hide();
-		// $('.c-layout-header-fixed .c-layout-header').css('top', '0');
+	jQuery(".notify .close").on('click', function(){
+		jQuery('.notify').hide();
+		// jQuery('.c-layout-header-fixed .c-layout-header').css('top', '0');
 		setCookies("ifshownotify", 0, 30);
 	});
-	$(".achat").click(function() {
+	jQuery(".achat").click(function() {
 		var a = 110;
 		if (screen.height < 800) {
 			a = 50;
 		}
 		window.open("https://chatserver.comm100.com/ChatWindow.aspx?planId=1428&visitType=1&byHref=1&partnerId=-1&siteid=10000", "", "height = 570, width = 540, left = 200, top = " + a + ", status = yes, toolbar = no, menubar = no, resizable = yes, location = no, titlebar = no");
 	});
-	$("#a-requestcallback").click(function() {
+	jQuery("#a-requestcallback").click(function() {
 		window.location.href = "/livechat/requestcallback.aspx?requesttype=general";
 		return false;
 	});
 
-	if ($("#first_name").length) {
-		$("#first_name").val(getCookies("whitepaper_firstname"));
-		$("#last_name").val(getCookies("whitepaper_lastname"));
-		$("#email").val(getCookies("whitepaper_email"));
-		$("#phone").val(getCookies("whitepaper_tel"));
-		$("#URL").val(getCookies("whitepaper_website"));
-		$("#company").val(getCookies("whitepaper_company"));
+	if (jQuery("#first_name").length) {
+		jQuery("#first_name").val(getCookies("whitepaper_firstname"));
+		jQuery("#last_name").val(getCookies("whitepaper_lastname"));
+		jQuery("#email").val(getCookies("whitepaper_email"));
+		jQuery("#phone").val(getCookies("whitepaper_tel"));
+		jQuery("#URL").val(getCookies("whitepaper_website"));
+		jQuery("#company").val(getCookies("whitepaper_company"));
 	}
-	if($("#oid").length){
-		$("#00Nj0000002K3xZ").val(getCookies('C_cId'));
-		$("#00Nj0000002K3xU").val(getCookies('R_url'));
-		$("#00Nj0000002K2rv").val(getCookies('landingUrl1'));
-		$("#00Nj000000Bz2Xp").val('');
-		$("#00Nj000000Bz2Xu").val(document.referrer);
+	if(jQuery("#oid").length){
+		jQuery("#00Nj0000002K3xZ").val(getCookies('C_cId'));
+		jQuery("#00Nj0000002K3xU").val(getCookies('R_url'));
+		jQuery("#00Nj0000002K2rv").val(getCookies('landingUrl1'));
+		jQuery("#00Nj000000Bz2Xp").val('');
+		jQuery("#00Nj000000Bz2Xu").val(document.referrer);
 	}
 
 	function showLocation() {
 		var positionData ={};
     positionData.action = 'getPosition_action';
-    $.ajax({
+    jQuery.ajax({
         type: 'POST',
-        url: 'https://www.comm100.com/wp-admin/admin-ajax.php',
+        url: commGlobal.ajax_url,
         data: positionData,
         success: function(msg) {
             if (msg) {
-                $("#00Nj000000Bz2Xp").val(msg.substr(0, msg.length-1));
+                jQuery("#00Nj000000Bz2Xp").val(msg.substr(0, msg.length-1));
             } else {
-                $("#00Nj000000Bz2Xp").val('');
+                jQuery("#00Nj000000Bz2Xp").val('');
             }
         }
     });
@@ -1129,9 +1129,9 @@ $(document).ready(function() {
   function showVisitorIP() {
 	var positionData ={};
     positionData.action = 'getVisitorIP_action';
-    $.ajax({
+    jQuery.ajax({
         type: 'POST',
-        url: 'https://www.comm100.com/wp-admin/admin-ajax.php',
+        url: commGlobal.ajax_url,
         data: positionData,
         success: function(msg) {
             Comm100_Variable_IP = msg.substr(0, msg.length-1) || 'unknown';
@@ -1141,60 +1141,60 @@ $(document).ready(function() {
 
   showVisitorIP();
 
-  if($("#00Nj000000Bz2Xp").length){
+  if(jQuery("#00Nj000000Bz2Xp").length){
   	showLocation();
   }
 
-	$("#submitWhitePaper").on('click', function() {
-		if ($("#first_name").val()==='') {
-			$("#first_name").focus();
+	jQuery("#submitWhitePaper").on('click', function() {
+		if (jQuery("#first_name").val()==='') {
+			jQuery("#first_name").focus();
 			return;
 		}
-		if ($("#last_name").val()==='') {
-			$("#last_name").focus();
+		if (jQuery("#last_name").val()==='') {
+			jQuery("#last_name").focus();
 			return;
 		}
-		if ($("#email").val()==='') {
-			$("#email").focus();
+		if (jQuery("#email").val()==='') {
+			jQuery("#email").focus();
 			return;
 		}
-		if ($("#phone").val()==='') {
-			$("#phone").focus();
+		if (jQuery("#phone").val()==='') {
+			jQuery("#phone").focus();
 			return;
 		}
-		if ($("#company").val()==='') {
-			$("#company").focus();
+		if (jQuery("#company").val()==='') {
+			jQuery("#company").focus();
 			return;
 		}
-		$("#formwhitepaper").submit();
+		jQuery("#formwhitepaper").submit();
 
 		var b = {};
-		b.whitepaperid = $("#whitepaperid").val();
-		b.whitepaper_username = $("#last_name").val() + ', ' + $("#first_name").val();
-		b.whitepaper_email = $("#email").val();
-		b.whitepaper_tel = $("#phone").val();
-		// b.whitepaper_website = $("#downloadwhitepaper_website").val();
-		b.whitepaper_company = $("#company").val();
+		b.whitepaperid = jQuery("#whitepaperid").val();
+		b.whitepaper_username = jQuery("#last_name").val() + ', ' + jQuery("#first_name").val();
+		b.whitepaper_email = jQuery("#email").val();
+		b.whitepaper_tel = jQuery("#phone").val();
+		// b.whitepaper_website = jQuery("#downloadwhitepaper_website").val();
+		b.whitepaper_company = jQuery("#company").val();
 		b.action = "mail_action";
-		$.post("https://www.comm100.com/wp-admin/admin-ajax.php", b, l);
+		jQuery.post(commGlobal.ajax_url, b, l);
 		var a = {};
-		a.whitepaperid = $("#whitepaperid").val();
-		a.whitepaper_username = $("#first_name").val();
-		a.whitepaper_email = $("#email").val();
+		a.whitepaperid = jQuery("#whitepaperid").val();
+		a.whitepaper_username = jQuery("#first_name").val();
+		a.whitepaper_email = jQuery("#email").val();
 		a.action = "sendemailtocustomer";
-		$.ajax({
-			url: "https://www.comm100.com/wp-admin/admin-ajax.php",
+		jQuery.ajax({
+			url: commGlobal.ajax_url,
 			data: a,
 			type: "POST",
 			beforeSend: function() {
-				setCookies("whitepaper_firstname", $("#first_name").val(), 365);
-				setCookies("whitepaper_lastname", $("#last_name").val(), 365);
-				setCookies("whitepaper_email", $("#email").val(), 365);
-				setCookies("whitepaper_tel", $("#phone").val(), 365);
-				// setCookies("whitepaper_website", $("#downloadwhitepaper_website").val(), 365);
-				setCookies("whitepaper_company", $("#company").val(), 365);
+				setCookies("whitepaper_firstname", jQuery("#first_name").val(), 365);
+				setCookies("whitepaper_lastname", jQuery("#last_name").val(), 365);
+				setCookies("whitepaper_email", jQuery("#email").val(), 365);
+				setCookies("whitepaper_tel", jQuery("#phone").val(), 365);
+				// setCookies("whitepaper_website", jQuery("#downloadwhitepaper_website").val(), 365);
+				setCookies("whitepaper_company", jQuery("#company").val(), 365);
 				document.getElementById("downloadlink").click();
-				// window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + $("#thankyoupage").val();
+				// window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + jQuery("#thankyoupage").val();
 			},
 			error: function(c) {},
 			success: function(c) {}
@@ -1204,65 +1204,65 @@ $(document).ready(function() {
 
 	function l(a) {}
 	var q = getRequest()["requesttype"] == undefined ? "" : getRequest()["requesttype"];
-	if ($("#requestcallback-desc").length) {
+	if (jQuery("#requestcallback-desc").length) {
 		switch (q) {
 			case "selfhosted":
-				$("#requestcallback-desc").html("For On-Premises Comm100 Live Chat");
+				jQuery("#requestcallback-desc").html("For On-Premises Comm100 Live Chat");
 				break;
 			case "general":
-				$("#requestcallback-desc").html("");
+				jQuery("#requestcallback-desc").html("");
 				break;
 			default:
 				break;
 		}
 	}
-	if ($("#requestcallback_name").length) {
-		$("#requestcallback_name").val(getCookies("whitepaper_name"));
-		$("#requestcallback_email").val(getCookies("whitepaper_email"));
-		$("#requestcallback_tel").val(getCookies("whitepaper_tel"));
+	if (jQuery("#requestcallback_name").length) {
+		jQuery("#requestcallback_name").val(getCookies("whitepaper_name"));
+		jQuery("#requestcallback_email").val(getCookies("whitepaper_email"));
+		jQuery("#requestcallback_tel").val(getCookies("whitepaper_tel"));
 	}
-	$("#btnsubmitRequstCallback").on('click', function() {
-		if ($("#first_name").val()==='') {
-			$("#first_name").focus();
+	jQuery("#btnsubmitRequstCallback").on('click', function() {
+		if (jQuery("#first_name").val()==='') {
+			jQuery("#first_name").focus();
 			return;
 		}
-		if ($("#email").val()==='') {
-			$("#email").focus();
+		if (jQuery("#email").val()==='') {
+			jQuery("#email").focus();
 			return;
 		}
-		if ($("#phone").val()==='') {
-			$("#phone").focus();
+		if (jQuery("#phone").val()==='') {
+			jQuery("#phone").focus();
 			return;
 		}
-		if ($("#company").val()==='') {
-			$("#company").focus();
+		if (jQuery("#company").val()==='') {
+			jQuery("#company").focus();
 			return;
 		}
-		if ($("#00Nj0000009iXhE").val()==='') {
-			$("#00Nj0000009iXhE").focus();
+		if (jQuery("#00Nj0000009iXhE").val()==='') {
+			jQuery("#00Nj0000009iXhE").focus();
 			return;
 		}
-		$("#formrequestcallback").submit();
+		jQuery("#formrequestcallback").submit();
 		var a = {};
 		a.requesttype = q;
 		a.requestpage = document.referrer;
-		a.requestcallback_name = $("#first_name").val();
-		a.requestcallback_email = $("#email").val();
-		a.requestcallback_tel = $("#phone").val();
-		a.requestcallback_company = $("#company").val();
-		// a.requestcallback_title = $("#requestcallback_title").val();
-		a.requestcallback_operators = $("#00Nj0000009iXhE").val();
-		a.requestcallback_comments = $("#00Nj000000Bz7FE").val();
+		a.requestcallback_name = jQuery("#first_name").val();
+		a.requestcallback_email = jQuery("#email").val();
+		a.requestcallback_tel = jQuery("#phone").val();
+		a.requestcallback_company = jQuery("#company").val();
+		// a.requestcallback_title = jQuery("#requestcallback_title").val();
+		a.requestcallback_operators = jQuery("#00Nj0000009iXhE").val();
+		a.requestcallback_comments = jQuery("#00Nj000000Bz7FE").val();
 		a.action = "requestcallback_action";
-		$.ajax({
-			url: "https://www.comm100.com/wp-admin/admin-ajax.php",
+		jQuery.ajax({
+			url: commGlobal.ajax_url,
 			data: a,
 			type: "POST",
 			beforeSend: function() {
-				$("#btnsubmitRequstCallback").val("Submitting").addClass("submitting").attr("disabled", "disabled");
+				jQuery("#btnsubmitRequstCallback").val("Submitting").addClass("submitting").attr("disabled", "disabled");
 			},
 			error: function(b) {
-				$("#btnsubmitRequstCallback").val("Submit").removeClass("submitting").attr("disabled", "");
+				jQuery("#btnsubmitRequstCallback").val("Submit").removeClass("submitting").attr("disabled", "");
 			},
 			success: function(b) {
 				// window.location.href = "/livechat/thankyouforcallback.aspx?type=" + q;
@@ -1271,36 +1271,36 @@ $(document).ready(function() {
 		return true;
 	});
 	var m = getRequest()["frompricing"] == undefined ? "" : getRequest()["frompricing"];
-	if ($("#h1-callback").length) {
+	if (jQuery("#h1-callback").length) {
 		switch (m) {
 			case "quote":
-				$("#h1-callback").html("Request a Quote");
+				jQuery("#h1-callback").html("Request a Quote");
 				break;
 			default:
 				break;
 		}
 	}
-	$("#formenterpriserequestdemo").submit(function() {
+	jQuery("#formenterpriserequestdemo").submit(function() {
 		var a = {};
 		a.frompricing = getRequest()["frompricing"] == undefined ? "" : getRequest()["frompricing"];
 		a.requestpage = document.referrer;
-		a.requestcallback_name = $("#requestcallback_name").val();
-		a.requestcallback_email = $("#requestcallback_email").val();
-		a.requestcallback_tel = $("#requestcallback_tel").val();
-		a.requestcallback_company = $("#requestcallback_company").val();
-		a.requestcallback_title = $("#requestcallback_title").val();
-		a.requestcallback_operators = $("#requestcallback_operators").val();
-		a.requestcallback_comments = $("#requestcallback_comments").val();
+		a.requestcallback_name = jQuery("#requestcallback_name").val();
+		a.requestcallback_email = jQuery("#requestcallback_email").val();
+		a.requestcallback_tel = jQuery("#requestcallback_tel").val();
+		a.requestcallback_company = jQuery("#requestcallback_company").val();
+		a.requestcallback_title = jQuery("#requestcallback_title").val();
+		a.requestcallback_operators = jQuery("#requestcallback_operators").val();
+		a.requestcallback_comments = jQuery("#requestcallback_comments").val();
 		a.action = "enterpriserequestdemo_action";
-		$.ajax({
-			url: "https://www.comm100.com/wp-admin/admin-ajax.php",
+		jQuery.ajax({
+			url: commGlobal.ajax_url,
 			data: a,
 			type: "POST",
 			beforeSend: function() {
-				$("#btnsubmit").val("Submitting").addClass("submitting").attr("disabled", "disabled");
+				jQuery("#btnsubmit").val("Submitting").addClass("submitting").attr("disabled", "disabled");
 			},
 			error: function(b) {
-				$("#btnsubmit").val("Submit").removeClass("submitting").attr("disabled", "");
+				jQuery("#btnsubmit").val("Submit").removeClass("submitting").attr("disabled", "");
 			},
 			success: function(b) {
 				window.location.href = "/livechat/thankyouforcallback.aspx?type=enterprise";
@@ -1308,26 +1308,26 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-	$("#formdedicatedrequestcallback").submit(function() {
+	jQuery("#formdedicatedrequestcallback").submit(function() {
 		var a = {};
 		a.requestpage = document.referrer;
-		a.requestcallback_name = $("#requestcallback_name").val();
-		a.requestcallback_email = $("#requestcallback_email").val();
-		a.requestcallback_tel = $("#requestcallback_tel").val();
-		a.requestcallback_company = $("#requestcallback_company").val();
-		a.requestcallback_title = $("#requestcallback_title").val();
-		a.requestcallback_operators = $("#requestcallback_operators").val();
-		a.requestcallback_comments = $("#requestcallback_comments").val();
+		a.requestcallback_name = jQuery("#requestcallback_name").val();
+		a.requestcallback_email = jQuery("#requestcallback_email").val();
+		a.requestcallback_tel = jQuery("#requestcallback_tel").val();
+		a.requestcallback_company = jQuery("#requestcallback_company").val();
+		a.requestcallback_title = jQuery("#requestcallback_title").val();
+		a.requestcallback_operators = jQuery("#requestcallback_operators").val();
+		a.requestcallback_comments = jQuery("#requestcallback_comments").val();
 		a.action = "dedicatedrequestcallback_action";
-		$.ajax({
-			url: "https://www.comm100.com/wp-admin/admin-ajax.php",
+		jQuery.ajax({
+			url: commGlobal.ajax_url,
 			data: a,
 			type: "POST",
 			beforeSend: function() {
-				$("#btnsubmit").val("Submitting").addClass("submitting").attr("disabled", "disabled");
+				jQuery("#btnsubmit").val("Submitting").addClass("submitting").attr("disabled", "disabled");
 			},
 			error: function(b) {
-				$("#btnsubmit").val("Submit").removeClass("submitting").attr("disabled", "");
+				jQuery("#btnsubmit").val("Submit").removeClass("submitting").attr("disabled", "");
 			},
 			success: function(b) {
 				window.location.href = "/livechat/thankyouforcallback.aspx?type=dedicated";
@@ -1335,121 +1335,121 @@ $(document).ready(function() {
 		});
 		return false;
 	});
-	$(document).on("click", ".download-link", function() {
-		window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + $(this).data("source");
+	jQuery(document).on("click", ".download-link", function() {
+		window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + jQuery(this).data("source");
 	});
-	$(document).on("click", ".download-link2", function() {
-		window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + $(this).data("source");
+	jQuery(document).on("click", ".download-link2", function() {
+		window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + jQuery(this).data("source");
 	});
 	var o = getRequest()["whitepapertype"] == undefined ? "" : getRequest()["whitepapertype"];
-	if (o != "" && $("#thankyoufordownload-title").length) {
+	if (o != "" && jQuery("#thankyoufordownload-title").length) {
 		switch (o) {
 			case "buyersguide":
-				$("#thankyoufordownload-title").html("How to Choose the Best Live Chat Software: A Buyer's Guide");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-buyersguide.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/live-chat-scripts.aspx">Free Download: 120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_buyersguide\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("How to Choose the Best Live Chat Software: A Buyer's Guide");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-buyersguide.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/live-chat-scripts.aspx">Free Download: 120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_buyersguide\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "chatyourwaytohigherrevenue":
-				$("#thankyoufordownload-title").html("White Paper: The Top Ten Ways That Live Chat Can Increase Sales");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-chat-your-way-to-higher-revenue.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-chatyourwaytohigherrevenue.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/structure-website-conversion.aspx">White Paper: How to Structure Your Website for Better Conversion</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_chatyourwaytohigherrevenue\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("White Paper: The Top Ten Ways That Live Chat Can Increase Sales");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-chat-your-way-to-higher-revenue.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-chatyourwaytohigherrevenue.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/structure-website-conversion.aspx">White Paper: How to Structure Your Website for Better Conversion</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_chatyourwaytohigherrevenue\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "maximumon":
-				$("#thankyoufordownload-title").html("White Paper: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/Comm100-MaximumOn-Whitepaper.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-maximumon.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_maximumon\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("White Paper: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/Comm100-MaximumOn-Whitepaper.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-maximumon.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_maximumon\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "dynamiclivechatstrategy":
-				$("#thankyoufordownload-title").html("White Paper: How to Create a Dynamic Live Chat Strategy");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-how-to-create-a-dynamic-live-chat-strategy.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-dynamiclivechatstrategy.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/blog/live-chat-software-rfp-template.html">[Free Template] Live Chat Software RFP Questions</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_dynamiclivechatstrategy\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("White Paper: How to Create a Dynamic Live Chat Strategy");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-how-to-create-a-dynamic-live-chat-strategy.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-dynamiclivechatstrategy.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/blog/live-chat-software-rfp-template.html">[Free Template] Live Chat Software RFP Questions</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_dynamiclivechatstrategy\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "betterconversion":
-				$("#thankyoufordownload-title").html("White Paper: How to Structure Your Website for Better Conversion");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-how-to-structure-your-website-for-better-conversion.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-betterconversion.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_betterconversion\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("White Paper: How to Structure Your Website for Better Conversion");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-how-to-structure-your-website-for-better-conversion.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-betterconversion.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_betterconversion\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "livechatscripts":
-				$("#thankyoufordownload-title").html("120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-scripts-to-make-stellar-agents.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-livechatscripts.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/structure-website-conversion.aspx">White Paper: How to Structure Your Website for Better Conversion</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_livechatscripts\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-scripts-to-make-stellar-agents.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-livechatscripts.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/structure-website-conversion.aspx">White Paper: How to Structure Your Website for Better Conversion</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_livechatscripts\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "difficultcustomer":
-				$("#thankyoufordownload-title").html("How to Deal with Difficult Customers over Live Chat");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/how-to-deal-with-difficult-customers-over-live-chat.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-difficult-customer.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-support-scripts.aspx">White Paper: Live Chat Scripts to Make Stella Agents</a></li><li><a href="/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_difficultcustomer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("How to Deal with Difficult Customers over Live Chat");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/how-to-deal-with-difficult-customers-over-live-chat.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-difficult-customer.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-support-scripts.aspx">White Paper: Live Chat Scripts to Make Stella Agents</a></li><li><a href="/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_difficultcustomer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "rfptemplate":
-				$("#thankyoufordownload-title").html("Live Chat Software RFP Template");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/Comm100-Live-Chat-Software-RFP-Questions-Template.xlsx");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-rfp-template.png");
-				$("#whitepaperlike").html('<li><a href="/blog/live-chat-software-review-questions.html">Live Chat Software Review: Top 8 Questions to Ask</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li>');
-				$("#aclickhere").click();
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_rfptemplate\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("Live Chat Software RFP Template");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/Comm100-Live-Chat-Software-RFP-Questions-Template.xlsx");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-rfp-template.png");
+				jQuery("#whitepaperlike").html('<li><a href="/blog/live-chat-software-review-questions.html">Live Chat Software Review: Top 8 Questions to Ask</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li>');
+				jQuery("#aclickhere").click();
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_rfptemplate\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "topperformer":
-				$("#thankyoufordownload-title").html("The Guide to Becoming a Top Performing Live Chat Agent");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-the-guide-to-becoming-a-top-performing-live-chat-operator.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-top-performer.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-support-scripts.aspx">White Paper: Live Chat Scripts to Make Stella Agents</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_topperformer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("The Guide to Becoming a Top Performing Live Chat Agent");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-the-guide-to-becoming-a-top-performing-live-chat-operator.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-top-performer.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-support-scripts.aspx">White Paper: Live Chat Scripts to Make Stella Agents</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_topperformer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "report":
-				$("#thankyoufordownload-title").html("Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-chat-to-visit-ratio-report.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-report.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/top-performing-chat-operator/">White Paper: The Guide to Becoming a Top Performing Live Chat Agent</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/live-chat-buyers-guide.aspx">White Paper: How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_report\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-chat-to-visit-ratio-report.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-report.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/top-performing-chat-operator/">White Paper: The Guide to Becoming a Top Performing Live Chat Agent</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/live-chat-buyers-guide.aspx">White Paper: How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_report\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "benchmark":
-				$("#thankyoufordownload-title").html("2016 Live Chat Benchmark Report: Help Measure Your Live Chat Success");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-2016-live-chat-benchmark-report.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-benchmark.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/top-performing-chat-operator/">White Paper: The Guide to Becoming a Top Performing Live Chat Agent</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_benchmark\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("2016 Live Chat Benchmark Report: Help Measure Your Live Chat Success");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-2016-live-chat-benchmark-report.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-benchmark.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/top-performing-chat-operator/">White Paper: The Guide to Becoming a Top Performing Live Chat Agent</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_benchmark\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "salesforceintegration":
-				$("#thankyoufordownload-title").html("A User Guide to Comm100 Live Chat Salesforce Integration");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-salesforce-integration.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-salesforce-integration.png");
-				$("#whitepaperlike").html('<li><a href="/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li><li><a href="/livechat/resources/high-availability-maximumon.aspx">White Paper: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_salesforceintegration\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#thankyoufordownload-title").html("A User Guide to Comm100 Live Chat Salesforce Integration");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-salesforce-integration.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-salesforce-integration.png");
+				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li><li><a href="/livechat/resources/high-availability-maximumon.aspx">White Paper: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_salesforceintegration\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "2017benchmarkreport":
-				$("#thankyoufordownload-title").html("Live Chat Benchmark Report 2017");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-benchmark-report-2017.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/report-benchmark-2017-landing.png");
-				$("#whitepaperlike").html(
+				jQuery("#thankyoufordownload-title").html("Live Chat Benchmark Report 2017");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-benchmark-report-2017.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/report-benchmark-2017-landing.png");
+				jQuery("#whitepaperlike").html(
 					'<li><a href="https://www.comm100.com/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>'+
 					'<li><a href="https://www.comm100.com/livechat/resources/live-chat-buyers-guide.aspx">How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>'+
 					'<li><a href="https://www.comm100.com/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li>'+
 					'<li><a href="https://www.comm100.com/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_2017benchmarkreport\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_2017benchmarkreport\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "50activities":
-				$("#thankyoufordownload-title").html("50 Customer Service Training Activities for Live Chat and Telephone Teams");
-				$("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-50-customer-service-training-activities.pdf");
-				$("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/whitepaper-50-activities-landing.png");
-				$("#whitepaperlike").html(
+				jQuery("#thankyoufordownload-title").html("50 Customer Service Training Activities for Live Chat and Telephone Teams");
+				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-50-customer-service-training-activities.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/whitepaper-50-activities-landing.png");
+				jQuery("#whitepaperlike").html(
 					'<li><a href="https://www.comm100.com/livechat/resources/live-chat-benchmark-report-2017/">Live Chat Benchmark Report 2017</a></li>'+
 					'<li><a href="https://www.comm100.com/livechat/resources/live-chat-support-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>'+
 					'<li><a href="https://www.comm100.com/livechat/resources/top-performing-chat-operator/">The Guide to Becoming a Top Performing Live Chat Agent</a></li>'+
 					'<li><a href="https://www.comm100.com/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
-				$("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_50activities\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_50activities\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			default:
 				break;
@@ -1472,20 +1472,20 @@ $(document).ready(function() {
 	        }), "*");
 	    }
 	}
-	$(".c-layout-revo-slider .btn-video").on("click", function(){
-		//$(".video-container").fadeIn('fast');
+	jQuery(".c-layout-revo-slider .btn-video").on("click", function(){
+		//jQuery(".video-container").fadeIn('fast');
 		//playVideo();
-		$("#videomodal").modal({
+		jQuery("#videomodal").modal({
 			"backdrop": "static",
 			"show"    : "true"
 		});
 		callPlayer('videoContainer','playVideo');
 	});
 
-	$(".videomodal .btn-video-close").on("click", function(){
-		//$(".video-container").hide();
+	jQuery(".videomodal .btn-video-close").on("click", function(){
+		//jQuery(".video-container").hide();
 		//stopVideo();
-		$("#videomodal").modal("hide");
+		jQuery("#videomodal").modal("hide");
 		callPlayer('videoContainer','stopVideo');
 	});
 
@@ -1507,7 +1507,7 @@ var Pager = (function() {
 
 	var _ifScrollToPagerFirstItem = false;
 	function init(list, pagerSize) {
-		container = $(list);
+		container = jQuery(list);
 		pageSize = pagerSize || 12;
 		totalNum = container.children().length;
 		totalPages = Math.ceil(totalNum / pageSize);
@@ -1522,69 +1522,69 @@ var Pager = (function() {
 
 	function setCurrentPage() {
 		if (currentPage === 1) {
-			$('.first_page').addClass('disabled');
-			$('.prev_page').addClass('disabled');
-			$('.next_page').removeClass('disabled');
-			$('.last_page').removeClass('disabled');
+			jQuery('.first_page').addClass('disabled');
+			jQuery('.prev_page').addClass('disabled');
+			jQuery('.next_page').removeClass('disabled');
+			jQuery('.last_page').removeClass('disabled');
 		} else if (currentPage === totalPages) {
-			$('.first_page').removeClass('disabled');
-			$('.prev_page').removeClass('disabled');
-			$('.next_page').addClass('disabled');
-			$('.last_page').addClass('disabled');
+			jQuery('.first_page').removeClass('disabled');
+			jQuery('.prev_page').removeClass('disabled');
+			jQuery('.next_page').addClass('disabled');
+			jQuery('.last_page').addClass('disabled');
 		} else {
-			$('.first_page').removeClass('disabled');
-			$('.prev_page').removeClass('disabled');
-			$('.next_page').removeClass('disabled');
-			$('.last_page').removeClass('disabled');
+			jQuery('.first_page').removeClass('disabled');
+			jQuery('.prev_page').removeClass('disabled');
+			jQuery('.next_page').removeClass('disabled');
+			jQuery('.last_page').removeClass('disabled');
 		}
-		$('.pager .page_index').removeClass('current');
-		$('.pager .page_index').eq(currentPage - 1).addClass('current');
+		jQuery('.pager .page_index').removeClass('current');
+		jQuery('.pager .page_index').eq(currentPage - 1).addClass('current');
 		showItems();
 	}
 
 	function renderPager() {
 		var pagerWrap = document.createElement('div');
 		pagerWrap.className = 'pager';
-		var $pagerWrap = $(pagerWrap);
-		$pagerWrap.append('<span class="first_page"><i class="fa fa-angle-double-left"></i></span>');
-		$pagerWrap.append('<span class="prev_page"><i class="fa fa-angle-left"></i></span>');
+		// var $pagerWrap = jQuery(pagerWrap);
+		jQuery(pagerWrap).append('<span class="first_page"><i class="fa fa-angle-double-left"></i></span>');
+		jQuery(pagerWrap).append('<span class="prev_page"><i class="fa fa-angle-left"></i></span>');
 
 		for(var i=1; i<=totalPages; ++i) {
-			$pagerWrap.append('<span class="page_index">' + i + '</span>');
+			jQuery(pagerWrap).append('<span class="page_index">' + i + '</span>');
 		}
 
-		$pagerWrap.append('<span class="next_page"><i class="fa fa-angle-right"></i></span>');
-		$pagerWrap.append('<span class="last_page"><i class="fa fa-angle-double-right"></i></span>');
+		jQuery(pagerWrap).append('<span class="next_page"><i class="fa fa-angle-right"></i></span>');
+		jQuery(pagerWrap).append('<span class="last_page"><i class="fa fa-angle-double-right"></i></span>');
 		document.querySelector('.resource-list').parentNode.insertBefore(pagerWrap, document.querySelector('.resource-list').nextSibling)
 	}
 
 	function bindEvents() {
-		$('.first_page').on('click', function() {
+		jQuery('.first_page').on('click', function() {
 			if (currentPage === 1) return;
 			currentPage = 1;
 			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
-		$('.prev_page').on('click', function() {
+		jQuery('.prev_page').on('click', function() {
 			if (currentPage === 1) return;
 			currentPage--;
 			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
-		$('.next_page').on('click', function() {
+		jQuery('.next_page').on('click', function() {
 			if (currentPage === totalPages) return;
 			currentPage++;
 			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
-		$('.last_page').on('click', function() {
+		jQuery('.last_page').on('click', function() {
 			if (currentPage === totalPages) return;
 			currentPage = totalPages;
 			ifScrollToPagerFirstItem();
 			setCurrentPage();
 		});
-		$('.page_index').on('click', function() {
-			var clickIndex = $(this).index() - 1;
+		jQuery('.page_index').on('click', function() {
+			var clickIndex = jQuery(this).index() - 1;
 			if (currentPage === clickIndex) return;
 			currentPage = clickIndex;
 			ifScrollToPagerFirstItem();
@@ -1599,14 +1599,14 @@ var Pager = (function() {
 	function showItems () {
 		for (var i=0; i<totalNum; i++) {
 			if (i >= (currentPage - 1) * pageSize && i < currentPage * pageSize) {
-				$(container).children().eq(i).show();
+				jQuery(container).children().eq(i).show();
 			} else {
-				$(container).children().eq(i).hide();
+				jQuery(container).children().eq(i).hide();
 			}
 		}
 		_ifScrollToPagerFirstItem &&
-			$('html, body').animate({
-				scrollTop: $('.resource-list')[0].offsetTop,
+			jQuery('html, body').animate({
+				scrollTop: jQuery('.resource-list')[0].offsetTop,
 			}, 10);
 	}
 
@@ -1647,7 +1647,7 @@ window.onload = function() {
 	(function(){
 		var isMobile = window.mobilecheck();
 		if (!isMobile) {
-			var headerHeight = $('.c-layout-header').outerHeight() - $('.c-layout-header .c-topbar.c-navbar').outerHeight();
+			var headerHeight = jQuery('.c-layout-header').outerHeight() - jQuery('.c-layout-header .c-topbar.c-navbar').outerHeight();
 			var tabIndexWrap = document.querySelector('.threeTab__Index--Wrap');
 			if (tabIndexWrap && tabIndexWrap.getAttribute('data-wheel') === 'true') {
 				var scrolling = false;
@@ -1659,18 +1659,18 @@ window.onload = function() {
 				}
 
 				function handle(delta) {
-					var tabOffsetHeader = Math.ceil($('.threeTab__Index--Wrap').offset().top) - headerHeight;
+					var tabOffsetHeader = Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - headerHeight;
 					if (delta < 0) {
-						if ($(window).scrollTop() < tabOffsetHeader) {
+						if (jQuery(window).scrollTop() < tabOffsetHeader) {
 							disableMouseWheel();
-							$('html, body').animate({
+							jQuery('html, body').animate({
 								scrollTop: tabOffsetHeader
 							}, 400, function() {
 								tabIndexSlideUpOrDown(true);
 							});
 						}
 					} else {
-						if ($(window).scrollTop() < tabOffsetHeader) {
+						if (jQuery(window).scrollTop() < tabOffsetHeader) {
 							tabIndexSlideUpOrDown(false);
 						}
 					}
@@ -1698,21 +1698,21 @@ window.onload = function() {
 
 				function tabIndexSlideUpOrDown(isUp) {
 					if (isUp) {
-						$('.threeTab__Index--Wrap .threeTab__Index--desc').slideUp(400, function() {
+						jQuery('.threeTab__Index--Wrap .threeTab__Index--desc').slideUp(400, function() {
 							enableMouseWheel();
 						});
 						return;
 					}
-					$('.threeTab__Index--Wrap .threeTab__Index--desc').slideDown(400, function() {
+					jQuery('.threeTab__Index--Wrap .threeTab__Index--desc').slideDown(400, function() {
 							enableMouseWheel();
 					});
 				}
 			}
 
 			function selectTab(index) {
-				$('.threeTab__Index').removeClass('selected').eq(index).addClass('selected');
-				$('.threeTab__Detail').hide();
-				$('.threeTab__Detail').eq(index).show();
+				jQuery('.threeTab__Index').removeClass('selected').eq(index).addClass('selected');
+				jQuery('.threeTab__Detail').hide();
+				jQuery('.threeTab__Detail').eq(index).show();
 			}
 
 			var tabIndexItems = document.querySelectorAll('.threeTab__Index');
@@ -1721,35 +1721,35 @@ window.onload = function() {
 				item.addEventListener('click', function() {
 					tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
 					selectTab(index);
-					$('html, body').animate({
-						scrollTop: Math.ceil($('.threeTab__Index--Wrap').offset().top) - headerHeight
+					jQuery('html, body').animate({
+						scrollTop: Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - headerHeight
 					}, 400);
 				});
 			});
 			selectTab(0);
 			if (tabIndexWrap) {
 				setTimeout(function() {
-					if (Math.ceil($('.threeTab__Index--Wrap').offset().top) - $(window).scrollTop() === $('.c-layout-header').outerHeight()) {
+					if (Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - jQuery(window).scrollTop() === jQuery('.c-layout-header').outerHeight()) {
 						tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
 					}
 				}, 100);
 			}
 		} else {
-			$('.threeTab__Index--Wrap').hide();
-			$('.threeTab__Index--mobile').show();
+			jQuery('.threeTab__Index--Wrap').hide();
+			jQuery('.threeTab__Index--mobile').show();
 		}
 
-		$('.question-item__title').on('click', function() {
-			$(this).parent().toggleClass('selected');
-			$(this).siblings().slideToggle(200, function() {
+		jQuery('.question-item__title').on('click', function() {
+			jQuery(this).parent().toggleClass('selected');
+			jQuery(this).siblings().slideToggle(200, function() {
 			});
 		});
 
 		if (!window.mobilecheck()) {
-			Pager.init($('.resource-list'), 12);
+			Pager.init(jQuery('.resource-list'), 12);
 		}
 	}());
-}
+};
 
 /* ========================================================================
  * DOM-based Routing
@@ -1770,7 +1770,7 @@ window.onload = function() {
     // All pages
     'common': {
       init: function() {
-        // JavaScript to be fired on all pages
+          App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
@@ -1810,5 +1810,4 @@ window.onload = function() {
 
   // Load Events
   $(document).ready(UTIL.loadEvents);
-
 })(jQuery); // Fully reference jQuery after this point.

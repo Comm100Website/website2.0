@@ -1,4 +1,4 @@
-﻿<header class="c-layout-header c-layout-header-2 c-header-transparent-dark c-layout-header-dark-mobile" data-minimize-offset="130">
+<header class="c-layout-header c-layout-header-2 c-header-transparent-dark c-layout-header-dark-mobile" data-minimize-offset="130">
     <div class="c-topbar c-navbar">
         <div class="container">
             <!-- <div class="c-brand">

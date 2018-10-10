@@ -2,15 +2,12 @@
 /*
 Template Name:acf Home
 */
-
 use Roots\Sage\Assets;
 ?>
+
 <?php get_template_part('template-parts/header'); ?>
 </header>
-
 <div class="c-layout-page c-layout-page-fixed">
-
-
     <?php
 
         if( have_rows('tabs') ):

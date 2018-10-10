@@ -166,9 +166,3 @@ use Roots\Sage\Assets;
 <!--End Comm100 Live Chat Code-->
 <div id="namespace-chatbutton"></div>
 <!-- END: LAYOUT/BASE/BOTTOM -->
-<script>
-jQuery(document).ready(function() {
-    App.init(); // init core
-});
-</script>
-<!-- END: THEME SCRIPTS -->
