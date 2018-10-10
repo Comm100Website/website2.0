@@ -3,7 +3,6 @@ use Roots\Sage\Analytics;
 ?>
 <?php get_template_part('template-parts/header'); ?>
 </header>
-
 <!-- posts  -->
 <div class="c-layout-page c-layout-page-fixed">
     <!-- BEGIN: PAGE CONTENT -->

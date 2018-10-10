@@ -214,7 +214,7 @@ var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createEl
 <!--End Comm100 Live Chat Code-->
 <!-- END: LAYOUT/BASE/BOTTOM -->
 <script>
-    $(document).ready(function()
+    jQuery(document).ready(function()
     {
         App.init(); // init core
     });

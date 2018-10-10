@@ -2168,7 +2168,7 @@ use Roots\Sage\Assets;
 </script>
 <!--End Comm100 Live Chat Code-->
 <script>
-    $(document).ready(function()
+    jQuery(document).ready(function()
     {
         App.init(); // init core
     });

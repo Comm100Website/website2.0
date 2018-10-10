@@ -5,13 +5,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p class="c-copyright c-font-grey">Copyright &copy; <script>document.write((new Date()).getFullYear());</script> Comm100 Network Corporation. 
+                        <p class="c-copyright c-font-grey">Copyright &copy; <script>document.write((new Date()).getFullYear());</script> Comm100 Network Corporation.
                             <span class="c-font-regular">All Rights Reserved.
                             <a class="c-font-regular" href="/sitemap_index.xml"
                                 title="Live Chat Site Map">Site Map</a> | <a  class="c-font-regular" href="/privacy/"
                                 title="Live Chat Privacy Policy">Privacy Policy</a> | <a class="c-font-regular" href="/privacy/anti-spam-policy.aspx">Anti-Spam Policy</a> | <a class="c-font-regular" href="/eula/">EULA</a></span>
                         </p>
-                        
+
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
     <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
     <!-- BEGIN: CORE PLUGINS -->
     <!--[if lt IE 9]>
-  <script src="..//assets/global/plugins/excanvas.min.js"></script> 
+  <script src="..//assets/global/plugins/excanvas.min.js"></script>
   <![endif]-->
      <script>
        var Comm100_Variable_IP = '';
@@ -38,14 +38,14 @@
     <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery.easing.min.js?v=2.0.1" type="text/javascript"></script>
     <script src="<?php bloginfo('template_url');?>/assets/base/js/plugins.min.js?v=1.0.0" type="text/javascript"></script>
     <script src="<?php bloginfo('template_url');?>/assets/base/js/script.min.js?v=1.0.25" type="text/javascript"></script>
-    
+
     <!-- END: THEME SCRIPTS -->
-    
+
     <!-- BEGIN: PAGE SCRIPTS -->
     <!--<script src="<?php bloginfo('template_url');?>/assets/base/js/scripts/pages/lightbox-gallery.js" type="text/javascript"></script>-->
     <!-- END: PAGE SCRIPTS -->
     <!--  <script type="text/javascript" src="/secure/js/showchatbutton.js?ver=20150608"></script>
-    
+
     <div id="namespace-chatbutton"></div> -->
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-5000239"></div>
@@ -55,13 +55,13 @@
 <!--End Comm100 Live Chat Code-->
     <!-- END: LAYOUT/BASE/BOTTOM -->
     <script>
-            $(document).ready(function()
+            jQuery(document).ready(function()
             {
-                App.init(); // init core    
+                App.init(); // init core
             });
         </script>
         <!-- END: THEME SCRIPTS -->
-    
-    
+
+
 </body>
 </html>

@@ -127,7 +127,7 @@
                     <div class="c-foot">
                         <div class="row">
                             <div class="col-md-10">
-                                
+
                                 <div>
                                     <span><img src="https://www.comm100.com/wp-content/uploads/images/hipaa-logo.png" alt="HIPAA" width="127" height="44" class="c-sm-margin-t-10"></span>
                                     <span class="c-padding-left-10"><img src="https://www.comm100.com/wp-content/uploads/images/logo-iso-27001.png?v=20180202" alt="ISO 27001" width="85" height="85"></span>
@@ -146,7 +146,7 @@
                                     <span class="c-padding-left-10"><img src="https://www.comm100.com/wp-content/uploads/images/logo-sfdc.svg" alt="Salesforce Partner" width="147" height="43" class="c-sm-margin-t-10"></span>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <p class="c-copyright c-font-grey">Copyright &copy; <script>document.write((new Date()).getFullYear());</script> Comm100 Network Corporation. 
+                            <p class="c-copyright c-font-grey">Copyright &copy; <script>document.write((new Date()).getFullYear());</script> Comm100 Network Corporation.
                                 <span class="c-font-regular">All Rights Reserved.
                                 <a class="c-font-regular" href="/sitemap_index.xml"
                                     title="Live Chat Site Map">Site Map</a> | <a  class="c-font-regular" href="/privacy/"
@@ -179,7 +179,7 @@
     <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
     <!-- BEGIN: CORE PLUGINS -->
     <!--[if lt IE 9]>
-  <script src="..//assets/global/plugins/excanvas.min.js"></script> 
+  <script src="..//assets/global/plugins/excanvas.min.js"></script>
   <![endif]-->
     <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery.min.js" type="text/javascript"></script>
     <!-- <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script> -->
@@ -188,21 +188,21 @@
     <script src="<?php bloginfo('template_url');?>/assets/base/js/plugins.min.js?v=1.0.0" type="text/javascript"></script>
     <script src="<?php bloginfo('template_url');?>/assets/base/js/script.min.js?v=1.0.12" type="text/javascript"></script>
     <!-- END: THEME SCRIPTS -->
-    
+
     <!-- BEGIN: PAGE SCRIPTS -->
     <!--<script src="<?php bloginfo('template_url');?>/assets/base/js/scripts/pages/lightbox-gallery.js" type="text/javascript"></script>-->
     <!-- END: PAGE SCRIPTS -->
   <!-- <script type="text/javascript" src="/secure/js/showchatbutton.js?ver=20150608"></script>
-    
+
     <div id="namespace-chatbutton"></div> -->
     <!-- END: LAYOUT/BASE/BOTTOM -->
     <script>
-            $(document).ready(function()
+            jQuery(document).ready(function()
             {
-                App.init(); // init core    
+                App.init(); // init core
             });
         </script>
         <!-- END: THEME SCRIPTS -->
- 
+
 </body>
 </html>

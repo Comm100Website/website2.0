@@ -167,7 +167,7 @@ use Roots\Sage\Assets;
 <div id="namespace-chatbutton"></div>
 <!-- END: LAYOUT/BASE/BOTTOM -->
 <script>
-$(document).ready(function() {
+jQuery(document).ready(function() {
     App.init(); // init core
 });
 </script>
