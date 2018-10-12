@@ -19561,7 +19561,9 @@ h3.highlight {
 .secondary-page .banner .subtitle,
 .secondary-page .banner h1,
 .secondary-page h1,
-.three-column__title {
+.banner--type2 h1,
+.three-column__title,
+.banner--type2 .subtitle {
   font-family: "Ubuntu Regular", sans-serif;
 }
 .three-column {
@@ -19642,11 +19644,13 @@ h5.feature-column__title {
     margin-top: 10px;
   }
 }
-.secondary-page h1 {
+.secondary-page h1,
+.banner--type2 h1 {
   font-size: 22px;
   line-height: 1.25em;
 }
-.secondary-page .banner .subtitle {
+.secondary-page .banner .subtitle,
+.banner--type2 .subtitle {
   color: #0094d4;
   font-size: 34px;
   line-height: 1.3333333;
@@ -20781,6 +20785,11 @@ h5.feature-column__title {
 .landingPage-title-wrap .landingPage-title--text p {
   margin-top: 20px;
   margin-bottom: 0;
+  font-size: 24px;
+  line-height: 40px;
+}
+.landingPage-title-wrap .landingPage-title--text .banner_cta_link {
+  margin-top: 20px;
 }
 .landingPage-title-wrap img {
   position: absolute;
@@ -21175,4 +21184,24 @@ h2.video-title {
 }
 .form-aside img {
   margin-top: 60px;
+}
+.whitepaper__maincontent {
+  line-height: 1.625;
+}
+.whitepaper__maincontent h3 {
+  margin-top: 40px;
+}
+.whitepaper__maincontent p {
+  margin-bottom: 20px;
+}
+.whitepaper__maincontent .ul__disc {
+  padding-left: 20px;
+  list-style-type: disc;
+  margin-bottom: 30px;
+}
+.white__introduction {
+  margin-top: -50px;
+  background: #f5f8fd;
+  font-family: "Ubuntu Light Italic",sans-serif;
+  line-height: 1.625em;
 }
