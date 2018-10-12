@@ -9,7 +9,7 @@
       <div class="row"> 
             <div class="col-md-9">
             <?php
-                if ( function_exists( 'coauthors_posts_links' ) ) {
+                if ( function_exists( 'coauthors_posts_links' ) && is_author() ) {
                     global $post;
                     $author_id=get_the_author_meta('ID');
                     $userdata = get_userdata( $author_id ); 
