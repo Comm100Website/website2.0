@@ -121,7 +121,7 @@
                         </li>
                         <li>
                             <i class="icon-pointer"></i>
-                            <a href="https://www.comm100.com/company/about/contact/">Contact us</a>
+                            <a href="/company/about/contact/">Contact us</a>
                         </li>
                     </ul>
                     <form class="c-quick-search" action="/search/">
@@ -203,9 +203,6 @@
 <!-- END: LAYOUT/FOOTERS/GO2TOP -->
 <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
 <!-- BEGIN: CORE PLUGINS -->
- <script>
-   var Comm100_Variable_IP = '';
-</script>
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-5000239"></div>
 <script type="text/javascript">

@@ -1,3 +1,5 @@
+http://www.jinweijie.com/wordpress/optimize-wordpress-speed-hosted-on-iis/
+
 //Enable gzip compression on static assets and html
 <configuration>
   <system.webServer>

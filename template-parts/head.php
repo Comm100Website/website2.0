@@ -25,5 +25,8 @@ use Roots\Sage\Assets;
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-MHPR23J');</script>
     <!-- End Google Tag Manager -->
+    <script>
+        var Comm100_Variable_IP = '';
+    </script>
 </head>
 <!-- END HEAD -->

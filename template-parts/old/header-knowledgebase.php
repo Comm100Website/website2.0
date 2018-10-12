@@ -119,8 +119,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- BEGIN: BRAND -->
             <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
-                    <a href="https://www.comm100.com/" class="c-logo">
-                    <span class="c-logo-img"><img src="https://www.comm100.com/wp-content/uploads/images/logo-comm100.svg" alt="Comm100" class="c-desktop-logo"/></span>
+                    <a href="/" class="c-logo">
+                    <span class="c-logo-img"><img src="/wp-content/uploads/images/logo-comm100.svg" alt="Comm100" class="c-desktop-logo"/></span>
                   </a>
                     <button class="c-hor-nav-toggler" type="button" data-target=".c-top2-menu">
                         <span class="c-line"></span>

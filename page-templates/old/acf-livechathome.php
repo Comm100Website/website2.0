@@ -17,7 +17,7 @@ Template Name:acf demo Home
                   </button>
                 </div>
             <!-- BEGIN: QUICK SEARCH -->
-            <form class="c-quick-search" action="https://www.comm100.com/search/">
+            <form class="c-quick-search" action="/search/">
                 <input type="text" name="q" placeholder="Search Comm100.com..." value="" class="form-control" autocomplete="off">
                 <span class="c-theme-link">&times;</span>
             </form>
@@ -54,8 +54,8 @@ Template Name:acf demo Home
         <div class="c-navbar-wrapper clearfix">
             <div class="c-brand c-pull-left">
 
-                  <a href="https://www.comm100.com/livechat/" class="c-logo">
-                    <span class="c-logo-img"><img src="https://www.comm100.com/wp-content/uploads/images/logo-comm100.svg" alt="Comm100" class="c-desktop-logo"/></span>
+                  <a href="/livechat/" class="c-logo">
+                    <span class="c-logo-img"><img src="/wp-content/uploads/images/logo-comm100.svg" alt="Comm100" class="c-desktop-logo"/></span>
                   </a>
 
 

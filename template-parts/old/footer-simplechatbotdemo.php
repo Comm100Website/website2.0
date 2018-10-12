@@ -6,7 +6,7 @@
                     <div class="c-center">
                         <p>
                             <span>Visit</span><br/>
-                            <a href="https://www.comm100.com">www.comm100.com</a>
+                            <a href="/">www.comm100.com</a>
                         </p>
                         <p class="c-copyright">Copyright &copy; <?= date('Y'); ?> Comm100 Network Corporation.
                             All Rights Reserved.
@@ -26,9 +26,6 @@
         <!--[if lt IE 9]>
         <script src="..//assets/global/plugins/excanvas.min.js"></script>
         <![endif]-->
-        <script>
-        var Comm100_Variable_IP = '';
-        </script>
         <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery.min.js" type="text/javascript"></script>
         <!-- <script src="<?php bloginfo('template_url');?>/assets/plugins/jquery-migrate.min.js" type="text/javascript"></script> -->
         <script src="<?php bloginfo('template_url');?>/assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

@@ -2791,7 +2791,7 @@
   display: inline-block;
   width: 60px;
   height: 60px;
-  background-image: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/content/line-icons/default.png);
+  background-image: url(../images/content/line-icons/default.png);
   background-size: cover;
 }
 .c-content-line-icon.c-icon-screen-chart {
@@ -5017,7 +5017,7 @@
   right: 30px;
   border: 0;
   outline: 0;
-  background: url(https://www.comm100.com/wp-content/themes/comm100../images/content/icons/search.svg)
+  background: url(../images/content/icons/search.svg)
     no-repeat;
 }
 .videocontainer {
@@ -5628,7 +5628,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   border-color: #0094d4 !important;
 }
 .c-content-line-icon.c-theme {
-  background-image: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/content/line-icons/default.png);
+  background-image: url(../images/content/line-icons/default.png);
 }
 .c-content-list-1.c-theme.c-separator-dot > li:before,
 .c-content-list-1.c-theme > li:before {
@@ -5675,7 +5675,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
 .customers-list {
   height: 80px;
   margin-bottom: 25px;
-  background-image: url(https://www.comm100.com/wp-content/uploads/images/customer-list-version-01.png);
+  background-image: url(/wp-content/uploads/images/customer-list-version-01.png);
   background-repeat: no-repeat;
 }
 .organizations-01 {
@@ -5853,7 +5853,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   background-position: center -3600px;
 }
 .finance-02 {
-  background: url(https://www.comm100.com/wp-content/uploads/images/logo-fifcu-1.jpg)
+  background: url(/wp-content/uploads/images/logo-fifcu-1.jpg)
     center center no-repeat;
 }
 .finance-03 {
@@ -5944,7 +5944,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
 .fancybox-close,
 .fancybox-next span,
 .fancybox-prev span {
-  background-image: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/fancybox/fancybox_sprite.png);
+  background-image: url(../images/fancybox/fancybox_sprite.png);
 }
 #fancybox-loading {
   position: fixed;
@@ -5967,7 +5967,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
 #fancybox-loading div {
   width: 44px;
   height: 44px;
-  background: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/fancybox/fancybox_loading.gif)
+  background: url(../images/fancybox/fancybox_loading.gif)
     center center no-repeat;
 }
 .fancybox-close {
@@ -5980,7 +5980,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   top: 0;
   width: 40%;
   height: 100%;
-  background: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/fancybox/blank.gif);
+  background: url(../images/fancybox/blank.gif);
 }
 .fancybox-prev {
   left: 0;
@@ -6032,7 +6032,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   left: 0;
   display: none;
   overflow: hidden;
-  background: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/fancybox/fancybox_overlay.png);
+  background: url(../images/fancybox/fancybox_overlay.png);
 }
 .fancybox-overlay-fixed {
   position: fixed;
@@ -6104,11 +6104,11 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   .fancybox-close,
   .fancybox-next span,
   .fancybox-prev span {
-    background-image: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/fancybox/fancybox_sprite@2x.png);
+    background-image: url(../images/fancybox/fancybox_sprite@2x.png);
     background-size: 44px 152px;
   }
   #fancybox-loading div {
-    background-image: url(https://www.comm100.com/wp-content/themes/comm100/assets/plugins/fancybox/fancybox_loading@2x.gif);
+    background-image: url(../images/fancybox/fancybox_loading@2x.gif);
     background-size: 24px 24px;
   }
 }
@@ -7376,14 +7376,14 @@ h3.highlight {
   font-size: 20px;
 }
 .c-quote__content:before {
-  background: url(https://www.comm100.com/wp-content/uploads/images/quote-left.png)
+  background: url(/wp-content/uploads/images/quote-left.png)
     no-repeat;
   top: 0;
   left: 0;
   transform: translate(-50%, -25%);
 }
 .c-quote__content:after {
-  background: url(https://www.comm100.com/wp-content/uploads/images/quote-right.png)
+  background: url(/wp-content/uploads/images/quote-right.png)
     no-repeat;
   right: 0;
   bottom: 0;

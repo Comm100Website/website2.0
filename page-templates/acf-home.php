@@ -276,9 +276,7 @@ use Roots\Sage\Assets;
 
                         $ai_logo_content = '';
                         if ($ai_logo):
-                            $ai_logo_content = '<div class="ai-logo-wrap">' .
-                                                '<img src="' . $ai_logo['url'] . '" alt="' . $ai_logo['alt'] . '" width="276" height="209" />' .
-                                            '</div>';
+                            $ai_logo_content = '<div class="ai-logo-wrap">'.Assets\get_acf_image($ai_logo, '', 209, 276).'</div>';
                         endif;
 
                         $columnFirst = '';
@@ -409,9 +407,7 @@ use Roots\Sage\Assets;
                     echo '<div class="col-sm-7">';
 
                     if ($banner_icon):
-                        echo '<div class="banner_icon">' .
-                                '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' .
-                            '</div>';
+                        echo '<div class="banner_icon">'.Assets\get_acf_image($banner_icon, '', 64, 64).'</div>';
                     endif;
                     if ($banner_headline):
                         echo '<h1>' .
@@ -485,9 +481,7 @@ use Roots\Sage\Assets;
                     echo '<div class="col-sm-12">';
 
                     if ($header_icon):
-                        echo '<div class="header_icon">' .
-                                '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' .
-                            '</div>';
+                        echo '<div class="header_icon">'.Assets\get_acf_image($header_icon, '', 64, 64).'</div>';
                     endif;
                     if ($header_headline):
                         echo '<h1>' .
@@ -605,9 +599,7 @@ use Roots\Sage\Assets;
                         echo '<div class="col-sm-' . strval(12/$row_count) . '">' .
                             '<div class="c-content-feature-2 c-option-2 c-theme-bg-parent-hover">' .
                                 '<div class="c-icon-wrapper">' .
-                                    '<span aria-hidden="true">' .
-                                        '<img src="' . $featureImage['url'] . '" alt="' . $featureImage['alt'] . '" width="50" height="50">' .
-                                    '</span>' .
+                                    '<span aria-hidden="true">'.Assets\get_acf_image($featureImage, '', 50, 50).'</span>' .
                                 '</div>' .
                                 '<p>' . $featureDescription . '</p>' .
                             '</div>' .
@@ -687,7 +679,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="card-item card-item--platform card-item--' . $card_themecolor . '" data-link="' . $cta_link['url'] . '">' .
-                                        '<div class="card__icon-wrap"><img src="' . $card_img['url'] . '" alt="' . $card_img['alt'] . '" class="card__icon--small" width="70" height="70" /></div>' .
+                                        '<div class="card__icon-wrap">'.Assets\get_acf_image($card_img, 'card__icon--small', 70, 70).'</div>' .
                                         '<h3>' . $card_title . '</h3>' .
                                         $card_subtitle_wrap .
                                         $card_description .
@@ -830,9 +822,7 @@ use Roots\Sage\Assets;
 
                             $logo_image = get_sub_field('logo_image');
 
-                            echo    '<div class="item">' .
-                                        '<img class="c-img-pos grayscale" src="' . $logo_image['url'] . '" alt="' . $logo_image['alt'] . '" width="180" height="140" />' .
-                                    '</div>';
+                            echo    '<div class="item">'.Assets\get_acf_image($logo_image, 'c-img-pos grayscale', 140, 180).'</div>';
                         endwhile;
 
                         echo '</div>';
@@ -976,9 +966,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="img-text-card img-text-card--' . $color . ' img-text-card--' . $image_position . ' clearfix" data-link="' . $cta_link['url'] . '">' .
-                                        '<div class="img-text-card__img">' .
-                                            '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
-                                        '</div>' .
+                                        '<div class="img-text-card__img">'.Assets\get_acf_image($image).'</div>' .
                                         '<div class="img-text-card__text">' .
                                             '<h3 class="highlight highlight--' . $color . '">' . $headline . '</h3>' .
                                             '<p>' . $body . '</p>' .
@@ -1058,8 +1046,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="img-text-column img-text-column--' . $image_position . ' clearfix">' .
-                                        '<div class="col-sm-6 ' . $push6 . ' img-text-column__img">' .
-                                            '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
+                                        '<div class="col-sm-6 ' . $push6 . ' img-text-column__img">'.Assets\get_acf_image($image).
                                         '</div>' .
                                         '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
                                             '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
@@ -1095,12 +1082,12 @@ use Roots\Sage\Assets;
                     echo '<div class="col-sm-10 col-sm-push-1 c-center">';
 
                     if ($headimage):
-                        echo '<img src="' . $headimage['url'] . '" alt="' . $headimage['alt'] . '"/>';
+                        echo Assets\get_acf_image($headimage);
                     endif;
 
                     if ($headicon):
                         echo '<div class="header_icon">' .
-                                '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' .
+                                Assets\get_acf_image($headicon, '', 64, 64) .
                             '</div>';
                     endif;
                     if ($headline):
@@ -1202,7 +1189,7 @@ use Roots\Sage\Assets;
                             $headerIcon = '';
                             if ($icon):
                                 $headerIcon = '<div class="header_icon">' .
-                                                '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="64" height="64" />' .
+                                                Assets\get_acf_image($icon, '', 64, 64) .
                                             '</div>';
                             endif;
 
@@ -1361,7 +1348,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="three-column__item">' .
-                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
+                                        Assets\get_acf_image($icon, '', 80, 80) .
                                         '<h5 class="three-column__title">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
@@ -1405,7 +1392,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="feature-column__item">' .
-                                        '<div><img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" /></div>' .
+                                        '<div>'.Assets\get_acf_image($ai_logo, '', 60, 60).'</div>' .
                                         '<h5 class="feature-column__title highlight highlight--' . $color . '">' . $headline . '</h5>' .
                                         $body .
                                         $linkcontent .
@@ -1980,7 +1967,7 @@ use Roots\Sage\Assets;
                     echo '<div class="col-sm-12 user-review">';
 
                     if ($logo):
-                        echo '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '" width="" height="">';
+                        echo Assets\get_acf_image($logo);
                     endif;
 
                     if ($headline):
@@ -2052,7 +2039,7 @@ use Roots\Sage\Assets;
                             '<div class="container">' .
                                 '<div class="row">' .
 
-                                    '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
+                                    '<div class="col-sm-5">'.Assets\get_acf_image($image, '', 380, 380).'</div>' .
                                     '<div class="col-sm-7">' .
                                         '<div class="contact-form">' .
                                             '<h3 class="highlight highlight--blue">' . $title . '</h3>' .

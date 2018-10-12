@@ -17,12 +17,12 @@ Template Name:forum
                 </button>
             </div>
             <!-- BEGIN: QUICK SEARCH -->
-            <form class="c-quick-search" action="https://www.comm100.com/search/">
+            <form class="c-quick-search" action="/search/">
                 <input type="text" name="q" placeholder="Search Comm100.com..." value="" class="form-control" autocomplete="off">
                 <span class="c-theme-link">&times;</span>
             </form>
             <!-- END: QUICK SEARCH -->
-           
+
             <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
             <?php
               $defaults = array(
@@ -61,14 +61,14 @@ Template Name:forum
                     <span class="c-line"></span>
                     <span class="c-line"></span>
                 </button>
-                
+
             </div>
             <!-- END: BRAND -->
-            
+
             <!-- BEGIN: HOR NAV -->
             <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
             <!-- BEGIN: MEGA MENU -->
-            
+
             <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
             <?php
               $defaults = array(
@@ -104,13 +104,13 @@ Template Name:forum
 	   <?php the_content(__('<br/>Continue reading...')); ?>
   <?php endwhile; ?>
   <?php else : ?>
-   
+
   <div class="post">
     <h2>Not found1!</h2>
     <p><?php _e('Sorry, this page does not exist.'); ?></p>
-    <?php get_template_part('template-parts/searchform'); ?>	
+    <?php get_template_part('template-parts/searchform'); ?>
   </div>
-   
+
   <?php endif; ?>
 
 <?php get_template_part('template-parts/footer', 'home'); ?>

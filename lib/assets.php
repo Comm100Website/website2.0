@@ -55,3 +55,27 @@ function asset_path($filename) {
     return $dist_path . $directory . $file;
   }
 }
+
+function get_acf_image($image, $class = '', $height = '', $width = '') {
+    $output = '<img ' . lazy_load_img_src($image['url']) . ' alt="' . $image['alt'] . '"';
+
+    if ($class) {
+        $output .= ' class="'.$class.'"';
+    }
+
+    if ($height) {
+        $output .= ' height="'.$height.'"';
+    }
+
+    if ($width) {
+        $output .= ' width="'.$width.'"';
+    }
+
+    $output .= ' />';
+
+    return $output;
+}
+
+function lazy_load_img_src($imageSrc) {
+    return 'src="data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=" data-lazy-src="'.$imageSrc.'"';
+}

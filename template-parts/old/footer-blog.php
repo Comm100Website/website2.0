@@ -129,8 +129,8 @@
                             <div class="col-md-10">
 
                                 <div>
-                                    <span><img src="https://www.comm100.com/wp-content/uploads/images/hipaa-logo.png" alt="HIPAA" width="127" height="44" class="c-sm-margin-t-10"></span>
-                                    <span class="c-padding-left-10"><img src="https://www.comm100.com/wp-content/uploads/images/logo-iso-27001.png?v=20180202" alt="ISO 27001" width="85" height="85"></span>
+                                    <span><img src="/wp-content/uploads/images/hipaa-logo.png" alt="HIPAA" width="127" height="44" class="c-sm-margin-t-10"></span>
+                                    <span class="c-padding-left-10"><img src="/wp-content/uploads/images/logo-iso-27001.png?v=20180202" alt="ISO 27001" width="85" height="85"></span>
                                     <span class="c-padding-left-10">
                                         <img src="<?php bloginfo('template_url');?>/assets/base/img/content/security/pci.png" alt="PCI" width="100" height="43">
                                     </span>
@@ -143,7 +143,7 @@
                                         <img alt="Click for the BBB Business Review of this Computer Software Publishers &amp; Developers in Vancouver BC"
                                             style="border: 0;" src="<?php bloginfo('template_url');?>/assets/base/img/content/security/bbb.png?v=201606221634" width="114" height="43"/></a></span>
                                     <span class="c-padding-left-10"><img src="<?php bloginfo('template_url');?>/assets/base/img/content/security/microsoft-partner.png?v=201606221634" alt="Microsoft Partner" width="215" height="43" class="c-sm-margin-t-10"></span>
-                                    <span class="c-padding-left-10"><img src="https://www.comm100.com/wp-content/uploads/images/logo-sfdc.svg" alt="Salesforce Partner" width="147" height="43" class="c-sm-margin-t-10"></span>
+                                    <span class="c-padding-left-10"><img src="/wp-content/uploads/images/logo-sfdc.svg" alt="Salesforce Partner" width="147" height="43" class="c-sm-margin-t-10"></span>
                                 </div>
                             </div>
 

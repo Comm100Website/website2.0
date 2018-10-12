@@ -6,7 +6,7 @@
             <div class="c-center">
                 <p>
                     <span>Visit</span><br/>
-                    <a href="https://www.comm100.com">www.comm100.com</a>
+                    <a href="/">www.comm100.com</a>
                 </p>
                 <p class="c-copyright">Copyright &copy; <?= date('Y'); ?> Comm100 Network Corporation.
                     All Rights Reserved.
@@ -22,6 +22,3 @@
 </div>
 <!-- END: LAYOUT/FOOTERS/GO2TOP -->
 <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
-<script>
-   var Comm100_Variable_IP = '';
-</script>

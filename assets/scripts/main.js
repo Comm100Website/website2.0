@@ -1346,110 +1346,110 @@ jQuery(document).ready(function() {
 		switch (o) {
 			case "buyersguide":
 				jQuery("#thankyoufordownload-title").html("How to Choose the Best Live Chat Software: A Buyer's Guide");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-buyersguide.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-buyersguide.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/live-chat-scripts.aspx">Free Download: 120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_buyersguide\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_buyersguide\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "chatyourwaytohigherrevenue":
 				jQuery("#thankyoufordownload-title").html("White Paper: The Top Ten Ways That Live Chat Can Increase Sales");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-chat-your-way-to-higher-revenue.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-chatyourwaytohigherrevenue.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-chat-your-way-to-higher-revenue.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-chatyourwaytohigherrevenue.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/structure-website-conversion.aspx">White Paper: How to Structure Your Website for Better Conversion</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_chatyourwaytohigherrevenue\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_chatyourwaytohigherrevenue\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "maximumon":
 				jQuery("#thankyoufordownload-title").html("White Paper: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/Comm100-MaximumOn-Whitepaper.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-maximumon.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/Comm100-MaximumOn-Whitepaper.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-maximumon.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_maximumon\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_maximumon\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "dynamiclivechatstrategy":
 				jQuery("#thankyoufordownload-title").html("White Paper: How to Create a Dynamic Live Chat Strategy");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-how-to-create-a-dynamic-live-chat-strategy.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-dynamiclivechatstrategy.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-how-to-create-a-dynamic-live-chat-strategy.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-dynamiclivechatstrategy.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/blog/live-chat-software-rfp-template.html">[Free Template] Live Chat Software RFP Questions</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_dynamiclivechatstrategy\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_dynamiclivechatstrategy\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "betterconversion":
 				jQuery("#thankyoufordownload-title").html("White Paper: How to Structure Your Website for Better Conversion");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-how-to-structure-your-website-for-better-conversion.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-betterconversion.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-how-to-structure-your-website-for-better-conversion.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-betterconversion.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_betterconversion\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_betterconversion\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "livechatscripts":
 				jQuery("#thankyoufordownload-title").html("120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-scripts-to-make-stellar-agents.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-livechatscripts.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-live-chat-scripts-to-make-stellar-agents.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-livechatscripts.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/structure-website-conversion.aspx">White Paper: How to Structure Your Website for Better Conversion</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_livechatscripts\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_livechatscripts\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "difficultcustomer":
 				jQuery("#thankyoufordownload-title").html("How to Deal with Difficult Customers over Live Chat");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/how-to-deal-with-difficult-customers-over-live-chat.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-difficult-customer.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/how-to-deal-with-difficult-customers-over-live-chat.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-difficult-customer.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-support-scripts.aspx">White Paper: Live Chat Scripts to Make Stella Agents</a></li><li><a href="/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_difficultcustomer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_difficultcustomer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "rfptemplate":
 				jQuery("#thankyoufordownload-title").html("Live Chat Software RFP Template");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/Comm100-Live-Chat-Software-RFP-Questions-Template.xlsx");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-rfp-template.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/Comm100-Live-Chat-Software-RFP-Questions-Template.xlsx");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-rfp-template.png");
 				jQuery("#whitepaperlike").html('<li><a href="/blog/live-chat-software-review-questions.html">Live Chat Software Review: Top 8 Questions to Ask</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li><li><a href="/livechat/resources/live-chat-increase-sales.aspx">White Paper: The Top Ten Ways That Live Chat Can Increase Sales</a></li>');
 				jQuery("#aclickhere").click();
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_rfptemplate\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_rfptemplate\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "topperformer":
 				jQuery("#thankyoufordownload-title").html("The Guide to Becoming a Top Performing Live Chat Agent");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-the-guide-to-becoming-a-top-performing-live-chat-operator.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-top-performer.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-the-guide-to-becoming-a-top-performing-live-chat-operator.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-top-performer.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/live-chat-support-scripts.aspx">White Paper: Live Chat Scripts to Make Stella Agents</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/live-chat-strategy.aspx">White Paper: How to Create a Dynamic Live Chat Strategy</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_topperformer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_topperformer\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "report":
 				jQuery("#thankyoufordownload-title").html("Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-chat-to-visit-ratio-report.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-report.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-chat-to-visit-ratio-report.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-report.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/top-performing-chat-operator/">White Paper: The Guide to Becoming a Top Performing Live Chat Agent</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/live-chat-buyers-guide.aspx">White Paper: How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_report\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_report\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "benchmark":
 				jQuery("#thankyoufordownload-title").html("2016 Live Chat Benchmark Report: Help Measure Your Live Chat Success");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-2016-live-chat-benchmark-report.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-benchmark.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-2016-live-chat-benchmark-report.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-benchmark.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/top-performing-chat-operator/">White Paper: The Guide to Becoming a Top Performing Live Chat Agent</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li><li><a href="/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_benchmark\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_benchmark\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "salesforceintegration":
 				jQuery("#thankyoufordownload-title").html("A User Guide to Comm100 Live Chat Salesforce Integration");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-salesforce-integration.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/thankyou-salesforce-integration.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-live-chat-salesforce-integration.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/thankyou-salesforce-integration.png");
 				jQuery("#whitepaperlike").html('<li><a href="/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li><li><a href="/livechat/resources/high-availability-maximumon.aspx">White Paper: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology</a></li><li><a href="/livechat/resources/dealing-with-difficult-customers-over-live-chat/">White Paper: How to Deal with Difficult Customers over Live Chat</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_salesforceintegration\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_salesforceintegration\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "2017benchmarkreport":
 				jQuery("#thankyoufordownload-title").html("Live Chat Benchmark Report 2017");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-live-chat-benchmark-report-2017.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/report-benchmark-2017-landing.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-live-chat-benchmark-report-2017.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/report-benchmark-2017-landing.png");
 				jQuery("#whitepaperlike").html(
-					'<li><a href="https://www.comm100.com/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>'+
-					'<li><a href="https://www.comm100.com/livechat/resources/live-chat-buyers-guide.aspx">How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>'+
-					'<li><a href="https://www.comm100.com/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li>'+
-					'<li><a href="https://www.comm100.com/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_2017benchmarkreport\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+					'<li><a href=commGlobal.site_url + "/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>'+
+					'<li><a href=commGlobal.site_url + "/livechat/resources/live-chat-buyers-guide.aspx">How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>'+
+					'<li><a href=commGlobal.site_url + "/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li>'+
+					'<li><a href=commGlobal.site_url + "/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_2017benchmarkreport\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "50activities":
 				jQuery("#thankyoufordownload-title").html("50 Customer Service Training Activities for Live Chat and Telephone Teams");
-				jQuery("#whitepaperdownloadlink").attr("href", "https://www.comm100.com/doc/comm100-50-customer-service-training-activities.pdf");
-				jQuery("#whitepaperdownload-img").attr("src", "https://www.comm100.com/wp-content/uploads/images/whitepaper-50-activities-landing.png");
+				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-50-customer-service-training-activities.pdf");
+				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/whitepaper-50-activities-landing.png");
 				jQuery("#whitepaperlike").html(
-					'<li><a href="https://www.comm100.com/livechat/resources/live-chat-benchmark-report-2017/">Live Chat Benchmark Report 2017</a></li>'+
-					'<li><a href="https://www.comm100.com/livechat/resources/live-chat-support-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>'+
-					'<li><a href="https://www.comm100.com/livechat/resources/top-performing-chat-operator/">The Guide to Becoming a Top Performing Live Chat Agent</a></li>'+
-					'<li><a href="https://www.comm100.com/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
-				jQuery("#fetchmore").html("You can also drop by <a href=\"https://www.comm100.com/blog/?c_cid=whitepaper_50activities\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
+					'<li><a href=commGlobal.site_url + "/livechat/resources/live-chat-benchmark-report-2017/">Live Chat Benchmark Report 2017</a></li>'+
+					'<li><a href=commGlobal.site_url + "/livechat/resources/live-chat-support-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>'+
+					'<li><a href=commGlobal.site_url + "/livechat/resources/top-performing-chat-operator/">The Guide to Becoming a Top Performing Live Chat Agent</a></li>'+
+					'<li><a href=commGlobal.site_url + "/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
+				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_50activities\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			default:
 				break;

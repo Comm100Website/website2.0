@@ -11,7 +11,7 @@ use Roots\Sage\Wrapper;
     <!-- End Google Tag Manager (noscript) -->
     <?php if ($post && $post->post_type == 'kbe_knowledgebase'): ?>
         <div class="notify hidden-xs" style="display: block;">
-            <a href="https://www.comm100.com/privacy/">We have updated our Privacy Policy. Check it out here &gt;&gt;</a>
+            <a href="/privacy/">We have updated our Privacy Policy. Check it out here &gt;&gt;</a>
             <span class="close">×</span>
         </div>
     <?php endif; ?>
