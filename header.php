@@ -67,7 +67,6 @@
     
     
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-    <script src="https://cdn.optimizely.com/js/9295172620.js"></script>
     
     <?php wp_head(); ?>
     <!-- Google Tag Manager -->
