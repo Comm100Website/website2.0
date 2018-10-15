@@ -13,7 +13,7 @@ use Roots\Sage\Assets;
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="<?= Assets\asset_path('images/favicon.ico'); ?>" />
+    <link rel="icon" type="image/x-icon" href="<?= Assets\asset_path('images/favicon.ico'); ?>" />
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
     <?php wp_head(); ?>

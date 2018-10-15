@@ -611,69 +611,6 @@ var LayoutSimpleOnepageNav = function() {
 		}
 	};
 }();
-var LayoutThemeSettings = function() {
-	var b = function() {
-		jQuery(".c-settings .c-color").on("click", function() {
-			var a = jQuery(this).attr("data-color");
-			jQuery("#style_theme").attr("href", "assets/base/css/themes/" + a + ".css");
-			jQuery(".c-settings .c-color").removeClass("c-active");
-			jQuery(this).addClass("c-active");
-		});
-		jQuery(".c-setting_header-type").on("click", function() {
-			var a = jQuery(this).attr("data-value");
-			if (a == "fluid") {
-				jQuery(".c-layout-header .c-topbar > .container").removeClass("container").addClass("container-fluid");
-				jQuery(".c-layout-header .c-navbar > .container").removeClass("container").addClass("container-fluid");
-			} else {
-				jQuery(".c-layout-header .c-topbar > .container-fluid").removeClass("container-fluid").addClass("container");
-				jQuery(".c-layout-header .c-navbar > .container-fluid").removeClass("container-fluid").addClass("container");
-			}
-			jQuery(".c-setting_header-type").removeClass("active");
-			jQuery(this).addClass("active");
-		});
-		jQuery(".c-setting_header-mode").on("click", function() {
-			var a = jQuery(this).attr("data-value");
-			if (a == "static") {
-				jQuery("body").removeClass("c-layout-header-fixed").addClass("c-layout-header-static");
-			} else {
-				jQuery("body").removeClass("c-layout-header-static").addClass("c-layout-header-fixed");
-			}
-			jQuery(".c-setting_header-mode").removeClass("active");
-			jQuery(this).addClass("active");
-		});
-		jQuery(".c-setting_font-style").on("click", function() {
-			var a = jQuery(this).attr("data-value");
-			if (a == "light") {
-				jQuery(".c-font-uppercase").addClass("c-font-uppercase-reset").removeClass("c-font-uppercase");
-				jQuery(".c-font-bold").addClass("c-font-bold-reset").removeClass("c-font-bold");
-				jQuery(".c-fonts-uppercase").addClass("c-fonts-uppercase-reset").removeClass("c-fonts-uppercase");
-				jQuery(".c-fonts-bold").addClass("c-fonts-bold-reset").removeClass("c-fonts-bold");
-			} else {
-				jQuery(".c-font-uppercase-reset").addClass("c-font-uppercase").removeClass("c-font-uppercase-reset");
-				jQuery(".c-font-bold-reset").addClass("c-font-bold").removeClass("c-font-bold-reset");
-				jQuery(".c-fonts-uppercase-reset").addClass("c-fonts-uppercase").removeClass("c-fonts-uppercase-reset");
-				jQuery(".c-fonts-bold-reset").addClass("c-fonts-bold").removeClass("c-fonts-bold-reset");
-			}
-			jQuery(".c-setting_font-style").removeClass("active");
-			jQuery(this).addClass("active");
-		});
-		jQuery(".c-setting_megamenu-style").on("click", function() {
-			var a = jQuery(this).attr("data-value");
-			if (a == "dark") {
-				jQuery(".c-mega-menu").removeClass("c-mega-menu-light").addClass("c-mega-menu-dark");
-			} else {
-				jQuery(".c-mega-menu").removeClass("c-mega-menu-dark").addClass("c-mega-menu-light");
-			}
-			jQuery(".c-setting_megamenu-style").removeClass("active");
-			jQuery(this).addClass("active");
-		});
-	};
-	return {
-		init: function() {
-			b();
-		}
-	};
-}();
 var ContentOwlcarousel = function() {
 	var b = function() {
 		jQuery("[data-slider='owl'] .owl-carousel").each(function() {
@@ -1061,7 +998,6 @@ jQuery(document).ready(function() {
 	LayoutGo2Top.init();
 	LayoutOnepageNav.init();
 	LayoutSimpleOnepageNav.init();
-	LayoutThemeSettings.init();
 	ContentOwlcarousel.init();
 	ContentCubeLatestPortfolio.init();
 	ContentFancybox.init();

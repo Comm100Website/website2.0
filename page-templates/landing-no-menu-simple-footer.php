@@ -392,6 +392,7 @@ use Roots\Sage\Assets;
             // loop through the rows of data
             while ( have_rows('modules') ) : the_row();
                 if( get_row_layout() == 'hero_banner' ):
+                    $banner_type = get_sub_field('type');
                     $banner_size = get_sub_field('size');
                     $banner_align = get_sub_field('align');
                     $banner_icon = get_sub_field('icon');
@@ -406,7 +407,7 @@ use Roots\Sage\Assets;
                     endif;
                     $banner_cta = get_sub_field('cta');
 
-                    echo '<div class="c-content-box c-size-lg c-margin-b-30 banner banner--' . $banner_size . ' banner--' . $banner_align . '" '  . $style_bg . '>';
+                    echo '<div class="c-content-box c-size-lg c-margin-b-30 banner banner--' . $banner_size . ' banner--' . $banner_align . ' banner--' . $banner_type . '" '  . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-7">';
@@ -2144,10 +2145,37 @@ use Roots\Sage\Assets;
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+                endif;
 
+                // check current row layout
+                if( get_row_layout() == 'left_text_-_right_form' ):
+                    $left_title = get_sub_field('left_title');
+                    $left_description = get_sub_field('left_description');
+                    $left_image = get_sub_field('left_image');
+                    $right_form_title = get_sub_field('right_form_title');
+                    $right_form_description = get_sub_field('right_form_description');
+                    $right_form_code = get_sub_field('right_form_code');
+                    $right_form_note = get_sub_field('right_form_note');
+
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-6 form-aside">' .
+                                        '<h3>' . $left_title . '</h3>' .
+                                        '<p>' . $left_description . '</p>' .
+                                        '<img src="' . $left_image['url'] . '" alt="' . $left_image['alt'] . '"/>' .
+                                    '</div>' .
+                                    '<div class="col-sm-6 form-main">' .
+                                        '<h3 class="highlight highlight--blue">' . $right_form_title . '</h3>' .
+                                        '<div class="form-description">' . $right_form_description . '</div>' .
+                                        $right_form_code .
+                                        '<div class="form-note">' . $right_form_note . '</div>'.
+                                    '</div>' .
+                                '</div>' .
+                            '</div>' .
+                        '</div>';
                 endif;
             endwhile;
-
         else :
 
         // no layouts found

@@ -24,6 +24,7 @@
   }
 
   .mktoForm input[type="text"],
+  .mktoForm input[type="password"],
   .mktoForm input[type="url"],
   .mktoForm input[type="email"],
   .mktoForm input[type="tel"],
@@ -40,7 +41,7 @@
   }
   .mktoForm .mktoField {
     float: left;
-    font-size: 16px;
+    font-size: 16px!important;
   }
   .mktoForm .mktoLabel {
     float: left;
@@ -78,6 +79,15 @@
     width: auto;
     /* height: 65px; */
     border-radius: 10px;
+
+    .textwidget & {
+        background: #329fd9!important;
+        border: 1px solid #5aa0d2!important;
+        padding: 0.4em 1em!important;
+        border-radius: 0;
+
+        &:hover, &:focus { border: 1px solid #1469a5!important; background: #329fd9!important; }
+    }
   }
   .request-demo .mktoForm .mktoButtonWrap.mktoBlueBox .mktoButton {
     /* padding: 15px 40px !important; */
@@ -150,6 +160,7 @@
     width: 100% !important;
   }
   .mktoForm input[type="text"],
+  .mktoForm input[type="password"],
   .mktoForm input[type="url"],
   .mktoForm input[type="email"],
   .mktoForm input[type="tel"],
@@ -157,8 +168,8 @@
   .mktoForm input[type="date"],
   .mktoForm textarea.mktoField,
   .mktoForm select.mktoField {
-    padding: 10px 16px;
-    width: 100% !important;
+    padding: 10px 16px!important;
+    width: 100%!important;
   }
   .mktoForm span,
   .mktoForm label,
@@ -189,6 +200,7 @@
   }
 
   .mktoForm input[type="text"]:focus,
+  .mktoForm input[type="password"]:focus,
   .mktoForm input[type="url"]:focus,
   .mktoForm input[type="email"]:focus,
   .mktoForm input[type="tel"]:focus,
@@ -198,4 +210,8 @@
   .mktoForm select.mktoField:focus {
     outline: none;
     border: 1px solid #329fd9;
+  }
+
+  .form-description {
+    margin-bottom: 30px;
   }

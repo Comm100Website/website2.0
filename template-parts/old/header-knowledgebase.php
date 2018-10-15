@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?ver=2.0.15" type="text/css" media="screen, projection" />
 
     <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="<?php bloginfo('template_url');?>/assets/favicon.ico" />
+    <link rel="icon" href="<?php bloginfo('template_url');?>/assets/favicon.ico" />
 
 
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
@@ -76,13 +76,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHPR23J"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!-- <div class="notify hidden-xs">
-  <a href="https://www.comm100.com/privacy/">
-
-   We have updated our Privacy Policy. Check it out here &gt;&gt;
-  </a>
-  <span class="close">&times;</span>
-</div>  -->
 <header class="c-layout-header c-layout-header-2 c-header-transparent-dark c-layout-header-dark-mobile"
         data-minimize-offset="100">
 <div class="c-topbar c-navbar">

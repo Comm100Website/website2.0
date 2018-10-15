@@ -600,7 +600,7 @@ var LayoutThemeSettings = function() {
 	var b = function() {
 		$(".c-settings .c-color").on("click", function() {
 			var a = $(this).attr("data-color");
-			$("#style_theme").attr("href", "assets/base/css/themes/" + a + ".css");
+			$("#style_theme").attr("href", "assets/css/themes/" + a + ".css");
 			$(".c-settings .c-color").removeClass("c-active");
 			$(this).addClass("c-active");
 		});
@@ -1076,7 +1076,7 @@ $(document).ready(function() {
 		window.location.href = "/livechat/requestcallback.aspx?requesttype=general";
 		return false;
 	});
-	
+
 	if ($("#first_name").length) {
 		$("#first_name").val(getCookies("whitepaper_firstname"));
 		$("#last_name").val(getCookies("whitepaper_lastname"));
@@ -1431,7 +1431,7 @@ $(document).ready(function() {
         iframe = iframe.getElementsByTagName('iframe')[0];
     }
     if (iframe) {
-        // Frame exists, 
+        // Frame exists,
         iframe.contentWindow.postMessage(JSON.stringify({
             "event": "command",
             "func": func,
@@ -1528,7 +1528,7 @@ $(document).ready(function() {
 	        $('#inServiceCountry').show();
 	        $('#notInServiceCountry').hide();
 	    }
-	    
+
 	    position.action = "getPosition_action";
 	    $.ajax({
 	        type: "POST",
@@ -1543,7 +1543,7 @@ $(document).ready(function() {
 	        }
 	    })
 
-	    
+
 	}
 
 });

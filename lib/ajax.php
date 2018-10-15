@@ -1,6 +1,8 @@
 <?php
 namespace Roots\Sage\Ajax;
 
+use Roots\Sage\Assets;
+
 // Display User IP in WordPress
 function get_the_user_ip() {
     if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
@@ -87,67 +89,67 @@ function sending_mail(){
     switch ($whitepaperid) {
         case '1':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_buyersguide.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/live-chat-buyers-guide.aspx";
+            $requestpage = get_site_url()."/livechat/resources/live-chat-buyers-guide.aspx";
             $mailtosalessubject = "How to Choose the Best Live Chat Software";
             break;
         }
         case '2':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_dynamiclivechatstrategy.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/live-chat-strategy.aspx";
+            $requestpage = get_site_url()."/livechat/resources/live-chat-strategy.aspx";
             $mailtosalessubject = "How to Create a Dynamic Live Chat Strategy";
             break;
         }
         case '3':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_forbetterconversion.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/structure-website-conversion.aspx";
+            $requestpage = get_site_url()."/livechat/resources/structure-website-conversion.aspx";
             $mailtosalessubject = "How to Structure Your Website for Better Conversion";
             break;
         }
         case '4':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_maxon.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/introducing-maximumon.aspx";
+            $requestpage = get_site_url()."/livechat/resources/introducing-maximumon.aspx";
             $mailtosalessubject = "Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology";
             break;
         }
         case '5':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_increase_sales.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/live-chat-increase-sales.aspx";
+            $requestpage = get_site_url()."/livechat/resources/live-chat-increase-sales.aspx";
             $mailtosalessubject = "The Top Ten Ways That Live Chat Can Increase Sales";
             break;
         }
         case '6':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_customerservicescripts.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/live-chat-scripts.aspx";
+            $requestpage = get_site_url()."/livechat/resources/live-chat-scripts.aspx";
             $mailtosalessubject = "120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service";
             break;
         }
         case '7':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_difficultcustomer.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/dealing-with-difficult-customers/";
+            $requestpage = get_site_url()."/livechat/resources/dealing-with-difficult-customers/";
             $mailtosalessubject = "How to Deal with Difficult Customers over Live Chat";
             break;
         }
         case '8':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_topperformer.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/top-performing-chat-operator-guide/";
+            $requestpage = get_site_url()."/livechat/resources/top-performing-chat-operator-guide/";
             $mailtosalessubject = "The Guide to Becoming a Top Performing Live Chat Agent";
             break;
         }
         case '9':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_chatvisitreport.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/chat-to-visit-ratio-report/";
+            $requestpage = get_site_url()."/livechat/resources/chat-to-visit-ratio-report/";
             $mailtosalessubject = "Chat to Visit Ratio Report";
             break;
         }
         case '10':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_benchmark.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/2016-live-chat-benchmark-report/";
+            $requestpage = get_site_url()."/livechat/resources/2016-live-chat-benchmark-report/";
             $mailtosalessubject = "2016 Live Chat Benchmark Report";
             break;
         }
         case '11':{
             // $myfile = fopen(get_template_directory() . "/txt/livechat_whitepaper_salesforceintegration.txt", "a") or die("Unable to open file!");
-            $requestpage = "https://www.comm100.com/livechat/resources/salesforce-integration-landing/";
+            $requestpage = get_site_url()."/livechat/resources/salesforce-integration-landing/";
             $mailtosalessubject = "A User Guide to Comm100 Live Chat Salesforce Integration";
             break;
         }
@@ -310,8 +312,8 @@ function whitepaperTemplate($username, $whitepaper_name, $whitepaper_link, $btn,
                                         '<tbody>' .
                                             '<tr>' .
                                                 '<td align="left" style="background: #FFFFFF; color: #848E95; font-size: 13px;padding-bottom: 30px; ">' .
-                                                    '<a href="https://www.comm100.com/" target="_blank" style="text-decoration: none;display:block">' .
-                                                        '<img style="outline: none; border: none;" src="https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/comm100-email-logo.png" alt="Comm100" /></a>' .
+                                                    '<a href=get_site_url()."/" target="_blank" style="text-decoration: none;display:block">' .
+                                                        '<img style="outline: none; border: none;" src="'.Assets\asset_path('images/content/email/comm100-email-logo.png').'" alt="Comm100" /></a>' .
                                                 '</td>' .
                                             '</tr>' .
                                         '</tbody>' .
@@ -381,8 +383,8 @@ function whitepaperTemplate($username, $whitepaper_name, $whitepaper_link, $btn,
                                 '</tr>'.
                                 '<tr>' .
                                     '<td align="center" style="text-align: center; color: #9aa1ab; background: #525f66;font-size: 11px; padding-top: 20px;padding-bottom: 20px"  class="pl50 pr50">' .
-                                        '<a href="http://www.comm100.com" style="color: #00A6FF; text-decoration: none;" target="_blank">Comm100</a> | 100% Communication, 100% Success <br/>' .
-                                        'Email: <a href="mailto:info@comm100.com" style="text-decoration: none;"><font color="9aa1ab">info@comm100.com</font></a> | Web: <a href="http://www.comm100.com" target="_blank" style="text-decoration: none;"><font color="9aa1ab">www.comm100.com</font></a> <br/>' .
+                                        '<a href="'.get_site_url().'" style="color: #00A6FF; text-decoration: none;" target="_blank">Comm100</a> | 100% Communication, 100% Success <br/>' .
+                                        'Email: <a href="mailto:info@comm100.com" style="text-decoration: none;"><font color="9aa1ab">info@comm100.com</font></a> | Web: <a href="'.get_site_url().'" target="_blank" style="text-decoration: none;"><font color="9aa1ab">www.comm100.com</font></a> <br/>' .
                                         'Tel: 1-778-785-0464 (Global) | 1-877-305-0464 (Toll)' .
                                     '</td>' .
                                 '</tr>' .
@@ -408,58 +410,58 @@ function sendemailtocustomer(){
     switch ($whitepaperid) {
         case '1':{
             $subject = "Thank you for downloading: How to Choose the Best Live Chat Software";
-            $body = whitepaperTemplate($whitepaper_username, 'How to Choose the Best Live Chat Software: A Buyers Guide', 'http://www.comm100.com/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf', 'Download the Scripts' , 'https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/buyerguide.png');
+            $body = whitepaperTemplate($whitepaper_username, 'How to Choose the Best Live Chat Software: A Buyers Guide', get_site_url().'/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf', 'Download the Scripts' , Assets\asset_path('images/content/email/buyerguide.png'));
             break;
         }
 
         case '2':{
             $subject = "Thank you for downloading: How to Create a Dynamic Live Chat Strategy";
-            $body = whitepaperTemplate($whitepaper_username, 'How to Create a Dynamic Live Chat Strategy', 'http://www.comm100.com/doc/comm100-how-to-create-a-dynamic-live-chat-strategy.pdf', 'Download White Paper' , 'https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/email-how-to-create-a-dynamic-live-chat-strategy.png');
+            $body = whitepaperTemplate($whitepaper_username, 'How to Create a Dynamic Live Chat Strategy', get_site_url().'/doc/comm100-how-to-create-a-dynamic-live-chat-strategy.pdf', 'Download White Paper' , Assets\asset_path('images/content/email/email-how-to-create-a-dynamic-live-chat-strategy.png'));
             break;
         }
         case '3':{
             $subject = "Thank you for downloading: How to Structure Your Website for Better Conversion";
-            $body = whitepaperTemplate($whitepaper_username, 'How to Structure Your Website for Better Conversion', 'https://www.comm100.com/doc/comm100-how-to-structure-your-website-for-better-conversion.pdf', 'Download White Paper' , 'https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/email-how-to-structure-your-website-for-better-conversion.png');
+            $body = whitepaperTemplate($whitepaper_username, 'How to Structure Your Website for Better Conversion', get_site_url().'/doc/comm100-how-to-structure-your-website-for-better-conversion.pdf', 'Download White Paper' , Assets\asset_path('images/content/email/email-how-to-structure-your-website-for-better-conversion.png'));
             break;
         }
         case '4':{
             $subject = "Thank you for downloading: Introducing the Comm100 Live Chat Patent Pending MaximumOn&#8482; Technology";
-            $body = whitepaperTemplate($whitepaper_username, 'Bringing High Availability to a New Level', 'http://www.comm100.com/doc/Comm100-MaximumOn-Whitepaper.pdf', 'Download White Paper' , 'https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/email-maximumon-whitepaper.png');
+            $body = whitepaperTemplate($whitepaper_username, 'Bringing High Availability to a New Level', get_site_url().'/doc/Comm100-MaximumOn-Whitepaper.pdf', 'Download White Paper' , Assets\asset_path('images/content/email/email-maximumon-whitepaper.png'));
             break;
         }
         case '5':{
             $subject = "Thank you for downloading: Chat Your Way to Higher Revenue";
-            $body = whitepaperTemplate($whitepaper_username, 'Chat Your Way to Higher Revenue', 'https://www.comm100.com/doc/comm100-chat-your-way-to-higher-revenue.pdf', 'Download White Paper' , 'https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/email_increase_sales.png');
+            $body = whitepaperTemplate($whitepaper_username, 'Chat Your Way to Higher Revenue', get_site_url().'/doc/comm100-chat-your-way-to-higher-revenue.pdf', 'Download White Paper' , Assets\asset_path('images/content/email/email_increase_sales.png'));
             break;
         }
         case '6':{
             $subject = "Thank you for downloading: 120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service";
-            $body = whitepaperTemplate($whitepaper_username, '120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service', 'https://www.comm100.com/doc/comm100-live-chat-scripts-to-make-stellar-agents.pdf', 'Download the Scripts' , 'https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/email/email_live_chat_scripts.png');
+            $body = whitepaperTemplate($whitepaper_username, '120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service', get_site_url().'/doc/comm100-live-chat-scripts-to-make-stellar-agents.pdf', 'Download the Scripts' , Assets\asset_path('images/content/email/email_live_chat_scripts.png'));
             break;
         }
         case '7':{
             $subject = "Thank you for downloading: How to Deal with Difficult Customers over Live Chat!";
-            $body = whitepaperTemplate($whitepaper_username, 'How to Deal with Difficult Customers over Live Chat', 'https://www.comm100.com/doc/how-to-deal-with-difficult-customers-over-live-chat.pdf', 'Download It Now' , 'https://www.comm100.com/wp-content/uploads/images/whitepaper-difficult-customer-email.png');
+            $body = whitepaperTemplate($whitepaper_username, 'How to Deal with Difficult Customers over Live Chat', get_site_url().'/doc/how-to-deal-with-difficult-customers-over-live-chat.pdf', 'Download It Now' , get_site_url().'/wp-content/uploads/images/whitepaper-difficult-customer-email.png');
             break;
         }
         case '8':{
             $subject = "Thank you for downloading: The Guide to Becoming a Top Performing Live Chat Agent";
-            $body = whitepaperTemplate($whitepaper_username, 'The Guide to Becoming a Top Performing Live Chat Agent', 'https://www.comm100.com/doc/comm100-the-guide-to-becoming-a-top-performing-live-chat-operator.pdf', 'Download It Now' , 'https://www.comm100.com/wp-content/uploads/images/whitepaper-top-performer-email.png');
+            $body = whitepaperTemplate($whitepaper_username, 'The Guide to Becoming a Top Performing Live Chat Agent', get_site_url().'/doc/comm100-the-guide-to-becoming-a-top-performing-live-chat-operator.pdf', 'Download It Now' , get_site_url().'/wp-content/uploads/images/whitepaper-top-performer-email.png');
             break;
         }
         case '9':{
             $subject = "Thank you for downloading: Chat to Visit Ratio Report";
-            $body = whitepaperTemplate($whitepaper_username, 'Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume', 'http://www.comm100.com/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf', 'Download It Now' , 'https://www.comm100.com/wp-content/uploads/images/whitepaper-report-email.png');
+            $body = whitepaperTemplate($whitepaper_username, 'Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume', get_site_url().'/doc/how-to-choose-the-best-live-chat-software-a-buyers-guide.pdf', 'Download It Now' , get_site_url().'/wp-content/uploads/images/whitepaper-report-email.png');
             break;
         }
         case '10':{
             $subject = "Thank you for downloading: 2016 Live Chat Benchmark Report";
-            $body = whitepaperTemplate($whitepaper_username, '2016 Live Chat Benchmark Report: Help Measure Your Live Chat Success', 'https://www.comm100.com/doc/comm100-2016-live-chat-benchmark-report.pdf', 'Download It Now' , 'https://www.comm100.com/wp-content/uploads/images/whitepaper-benchmark-email.png');
+            $body = whitepaperTemplate($whitepaper_username, '2016 Live Chat Benchmark Report: Help Measure Your Live Chat Success', get_site_url().'/doc/comm100-2016-live-chat-benchmark-report.pdf', 'Download It Now' , get_site_url().'/wp-content/uploads/images/whitepaper-benchmark-email.png');
             break;
         }
         case '11':{
             $subject = "Thank you for downloading: A User Guide to Comm100 Live Chat Salesforce Integration";
-            $body = whitepaperTemplate($whitepaper_username, 'A User Guide to Comm100 Live Chat Salesforce Integration', 'https://www.comm100.com/doc/comm100-live-chat-salesforce-integration.pdf', 'Download It Now' , 'https://www.comm100.com/wp-content/uploads/images/whitepaper-salesforce-integration-email.png');
+            $body = whitepaperTemplate($whitepaper_username, 'A User Guide to Comm100 Live Chat Salesforce Integration', get_site_url().'/doc/comm100-live-chat-salesforce-integration.pdf', 'Download It Now' , get_site_url().'/wp-content/uploads/images/whitepaper-salesforce-integration-email.png');
             break;
         }
         default:

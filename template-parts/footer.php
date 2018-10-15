@@ -158,20 +158,18 @@
         </div>
         <div class="row row-footer--bottom">
             <div class="col-sm-12 footer__trustby">
-                <span><img src="/wp-content/uploads/images/Footer-Certificate-Hipaa.svg" alt="Hipaa" width="94" height="49" class="c-sm-margin-t-10"></span>
-                <span><img src="/wp-content/uploads/images/Footer-Certificate-ISO.svg" alt="ISO 27001" width="58" height="58"></span>
+                <span><img src="/wp-content/uploads/2018/10/Footer-Certificate-Hipaa.svg" alt="Hipaa" width="94" height="49" class="c-sm-margin-t-10"></span>
+                <span><img src="/wp-content/uploads/2018/10/Footer-Certificate-ISO.svg" alt="ISO 27001" width="58" height="58"></span>
                 <span>
-                    <img src="/wp-content/uploads/images/Footer-Certificate-PCI.svg" alt="PCI" width="107" height="44">
+                    <img src="/wp-content/uploads/2018/10/Footer-Certificate-PCI.svg" alt="PCI" width="107" height="44">
                 </span>
                 <span id="truste">
                     <a href="//privacy.truste.com/privacy-seal/validation?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" target="_blank">
-                        <img style="border: none; filter: grayscale(1); opacity: 0.35" src="//privacy-policy.truste.com/privacy-seal/seal?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" alt="TRUSTe" width="111" height="38"></a>
+                        <img style="border: none;" src="//privacy-policy.truste.com/privacy-seal/seal?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" alt="TRUSTe" width="111" height="38">
+                    </a>
                 </span>
-                <!-- <span>
-                    <a title="Click for the Business Review of Comm100 Network Corporation, a Computer Software Publishers &amp; Developers in Vancouver BC" href="//www.bbb.org/mbc/business-reviews/computer-software-publishers-and-developers/comm100-network-corporation-in-vancouver-bc-1264631#sealclick" target="_blank">
-                    <img alt="Click for the BBB Business Review of this Computer Software Publishers &amp; Developers in Vancouver BC" style="border: 0;" src="https://www.comm100.com/wp-content/themes/comm100/assets/base/img/content/security/bbb.png?v=201606221634" width="114" height="43"></a></span> -->
-                <span><img src="/wp-content/uploads/images/Footer-Certificate-MicrosoftGold.svg" alt="Microsoft Partner" width="89" height="41" class="c-sm-margin-t-10"></span>
-                <span><img src="/wp-content/uploads/images/Footer-Certificate-SalesForce.svg" alt="Salesforce Partner" width="133" height="51" class="c-sm-margin-t-10"></span>
+                <span><img src="/wp-content/uploads/2018/10/Footer-Certificate-MicrosoftGoldPartner.svg" alt="Microsoft Partner" width="89" height="41" class="c-sm-margin-t-10"></span>
+                <span><img src="/wp-content/uploads/2018/10/Footer-Certificate-SalesForce.svg" alt="Salesforce Partner" width="133" height="51" class="c-sm-margin-t-10"></span>
             </div>
             <div class="col-sm-10 col-sm-push-1 c-margin-t-40 clearfix">
                 <p class="c-copyright c-float-l">Copyright &copy; <?= date('Y'); ?> Comm100 Network Corporation.
@@ -208,5 +206,29 @@
 <script type="text/javascript">
 var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:5000239,div_id:"comm100-button-5000239"}),t.site_id=10000,t.main_code_plan=5000239,e("https://chatserver.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://hostedmax.comm100.com/chatserver/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
 </script>
+<script type="text/javascript">
+    Comm100API.onReady = function () {
+        var campaignIds = Comm100API.get('livechat.campaignIds');
+        if (campaignIds != null) {
+            var divId = "comm100-button-" + campaignIds[0];
+            var divObj = document.getElementById(divId);
+            Comm100API.on('livechat.invitation.display', function (invitation) {
+                setTimeout(function () {
+                    var iframe = divObj.getElementsByTagName("iframe");
+                    if (iframe != null) {
+                        var all = iframe[0].contentWindow.document.getElementsByTagName("div");
+                        for (var i = 0; i < all.length; i++) {
+                            if (all[i].className === "invitation__message") {
+                                all[i].innerHTML = all[i].innerHTML.replace("{company name}", Demandbase_CompanyName);
+                                break;
+                            }
+                        }
+                    }
+                }, 1000);
+            });
+        }
+    };
+</script>
+
 <!--End Comm100 Live Chat Code-->
 <!-- END: LAYOUT/BASE/BOTTOM -->

@@ -128,6 +128,7 @@ function assets() {
 //     wp_enqueue_script('jquery-migrate');
 //   }
 
+  wp_enqueue_script('comm100api', 'https://www.comm100.com/integrationsapi/apihandler.ashx', '', null, true);
   wp_enqueue_script('sage/bootstrap', Assets\asset_path('scripts/plugins/bootstrap.js'), ['jquery'], null, true);
   wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
   wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
@@ -136,7 +137,7 @@ function assets() {
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
   wp_localize_script('sage/js', 'commGlobal', array('ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url()));
 
-  wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
+//   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 

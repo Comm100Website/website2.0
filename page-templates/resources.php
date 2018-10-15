@@ -1694,6 +1694,7 @@ use Roots\Sage\Assets;
                     $h2_title = get_sub_field('h2_title');
                     $description = get_sub_field('description');
                     $image = get_sub_field('image');
+                    $banner_cta = get_sub_field('cta');
                     // check if the nested repeater field has rows of data
 
 
@@ -1709,7 +1710,39 @@ use Roots\Sage\Assets;
                             if ($description):
                                 echo $description;
                             endif;
-
+                            if ($banner_cta):
+                                while ( have_rows('cta') ) : the_row();
+                                    $cta_link_type = get_sub_field('cta_link_type');
+                                    $cta_link = get_sub_field('cta_link');
+                                    if ($cta_link):
+                                        switch ($cta_link_type) {
+                                            case 'green' :
+                                                    echo '<a class="banner_cta_link btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            case 'blue' :
+                                                    echo '<a class="banner_cta_link btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            case 'white' :
+                                                    echo '<a class="banner_cta_link btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            case 'link' :
+                                                    echo '<a class="banner_cta_link" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            default: break;
+                                        }
+                                    endif;
+                                endwhile;
+                                
+                                
+                            endif;
                             echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -2252,6 +2285,176 @@ use Roots\Sage\Assets;
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'white_paper_online' ):
+                    
+                    
+                    
+                        while ( have_rows('context') ) : the_row();
+                            if( get_row_layout() == 'maincontent' ):
+                                
+                                echo '<div class="c-content-box c-size-md whitepaper__maincontent">';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+                                echo '<div class="col-sm-12">';
+                                while ( have_rows('maincontent') ) : the_row();
+                                    if( get_row_layout() == 'title' ):
+                                        $title = get_sub_field('title');
+                                        if ($title):
+                                            echo '<h3>' . $title . '</h3>';
+                                        endif;
+                                    endif;
+
+                                    if( get_row_layout() == 'paragraph' ):
+                                        $paragraph = get_sub_field('paragraph');
+                                        if ($paragraph):
+                                            echo $paragraph;
+                                        endif;
+                                    endif;
+
+                                    if( get_row_layout() == 'image' ):
+                                        $image = get_sub_field('image');
+                                        if($image):
+                                        $image_wrap = '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
+                                        echo '<div class="c-center c-margin-b-30">' .   
+                                                $image_wrap .
+                                            '</div>';
+                                        endif;
+                                    endif;
+                                endwhile;
+
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                
+                            endif;
+
+                            
+                            if( get_row_layout() == 'cta' ):
+                    
+                                $calltoaction_type = get_sub_field('type');
+                                $calltoaction_title = get_sub_field('title');
+                                $calltoaction_subtitle = get_sub_field('subtitle');
+                                $calltoaction_description = get_sub_field('description');
+                                $calltoaction_bg = get_sub_field('background_image');
+                                $calltoaction_cta = get_sub_field('cta');
+            
+                                $style_bg = '';
+                                if ($calltoaction_bg):
+                                    $style_bg = 'style="background-image: url(' . $calltoaction_bg['url'] . ')"';
+                                endif;
+            
+                                echo '<div class="c-content-box c-size-md c-content-box--bg" ' . $style_bg . '>';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+                                echo '<div class="col-sm-12 callToAction callToAction--' . $calltoaction_type . '">';
+            
+                                if ($calltoaction_title):
+                                    echo '<h3>' .
+                                            $calltoaction_title .
+                                        '</h3>';
+                                endif;
+                                if ($calltoaction_subtitle):
+                                    echo '<p class="subtitle">' .
+                                            $calltoaction_subtitle .
+                                        '</p>';
+                                endif;
+                                if ($calltoaction_cta):
+                                    while ( have_rows('cta') ) : the_row();
+                                        $cta_link_type = get_sub_field('cta_link_type');
+                                        $cta_link = get_sub_field('cta_link');
+                                        if ($cta_link):
+                                            switch ($cta_link_type) {
+                                                case 'green' :
+                                                        echo '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                case 'blue' :
+                                                        echo '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                case 'white' :
+                                                        echo '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                case 'link' :
+                                                        echo '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                default: break;
+                                            }
+                                        endif;
+                                    endwhile;
+                                endif;
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                            endif;  
+                            
+                            if( get_row_layout() == 'introduction' ):
+                                $introduction = get_sub_field('introduction');
+                                echo '<div class="c-content-box c-size-md white__introduction">';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+                                echo '<div class="col-sm-12">';
+
+                                echo '<div>' .   
+                                        $introduction .
+                                    '</div>';
+
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                            endif;
+                            if( get_row_layout() == 'share_this' ):
+                                $title = get_sub_field('title');
+                                $sharecode = get_sub_field('share_this_code');
+                                echo '<div class="c-content-box">';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+                                echo '<div class="col-sm-12">';
+
+                                echo    '<div class="social-share">' .
+                                            '<h3>' . $title . '</h3>' .
+                                            $sharecode .
+                                        '</div>';
+                                        
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                            endif;
+                            if( get_row_layout() == 'line' ):
+                    
+                                $height = get_sub_field('height');
+                                $color = get_sub_field('color');
+            
+                                echo '<div class="c-content-box">';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+                                echo '<div class="col-sm-12 c-margin-t-60">';
+                                
+                                if ($height):
+                                    echo '<hr style="border-top-color: ' . $color . '; border-top-width: ' . $height . 'px " />';
+                                endif;
+                               
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                            
+                            endif;
+                        endwhile;
+                    
                 endif;
             endwhile;
 

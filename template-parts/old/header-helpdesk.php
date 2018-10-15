@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?ver=1.0.57" type="text/css" media="screen, projection" />
 
     <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="<?php bloginfo('template_url');?>/assets/favicon.ico" />
+    <link rel="icon" href="<?php bloginfo('template_url');?>/assets/favicon.ico" />
 
 
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
@@ -76,13 +76,6 @@
             <span class="ie7note">You are using an <strong>outdated</strong> browser. Please <a href="//browsehappy.com/">upgrade your browser</a> to improve your experience.</span>
     <![endif]-->
 
-<!-- <div class="notify hidden-xs">
-  <a href="https://www.comm100.com/livechat/resources/live-chat-buyers-guide.aspx">
-    <span class="new">New</span>
-   [eBook] The Live Chat Buyer’s Guide: What to Look for and How to Ask &gt;&gt;
-  </a>
-  <span class="close">&times;</span>
-</div> -->
 <header class="c-layout-header c-layout-header-2 c-header-transparent-dark c-layout-header-dark-mobile"
         data-minimize-offset="130">
     <div class="c-topbar c-navbar">
