@@ -35,27 +35,30 @@ function getcountry(){
 function get_visitor_ip() {
     $ip = '0.0.0.0';
 
-    if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
         //check ip from share internet
         $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+    } elseif (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) {
         //to check ip is pass from proxy
         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
+    } elseif (!empty( $_SERVER['REMOTE_ADDR'])) {
         $ip = $_SERVER['REMOTE_ADDR'];
+    } else {
+        $ip = $_SERVER['REMOTE_HOST'];
     }
 
     return $ip;
 }
 
-add_action('wp_ajax_getVisitorIP_action', __NAMESPACE__.'\\getVisitorIP');
-add_action('wp_ajax_nopriv_getVisitorIP_action', __NAMESPACE__.'\\getVisitorIP');
+// add_action('wp_ajax_getVisitorIP_action', __NAMESPACE__.'\\getVisitorIP');
+// add_action('wp_ajax_nopriv_getVisitorIP_action', __NAMESPACE__.'\\getVisitorIP');
 
-function getVisitorIP(){
-    $ip = get_visitor_ip();
-    echo $ip;
-    die();
-}
+// function getVisitorIP(){
+//     $ip = get_visitor_ip();
+//     echo $ip;
+
+//     wp_die();
+// }
 
 //get visitor country
 add_action('wp_ajax_getPosition_action', __NAMESPACE__.'\\getPosition');
@@ -63,7 +66,8 @@ add_action('wp_ajax_nopriv_getPosition_action', __NAMESPACE__.'\\getPosition');
 
 function getPosition(){
     echo getcountry();
-    die();
+
+    wp_die();
 }
 
 //white paper
@@ -239,7 +243,7 @@ function sending_mail(){
     $headers[] = "MIME-Version: 1.0";
     $headers[] = "Content-type:text/html;charset=UTF-8";
     wp_mail( $multiple_recipients, $subject, $body, $headers );
-    die();
+    wp_die();
 }
 
 function whitepaperTemplate($username, $whitepaper_name, $whitepaper_link, $btn, $whitepaperimg){
@@ -471,7 +475,7 @@ function sendemailtocustomer(){
     $headers[] = "Reply-To: Comm100 <sales@comm100.com>";
     $headers[] = "Content-type:text/html;charset=UTF-8";
     wp_mail( $customeremail, $subject, $body, $headers );
-    die();
+    wp_die();
 }
 
 add_action('wp_ajax_requestcallback_action', __NAMESPACE__.'\\requestcallback');
@@ -620,7 +624,7 @@ function requestcallback(){
     $headers[] = "MIME-Version: 1.0";
     $headers[] = "Content-type:text/html;charset=UTF-8";
     wp_mail( $multiple_recipients, $subject, $body, $headers );
-    die();
+    wp_die();
 }
 
 //dedicated request callback
@@ -752,5 +756,5 @@ function dedicatedrequestcallback(){
     $headers[] = "MIME-Version: 1.0";
     $headers[] = "Content-type:text/html;charset=UTF-8";
     wp_mail( $multiple_recipients, $subject, $body, $headers );
-    die();
+    wp_die();
 }

@@ -135,7 +135,7 @@ function assets() {
 
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
-  wp_localize_script('sage/js', 'commGlobal', array('ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url()));
+  wp_localize_script('sage/js', 'commGlobal', array('theme_url' => get_template_directory_uri(),'ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url()));
 
 //   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }

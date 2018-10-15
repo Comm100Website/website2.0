@@ -1063,14 +1063,17 @@ jQuery(document).ready(function() {
   }
 
   function showVisitorIP() {
-	var positionData ={};
-    positionData.action = 'getVisitorIP_action';
+    var ajaxData = {
+        'action': 'getVisitorIP_action'
+    };
+
     jQuery.ajax({
-        type: 'POST',
-        url: commGlobal.ajax_url,
-        data: positionData,
-        success: function(msg) {
-            Comm100_Variable_IP = msg.substr(0, msg.length-1) || 'unknown';
+        type: 'GET',
+        url: commGlobal.theme_url + '/get_user_ip.php', //commGlobal.ajax_url. Changed to simple PHP script so we don't have to fully load the theme to call the admin ajax method.
+//        data: ajaxData,
+        success: function(response) {
+            Comm100_Variable_IP = response || 'unknown';
+            //response.substr(0, response.length-1) || 'unknown';
         }
     });
   }
