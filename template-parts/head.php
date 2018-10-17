@@ -1,7 +1,6 @@
 <?php
 use Roots\Sage\Assets;
 ?>
-<!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8">
     <?php /* YOAST SEO can handle this now.
@@ -29,4 +28,3 @@ use Roots\Sage\Assets;
         var Comm100_Variable_IP = '';
     </script>
 </head>
-<!-- END HEAD -->
