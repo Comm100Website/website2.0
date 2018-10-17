@@ -60,7 +60,7 @@
     <!--<link href="<?php bloginfo('template_url');?>/assets/base/css/style.min.css?ver=1.0.3" id="style_components" rel="stylesheet"
         type="text/css" />-->
 
-    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?ver=2.0.18" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?ver=2.0.19" type="text/css" media="screen, projection" />
     
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="<?php bloginfo('template_url');?>/assets/favicon.ico" />
