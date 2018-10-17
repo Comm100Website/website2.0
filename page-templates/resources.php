@@ -2323,6 +2323,50 @@ use Roots\Sage\Assets;
                                             '</div>';
                                         endif;
                                     endif;
+
+                                    // check if the nested repeater field has rows of data
+                                    // if( get_row_layout() == 'list' ):
+                                    //     if( have_rows('list_grade_first') ):
+                                    //         echo '<ul class="resources-nav">';
+                                    //         // loop through the rows of data
+                                    //         while ( have_rows('list_grade_first') ) : the_row();
+                                    //             $list_grade_first_content = get_sub_field('list_grade_first_content');
+                                    //             $list_grade_second = get_sub_field('list_grade_second');
+
+                                    //             echo    '<li>' .
+                                    //                     $list_grade_first_content;
+
+                                    //                     if (have_rows('list_grade_second')):
+                                    //                         echo '<ul>';
+                                    //                         while ( have_rows('list_grade_second') ) : the_row();
+                                                                
+                                    //                             $list_grade_second_content = get_sub_field('list_grade_second_content');
+                                    //                             $list_grade_third = get_sub_field('list_grade_third');
+
+                                    //                             echo    '<li>' .
+                                    //                                     $list_grade_second_content;
+                                    //                                     if (have_rows('list_grade_third')):
+                                    //                                         echo '<ul>'; 
+                                    //                                         while ( have_rows('list_grade_third') ) : the_row();
+                                    //                                             $list_grade_third_content = get_sub_field('list_grade_third_content');
+                                    //                                             echo '<li>' .
+                                    //                                                     $list_grade_third_content .
+                                    //                                                 '</li>';
+                                    //                                         endwhile;
+                                    //                                         echo '</ul>';
+                                    //                                     endif;
+                                    //                             echo    '</li>';
+                                                                
+                                    //                         endwhile;
+                                    //                         echo '</ul>';
+                                    //                     endif;
+
+                                    //             echo    '</li>';
+                                    //         endwhile;
+                                    //         echo '</ul>';
+
+                                    //     endif;
+                                    // endif;
                                 endwhile;
 
                                 echo '</div>';
@@ -2401,7 +2445,7 @@ use Roots\Sage\Assets;
                             
                             if( get_row_layout() == 'introduction' ):
                                 $introduction = get_sub_field('introduction');
-                                echo '<div class="c-content-box c-size-md white__introduction">';
+                                echo '<div class="c-content-box c-size-md whitepaper__introduction">';
                                 echo '<div class="container">';
                                 echo '<div class="row">';
                                 echo '<div class="col-sm-12">';
