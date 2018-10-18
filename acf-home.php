@@ -10,6 +10,35 @@ Template Name:acf Home
     
 
     <?php
+        function ctacontent($cta_link_type, $cta_link) {
+            $linkcontent = '';
+            if ($cta_link):
+                switch ($cta_link_type) {
+                    case 'green' :
+                            $linkcontent = '<a class="btn btn-sm btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                    $cta_link['title'] .
+                                '</a>';
+                            break;
+                    case 'blue' :
+                            $linkcontent = '<a class="btn btn-sm c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                    $cta_link['title'] .
+                                '</a>';
+                            break;
+                    case 'white' :
+                            $linkcontent = '<a class="btn btn-sm c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                    $cta_link['title'] .
+                                '</a>';
+                            break;
+                    case 'link' :
+                            $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                    $cta_link['title'] .
+                                '</a>';
+                            break;
+                    default: break;
+                }
+            endif;
+            return '<td>' . $linkcontent . '</td>';
+        }
 
         if( have_rows('tabs') ):
 
@@ -1001,21 +1030,36 @@ Template Name:acf Home
 
                 // check current row layout
                 if( get_row_layout() == 'image-text' ):
-                    
+                    $background_color = get_sub_field('background_color');
                     // check if the nested repeater field has rows of data
                     if( have_rows('image_text_column_repeater') ):
                         
-                        echo '<div class="c-content-box c-size-md">';
+                        
+
+                        echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                             // loop through the rows of data
                         while ( have_rows('image_text_column_repeater') ) : the_row();
 
+                            $anchor_id = get_sub_field('anchor_id');
                             $headline = get_sub_field('title');
+                            $title_color = get_sub_field('title_color');
                             $body = get_sub_field('description');
                             $image = get_sub_field('image');
                             $image_position = get_sub_field('image_position');
                             $cta = get_sub_field('cta');
+
+                            $anchor_id_content = '';
+                            if ($anchor_id):
+                                $anchor_id_content = 'id="' . $anchor_id . '"';
+                            endif;
+
+                            $title_color_class = '';
+                            if ($title_color !== 'none'):
+                                $title_color_class = 'highlight highlight--' . $title_color;
+                            endif;
+
                             $pull6 = '';
                             $push6 = '';
                             if ($image_position == 'right') :
@@ -1059,12 +1103,12 @@ Template Name:acf Home
                                 endif;
                             endif;
 
-                            echo    '<div class="img-text-column img-text-column--' . $image_position . ' clearfix">' .
+                            echo    '<div ' . $anchor_id_content . ' class="img-text-column img-text-column--' . $image_position . ' clearfix">' .
                                         '<div class="col-sm-6 ' . $push6 . ' img-text-column__img">' .
                                             '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
                                         '</div>' .
                                         '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                            '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
+                                            '<h3 class="' . $title_color_class . '">' . $headline . '</h3>' .
                                             $body .
                                             $linkcontent .
                                         '</div>' .
@@ -1079,6 +1123,149 @@ Template Name:acf Home
 
                 
                 endif;    
+
+                // check current row layout
+                if( get_row_layout() == 'image-text_one_column' ):
+                    $background_color = get_sub_field('background_color');
+                    // check if the nested repeater field has rows of data
+                    if( have_rows('image_text_column_repeater') ):
+                        
+                        echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
+                        echo '<div class="container">';
+                        echo '<div class="row">';
+                            // loop through the rows of data
+                        while ( have_rows('image_text_column_repeater') ) : the_row();
+                            $anchor_id = get_sub_field('anchor_id');
+                            $headline = get_sub_field('title');
+                            $title_color = get_sub_field('title_color');
+                            $body = get_sub_field('description');
+                            $image = get_sub_field('image');
+                            $cta = get_sub_field('cta');
+                            $table_with_cta = get_sub_field('table_with_cta_-_3_column');
+
+                            $anchor_id_content = '';
+                            if ($anchor_id):
+                                $anchor_id_content = 'id="' . $anchor_id . '"';
+                            endif;
+
+                            $linkcontent = '';
+
+                            if ($cta):
+                                while ( have_rows('cta') ) : the_row();
+                                    $cta_link_type = get_sub_field('cta_link_type');
+                                    $cta_link = get_sub_field('cta_link');
+                                    if ($cta_link):
+                                        switch ($cta_link_type) {
+                                            case 'green' :
+                                                    $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            case 'blue' :
+                                                    $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            case 'white' :
+                                                    $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            case 'link' :
+                                                    $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                            $cta_link['title'] .
+                                                        '</a>';
+                                                    break;
+                                            default: break;
+                                        }
+                                    endif;
+                                endwhile;
+                                if ($linkcontent !== ''):
+                                    $linkcontent = '<div class="img-text-column__link"> ' . $linkcontent . ' </div>';
+                                endif;
+                            endif;
+
+                            $tablecontent = '';
+                            
+                            if ($table_with_cta):
+                                while ( have_rows('table_with_cta_-_3_column') ) : the_row();
+                                $tablecontent .= '<table class="table-select c-margin0auto" cellpadding="0" cellspacing="0">' .
+                                '<tbody>';
+                                if (have_rows('header')):
+                                    $tablecontent .= '<tr>';
+                                    while ( have_rows('header') ) : the_row();
+                                    $header_content_1 = get_sub_field('header_content_1');
+                                    $header_content_2 = get_sub_field('header_content_2');
+                                    $header_content_3 = get_sub_field('header_content_3');
+                                    $tablecontent .= '<th>' . $header_content_1 . '</th>' .
+                                        '<th>' . $header_content_2 . '</th>' .
+                                        '<th>' . $header_content_3 . '</th>';
+                                    endwhile;
+                                    $tablecontent .= '</tr>';
+                                endif;
+
+                                if (have_rows('content')):
+                                    
+                                    while ( have_rows('content') ) : the_row();
+                                    $tablecontent .= '<tr>';
+                                    $content_1 = get_sub_field('content_1');
+                                    $content_2 = get_sub_field('content_2');
+                                    $content_3 = get_sub_field('content_3');
+                                    $tablecontent .= '<td>' . $content_1 . '</td>' .
+                                        '<td>' . $content_2 . '</td>' .
+                                        '<td>' . $content_3 . '</td>';
+                                    $tablecontent .= '</tr>';
+                                    endwhile;
+                                    
+                                endif;
+
+                                if (have_rows('cta')):
+                                    
+                                    $tablecontent .= '<tr>';
+                                    while ( have_rows('cta') ) : the_row();
+                                        while ( have_rows('cta_1') ) : the_row();
+                                            $cta_link_type = get_sub_field('cta_link_type');
+                                            $cta_link = get_sub_field('cta_link');
+                                            $tablecontent .= ctacontent($cta_link_type, $cta_link);
+                                        endwhile;
+                                        while ( have_rows('cta_2') ) : the_row();
+                                            $cta_link_type = get_sub_field('cta_link_type');
+                                            $cta_link = get_sub_field('cta_link');
+                                            $tablecontent .= ctacontent($cta_link_type, $cta_link);
+                                        endwhile;
+                                        while ( have_rows('cta_3') ) : the_row();
+                                            $cta_link_type = get_sub_field('cta_link_type');
+                                            $cta_link = get_sub_field('cta_link');
+                                            $tablecontent .= ctacontent($cta_link_type, $cta_link);
+                                        endwhile;
+                                        
+                                        
+                                    endwhile;
+                                    $tablecontent .= '</tr>';
+                                endif;
+
+                                $tablecontent .= '</tbody></table>';
+                                endwhile;
+                            endif;
+
+                            echo   
+                                    '<div ' . $anchor_id_content . ' class="col-sm-12 img-text">' .
+                                        '<h3 class="highlight highlight--' . $title_color . '">' . $headline . '</h3>' .
+                                        $body .
+                                        '<div class="c-center">' . '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' . '</div>' .
+                                        $linkcontent .
+                                        $tablecontent .
+                                    '</div>';
+                        endwhile;
+
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+
+                    endif;
+
+                
+                endif;  
 
                 // check current row layout
                 if( get_row_layout() == '1-column' ):
@@ -2253,6 +2440,314 @@ Template Name:acf Home
                     echo '</div>';
                     echo '</div>';
                 endif;  
+
+                // check current row layout
+                if( get_row_layout() == 'feature_header' ):
+                        
+                        
+
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 feature__header">';
+
+                    $feature_header = get_sub_field('feature_header');
+                    if ($feature_header):
+                        while ( have_rows('feature_header') ) : the_row();
+                            $h1_tag = get_sub_field('h1_tag');
+                            $h1 = get_sub_field('h1');
+                            $subtitle = get_sub_field('subtitle');
+                            $description = get_sub_field('description');
+                            $download = get_sub_field('download');
+                            $image = get_sub_field('image');
+                                if ($h1_tag):
+                                    echo '<div class="h1-tag">' .
+                                            $h1_tag .
+                                        '</div>';
+                                endif;
+                                if ($h1):
+                                    echo '<h1>' .
+                                            $h1 .
+                                        '</h1>';
+                                endif;
+                                if ($subtitle):
+                                    echo '<div class="subtitle">' .
+                                            $subtitle .
+                                        '</div>';
+                                endif;
+                                
+                                if ($description):
+                                    echo $description;
+                                endif;
+                                if ($download):
+                                    while ( have_rows('download') ) : the_row();
+                                    $download_link = get_sub_field('download_link');
+                                    $download_img = get_sub_field('download_img');
+                                    $installuninstall = get_sub_field('installuninstall');
+                                    echo '<div class="download">'.
+                                            '<a href="' . $download_link . '">' .
+                                                '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                            '</a>' .
+                                            '<div class="c-margin-t-10 c-font-14">' .
+                                                '<a href="/eula/" target="_blank">EULA</a> | ' .
+                                                '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
+                                                        $installuninstall['title'] .
+                                                    '</a>' .
+                                            '</div>' .
+                                        '</div>';
+                                    endwhile;
+                                endif;
+                                if ($image):
+                                    echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
+                                endif;
+                        endwhile;
+                    endif;
+
+                    $normal_content = get_sub_field('normal_content');
+                    if ($normal_content):
+                        while ( have_rows('normal_content') ) : the_row();
+                            $header_headline = get_sub_field('h1_title');
+                            $header_slogan = get_sub_field('subtitle');
+                            $header_description = get_sub_field('description');
+                            $call_to_action = get_sub_field('call_to_action');
+                            echo '<div id="notInServiceCountry" class="thankyou" style="display: none">';
+                                if ($header_headline):
+                                    echo '<h1>' .
+                                            $header_headline .
+                                        '</h1>';
+                                endif;
+                                if ($header_slogan):
+                                    echo '<h2>' .
+                                            $header_slogan .
+                                        '</h2>';
+                                endif;
+                                if ($header_description):
+                                    echo '<div class="thankyou__desc">' .
+                                            $header_description .
+                                        '</div>';
+                                endif;
+                                
+                                if ($call_to_action):
+                                    echo '<div class="thankyou__calltoaction">' .
+                                            '<a class="btn btn-xlg btn-link--green" href="' . $call_to_action['url'] . '" target="' . $call_to_action['target'] . '">' .
+                                                $call_to_action['title'] .
+                                            '</a>';
+                                        '</div>';
+                                endif;
+                            echo '</div>';
+                        endwhile;
+                    endif;
+                    
+                    
+                    
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;  
+
+                // check current row layout
+                if( get_row_layout() == 'feature_bullet' ):
+                    
+                    $title = get_sub_field('title');
+                    $bullet_list = get_sub_field('bullet_list');
+                    
+
+                    echo '<div class="c-content-box">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12">';
+
+                    if ($title):
+                        echo '<div class="feature__bullet__title">' . $title . '</div>';
+                    endif;
+
+                    if (have_rows('bullet_list')):
+                        echo '<ul class="feature__bullet__link c-content-list-1 c-theme c-separator-dot clearfix">';
+                        while ( have_rows('bullet_list') ) : the_row();
+                            $anchor = get_sub_field('anchor');
+                            $anchor_text = get_sub_field('anchor_text');
+                            echo '<li>' .
+                                    '<a href="#' . $anchor . '">' .
+                                        $anchor_text .
+                                    '</a>' . 
+                                '</li>';
+                        endwhile;
+                        echo '</ul>';
+                    endif;
+                    
+                    
+                    
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                
+                endif;  
+
+                // check current row layout
+                if( get_row_layout() == 'resource_download' ):
+                    echo '<div class="c-content-box c-size-md c-content-box--grey">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 resource-download">';
+
+                    $image = get_sub_field('image');
+                    $title = get_sub_field('title');
+                    $description = get_sub_field('description');
+                    $download_link = get_sub_field('download_link');
+
+                    $download_detail = '<h3>' . $title . '</h3>' .
+                                        $description .
+                                        '<div class="c-margin-t-40">' .
+                                            '<a class="btn btn-xlg btn-link--green" href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' .
+                                                $download_link['title'] .
+                                            '</a>' .
+                                        '</div>';
+
+                    if ($image):
+                        
+                        echo '<div class="resource-download__img">' .
+                                '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '"/>' . 
+                            '</div>' .
+                            '<div class="resource-download__content">' .
+                                $download_detail .
+                            '</div>';
+                    else:
+                        echo $download_detail;      
+                    endif;
+
+                    
+                    
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;  
+
+                // check current row layout
+                if( get_row_layout() == 'video' ):
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-push-1 col-sm-10 video-content">';
+                    echo get_sub_field('video');
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'note' ):
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 note c-background--gray">';
+                    echo get_sub_field('note');
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'related_articles' ):
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12">';
+                    $title = get_sub_field('title');
+
+                    echo '<h3>' . $title . '</h3>';
+                    if (have_rows('article_list')):
+                        echo '<ul class="c-content-list-1 c-theme c-separator-dot">';
+                        while ( have_rows('article_list') ) : the_row();
+                            $article_list_link = get_sub_field('article_list_link');
+                            echo '<li>' .
+                                    '<a href="' . $article_list_link['url'] . '" target="' . $article_list_link['target'] . '">' .
+                                        $article_list_link['title'] .
+                                    '</a>' .
+                                '</li>';
+                        endwhile;
+                        echo '</ul>';
+                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'table_with_cta_-_3_column' ):
+                    echo '<div class="c-content-box">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12">';
+
+                    echo '<table class="table-select c-margin0auto" cellpadding="0" cellspacing="0">' .
+                                '<tbody>';
+                    if (have_rows('header')):
+                        echo '<tr>';
+                        while ( have_rows('header') ) : the_row();
+                        $header_content_1 = get_sub_field('header_content_1');
+                        $header_content_2 = get_sub_field('header_content_2');
+                        $header_content_3 = get_sub_field('header_content_3');
+                        echo '<th>' . $header_content_1 . '</th>' .
+                            '<th>' . $header_content_2 . '</th>' .
+                            '<th>' . $header_content_3 . '</th>';
+                        endwhile;
+                        echo '</tr>';
+                    endif;
+
+                    if (have_rows('content')):
+                        
+                        while ( have_rows('content') ) : the_row();
+                        echo '<tr>';
+                        $content_1 = get_sub_field('content_1');
+                        $content_2 = get_sub_field('content_2');
+                        $content_3 = get_sub_field('content_3');
+                        echo '<td>' . $content_1 . '</td>' .
+                            '<td>' . $content_2 . '</td>' .
+                            '<td>' . $content_3 . '</td>';
+                        echo '</tr>';
+                        endwhile;
+                        
+                    endif;
+
+                    if (have_rows('cta')):
+                        
+                        echo '<tr>';
+                        while ( have_rows('cta') ) : the_row();
+                            while ( have_rows('cta_1') ) : the_row();
+                                $cta_link_type = get_sub_field('cta_link_type');
+                                $cta_link = get_sub_field('cta_link');
+                                echo ctacontent($cta_link_type, $cta_link);
+                            endwhile;
+                            while ( have_rows('cta_2') ) : the_row();
+                                $cta_link_type = get_sub_field('cta_link_type');
+                                $cta_link = get_sub_field('cta_link');
+                                echo ctacontent($cta_link_type, $cta_link);
+                            endwhile;
+                            while ( have_rows('cta_3') ) : the_row();
+                                $cta_link_type = get_sub_field('cta_link_type');
+                                $cta_link = get_sub_field('cta_link');
+                                echo ctacontent($cta_link_type, $cta_link);
+                            endwhile;
+                            
+                            
+                        endwhile;
+                        echo '</tr>';
+                    endif;
+
+                    echo '</tbody></table>';
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
             endwhile;
 
         else :

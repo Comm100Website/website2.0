@@ -2325,6 +2325,16 @@ Template Name:Resources
                                         endif;
                                     endif;
 
+                                    if( get_row_layout() == 'call_out' ):
+                                        $call_out = get_sub_field('call_out');
+                                        if($call_out):
+                                        
+                                        echo '<div class="whitepaper__callout">' .   
+                                                $call_out .
+                                            '</div>';
+                                        endif;
+                                    endif;
+
                                     // check if the nested repeater field has rows of data
                                     // if( get_row_layout() == 'list' ):
                                     //     if( have_rows('list_grade_first') ):
@@ -2444,22 +2454,6 @@ Template Name:Resources
                                 echo '</div>';
                             endif;  
                             
-                            if( get_row_layout() == 'introduction' ):
-                                $introduction = get_sub_field('introduction');
-                                echo '<div class="c-content-box c-size-md whitepaper__introduction">';
-                                echo '<div class="container">';
-                                echo '<div class="row">';
-                                echo '<div class="col-sm-12">';
-
-                                echo '<div>' .   
-                                        $introduction .
-                                    '</div>';
-
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-                                echo '</div>';
-                            endif;
                             if( get_row_layout() == 'share_this' ):
                                 $title = get_sub_field('title');
                                 $sharecode = get_sub_field('share_this_code');
