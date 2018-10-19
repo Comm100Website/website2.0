@@ -2456,7 +2456,6 @@ Template Name:acf Home
                         while ( have_rows('feature_header') ) : the_row();
                             $h1_tag = get_sub_field('h1_tag');
                             $h1 = get_sub_field('h1');
-                            $subtitle = get_sub_field('subtitle');
                             $description = get_sub_field('description');
                             $download = get_sub_field('download');
                             $image = get_sub_field('image');
@@ -2470,11 +2469,6 @@ Template Name:acf Home
                                             $h1 .
                                         '</h1>';
                                 endif;
-                                if ($subtitle):
-                                    echo '<div class="subtitle">' .
-                                            $subtitle .
-                                        '</div>';
-                                endif;
                                 
                                 if ($description):
                                     echo $description;
@@ -2484,17 +2478,19 @@ Template Name:acf Home
                                     $download_link = get_sub_field('download_link');
                                     $download_img = get_sub_field('download_img');
                                     $installuninstall = get_sub_field('installuninstall');
-                                    echo '<div class="download">'.
-                                            '<a href="' . $download_link . '">' .
-                                                '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
-                                            '</a>' .
-                                            '<div class="c-margin-t-10 c-font-14">' .
-                                                '<a href="/eula/" target="_blank">EULA</a> | ' .
-                                                '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
-                                                        $installuninstall['title'] .
-                                                    '</a>' .
-                                            '</div>' .
-                                        '</div>';
+                                    if ($download_link):
+                                        echo '<div class="download">'.
+                                                '<a href="' . $download_link . '">' .
+                                                    '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                                '</a>' .
+                                                '<div class="c-margin-t-10 c-font-14">' .
+                                                    '<a href="/eula/" target="_blank">EULA</a> | ' .
+                                                    '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
+                                                            $installuninstall['title'] .
+                                                        '</a>' .
+                                                '</div>' .
+                                            '</div>';
+                                    endif;
                                     endwhile;
                                 endif;
                                 if ($image):
