@@ -1,6 +1,7 @@
 <?php
 /*
 Template Name:Resources
+Template Post Type: page, commresource
 */
 
 use Roots\Sage\Assets;
@@ -1740,8 +1741,8 @@ use Roots\Sage\Assets;
                                         }
                                     endif;
                                 endwhile;
-                                
-                                
+
+
                             endif;
                             echo '</div>';
                         echo '</div>';
@@ -2289,12 +2290,12 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'white_paper_online' ):
-                    
-                    
-                    
+
+
+
                         while ( have_rows('context') ) : the_row();
                             if( get_row_layout() == 'maincontent' ):
-                                
+
                                 echo '<div class="c-content-box c-size-md whitepaper__maincontent">';
                                 echo '<div class="container">';
                                 echo '<div class="row">';
@@ -2318,7 +2319,7 @@ use Roots\Sage\Assets;
                                         $image = get_sub_field('image');
                                         if($image):
                                         $image_wrap = '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
-                                        echo '<div class="c-center c-margin-b-30">' .   
+                                        echo '<div class="c-center c-margin-b-30">' .
                                                 $image_wrap .
                                             '</div>';
                                         endif;
@@ -2339,14 +2340,14 @@ use Roots\Sage\Assets;
                                     //                     if (have_rows('list_grade_second')):
                                     //                         echo '<ul>';
                                     //                         while ( have_rows('list_grade_second') ) : the_row();
-                                                                
+
                                     //                             $list_grade_second_content = get_sub_field('list_grade_second_content');
                                     //                             $list_grade_third = get_sub_field('list_grade_third');
 
                                     //                             echo    '<li>' .
                                     //                                     $list_grade_second_content;
                                     //                                     if (have_rows('list_grade_third')):
-                                    //                                         echo '<ul>'; 
+                                    //                                         echo '<ul>';
                                     //                                         while ( have_rows('list_grade_third') ) : the_row();
                                     //                                             $list_grade_third_content = get_sub_field('list_grade_third_content');
                                     //                                             echo '<li>' .
@@ -2356,7 +2357,7 @@ use Roots\Sage\Assets;
                                     //                                         echo '</ul>';
                                     //                                     endif;
                                     //                             echo    '</li>';
-                                                                
+
                                     //                         endwhile;
                                     //                         echo '</ul>';
                                     //                     endif;
@@ -2373,29 +2374,29 @@ use Roots\Sage\Assets;
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
-                                
+
                             endif;
 
-                            
+
                             if( get_row_layout() == 'cta' ):
-                    
+
                                 $calltoaction_type = get_sub_field('type');
                                 $calltoaction_title = get_sub_field('title');
                                 $calltoaction_subtitle = get_sub_field('subtitle');
                                 $calltoaction_description = get_sub_field('description');
                                 $calltoaction_bg = get_sub_field('background_image');
                                 $calltoaction_cta = get_sub_field('cta');
-            
+
                                 $style_bg = '';
                                 if ($calltoaction_bg):
                                     $style_bg = 'style="background-image: url(' . $calltoaction_bg['url'] . ')"';
                                 endif;
-            
+
                                 echo '<div class="c-content-box c-size-md c-content-box--bg" ' . $style_bg . '>';
                                 echo '<div class="container">';
                                 echo '<div class="row">';
                                 echo '<div class="col-sm-12 callToAction callToAction--' . $calltoaction_type . '">';
-            
+
                                 if ($calltoaction_title):
                                     echo '<h3>' .
                                             $calltoaction_title .
@@ -2441,8 +2442,8 @@ use Roots\Sage\Assets;
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
-                            endif;  
-                            
+                            endif;
+
                             if( get_row_layout() == 'introduction' ):
                                 $introduction = get_sub_field('introduction');
                                 echo '<div class="c-content-box c-size-md whitepaper__introduction">';
@@ -2450,7 +2451,7 @@ use Roots\Sage\Assets;
                                 echo '<div class="row">';
                                 echo '<div class="col-sm-12">';
 
-                                echo '<div>' .   
+                                echo '<div>' .
                                         $introduction .
                                     '</div>';
 
@@ -2471,34 +2472,34 @@ use Roots\Sage\Assets;
                                             '<h3>' . $title . '</h3>' .
                                             $sharecode .
                                         '</div>';
-                                        
+
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
                             endif;
                             if( get_row_layout() == 'line' ):
-                    
+
                                 $height = get_sub_field('height');
                                 $color = get_sub_field('color');
-            
+
                                 echo '<div class="c-content-box">';
                                 echo '<div class="container">';
                                 echo '<div class="row">';
                                 echo '<div class="col-sm-12 c-margin-t-60">';
-                                
+
                                 if ($height):
                                     echo '<hr style="border-top-color: ' . $color . '; border-top-width: ' . $height . 'px " />';
                                 endif;
-                               
+
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
-                            
+
                             endif;
                         endwhile;
-                    
+
                 endif;
             endwhile;
 
@@ -2512,5 +2513,6 @@ use Roots\Sage\Assets;
     ?>
 
 </div>
-
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2faac9507104da"></script>
 <?php get_template_part('template-parts/footer'); ?>

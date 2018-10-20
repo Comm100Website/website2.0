@@ -20,7 +20,8 @@ $sage_includes = [
     'lib/titles.php',    // Page titles
     'lib/wrapper.php',   // Theme wrapper class
     'lib/widgets.php',   // Custom sidebar widgets
-    'lib/customizer.php' // Theme customizer
+    'lib/customizer.php', // Theme customizer
+    'lib/theme-upgrades.php' // Includes scripts to be run during theme upgrades.
 ];
 
 foreach ($sage_includes as $file) {
