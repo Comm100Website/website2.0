@@ -9,6 +9,8 @@
                     $resourceCategories = get_terms([
                         'taxonomy' => 'commresourcecat',
                         'hide_empty' => true,
+                        'orderby' => 'name',
+                        'order' => 'ASC',
                     ]);
 
                     $navItems = [
