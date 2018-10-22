@@ -75,19 +75,11 @@ function theme_upgrade() {
                 if ($resources->have_posts()):
                     foreach ($resources->posts as $resource):
                         if (strpos($resource->post_title, 'Thank You') === false):
-                            $resourceTile = '';
-
-                            foreach($resourceTiles as $resourceTile):
-                                if ($resourceTile['link']['url'] == get_permalink($resource->ID, $leavename)):
-                                    break;
-                                endif;
-                            endforeach;
-
                             $postTitle = trim(str_replace('Resources –', '', str_replace('Resources -', '', $resource->post_title)));
                             $postTitle = trim(str_replace($category->name.' –', '', str_replace($category->name.' -', '', $postTitle)));
                             $postTitle = trim(str_replace('- Landing Page', '', $postTitle));
 
-                            // echo $postTitle.'<br/>';
+                            echo $postTitle.'<br/>';
 
                             $resourcePost = array(
                                 'ID'           => $resource->ID,
@@ -100,7 +92,16 @@ function theme_upgrade() {
 
                             wp_set_post_terms($resource->ID, [$category->term_id], 'commresourcecat', false);
 
-                            if ($resourceTile):
+                            $resourceTile = '';
+
+                            foreach($resourceTiles as $tile):
+                                if ($tile['link']['url'] == get_permalink($resource->ID)):
+                                    $resourceTile = $tile;
+                                    break;
+                                endif;
+                            endforeach;
+
+                            if (!empty($resourceTile)):
                                 $tag = get_term_by('name', $resourceTile['category'], 'commresourcetag');
 
                                 if (!$tag):
@@ -122,17 +123,35 @@ function theme_upgrade() {
 
                                 delete_post_meta($resource->ID, 'custom_permalink');
                             endif;
+                        else:
+                            //Set the resource thank you pages to be children of the main resource thank you page.
+                            $resourcePost = array(
+                                'ID'           => $resource->ID,
+                                'post_parent'  => 18891
+                            );
+                            wp_update_post($resourcePost);
                         endif;
                     endforeach;
                 endif;
 
-                wp_delete_post($resource->ID);
+                //Delete the old resource category page.
+                wp_delete_post($oldCategoryPost->ID);
             endforeach;
         endif;
+
+        //Delete the old resources page
+        wp_delete_post(18891, true);
+
+        //Set the resource thank you page post to not have a parent;
+        $resourcePost = array(
+            'ID'           => 18891,
+            'post_parent'  => null
+        );
+        wp_update_post($resourcePost);
     endif;
 }
 
-    // add_action('init', __NAMESPACE__ . '\\theme_upgrade');
+add_action('init', __NAMESPACE__ . '\\theme_upgrade');
 
 
 

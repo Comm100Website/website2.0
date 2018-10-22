@@ -14,7 +14,7 @@
                     ]);
 
                     $navItems = [
-                        'All' => get_site_url().'/resources/'
+                        'All' => '/resources/'
                     ];
 
                     foreach($resourceCategories as $cat):
@@ -23,69 +23,118 @@
 
                     $navItems['Blog'] = get_site_url().'/blog/';
 
-                    echo '<ul class="resources-nav">';
+                    echo '<ul class="post-nav">';
 
-                    // loop through the rows of data
                     foreach ($navItems as $label => $url):
-                        $is_active = false;
-
-                        if ($url == get_term_link(get_queried_object(), 'commresourcecat')):
-                            $is_active = true;
-                        endif;
-
-                        echo    '<li class="' . ($is_active ? 'active' : '') . '">' .
-                                    '<a href="' . $url . '">' . $label . '</a>' .
-                                '</li>';
+                        $is_active = ($url == get_term_link(get_queried_object(), 'commresourcecat') || $url == '/resources/');
+                        echo '<li class="'.($is_active ? 'active' : '').' hidden-xs"><a href="'.$url.'">'.$label.'</a></li>';
                     endforeach;
 
                     echo '</ul>';
 
-                    $args = [
-                        'post_type' => 'commresource',
-                        'posts_per_page' => 2,
-                        'meta_query' => [
-                            [
-                                'key' => 'featured_case_study',
-                                'value' => '1'
-                            ]
-                        ]
-                    ];
-
-                    if (is_tax('commresourcecat')):
-                        $args['tax_query'] = [
-                            [
-                                'taxonomy' => 'commresourcecat',
-                                'field'    => 'term_id',
-                                'terms'    => get_queried_object_id(),
+                    if (!is_paged()):
+                        $args = [
+                            'post_type' => 'commresource',
+                            'posts_per_page' => 2,
+                            'meta_query' => [
+                                [
+                                    'key' => 'featured_resource',
+                                    'value' => '1'
+                                ]
                             ]
                         ];
-                    endif;
 
-                    $featuredResources = new WP_Query($args);
+                        if (is_tax('commresourcecat')):
+                            $args['tax_query'] = [
+                                [
+                                    'taxonomy' => 'commresourcecat',
+                                    'field'    => 'term_id',
+                                    'terms'    => get_queried_object_id(),
+                                ]
+                            ];
+                        endif;
 
-                    if ($featuredResources->have_posts()):
-                        echo '<div class="resource-promotion clearfix">';
-                        // loop through the rows of data
-                        while ($featuredResources->have_posts()):
-                            $featuredResources->the_post();
-                            ?>
-                            <div class="col-xs-12 col-sm-6">
-                                <?= get_template_part('template-parts/resource', 'tile'); ?>
-                            </div>
-                        <?php
-                        endwhile;
-                        echo '</div>';
+                        $featuredResources = new WP_Query($args);
 
-                        wp_reset_postdata();
+                        if ($featuredResources->have_posts()):
+                            echo '<div class="resource-promotion clearfix">';
+                            // loop through the rows of data
+                            while ($featuredResources->have_posts()):
+                                $featuredResources->the_post();
+                                ?>
+                                <div class="col-xs-12 col-sm-6">
+                                    <?= get_template_part('template-parts/resource', 'tile'); ?>
+                                </div>
+                            <?php
+                            endwhile;
+                            echo '</div>';
+
+                            wp_reset_postdata();
+                        endif;
                     endif;
                     ?>
-                    <div class="resource-list clearfix">
-                    <?php while (have_posts()) : the_post(); ?>
+                    <div class="resource-list post-tiles clearfix">
+                    <?php
+                    $ctas = get_field('resources_ctas', 'options');
+                    $postIndex = 0;
+                    $ctaIndex = 0;
+
+                    while (have_posts()) : the_post();
+                    ?>
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <?= get_template_part('template-parts/resource', 'tile'); ?>
                         </div>
-                        <?php endwhile; ?>
+
+                        <?php
+                        if ($ctas && !is_paged() && in_array($postIndex, [4, 7]) && $ctaIndex < count($ctas)):
+                        ?>
+                            <div class="resource-item col-xs-12 col-sm-6 col-md-4">
+                                <div class="CTA">
+                                    <img src="<?= $ctas[$ctaIndex]['image']['url']; ?>" alt="<?= $ctas[$ctaIndex]['image']['alt']; ?>" width="120" height="120" />
+                                    <div class="resource-item--title"><?= $ctas[$ctaIndex]['title']; ?></div>
+                                    <?php
+                                    if (isset($ctas[$ctaIndex]['subtitle'])):
+                                        echo $ctas[$ctaIndex]['subtitle'];
+                                    endif;
+
+                                    if (isset($ctas[$ctaIndex]['link'])):
+                                        $linkClass = 'c-redirectLink';
+
+                                        switch ($ctas[$ctaIndex]['link_type']):
+                                            case 'green' :
+                                                $linkClass = 'btn btn-xlg btn-link--green';
+                                                break;
+                                            case 'blue' :
+                                                $linkClass = 'btn btn-xlg c-theme-btn';
+                                                break;
+                                            case 'white' :
+                                                $linkClass = 'btn btn-xlg c-btn-border-2x c-theme-btn';
+                                                break;
+                                            default: break;
+                                        endswitch;
+                                    ?>
+                                        <div class="resource-item-CTA-link">
+                                            <a class="<?= $linkClass; ?>" href="<?= $ctas[$ctaIndex]['link']['url']; ?>" target="<?= $ctas[$ctaIndex]['link']['target']; ?>"><?= $ctas[$ctaIndex]['link']['title']; ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        <?php
+                            $ctaIndex++;
+                        endif;
+
+                        $postIndex++;
+                    endwhile;
+                    ?>
                     </div>
+                    <?php
+                    the_posts_pagination([
+                        'mid_size'  => 2,
+                        'prev_text' => __( '<i class="fa fa-angle-left"></i>', 'textdomain' ),
+                        'next_text' => __( '<i class="fa fa-angle-right"></i>', 'textdomain' ),
+                        'screen_reader_text' => ''
+                    ]);
+                    ?>
                 </div>
             </div>
         </div>

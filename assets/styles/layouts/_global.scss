@@ -3537,11 +3537,11 @@
   clear: both;
   content: "";
 }
+
 .c-content-blog-post-1 .c-title {
   font-size: 30px;
   font-weight: 300;
   margin: 30px 0 20px;
-  color: #3f444a;
 }
 .c-content-blog-post-1 .c-desc {
   font-size: 20px;
@@ -3573,30 +3573,32 @@
 }
 .c-content-blog-post-card-1 .c-body {
   padding: 20px 0;
+  color: #606c78;
 }
 .c-content-blog-post-card-1 .c-body .c-title {
   font-family: "Ubuntu Regular", sans-serif;
-  font-size: 19px;
+  font-size: 22px;
+  line-height: 1.4;
   font-weight: 500;
   margin-bottom: 10px;
-  color: #3f444a;
-}
-.c-content-blog-post-card-1 .c-body .c-title a {
-  color: #3f444a;
+
+  &, a { color: #5e6d79; }
 }
 .c-content-blog-post-card-1 .c-body .c-title a:hover {
   text-decoration: none;
-  color: #0094d4;
+  color: #3dc4ff;
 }
 .c-content-blog-post-card-1 .c-body .c-author {
   font-family: "Ubuntu Regular", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 10px;
-  color: #5c6873;
+  line-height: 1;
 }
 .c-content-blog-post-card-1 .c-body .c-author a {
-  color: #0094d4;
+  color: #3dc4ff;
+
+  &:hover { color: #00567c; }
 }
 .c-content-blog-post-card-1 .c-body .c-panel {
   padding: 5px 0;
@@ -3605,18 +3607,18 @@
 .c-content-blog-post-card-1 .c-body p {
   display: block;
   clear: both;
-  color: #5c6873;
+  color: #606c78;
 }
 .c-content-blog-post-card-1.c-option-2 .c-media > a {
   display: block;
-  height: 142px;
-  width: 387px;
+//   height: 142px;
+//   width: 387px;
 }
+
 .c-content-blog-post-card-1.c-option-2 .c-body {
-  padding: 30px;
-  background: #fff;
+  padding: 20px 0 0 0;
 }
-.c-content-blog-post-card-1.c-option-2 .c-body p {
+.c-content-blog-post-card-1.c-option-2 .c-body p:last-child {
   padding-bottom: 0;
 }
 .c-content-blog-post-card-1.c-bordered {
@@ -3625,9 +3627,11 @@
 .c-content-blog-post-card-1-grid {
   padding-right: 40px;
 }
-.c-content-blog-post-card-1-grid .searchform {
+
+.searchform {
   position: relative;
 }
+
 .c-content-blog-post-card-1-grid .c-content-blog-post-card-1 {
   min-height: 375px;
   margin-bottom: 30px;
@@ -8738,40 +8742,45 @@ h3.highlight {
     bottom: -30px;
   }
 }
-.resources-nav {
+.post-nav {
   font-size: 16px;
   line-height: 24px;
   font-family: "Ubuntu Regular", sans-serif;
   display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   padding-left: 0;
   margin-bottom: 40px;
+
+  select { height: 40px; font-family: "Ubuntu Bold", sans-serif; font-weight: 700; }
 }
-.resources-nav li {
-  flex: 1;
+.post-nav li {
   text-align: center;
+  padding: 0 15px 10px;
 }
 @media screen and (max-width: 768px) {
-  .resources-nav {
+  .post-nav {
     flex-wrap: wrap;
   }
-  .resources-nav li {
+  .post-nav li {
     flex-basis: 100px;
     text-align: left;
     margin-bottom: 20px;
     margin-right: 40px;
   }
 }
-.pager,
+.pagination, .pager,
 .resource-header h1,
 .thankyou,
 h2.video-title {
   text-align: center;
 }
-.resources-nav li a {
+.post-nav li a {
   color: #5e6d79;
   cursor: pointer;
+  white-space: nowrap;
 }
-.resources-nav li.active a {
+.post-nav li a:hover, .post-nav li.active a {
   padding-bottom: 8px;
   border-bottom: 3px solid #3dc4ff;
 }
@@ -8830,6 +8839,7 @@ h5.resource-item--title {
 }
 .CTA .resource-item--subTitle,
 .CTA .resource-item--title,
+.pagination,
 .pager {
   font-size: 18px;
   line-height: 24px;
@@ -8856,19 +8866,21 @@ h5.resource-item--title {
 .resource-item-CTA-link {
   margin-top: 40px;
 }
-.pager {
+.pagination a, .pagination, .pager {
   padding-top: 0px;
   font-family: "Ubuntu Regular", sans-serif;
   color: #5e6d79;
   user-select: none;
 }
-.pager span {
+.pagination a, .pagination span, .pager span {
   padding: 0 10px;
   cursor: pointer;
 }
-.pager span.current:hover {
+.pagination span.current:hover, .pager span.current:hover {
   cursor: default;
 }
+.pagination span.current,
+.pagination span:not(.disabled),
 .pager .current,
 .pager span:not(.disabled):hover {
   color: #0094d4;

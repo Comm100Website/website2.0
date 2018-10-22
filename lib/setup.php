@@ -67,6 +67,10 @@ function setup() {
     // Use main stylesheet for visual editor
     // To add custom styles edit /assets/styles/layouts/_tinymce.scss
     add_editor_style(Assets\asset_path('styles/main.css'));
+
+    if( function_exists('acf_add_options_page') ) {
+        $option_page = acf_add_options_page('Theme Settings');
+    }
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 

@@ -26,6 +26,11 @@ function popularposts() {
 }
 wp_register_sidebar_widget('Popular Posts', 'Popular Posts',__NAMESPACE__.'\\popularposts', '');
 
+function featuredposts() {
+    get_template_part('template-parts/featuredposts');
+}
+wp_register_sidebar_widget('Featured Posts', 'Featured Posts',__NAMESPACE__.'\\featuredposts', '');
+
 function relatedposts() {
     get_template_part('template-parts/relatedposts');
 }

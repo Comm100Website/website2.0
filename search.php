@@ -8,8 +8,9 @@
     <div class="c-content-box c-size-md">
         <div class="container">
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-xs-12">
                 <h1>Search results for: <?php the_search_query(); ?></h1>
+                <br/>
                 <div class="c-content-blog-post-card-1-grid">
 
                     <?php
@@ -18,39 +19,25 @@
                       query_posts( $args );
                     ?>
                     <?php if (have_posts()) : ?>
-                      <div class="row">
+                      <div class="row post-tiles">
                         <?php while (have_posts()) : the_post(); ?>
-
-                            <div class="col-md-6">
-                              <div class="c-content-blog-post-card-1 c-option-2 c-bordered">
-                                  <div class="c-media c-content-overlay">
-                                    <a href="<?php the_permalink(); ?>">
-                                    <?php // check if the post has a Post Thumbnail assigned to it.
-                                        if (has_post_thumbnail()) {
-                                          the_post_thumbnail();
-                                        }
-                                      ?>
-                                      </a>
-                                  </div>
-                                  <div class="c-body">
-                                      <div class="c-title c-font-bold">
-                                          <a  href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-                                      </div>
-                                      <div class="c-author">
-                                          <span><?php the_time('F jS, Y'); ?> | <?php the_category(', '); ?> |  <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> </span>
-                                      </div>
-                                  </div>
-                              </div>
+                            <div class="post-tile col-xs-12 col-sm-6 col-md-4">
+                                <?= get_template_part('template-parts/post', 'tile'); ?>
                             </div>
-
                         <?php endwhile; ?>
                       </div>
-                      <div class="clear"></div>
-                      <div class="c-pagination">
-                        <!--<?php next_posts_link('&laquo; Previous posts') ?> <?php previous_posts_link('Next posts &raquo;') ?><br/><br/>
-                        <a href="#posts"><img src="<?php bloginfo('template_directory'); ?>/images/backtotopicon.gif" alt="Back to top" />Back to top</a>-->
-                            <?php Navigation\pagenavi(); ?>
-                      </div>
+                      <div class="row">
+                            <div class="col-xs-12">
+                                <?php
+                                the_posts_pagination([
+                                    'mid_size'  => 2,
+                                    'prev_text' => __( '<i class="fa fa-angle-left"></i>', 'textdomain' ),
+                                    'next_text' => __( '<i class="fa fa-angle-right"></i>', 'textdomain' ),
+                                    'screen_reader_text' => ''
+                                ]);
+                                ?>
+                            </div>
+                        </div>
 
                     <?php else : ?>
 
@@ -65,14 +52,8 @@
 
                 </div>
             </div>
-            <?php get_template_part('template-parts/sidebar'); ?>
           </div>
         </div>
     </div>
 </div>
-
-
-
-
-
 <?php get_template_part('template-parts/footer'); ?>

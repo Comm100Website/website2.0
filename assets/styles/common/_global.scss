@@ -517,3 +517,9 @@ legend {
   font-size: 22px;
   cursor: pointer;
 }
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.screen-reader-text { display: none; }

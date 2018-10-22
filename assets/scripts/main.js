@@ -1451,12 +1451,12 @@ var Pager = (function() {
 		totalNum = container.children().length;
 		totalPages = Math.ceil(totalNum / pageSize);
 
-		if (totalPages > 1) {
-			renderPager();
-		}
+		// if (totalPages > 1) {
+		// 	renderPager();
+		// }
 
-		bindEvents();
-		setCurrentPage();
+		// bindEvents();
+		// setCurrentPage();
 	}
 
 	function setCurrentPage() {
@@ -1708,14 +1708,33 @@ window.onload = function() {
   var Sage = {
     // All pages
     'common': {
-      init: function() {
-          App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
-      },
-      finalize: function() {
+        init: function() {
+            App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
+
+            // Create the dropdown based nav for mobile devices on the resources and blog sections.
+            if ($('.post-nav').length) {
+                $("<select class='visible-xs form-control' />").appendTo(".post-nav");
+
+                // Populate dropdown with menu items
+                $(".post-nav a").each(function() {
+                    var $el = $(this);
+                    $("<option />", {
+                        "value"   : $el.attr("href"),
+                        "text"    : $el.text(),
+                        "selected": $el.parent().hasClass('active')
+                    }).appendTo(".post-nav select");
+                });
+
+                $(".post-nav select").change(function() {
+                    window.location = $(this).find("option:selected").val();
+                });
+            }
+        },
+        finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
-      }
+        }
     }
-  };
+};
 
   // The routing fires all common scripts, followed by the page specific scripts.
   // Add additional events for more control over timing e.g. a finalize event

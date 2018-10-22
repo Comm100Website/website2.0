@@ -1,0 +1,80 @@
+.post-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    .post-tile { margin-bottom: 60px; }
+}
+
+.c-content-blog-post-card-1.c-post-cta {
+    background-color: #f4f8fc; height: 100%; border-radius: 20px; position: relative;
+
+    &.with-background {
+        display: flex; flex-wrap: wrap; flex-direction: row; align-items: flex-end;
+
+        &, a, .c-title, .c-title a, .c-body { color: #FFF; }
+    }
+
+    img { margin-bottom: 30px; }
+    .resource-item-CTA-link { margin-top: 10px; }
+    .c-title { font-size: 18px; margin-bottom: 16px; }
+    .c-tag {
+        background: $brand-primary; display: inline-block; color: #FFF; border-radius: 0 4px 4px 0; box-shadow: 1px 1px 4px rgba(0,0,0,0.2); padding: 8px 22px; line-height: 1; font-size: 12px; font-family: 'Ubuntu Bold', sans-serif; font-weight: 700; position: absolute; top: 40px; left: 0;
+
+        &:after { content: ''; display: block; height: 30px; width: 46px; background: transparent url(../images/content/blog/tag-tail.png) no-repeat 0 0; background-size: 100% auto; position: absolute; top: 100%; left: 3px; }
+    }
+
+    .btn-link--green {
+        background: #9fdd09; padding: 12px 20px!important;
+
+        &:hover { background: darken(#9fdd09, 5%); }
+    }
+
+    .c-body {
+        padding: 30px;
+
+        .c-author { margin-bottom: 2px; line-height: 1.4; }
+    }
+
+    &.featured-posts {
+        background: #f7f7f7; min-height: 360px; height: calc(100% - 75px); border-radius: 0;
+
+        .c-body { padding: 20px; }
+        h5 { font-family: $font-family-bold; margin-top: 0; }
+        ul { padding-left: 0; }
+        li {
+            font-size: 18px; min-height: 50px; margin-bottom: 8px; padding-bottom: 8px; line-height: 1.2; border-bottom: solid 1px #ebebeb; //font-family: "Ubuntu Medium", sans-serif; font-weight: 500;
+
+            &:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+        }
+
+        .c-image { background-size: cover; height: 42px; width: 42px; float: left; margin-right: 12px; position: absolute; }
+        a { padding-left: 54px; display: block; }
+    }
+
+    @media (min-width: 768px) {
+        min-height: 470px; margin-bottom: -20px;
+    }
+}
+
+.post-tile {
+    &.post-sidebar {
+        .searchform { margin-bottom: 30px; }
+        .form-control { width: calc(100% - 38px); border: solid 1px $brand-primary; }
+        .search { height: 24px; width: 24px; background-size: 100% auto; right: 0; top: 12px; }
+
+        .addthis_custom_follow { margin-top: 40px; margin-bottom: 10px; }
+        .at-icon-wrapper {
+            background: transparent!important;
+
+            &, svg { height: 42px!important; width: 42px!important; line-height: 42px!important; }
+            svg path { fill: #c7d9f0!important; }
+        }
+
+        .c-content-blog-post-card-1.c-post-cta {
+            min-height: 0;
+
+            &.image-inline { padding-top: 30px; }
+        }
+    }
+}
