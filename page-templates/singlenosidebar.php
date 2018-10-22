@@ -21,8 +21,8 @@ use Roots\Sage\Analytics;
                         <div class="col-lg-10 col-md-10 col-sm-10 col-lg-push-1 col-md-push-1 col-sm-push-1 kb-content-nosidebar" id="post-<?php the_ID(); ?>">
                             <div class="c-content-blog-post-1-view">
                                 <div class="c-content-blog-post-1">
-                                    <div class="c-title c-font-bold c-margin-t-0">
-                                        <h1>
+                                    <div class="c-title c-margin-t-0">
+                                        <h1 class="c-margin-t-0">
                                             <?php the_title(); ?>
                                         </h1>
                                     </div>
@@ -35,7 +35,6 @@ use Roots\Sage\Analytics;
                                 </div>
                             </div>
                         </div>
-
                     <?php endwhile; ?>
                 <?php else : ?>
                     <div class="post">
@@ -45,7 +44,7 @@ use Roots\Sage\Analytics;
                         </p>
                         <?php
                         get_template_part('template-parts/searchform');
-             ?>
+                    ?>
                     </div>
                 <?php endif; ?>
             </div>

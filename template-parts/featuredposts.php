@@ -24,7 +24,7 @@ if ($featuredPosts->have_posts()):
     <?php
         while ($featuredPosts->have_posts()): $featuredPosts->the_post();
     ?>
-        <li>
+        <li class="item">
             <div class="c-image" style="background-image: url('<?php the_post_thumbnail_url(); ?>')"></div>
             <a href="<?php the_permalink();?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
         </li>

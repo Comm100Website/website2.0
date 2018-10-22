@@ -3541,7 +3541,13 @@
 .c-content-blog-post-1 .c-title {
   font-size: 30px;
   font-weight: 300;
-  margin: 30px 0 20px;
+  margin: 30px 0 0;
+
+  h1 {
+      font-family: $font-family-light;
+      font-size: 40px;
+      line-height: 1.25;
+  }
 }
 .c-content-blog-post-1 .c-desc {
   font-size: 20px;
@@ -3550,8 +3556,7 @@
   line-height: 30px;
 }
 .c-content-blog-post-1 .c-panel {
-  padding: 5px 10px;
-  border: 1px solid #eee;
+  padding: 5px 0;
   font-size: 15px;
 }
 .c-post-list-h1 {

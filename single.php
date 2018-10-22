@@ -15,8 +15,8 @@ use Roots\Sage\Analytics;
                     <div class="col-md-9">
                         <div class="c-content-blog-post-1-view">
                             <div class="c-content-blog-post-1">
-                                <div class="c-title c-font-bold c-margin-t-0">
-                                    <h1 class="c-margin-t-0 c-margin-b-30">
+                                <div class="c-title c-margin-t-0">
+                                    <h1 class="c-margin-t-0">
                                         <?php the_title(); ?>
                                     </h1>
                                 </div>
