@@ -2043,9 +2043,8 @@ Template Name:Resources
                         while ( have_rows('webinar_form') ) : the_row();
                         echo '<div class="col-sm-4 landingPage-download">';
                             echo '<h3 class="highlight highlight--blue">' . get_sub_field('title') . '</h3>';
-                            echo '<link rel="stylesheet" href="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.css" type="text/css" media="screen, projection" />';
                             echo get_sub_field('form_code');
-                            echo '<script src="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.js"></script>';
+                            echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js"></script>';
                             echo '<div class="form-note">' . get_sub_field('form_note') . '</div>';
                         echo '</div>';
                         endwhile;

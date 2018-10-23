@@ -101,7 +101,11 @@ use Roots\Sage\Analytics;
                                                 <li>
                                                     <a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                                                 </li>
-                                                <?php endwhile; ?>
+                                        <?php
+                                            endwhile;
+
+                                            wp_reset_postdata();
+                                        ?>
                                         </ul>
 
                                     <?php }
@@ -111,7 +115,7 @@ use Roots\Sage\Analytics;
                                     <a href="/blog/" class="btn btn-lg c-btn-border-2x c-btn-square c-theme-btn c-font-sbold" title="Back to All">
                                         Back to All</a>
                                 </div>
-                                <?php comments_template(); ?>
+                                <?= get_template_part('template-parts/comments'); ?>
                             </div>
 
 
