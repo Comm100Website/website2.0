@@ -196,6 +196,9 @@ gulp.task('copy', function () {
     gulp
      .src(path.source + 'scripts/plugins/*.js')
      .pipe(gulp.dest('dist/scripts/plugins'));
+     gulp
+     .src(path.source + 'styles/plugins/*.css')
+     .pipe(gulp.dest('dist/styles/plugins'));
 });
 
 // ### Scripts

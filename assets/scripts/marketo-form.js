@@ -71,14 +71,14 @@
                     var emailElem = form.getFormElem().find("#Email");
                     form.showErrorMessage("Must be Business email.", emailElem);
                 }else{
-                    $("input[name='Request_URL__c']")[0].value = requestUrl;
+                    jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
                     AddFieldsAndVaulesStringToCookie(form);
                     form.submitable(true);
                     if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0) {
                         return;
                     }
-                    if($("#downloadlink").length > 0) {
-                       $("#downloadlink")[0].click();
+                    if(jQuery("#downloadlink").length > 0) {
+                        jQuery("#downloadlink")[0].click();
                     }
                 }
             }

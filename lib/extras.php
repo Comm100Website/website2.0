@@ -9,6 +9,12 @@ use Roots\Sage\Setup;
 function body_class($classes) {
     $classes[0] = 'page-'.$classes[0];
 
+    for ($i = 0; $i < count($classes); $i++) {
+        if ($classes[$i] == 'search') {
+            $classes[$i] = 'page-'.$classes[$i];
+        }
+    }
+
     // Add page slug if it doesn't exist
     if (is_single() || is_page() && !is_front_page()) {
         if (!in_array(basename(get_permalink()), $classes)) {
