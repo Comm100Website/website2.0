@@ -9167,3 +9167,37 @@ h2.video-title {
     padding: 40px 60px;
     font-family: "Ubuntu Light Italic", sans-serif;
   }
+  .banner--freetrial {
+    background: {
+      repeat: no-repeat;
+      position: left top;
+      color: #dee3e7;
+    }
+
+    &__description {
+      @media screen and (min-width: 768px) {
+        margin-top: 460px;
+      }
+    }
+    
+    .h1-tag {
+      font: {
+        family: Ubuntu Bold,sans-serif;
+        size: 24px;
+      }
+    }
+
+    h1 {
+      font: {
+        family: Ubuntu Regular,sans-serif;
+        size: 34px;
+      }
+      color: #0094d4;
+      margin-top: 10px;
+      margin-bottom: 60px;
+    }
+
+    p {
+      line-height: 1.625em;
+    }
+  }
