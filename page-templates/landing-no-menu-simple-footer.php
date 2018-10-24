@@ -1306,9 +1306,10 @@ use Roots\Sage\Assets;
 
                     // check if the nested repeater field has rows of data
                     $title = get_sub_field('title');
+                    $background_color = get_sub_field('background_color');
                     if( have_rows('columns') ):
 
-                        echo '<div class="c-content-box c-size-md">';
+                        echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
                         echo '<div class="container">';
                         echo '<div class="row">';
 
@@ -2128,9 +2129,9 @@ use Roots\Sage\Assets;
 
                     $height = get_sub_field('height');
                     $color = get_sub_field('color');
+                    $background_color = get_sub_field('background_color');
 
-
-                    echo '<div class="c-content-box">';
+                    echo '<div class="c-content-box c-content-box--' . $background_color . '">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12">';
@@ -2218,7 +2219,7 @@ use Roots\Sage\Assets;
                         echo 
                             '<div class="col-sm-5 col-sm-push-1">' .
                                 $header_form_code .
-                                '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                // '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
                                 '<div class="form-note">' . $form_note . '</div>'.
                             '</div>';
                             
@@ -2228,6 +2229,29 @@ use Roots\Sage\Assets;
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'custom_story' ):
+                    $background_color = get_sub_field('background_color');
+                    $logo = get_sub_field('logo');
+                    $title = get_sub_field('title');
+                    $industry = get_sub_field('industry');
+                    $headquarters = get_sub_field('headquarters');
+                    echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-4">' .
+                                        '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '"/>' .
+                                    '</div>' .
+                                    '<div class="col-sm-8">' .
+                                        '<h4 class="c-margin-b-25">' . $title . '</h4>' .
+                                        '<p>Industry: <strong>' . $industry . '</strong></p>' .
+                                        '<p>Headquarters: <strong>' . $headquarters . '</strong></p>' .
+                                    '</div>' .
+                                '</div>' .
+                            '</div>' .
+                        '</div>';
                 endif;
             endwhile;
         else :

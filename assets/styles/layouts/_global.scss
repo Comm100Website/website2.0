@@ -9170,8 +9170,9 @@ h2.video-title {
   .banner--freetrial {
     background: {
       repeat: no-repeat;
-      position: left top;
+      position: center;
       color: #dee3e7;
+      size: cover;
     }
 
     &__description {
