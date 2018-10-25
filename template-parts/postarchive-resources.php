@@ -1,4 +1,8 @@
-<?php if (have_posts()) : ?>
+<?php
+use Roots\Sage\Assets;
+
+if (have_posts()):
+?>
     <div class="c-content-box c-size-md">
         <div class="container">
             <div class="row">
@@ -90,7 +94,7 @@
                         ?>
                             <div class="resource-item col-xs-12 col-sm-6 col-md-4">
                                 <div class="CTA">
-                                    <img src="<?= $ctas[$ctaIndex]['image']['url']; ?>" alt="<?= $ctas[$ctaIndex]['image']['alt']; ?>" width="120" height="120" />
+                                    <?= Assets\get_acf_image($ctas[$ctaIndex]['image'], '', 120, 120); ?>
                                     <div class="resource-item--title"><?= $ctas[$ctaIndex]['title']; ?></div>
                                     <?php
                                     if (isset($ctas[$ctaIndex]['subtitle'])):

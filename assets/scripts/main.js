@@ -1025,7 +1025,7 @@ jQuery(document).ready(function() {
 		window.open("https://chatserver.comm100.com/ChatWindow.aspx?planId=1428&visitType=1&byHref=1&partnerId=-1&siteid=10000", "", "height = 570, width = 540, left = 200, top = " + a + ", status = yes, toolbar = no, menubar = no, resizable = yes, location = no, titlebar = no");
 	});
 	jQuery("#a-requestcallback").click(function() {
-		window.location.href = "/livechat/requestcallback.aspx?requesttype=general";
+		window.location.href = commGlobal.site_url + "/requestdemo/success/?requesttype=general";
 		return false;
 	});
 
@@ -1269,16 +1269,13 @@ jQuery(document).ready(function() {
 				jQuery("#btnsubmit").val("Submit").removeClass("submitting").attr("disabled", "");
 			},
 			success: function(b) {
-				window.location.href = "/livechat/thankyouforcallback.aspx?type=dedicated";
+				window.location.href = commGlobal.site_url + "/requestdemo/success/?type=dedicated";
 			}
 		});
 		return false;
 	});
-	jQuery(document).on("click", ".download-link", function() {
-		window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + jQuery(this).data("source");
-	});
-	jQuery(document).on("click", ".download-link2", function() {
-		window.location.href = "/livechat/thankyoufordownload.aspx?whitepapertype=" + jQuery(this).data("source");
+	jQuery(document).on("click", ".download-link, .download-link2", function(e) {
+		window.location.href = commGlobal.site_url + "/resources/thankyou/?whitepapertype=" + jQuery(this).data("source");
 	});
 	var o = getRequest()["whitepapertype"] == undefined ? "" : getRequest()["whitepapertype"];
 	if (o != "" && jQuery("#thankyoufordownload-title").length) {
@@ -1373,10 +1370,10 @@ jQuery(document).ready(function() {
 				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-live-chat-benchmark-report-2017.pdf");
 				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/report-benchmark-2017-landing.png");
 				jQuery("#whitepaperlike").html(
-					'<li><a href=commGlobal.site_url + "/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>'+
-					'<li><a href=commGlobal.site_url + "/livechat/resources/live-chat-buyers-guide.aspx">How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>'+
-					'<li><a href=commGlobal.site_url + "/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li>'+
-					'<li><a href=commGlobal.site_url + "/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/chat-to-visit-report/">Chat to Visit Ratio Report: Help Forecast Your Potential Chat Volume</a></li>'+
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/live-chat-buyers-guide.aspx">How to Choose the Best Live Chat Software: A Buyer\'s Guide</a></li>'+
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/top-ten-ways-increase-sales.aspx">The Top Ten Ways That Live Chat Can Increase Sales</a></li>'+
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
 				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_2017benchmarkreport\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			case "50activities":
@@ -1384,10 +1381,10 @@ jQuery(document).ready(function() {
 				jQuery("#whitepaperdownloadlink").attr("href", commGlobal.site_url + "/doc/comm100-50-customer-service-training-activities.pdf");
 				jQuery("#whitepaperdownload-img").attr("src", commGlobal.site_url + "/wp-content/uploads/images/whitepaper-50-activities-landing.png");
 				jQuery("#whitepaperlike").html(
-					'<li><a href=commGlobal.site_url + "/livechat/resources/live-chat-benchmark-report-2017/">Live Chat Benchmark Report 2017</a></li>'+
-					'<li><a href=commGlobal.site_url + "/livechat/resources/live-chat-support-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>'+
-					'<li><a href=commGlobal.site_url + "/livechat/resources/top-performing-chat-operator/">The Guide to Becoming a Top Performing Live Chat Agent</a></li>'+
-					'<li><a href=commGlobal.site_url + "/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/live-chat-benchmark-report-2017/">Live Chat Benchmark Report 2017</a></li>'+
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/live-chat-support-scripts.aspx">120+ Ready-to-Use Live Chat Scripts for Both Sales and Customer Service</a></li>'+
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/top-performing-chat-operator/">The Guide to Becoming a Top Performing Live Chat Agent</a></li>'+
+					'<li><a href="' + commGlobal.site_url + '/livechat/resources/dealing-with-difficult-customers-over-live-chat/">How to Deal with Difficult Customers over Live Chat</a></li>');
 				jQuery("#fetchmore").html("You can also drop by <a href=\"" + commGlobal.site_url + "/blog/?c_cid=whitepaper_50activities\">Comm100 blog</a> to fetch more fresh content on customer service topics including agent skill training, customer retention, website optimization, etc.");
 				break;
 			default:

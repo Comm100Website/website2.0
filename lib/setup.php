@@ -67,6 +67,10 @@ function setup() {
     // Use main stylesheet for visual editor
     // To add custom styles edit /assets/styles/layouts/_tinymce.scss
     add_editor_style(Assets\asset_path('styles/main.css'));
+
+    if( function_exists('acf_add_options_page') ) {
+        $option_page = acf_add_options_page('Theme Settings');
+    }
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
@@ -110,7 +114,7 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function assets() {
-  wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540352327');
+  wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '10242018');
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');

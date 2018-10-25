@@ -1,11 +1,12 @@
 <?php
 use Roots\Sage\Extras;
+use Roots\Sage\Assets;
 ?>
 <div class="resource-item">
     <a href="<?= get_permalink(); ?>">
         <?php
         if (has_post_thumbnail()):
-            echo '<img src="' . get_the_post_thumbnail_url($post->ID, 'full') . '" alt="' . get_the_title() . '" width="" height="" />';
+            echo Assets\get_lazy_load_post_thumbnail($post->ID, get_the_title(), 'full');
         endif;
         ?>
 
