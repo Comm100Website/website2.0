@@ -1583,12 +1583,17 @@ window.onload = function() {
 		})
 	}());
 
+	
+};
+
+jQuery(function() {
 	(function(){
 		var isMobile = window.mobilecheck();
 		if (!isMobile) {
 			var headerHeight = jQuery('.c-layout-header').outerHeight() - jQuery('.c-layout-header .c-topbar.c-navbar').outerHeight();
 			var tabIndexWrap = document.querySelector('.threeTab__Index--Wrap');
-			if (tabIndexWrap && tabIndexWrap.getAttribute('data-wheel') === 'true') {
+			var isTabHasDataWheel = tabIndexWrap && tabIndexWrap.getAttribute('data-wheel') === 'true';
+			if (isTabHasDataWheel) {
 				var scrolling = false;
 				function disableMouseWheel () {
 					scrolling = true;
@@ -1652,13 +1657,24 @@ window.onload = function() {
 				jQuery('.threeTab__Index').removeClass('selected').eq(index).addClass('selected');
 				jQuery('.threeTab__Detail').hide();
 				jQuery('.threeTab__Detail').eq(index).show();
+				switch (index) {
+					case 0: jQuery('.threeTab__Detail--bottomLink a').attr('href', 'https://www.comm100.com/platform/livechat-featurelist/#lc'); break;
+					case 1: jQuery('.threeTab__Detail--bottomLink a').attr('href', 'https://www.comm100.com/platform/livechat-featurelist/#mc'); break;
+					case 2: jQuery('.threeTab__Detail--bottomLink a').attr('href', 'https://www.comm100.com/platform/livechat-featurelist/#ai'); break;
+					default: break;
+				}
+
+				// feature list
+				jQuery('.featurelist-wrap').hide();
+				jQuery('.featurelist-wrap').eq(index).show();
+
 			}
 
 			var tabIndexItems = document.querySelectorAll('.threeTab__Index');
 			var tabIndexItemsArray = Array.prototype.slice.call(tabIndexItems);
 			tabIndexItemsArray.forEach(function(item, index) {
 				item.addEventListener('click', function() {
-					tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
+					isTabHasDataWheel && tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
 					selectTab(index);
 					jQuery('html, body').animate({
 						scrollTop: Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - headerHeight
@@ -1666,7 +1682,15 @@ window.onload = function() {
 				});
 			});
 			selectTab(0);
-			if (tabIndexWrap) {
+			if (window.location.hash) {
+				switch (window.location.hash) {
+					case '#lc': selectTab(0); break;
+					case '#mc': selectTab(1); break;
+					case '#ai': selectTab(2); break;
+					default: selectTab(0); break;
+				}	 	
+			}
+			if (tabIndexWrap && isTabHasDataWheel) {
 				setTimeout(function() {
 					if (Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - jQuery(window).scrollTop() === jQuery('.c-layout-header').outerHeight()) {
 						tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
@@ -1684,11 +1708,16 @@ window.onload = function() {
 			});
 		});
 
+		jQuery('.featurelist-title').on('click', function () {
+            jQuery(this).toggleClass('featurelist-title--close');
+            jQuery(this).next('.featurelist-content').slideToggle(200);
+        });
+
 		if (!window.mobilecheck()) {
 			Pager.init(jQuery('.resource-list'), 12);
 		}
 	}());
-};
+});
 
 /* ========================================================================
  * DOM-based Routing
