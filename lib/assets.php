@@ -56,6 +56,22 @@ function asset_path($filename) {
   }
 }
 
+function get_lazy_load_post_thumbnail($postID, $alt = '', $size = 'full', $class = '') {
+    if (!$alt) {
+        $alt = get_the_title($postID);
+    }
+
+    $output = '<img ' . lazy_load_img_src(get_the_post_thumbnail_url($postID, $size)) . ' alt="' . $alt . '"';
+
+    if ($class) {
+        $output .= ' class="'.$class.'"';
+    }
+
+    $output .= ' />';
+
+    return $output;
+}
+
 function get_acf_image($image, $class = '', $height = '', $width = '') {
     $output = '<img ' . lazy_load_img_src($image['url']) . ' alt="' . $image['alt'] . '"';
 

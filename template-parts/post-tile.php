@@ -1,10 +1,11 @@
 <?php
 use Roots\Sage\Extras;
+use Roots\Sage\Assets;
 ?>
 <div class="c-content-blog-post-card-1 c-option-2">
     <div class="c-media c-content-overlay">
         <?php if (has_post_thumbnail()): ?>
-            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('full'); ?></a>
+            <a href="<?php the_permalink(); ?>"><?= Assets\get_lazy_load_post_thumbnail($post->ID, get_the_title(), 'full'); ?></a>
         <?php endif; ?>
     </div>
     <div class="c-body">

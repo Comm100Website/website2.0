@@ -1,5 +1,6 @@
 <?php
 use Roots\Sage\Extras;
+use Roots\Sage\Assets;
 
 // This template part expects a Blog Post CTA Advanced Custom Fields Repeater object to be passed as a query var.
 $tileStyle = '';
@@ -13,7 +14,7 @@ endif;
         <div class="c-content-blog-post-card-1 c-post-cta c-option-2 <?= $tileClass; ?>" style="<?= $tileStyles; ?>">
             <div class="c-body">
                 <?php if ($cta['image_style'] == 'inline'): ?>
-                    <a href="<?= $cta['link']['url']; ?>" target="<?= $cta['link']['target']; ?>"><img src="<?= $cta['image']['url']; ?>" alt="<?= $cta['image']['alt']; ?>" /></a>
+                    <a href="<?= $cta['link']['url']; ?>" target="<?= $cta['link']['target']; ?>"><?= Assets\get_acf_image($cta['image']); ?></a>
                 <?php endif; ?>
                 <div class="c-tag">
                     <?= $cta['tag']; ?>

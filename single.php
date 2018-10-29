@@ -48,21 +48,23 @@ use Roots\Sage\Analytics;
                                 </div>
                                 <!-- begin author -->
                                 <?php
-                                    $coauthors = get_coauthors();
-                                    foreach( $coauthors as $coauthor ):
+                                $coauthors = get_coauthors();
+                                foreach( $coauthors as $coauthor ):
                                     $archive_link = get_author_posts_url( $coauthor->ID, $coauthor->user_nicename );
                                     $userdata = get_userdata( $coauthor->ID );
                                 ?>
-                                <div class="authorsure-author-box">
-                                    <?php echo get_avatar( $userdata->user_email, 100 ); ?>
-                                    <h4>
-                                        About <a href="<?php echo $archive_link; ?>">
-                                            <?php echo $userdata->display_name; ?>
-                                        </a>
-                                    </h4>
-                                    <p ><?php echo $userdata->user_description; ?></p>
-                                </div>
-                                <?php endforeach;?>
+                                    <div class="authorsure-author-box">
+                                        <?php echo get_avatar( $userdata->user_email, 100 ); ?>
+                                        <h4>
+                                            About <a href="<?php echo $archive_link; ?>">
+                                                <?php echo $userdata->display_name; ?>
+                                            </a>
+                                        </h4>
+                                        <p ><?php echo $userdata->user_description; ?></p>
+                                    </div>
+                                <?php
+                                endforeach;
+                                ?>
                                 <!-- end author -->
                                 <div class="c-article__sharebutton">
                                     <div class="c-article__sharebuttonText">
