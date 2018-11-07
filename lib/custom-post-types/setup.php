@@ -2,7 +2,8 @@
 namespace Roots\Sage\CustomPostTypes\Setup;
 
 $cpt_includes = [
-  'lib/custom-post-types/resources.php'    // Resource Post Type
+    'lib/custom-post-types/resources.php',    // Resource Post Type
+    'lib/custom-post-types/demandbase_audience.php'    // DemandBase Audience Post Type
 ];
 
 foreach ($cpt_includes as $file) {

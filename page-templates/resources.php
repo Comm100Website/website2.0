@@ -1,6 +1,7 @@
 <?php
 /*
 Template Name:Resources
+Template Post Type: commresource, page
 */
 ?>
 <?php get_header(); ?>

@@ -1,0 +1,135 @@
+{
+    "key": "group_5bd2a15043ce3",
+    "title": "DemandBase Settings",
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "fields": [
+        {
+            "key": "field_5bd2a1d8116f7",
+            "label": "Activate DemandBase",
+            "name": "activate_demandbase",
+            "type": "true_false",
+            "instructions": "When setting up pages to work with DemandBase you will have a default audience page and industry-specific audience pages. To activate this page for DemandBase functionality check this box.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5bd2a29db8e15",
+            "label": "DemandBase Page Type",
+            "name": "demandbase_page_type",
+            "type": "radio",
+            "instructions": "In our DemandBase setup, you'll have top-level pages that are for regular visitors to the site and then you'll have audience-specific pages. What type of page is this?",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5bd2a1d8116f7",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "audience": "Audience Page",
+                "default": "Default Page"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "default_value": "default",
+            "layout": "vertical",
+            "return_format": "value",
+            "save_other_choice": 0
+        },
+        {
+            "key": "field_5bd2a1c3116f6",
+            "label": "DemandBase Audience",
+            "name": "demandbase_audience",
+            "type": "post_object",
+            "instructions": "Since this is an audience page you must select the audience and the default page that we should fall back on. You should also consider setting this page to NOINDEX unless the content is unique enough to warrant it showing up in Google.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5bd2a29db8e15",
+                        "operator": "==",
+                        "value": "audience"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "dbaudience"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        },
+        {
+            "key": "field_5bd2a266b8e14",
+            "label": "Default Audience Page",
+            "name": "default_audience_page",
+            "type": "post_object",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5bd2a29db8e15",
+                        "operator": "==",
+                        "value": "audience"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": "",
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "modified": 1541045670
+}

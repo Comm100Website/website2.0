@@ -1069,7 +1069,7 @@ jQuery(document).ready(function() {
 
     jQuery.ajax({
         type: 'GET',
-        url: commGlobal.theme_url + '/get_user_ip.php', //commGlobal.ajax_url. Changed to simple PHP script so we don't have to fully load the theme to call the admin ajax method.
+        url: commGlobal.theme_url + '/ajax/get_user_ip.php', //commGlobal.ajax_url. Changed to simple PHP script so we don't have to fully load the theme to call the admin ajax method.
 //        data: ajaxData,
         success: function(response) {
             Comm100_Variable_IP = response || 'unknown';
@@ -1726,6 +1726,17 @@ window.onload = function() {
                     window.location = $(this).find("option:selected").val();
                 });
             }
+
+            $.ajax({
+                type: 'GET',
+                url: commGlobal.theme_url + '/ajax/demandbase-api.php',
+                success: function(response) {
+                    console.log(response);
+                    console.log($.parseJSON(response));
+                    responseJSON = JSON.parse(response);
+                    console.log(responseJSON);
+                }
+            });
         },
         finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

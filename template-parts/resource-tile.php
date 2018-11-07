@@ -8,11 +8,17 @@ use Roots\Sage\Assets;
         if (has_post_thumbnail()):
             echo Assets\get_lazy_load_post_thumbnail($post->ID, get_the_title(), 'full');
         endif;
+
+        $title = get_the_title();
+
+        if (get_field('short_title')):
+            $title = get_field('short_title');
+        endif;
         ?>
 
         <div class="resource-item--tag"><?= Extras\get_post_taxonomy('commresourcecat')->name; ?></div>
         <div class="resource-item--category"><?= Extras\get_post_taxonomy('commresourcetag')->name; ?></div>
-        <h5 class="resource-item--title"><?= get_the_title(); ?></h5>
+        <h5 class="resource-item--title"><?= $title; ?></h5>
 
         <?php
         if (get_field('sub_title')):

@@ -144,3 +144,67 @@ function register_resource_rewrite_rules($wp_rewrite) {
     // return $wp_rewrite;
 }
 add_action('generate_rewrite_rules', __NAMESPACE__.'\\register_resource_rewrite_rules');
+
+function exclude_resources($query) {
+    if(!is_admin() && $query->is_main_query() && (is_post_type_archive('commresource') || is_tax('commresourcecat'))) {
+        $query->set('meta_query', [
+            [
+                'key' => 'exclude_from_archive',
+                'type' => 'BINARY',
+                'value' => '1',
+                'compare' => '!='
+            ],
+            [
+                'key' => 'exclude_from_archive',
+                'compare' => 'NOT EXISTS'
+            ],
+            'relation' => 'or'
+        ]);
+    }
+}
+add_action('pre_get_posts', __NAMESPACE__.'\\exclude_resources');
+
+function offset_resource_and_post( $query ) {
+    if(!is_admin() && $query->is_main_query() && (is_post_type_archive('commresource') || is_tax('commresourcecat') || is_home() || is_post_type_archive('post') || is_tax('category') || is_tax('tag'))) {
+        $ppp = get_option('posts_per_page');
+
+        $offset = 1;
+
+        if (is_post_type_archive('commresource') || is_tax('commresourcecat')):
+            $offset = 3 - count(get_field('resources_ctas', 'options'));
+        endif;
+
+        if (is_home() || is_post_type_archive('post') || is_tax('category') || is_tax('tag')):
+            $offset = 3 - count(get_field('blog_ctas', 'options')) + 1;
+        endif;
+
+        if ($offset > 0) {
+            if (!$query->is_paged()) {
+                $query->set('posts_per_page',$offset + $ppp);
+            } else {
+                $offset = $offset + ( ($query->query_vars['paged']-1) * $ppp );
+                $query->set('posts_per_page',$ppp);
+                $query->set('offset',$offset);
+            }
+        }
+    }
+}
+add_action('pre_get_posts', __NAMESPACE__.'\\offset_resource_and_post');
+
+function offset_resource_and_post_pagination($found_posts, $query) {
+    $offset = 1;
+
+    if (is_post_type_archive('commresource') || is_tax('commresourcecat')):
+        $offset = 3 - count(get_field('resources_ctas', 'options'));
+    endif;
+
+    if (is_home() || is_post_type_archive('post') || is_tax('category') || is_tax('tag')):
+        $offset = 3 - count(get_field('blog_ctas', 'options')) + 1;
+    endif;
+
+    if($offset > 0 && !is_admin() && $query->is_main_query() && (is_post_type_archive('commresource') || is_tax('commresourcecat') || is_home() || is_post_type_archive('post') || is_tax('category') || is_tax('tag'))) {
+        $found_posts = $found_posts - $offset;
+    }
+    return $found_posts;
+}
+add_filter( 'found_posts', __NAMESPACE__.'\\offset_resource_and_post_pagination', 10, 2 );
