@@ -114,7 +114,7 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '102420181');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540803011000');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -137,14 +137,12 @@ function assets() {
     wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
     wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
 
-
-    wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 11062018, true);
 
     $localizeData = array('theme_url' => get_template_directory_uri(),'ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url());
 
     //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
     //screen and let the JS pick where the user should be redirected to.
-
 
     wp_localize_script('sage/js', 'commGlobal', $localizeData);
 

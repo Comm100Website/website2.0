@@ -1996,7 +1996,7 @@ use Roots\Sage\Assets;
 
                 endif;
 
-
+                
                 // check current row layout
                 if( get_row_layout() == 'feature_list' ):
                     if( have_rows('feature_list_repeater') ):
@@ -2093,6 +2093,137 @@ use Roots\Sage\Assets;
                         echo '</div>';
                         echo '</div>';
                     endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'feature_list_for_all' ):
+                    echo '<div class="c-content-box">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12">';
+                    if ( have_rows('feature_list_tab') ):
+                        echo '<div class="threeTab__Index--Wrap threeTab__Index--featurelistWrap clearfix">';
+                        while ( have_rows('feature_list_tab') ) : the_row();
+                            $if_selected = get_sub_field('if_selected');
+                            $tag = get_sub_field('tag');
+                            $tab_name = get_sub_field('tab_name');
+                            $color = get_sub_field('color');
+                            $selectedClass = $if_selected ? 'selected' : '';
+
+
+                            echo '<div class="threeTab__Index ' . $selectedClass . '">' .
+                                    '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
+                                    '<h3>' . $tab_name . '</h3>' .
+                                '</div>';
+                        endwhile;
+                        echo '</div>';
+                    endif;
+                    if( have_rows('feature_list_repeater') ):    
+                        while ( have_rows('feature_list_repeater') ) : the_row();
+                            echo '<div class="featurelist-wrap">';
+
+                            $feature_list_header = get_sub_field('feature_list_header');
+                            if ($feature_list_header):
+                                while ( have_rows('feature_list_header') ) : the_row();
+                                    if ( have_rows('feature_list_header_plan') ):
+                                        echo '<div class="featurelist-header-container">';
+                                            echo '<div class="featurelist-header clearfix">';
+                                                echo '<span class="featurelist-content">&nbsp;</span>';
+                                                while ( have_rows('feature_list_header_plan') ) : the_row();
+                                                    echo '<span class="featurelist-plan">' . get_sub_field('plan_name') . '</span>';
+                                                endwhile;
+                                            echo '</div>';
+                                        echo '</div>';
+                                    endif;
+
+                                    $feature_list_header_note = get_sub_field('feature_list_header_note');
+                                    if ($feature_list_header_note):
+                                        echo '<div class="featurelist-note">'. $feature_list_header_note .'</div>';
+                                    endif;
+                                endwhile;
+                            endif;
+
+                            $feature_list_content = get_sub_field('feature_list_content');
+                            if( have_rows('feature_list_content') ):
+                                echo '<div class="featurelist clearfix">';
+                                
+                                while ( have_rows('feature_list_content') ) : the_row();
+                                    echo '<div class="featurelist-type">';
+                                    $feature_name = get_sub_field('feature_name');
+                                    if ($feature_name):
+                                        echo '<div class="featurelist-title">' . $feature_name . '</div>';
+                                    endif;
+                                    
+                                    echo '<div class="featurelist-content">';
+                                    
+                                        while ( have_rows('feature_content') ) : the_row();
+                                        echo '<ul class="clearfix">';
+                                        $feature_list_content_feature = get_sub_field('feature_list_content_feature');
+                                        if ($feature_list_content_feature):
+                                            while ( have_rows('feature_list_content_feature') ) : the_row();
+                                                $if_link = get_sub_field('if_link');
+                                                $name_link = get_sub_field('name_link');
+                                                $name_text = get_sub_field('name_text');
+                                                $featurename = '';
+                                                if ($if_link):
+                                                    $featurename = '<a href="' . $name_link['url'] . '" target="' . $name_link['target'] . '">' . $name_link['title'] . '</a>';
+                                                else:
+                                                    $featurename = $name_text;
+                                                endif;
+
+                                                $tooltip = get_sub_field('tooltip');
+                                                echo '<li class="option-title tooltips" data-placement="right" title="" data-original-title="' . $tooltip . '">' .
+                                                        $featurename .
+                                                    '</li>';
+                                            endwhile;
+                                        endif;
+
+                                        $featurecontentTeam = '&nbsp;';
+                                        $featurecontentBusiness = '&nbsp;';
+                                        $featurecontentEnt = '&nbsp;';
+                                        $if_show_tick = get_sub_field('if_show_tick');
+                                        if ($if_show_tick):
+                                            $feature_list_content_if_team_have = get_sub_field('feature_list_content_if_team_have');
+                                            $feature_list_content_if_business_have = get_sub_field('feature_list_content_if_business_have');
+                                            $feature_list_content_if_ent_have = get_sub_field('feature_list_content_if_ent_have');
+
+                                            if ($feature_list_content_if_team_have):
+                                                $featurecontentTeam = '<i class="fa fa-check c-font-20"></i>';
+                                            endif;
+                                            if ($feature_list_content_if_business_have):
+                                                $featurecontentBusiness = '<i class="fa fa-check c-font-20"></i>';
+                                            endif;
+                                            if ($feature_list_content_if_ent_have):
+                                                $featurecontentEnt = '<i class="fa fa-check c-font-20"></i>';
+                                            endif;
+                                        else:
+                                            $featurecontentTeam = get_sub_field('feature_list_content_for_team') == '' ? '&nbsp;' : get_sub_field('feature_list_content_for_team');
+                                            $featurecontentBusiness = get_sub_field('feature_list_content_for_business') == '' ? '&nbsp;' : get_sub_field('feature_list_content_for_business');
+                                            $featurecontentEnt = get_sub_field('feature_list_content_for_ent') == '' ? '&nbsp;' : get_sub_field('feature_list_content_for_ent');
+                                        endif;
+
+
+                                        echo '<li>' . $featurecontentTeam . '</li>';
+                                        echo '<li>' . $featurecontentBusiness . '</li>';
+                                        echo '<li>' . $featurecontentEnt . '</li>';
+                                        echo '</ul>';
+                                        endwhile;
+                                    
+                                    echo '</div>';
+                                    echo '</div>';
+                                endwhile;
+                                echo '</div>';
+                                
+                            endif;
+
+                            echo '</div>';
+
+                        endwhile;
+                    endif;
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
                 endif;
 
                 // check current row layout
