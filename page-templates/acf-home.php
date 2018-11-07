@@ -143,9 +143,22 @@ use Roots\Sage\Assets;
 
                         endif;
 
+                        $feature_list_title_str = '';
+                        if ($feature_list_title):
+                            $feature_list_title_str = '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>';
+                        endif;
+
                         $li_feature_list = '';
                         while ( have_rows('feature_list') ) : the_row();
+                            $if_link = get_sub_field('if_link');
                             $feature_point = get_sub_field('feature_point');
+                            $feature_point_link = get_sub_field('feature_point_link');
+
+                            if ($if_link):
+                                $feature_point = '<a class="" href="' . $feature_point_link['url'] . '" target="' . $feature_point_link['target'] . '">' .
+                                                    $feature_point_link['title'] .
+                                                '</a>';
+                            endif;
 
                             $li_feature_list .= '<li>' . $feature_point . '</li>';
                         endwhile;
@@ -192,7 +205,7 @@ use Roots\Sage\Assets;
                         echo    '<div class="col-sm-4 threeTab__Detail--col">' .
                                     '<div class="threeTab__Detail--title">' . $title . '</div>' .
                                     '<div class="threeTab__Detail--price">' . $priceContent . '</div>' .
-                                    '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>' .
+                                    $feature_list_title_str .
                                     '<ul class="threeTab__Detail--contentList">' .
                                         $li_feature_list .
                                     '</ul>' .
@@ -217,9 +230,9 @@ use Roots\Sage\Assets;
                         $request_quote = get_sub_field('request_quote');
                         $feature_list_title = get_sub_field('feature_list_title');
 
-                        if (trim($feature_list_title, ' ') == ''):
-                            $feature_list_title = '&nbsp;';
-                        endif;
+                        // if (trim($feature_list_title, ' ') == ''):
+                        //     $feature_list_title = '&nbsp;';
+                        // endif;
 
                         $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
                         if ($if_show_price):
@@ -232,9 +245,22 @@ use Roots\Sage\Assets;
 
                         endif;
 
+                        $feature_list_title_str = '';
+                        if ($feature_list_title):
+                            $feature_list_title_str = '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>';
+                        endif;
+
                         $li_feature_list = '';
                         while ( have_rows('feature_list') ) : the_row();
+                            $if_link = get_sub_field('if_link');
                             $feature_point = get_sub_field('feature_point');
+                            $feature_point_link = get_sub_field('feature_point_link');
+
+                            if ($if_link):
+                                $feature_point = '<a class="" href="' . $feature_point_link['url'] . '" target="' . $feature_point_link['target'] . '">' .
+                                                    $feature_point_link['title'] .
+                                                '</a>';
+                            endif;
 
                             $li_feature_list .= '<li>' . $feature_point . '</li>';
                         endwhile;
@@ -281,7 +307,7 @@ use Roots\Sage\Assets;
                         echo    '<div class="col-sm-6 threeTab__Detail--col">' .
                                     '<div class="threeTab__Detail--title">' . $title . '</div>' .
                                     '<div class="threeTab__Detail--price">' . $priceContent . '</div>' .
-                                    '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>' .
+                                    $feature_list_title_str .
                                     '<ul class="threeTab__Detail--contentList">' .
                                         $li_feature_list .
                                     '</ul>' .
@@ -303,6 +329,11 @@ use Roots\Sage\Assets;
                         $ai_logo = get_sub_field('ai_logo');
                         $feature_list_title = get_sub_field('feature_list_title');
 
+                        $feature_list_title_str = '';
+                        if ($feature_list_title):
+                            $feature_list_title_str = '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>';
+                        endif;
+
                         $ai_logo_content = '';
                         if ($ai_logo):
                             $ai_logo_content = '<div class="ai-logo-wrap">'.Assets\get_acf_image($ai_logo, '', 209, 276).'</div>';
@@ -311,14 +342,24 @@ use Roots\Sage\Assets;
                         $columnFirst = '';
                         while ( have_rows('column_first') ) : the_row();
                             $title = get_sub_field('title');
-                            $feature_list = '';
+                            $li_feature_list = '';
                             while ( have_rows('feature_list') ) : the_row();
-                                $feature_list .= '<li>' . get_sub_field('feature_point') . '</li>';
+                                $if_link = get_sub_field('if_link');
+                                $feature_point = get_sub_field('feature_point');
+                                $feature_point_link = get_sub_field('feature_point_link');
+
+                                if ($if_link):
+                                    $feature_point = '<a class="" href="' . $feature_point_link['url'] . '" target="' . $feature_point_link['target'] . '">' .
+                                                        $feature_point_link['title'] .
+                                                    '</a>';
+                                endif;
+
+                                $li_feature_list .= '<li>' . $feature_point . '</li>';
                             endwhile;
                             $columnFirst = '<div class="col-sm-8 threeTab__Detail--col">' .
-                                            '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>' .
+                                            $feature_list_title_str .
                                             '<ul class="threeTab__Detail--contentList">' .
-                                                $feature_list .
+                                                $li_feature_list .
                                             '</ul>' .
                                         '</div>';
                         endwhile;
@@ -1018,11 +1059,26 @@ use Roots\Sage\Assets;
                 if( get_row_layout() == 'image-text' ):
 
                     $background_color = get_sub_field('background_color');
+                    $image_text_title = get_sub_field('image_text_title');
+                    $image_text_title_color = get_sub_field('image_text_title_color');
+                    $image_text_description = get_sub_field('image_text_description');
                     // check if the nested repeater field has rows of data
                     if( have_rows('image_text_column_repeater') ):
                         echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
                         echo '<div class="container">';
                         echo '<div class="row">';
+                            
+                        if ($image_text_title):
+                            echo '<div class="col-sm-10 col-sm-push-1 c-center">';
+                                echo '<div class="img-text-title img-text-title--' . $image_text_title_color . '">' . $image_text_title . '</div>';
+                                if ($image_text_description):
+                                    echo '<div class="img-text-desc">' . $image_text_description . '</div>';
+                                endif;
+                            echo '</div>';
+                        endif;
+                            
+                        
+                        echo '<div class="clear"></div>';
                             // loop through the rows of data
                         while ( have_rows('image_text_column_repeater') ) : the_row();
 
@@ -2444,9 +2500,9 @@ use Roots\Sage\Assets;
 
                     $height = get_sub_field('height');
                     $color = get_sub_field('color');
+                    $background_color = get_sub_field('background_color');
 
-
-                    echo '<div class="c-content-box">';
+                    echo '<div class="c-content-box c-content-box--' . $background_color . '">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12">';
@@ -2571,6 +2627,7 @@ use Roots\Sage\Assets;
                             $description = get_sub_field('description');
                             $download = get_sub_field('download');
                             $image = get_sub_field('image');
+                            $video = get_sub_field('video');
                                 if ($h1_tag):
                                     echo '<div class="h1-tag">' .
                                             $h1_tag .
@@ -2587,26 +2644,35 @@ use Roots\Sage\Assets;
                                 endif;
                                 if ($download):
                                     while ( have_rows('download') ) : the_row();
-                                    $download_link = get_sub_field('download_link');
-                                    $download_img = get_sub_field('download_img');
-                                    $installuninstall = get_sub_field('installuninstall');
-                                    if ($download_link):
-                                        echo '<div class="download">'.
-                                                '<a href="' . $download_link . '">' .
-                                                    '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
-                                                '</a>' .
-                                                '<div class="c-margin-t-10 c-font-14">' .
-                                                    '<a href="/eula/" target="_blank">EULA</a> | ' .
-                                                    '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
-                                                            $installuninstall['title'] .
-                                                        '</a>' .
-                                                '</div>' .
-                                            '</div>';
-                                    endif;
+                                        $installuninstall = get_sub_field('installuninstall');
+                                        if (have_rows('download_content')):
+                                            echo '<div class="download">';
+                                            while ( have_rows('download_content') ) : the_row();
+                                                $download_link = get_sub_field('download_link');
+                                                $download_img = get_sub_field('download_img');
+                                                echo '<a href="' . $download_link . '">' .
+                                                        '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                                    '</a>';
+                                            endwhile;
+                                            echo '<div class="c-margin-t-10 c-font-14">' .
+                                                        '<a href="/eula/" target="_blank">EULA</a> | ' .
+                                                        '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
+                                                                $installuninstall['title'] .
+                                                            '</a>' .
+                                                    '</div>';
+                                            echo '</div>';
+                                        endif;
                                     endwhile;
                                 endif;
                                 if ($image):
                                     echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
+                                endif;
+                                if ($video):
+                                    echo '<div class="row video-content">' . 
+                                            '<div class="col-sm-10 col-sm-push-1">' . 
+                                                $video .
+                                            '</div>' .
+                                        '</div>';
                                 endif;
                         endwhile;
                     endif;
@@ -2695,7 +2761,10 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'resource_download' ):
-                    echo '<div class="c-content-box c-size-md c-content-box--grey">';
+
+                    $background_color = get_sub_field('background_color');
+
+                    echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 resource-download">';
