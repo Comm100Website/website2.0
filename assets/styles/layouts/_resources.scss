@@ -1,5 +1,8 @@
 .resource-promotion {
-    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
 
-    > div { flex: 1; }
+    @media (min-width: $screen-sm-min) {
+        display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center;
+
+        > div { flex: 1; }
+    }
 }

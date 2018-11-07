@@ -114,32 +114,37 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function assets() {
-  wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540803011000');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540803011000');
 
-  if (is_single() && comments_open() && get_option('thread_comments')) {
-    wp_enqueue_script('comment-reply');
-  }
+    if (is_single() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
+    }
 
-//   if (!is_admin()) {
-//     // comment out the next two lines to load the local copy of jQuery
-//     wp_deregister_script('jquery');
-//     wp_deregister_script('jquery-migrate');
+    //   if (!is_admin()) {
+    //     // comment out the next two lines to load the local copy of jQuery
+    //     wp_deregister_script('jquery');
+    //     wp_deregister_script('jquery-migrate');
 
-//     wp_register_script('jquery', Assets\asset_path('scripts/plugins/jquery.js'), false, '1.11.3', false);
-//     wp_register_script('jquery-migrate', Assets\asset_path('scripts/plugins/jquery-migrate.min.js'), ['jquery'], '1.2.1', false);
+    //     wp_register_script('jquery', Assets\asset_path('scripts/plugins/jquery.js'), false, '1.11.3', false);
+    //     wp_register_script('jquery-migrate', Assets\asset_path('scripts/plugins/jquery-migrate.min.js'), ['jquery'], '1.2.1', false);
 
-//     wp_enqueue_script('jquery');
-//     wp_enqueue_script('jquery-migrate');
-//   }
+    //     wp_enqueue_script('jquery');
+    //     wp_enqueue_script('jquery-migrate');
+    //   }
 
-  wp_enqueue_script('comm100api', 'https://www.comm100.com/integrationsapi/apihandler.ashx', '', null, true);
-  wp_enqueue_script('sage/bootstrap', Assets\asset_path('scripts/plugins/bootstrap.js'), ['jquery'], null, true);
-  wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
-  wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
+    wp_enqueue_script('comm100api', 'https://www.comm100.com/integrationsapi/apihandler.ashx', '', null, true);
+    wp_enqueue_script('sage/bootstrap', Assets\asset_path('scripts/plugins/bootstrap.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
 
+    wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 11062018, true);
 
-  wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], '1540803011000', true);
-  wp_localize_script('sage/js', 'commGlobal', array('theme_url' => get_template_directory_uri(),'ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url()));
+    $localizeData = array('theme_url' => get_template_directory_uri(),'ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url());
+
+    //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
+    //screen and let the JS pick where the user should be redirected to.
+
+    wp_localize_script('sage/js', 'commGlobal', $localizeData);
 
 //   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }

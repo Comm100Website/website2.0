@@ -4,6 +4,7 @@ namespace Roots\Sage\ThemeUpgrades;
 use WP_Query;
 
 function theme_upgrade() {
+
     if (array_key_exists('upgrade_comm100', $_GET)):
         global $post;
 
@@ -58,8 +59,8 @@ function theme_upgrade() {
                 $category = get_term_by('slug', basename(get_permalink($oldCategoryPost)), 'commresourcecat');
 
                 if (!$category):
-                    $newTermID = wp_insert_term(trim(str_replace('Resources -', '', $oldCategoryPost->post_title)), 'commresourcecat', ['slug' => basename(get_permalink($oldCategoryPost))]);
-                    $category = get_term($newTermID, 'commresourcecat');
+                    $newTerm = wp_insert_term(trim(str_replace('Resources -', '', $oldCategoryPost->post_title)), 'commresourcecat', ['slug' => basename(get_permalink($oldCategoryPost))]);
+                    $category = get_term($newTerm['term_id'], 'commresourcecat');
                 endif;
 
                 //Now that we have the resource categories, let's find all of the resource pages.
@@ -89,7 +90,6 @@ function theme_upgrade() {
                                 'post_name'    => basename(get_permalink($resource->ID)),
                             );
                             wp_update_post($resourcePost);
-
                             wp_set_post_terms($resource->ID, [$category->term_id], 'commresourcecat', false);
 
                             $resourceTile = '';
@@ -109,9 +109,16 @@ function theme_upgrade() {
                                     $tag = get_term($newTermID, 'commresourcetag');
                                 endif;
 
+                                echo 'Tag: '.$resourceTile['category'].' = '.$tag->name.'<br/>';
+
+                                echo '<br/>';
                                 wp_set_post_terms($resource->ID, [$tag->name], 'commresourcetag', false);
 
+                                if (isset($resourceTile['image']) && isset($resourceTile['image']['ID'])):
                                 set_post_thumbnail($resource->ID, $resourceTile['image']['ID']);
+                                else:
+                                    echo '<strong>NO IMAGE</strong><br/>';
+                                endif;
 
                                 if (isset($resourceTile['title']) && !empty($resourceTile['title']) && $resourceTile['title'] != $resource->post_title):
                                     update_field('short_title', strip_tags($resourceTile['title']), $resource->ID);
@@ -122,9 +129,12 @@ function theme_upgrade() {
                                 endif;
 
                                 delete_post_meta($resource->ID, 'custom_permalink');
+                            else:
+                                // echo 'empty<br/><br/>';
+                                update_field('exclude_from_archive', true, $resource->ID);
                             endif;
                         else:
-                            //Set the resource thank you pages to be children of the main resource thank you page.
+                            // Set the resource thank you pages to be children of the main resource thank you page.
                             $resourcePost = array(
                                 'ID'           => $resource->ID,
                                 'post_parent'  => 18891
@@ -134,7 +144,7 @@ function theme_upgrade() {
                     endforeach;
                 endif;
 
-                //Delete the old resource category page.
+                // Delete the old resource category page.
                 wp_delete_post($oldCategoryPost->ID);
             endforeach;
         endif;
@@ -152,175 +162,3 @@ function theme_upgrade() {
 }
 
 add_action('init', __NAMESPACE__ . '\\theme_upgrade');
-
-
-
-    /*
-    add_action('init', 'data_cleanup');
-
-    function data_cleanup() {
-        global $post;
-
-        $args = [
-            'post_type' => 'works',
-            'posts_per_page' => -1
-        ];
-
-        $works = new WP_Query($args);
-
-        if ($works->have_posts()) {
-            while ($works->have_posts()) {
-                $works->the_post();
-
-                if (get_field('old_medium_id')) {
-                    the_title();
-                    var_dump(get_field('old_artist_ids'));
-                    $mediums = get_terms( array(
-                        'taxonomy' => 'medium',
-                        'hide_empty' => false,
-                        'fields' => 'ids',
-                        'meta_query' => [
-                            [
-                                'key' => 'old_medium_id',
-                                'value' => get_field('old_medium_id')
-                            ]
-                        ]
-                    ));
-
-                    if ($mediums) {
-                        wp_set_post_terms($post->ID, strval($mediums[0]), 'medium', false);
-                    }
-                }
-
-
-                if (get_field('old_artist_ids')) {
-                    the_title();
-                    var_dump(get_field('old_artist_ids'));
-                    foreach (explode(',', get_field('old_artist_ids')) as $artistID) {
-                        $artists = get_terms( array(
-                            'taxonomy' => 'artist',
-                            'hide_empty' => false,
-                            'fields' => 'ids',
-                            'meta_query' => [
-                                [
-                                    'key' => 'old_artist_id',
-                                    'value' => $artistID
-                                ]
-                            ]
-                        ));
-
-                        if ($artists) {
-                            wp_set_post_terms($post->ID, strval($artists[0]), 'artist', true);
-                        }
-                    }
-                }
-
-
-                if (get_field('old_works_ids')) {
-                    $args = [
-                        'post_type' => 'works',
-                        'posts_per_page' => -1,
-                        'meta_query' => [
-                            [
-                                'key' => 'old_painting_id',
-                                'value' => explode(',', get_field('old_works_ids')),
-                                'compare' => 'IN'
-                            ]
-                        ]
-                    ];
-
-                    $posts = new WP_Query($args);
-
-                    if ($posts->have_posts()) {
-                        $workIDs = [];
-
-                        foreach ($posts->posts as $newWork) {
-                            $workIDs[] = $newWork->ID;
-                        }
-                        update_field('exhibition_works', $workIDs);
-                    }
-                }
-
-                $workImages = [];
-
-                for ($i = 1; $i <= 5; $i++) {
-                    if (get_field('work_image_'.$i)) {
-                        $workImages[] = get_field('work_image_'.$i);
-                    }
-                }
-
-                update_field('images', $workImages);
-
-                if (get_field('exhibition_image')) {
-                    set_post_thumbnail($post, get_field('exhibition_image'));
-                }
-
-                var_dump($workImages);
-            }
-
-            wp_reset_postdata();
-        }
-
-        $artists = get_terms( array(
-            'taxonomy' => 'artist',
-            'hide_empty' => false,
-        ) );
-
-        foreach ($artists as $artist) {
-
-            wp_update_term($artist->term_id, 'artist', array(
-                'description' => ''
-            ));
-            if (get_field('Old_Featured_Painting_ID', $artist) && is_numeric(get_field('Old_Featured_Painting_ID', $artist))) {
-                //echo get_field('Old_Featured_Painting_ID', $artist);
-
-                $args = [
-                    'post_type' => 'works',
-                    'posts_per_page' => -1,
-                    'meta_query' => [
-                        [
-                            'key' => 'old_painting_id',
-                            'value' => get_field('Old_Featured_Painting_ID', $artist)
-                        ]
-                    ]
-                ];
-
-                $posts = new WP_Query($args);
-
-                if ($posts->have_posts()) {
-                    echo $posts->posts[0]->ID;
-                    update_field('artist_featured_work', [$posts->posts[0]->ID], $artist);
-                }
-            }
-        }
-
-        $artists = get_terms( array(
-            'taxonomy' => 'artist',
-            'hide_empty' => false,
-        ) );
-
-        foreach ($artists as $artist) {
-            if (get_field('Old_Featured_Painting_ID', $artist) && is_numeric(get_field('Old_Featured_Painting_ID', $artist))) {
-                //echo get_field('Old_Featured_Painting_ID', $artist);
-
-                $args = [
-                    'post_type' => 'works',
-                    'posts_per_page' => -1,
-                    'meta_query' => [
-                        [
-                            'key' => 'old_painting_id',
-                            'value' => get_field('Old_Featured_Painting_ID', $artist)
-                        ]
-                    ]
-                ];
-
-                $posts = new WP_Query($args);
-
-                if ($posts->have_posts()) {
-                    echo $posts->posts[0]->ID;
-                    update_field('artist_featured_work', [$posts->posts[0]->ID], $artist);
-                }
-            }
-        }
-    }
-    */

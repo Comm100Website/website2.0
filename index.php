@@ -24,7 +24,17 @@
                 $postIndex = 0;
 
                 if (!is_paged()):
-                    $ctas = get_field('blog_ctas', 'options');
+                    $blogCTAs = get_field('blog_ctas', 'options');
+                    $ctas = [];
+
+                    if ($blogCTAs):
+                        foreach($blogCTAs as $key => $cta):
+                            if(isset($cta['feature_in_archive']) && $cta['feature_in_archive']):
+                                $ctas[] = $cta;
+                            endif;
+                        endforeach;
+                    endif;
+
                     $ctaIndex = 0;
                 endif;
 

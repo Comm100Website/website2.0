@@ -18,7 +18,7 @@ if (have_posts()):
                     ]);
 
                     $navItems = [
-                        'All' => '/resources/'
+                        'All' => get_site_url().'/resources/'
                     ];
 
                     foreach($resourceCategories as $cat):
@@ -30,7 +30,7 @@ if (have_posts()):
                     echo '<ul class="post-nav">';
 
                     foreach ($navItems as $label => $url):
-                        $is_active = ($url == get_term_link(get_queried_object(), 'commresourcecat') || $url == '/resources/');
+                        $is_active = ($url == get_site_url().$_SERVER['REQUEST_URI']);
                         echo '<li class="'.($is_active ? 'active' : '').' hidden-xs"><a href="'.$url.'">'.$label.'</a></li>';
                     endforeach;
 

@@ -1,6 +1,7 @@
 <?php
 /*
-Template Name:live chat resource
+Template Name: live chat resource
+Template Post Type: commresource, page
 */
 ?>
 <?php get_template_part('template-parts/header'); ?>
@@ -11,13 +12,13 @@ Template Name:live chat resource
        <?php the_content(__('<br/>Continue reading...')); ?>
   <?php endwhile; ?>
   <?php else : ?>
-   
+
   <div class="post">
     <h2>Not found1!</h2>
     <p><?php _e('Sorry, this page does not exist.'); ?></p>
-    <?php get_template_part('template-parts/searchform'); ?>    
+    <?php get_template_part('template-parts/searchform'); ?>
   </div>
-   
+
   <?php endif; ?>
 
 <?php get_template_part('template-parts/footer'); ?>
