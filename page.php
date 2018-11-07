@@ -1,4 +1,5 @@
 <?php get_template_part('template-parts/header'); ?>
+</header>
    <?php if (have_posts()) : ?>
    <?php while (have_posts()) : the_post(); ?>
 	      <?php the_content(__('<br/>Continue reading...')); ?>
