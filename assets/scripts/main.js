@@ -1580,7 +1580,7 @@ window.onload = function() {
 		})
 	}());
 
-	
+
 };
 
 jQuery(function() {
@@ -1685,7 +1685,7 @@ jQuery(function() {
 					case '#mc': selectTab(1); break;
 					case '#ai': selectTab(2); break;
 					default: selectTab(0); break;
-				}	 	
+				}
 			}
 			if (tabIndexWrap && isTabHasDataWheel) {
 				setTimeout(function() {
@@ -1755,17 +1755,6 @@ jQuery(function() {
                     window.location = $(this).find("option:selected").val();
                 });
             }
-
-            $.ajax({
-                type: 'GET',
-                url: commGlobal.theme_url + '/ajax/demandbase-api.php',
-                success: function(response) {
-                    console.log(response);
-                    console.log($.parseJSON(response));
-                    responseJSON = JSON.parse(response);
-                    console.log(responseJSON);
-                }
-            });
         },
         finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

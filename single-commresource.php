@@ -15,6 +15,6 @@
 
   <?php endif; ?>
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
+  <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2faac9507104da"></script>
 <?php get_template_part('template-parts/footer'); ?>

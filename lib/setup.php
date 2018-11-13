@@ -2,6 +2,7 @@
 namespace Roots\Sage\Setup;
 
 use Roots\Sage\Assets;
+use WP_Query;
 
 /**
  * Theme setup
@@ -139,16 +140,68 @@ function assets() {
 
     wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 11062018, true);
 
-    $localizeData = array('theme_url' => get_template_directory_uri(),'ajax_url' => admin_url('admin-ajax.php'), 'site_url' => get_site_url());
-
-    //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
-    //screen and let the JS pick where the user should be redirected to.
+    $localizeData = array(
+        'theme_url' => get_template_directory_uri(),
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'site_url' => get_site_url()
+    );
 
     wp_localize_script('sage/js', 'commGlobal', $localizeData);
 
+    //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
+    //screen and let the JS pick where the user should be redirected to.
+    if (get_field('activate_demandbase')) {
+        //!is_user_logged_in() &&
+        $dbData = array(
+            'theme_url' => get_template_directory_uri()
+        );
+
+        $demandBaseParentPage = (get_field('demandbase_page_type') == 'audience' ? get_field('default_audience_page')->ID : get_the_ID());
+
+        $args = [
+            'post_type' => 'any',
+            'posts_per_page' => -1,
+            'meta_query' => [
+                [
+                    'key' => 'default_audience_page',
+                    'value' => $demandBaseParentPage
+                ]
+            ]
+        ];
+
+        $dbAudiencePages = new WP_Query($args);
+
+        $dbData['db_default'] = get_permalink($demandBaseParentPage);
+
+        if ($dbAudiencePages->have_posts()) {
+            $dbData['db_audiences'] = array();
+
+            while ($dbAudiencePages->have_posts()) {
+                $dbAudiencePages->the_post();
+
+                if (get_field('demandbase_page_type') == 'audience') {
+                    $dbData['db_audiences'][get_field('demandbase_audience')->post_title] = get_permalink();
+                }
+            }
+            wp_reset_postdata();
+        }
+
+        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, null, false);
+        wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
+    }
+
 //   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }
-add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 0);
+
+add_filter( 'wp_enqueue_scripts', 'wpse8170_enqueue_my_scripts', 0 );
+// or if you enqueue your scripts on init action
+// add_action( 'init', 'wpse8170_enqueue_my_scripts', 0 );
+
+function wpse8170_enqueue_my_scripts() {
+    wp_enqueue_script( 'myscript', 'http://path/to/my/script.js', array( 'jquery' ) );
+    // my else scripts go here...
+}
 
 function dequeue_css_from_plugins() {
     wp_dequeue_style( 'kbe_theme_style' );

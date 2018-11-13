@@ -140,6 +140,66 @@ use Roots\Sage\Analytics;
         </div>
     </div>
 </div>
+<div class="related-posts">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"><h3 class="title">Suggested Reading</h3></div>
+            <?php
+            //Output two related posts for this article. Users can custom select the related posts or optionally we will find
+            //related posts that match this posts category.
+            $customRelatedPosts = get_field('related_posts');
+            $numCustomDefinedPosts = 0;
+            $numRelatedPosts = 3;
+            $relatedPostIndex = 1;
+
+            if (!empty($customRelatedPosts)) {
+                $numCustomDefinedPosts = count($customRelatedPosts);
+                $oldPost = $post;
+
+                foreach ($customRelatedPosts as $relatedPost) {
+                    $post = $relatedPost;
+                    setup_postdata($post);
+
+                    echo '<div class="post-tile col-xs-12 col-sm-6 col-md-4">';
+                    get_template_part('template-parts/post', 'tile');
+                    echo '</div>';
+                }
+
+                $post = $oldPost;
+                wp_reset_postdata();
+            }
+
+            if ($numCustomDefinedPosts < $numRelatedPosts) {
+                $customRelatedPosts = get_posts(
+                    array(
+                        'category__in' => wp_get_post_categories($post->ID),
+                        'numberposts' => ($numRelatedPosts - $numCustomDefinedPosts),
+                        'post__not_in' => array($post->ID)
+                    )
+                );
+
+                if($customRelatedPosts) {
+                    $oldPost = $post;
+
+                    foreach($customRelatedPosts as $relatedPost) {
+                        $post = $relatedPost;
+                        setup_postdata($post);
+
+                        echo '<div class="post-tile col-xs-12 col-sm-6 col-md-4">';
+                        get_template_part('template-parts/post', 'tile');
+                        echo '</div>';
+                    }
+
+                    $post = $oldPost;
+                    wp_reset_postdata();
+                }
+
+                wp_reset_postdata();
+            }
+            ?>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
         var addthis_share = addthis_share || {}
         addthis_share = {
