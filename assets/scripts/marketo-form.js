@@ -51,7 +51,10 @@
     MktoForms2.whenReady(function (form){
         //map your results from REST call to the corresponding field name on the form
         GetFieldsAndValuesToPrefill(form);
-        form.onValidate(function(){
+        form.onValidate(function(isValid){
+            if (!isValid) {
+                return;  
+            }  
             var formtype = form.vals().formtype;
             var email = form.vals().Email;
             var requestUrl = '';
@@ -66,7 +69,7 @@
                 default: break;
             }
             if(email){
-                if(formtype !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
+                if(typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
                     form.submitable(false);
                     var emailElem = form.getFormElem().find("#Email");
                     form.showErrorMessage("Must be Business email.", emailElem);
