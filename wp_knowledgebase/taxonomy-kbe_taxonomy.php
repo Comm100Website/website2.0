@@ -88,11 +88,11 @@
                                                                     </a>
                                                                 </h2>
                                                                 <?php the_excerpt(); ?>
-                                                                <div class="kbe_read_more">
+                                                                <!-- <div class="kbe_read_more">
                                                                     <a href="<?php the_permalink(); ?>">
                                                                         Read more...
                                                                     </a>
-                                                                </div>
+                                                                </div> -->
                                                             </li>
                                                 <?php
                                                         endwhile;
