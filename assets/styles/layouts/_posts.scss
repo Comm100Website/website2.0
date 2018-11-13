@@ -6,6 +6,8 @@
     .post-tile { margin-bottom: 60px; }
 }
 
+.read-more { white-space: nowrap; }
+
 .c-content-blog-post-card-1.c-post-cta {
     background-color: #f4f8fc; height: 100%; border-radius: 20px; position: relative;
 
@@ -104,4 +106,10 @@
             &.image-inline { padding-top: 30px; }
         }
     }
+}
+
+.related-posts {
+    background: #f7f7f7; border-bottom: solid 10px #FFF; padding: 46px 0;
+
+    h3 { font-size: 28px; font-family: 'Ubuntu Medium', sans-serif; margin: 0 0 28px; }
 }

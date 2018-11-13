@@ -3,6 +3,7 @@ use Roots\Sage\Assets;
 ?>
 <head>
     <meta charset="utf-8">
+    <?php wp_head(); ?>
     <?php /* YOAST SEO can handle this now.
     if (is_author()) :?>
         <title><?php wp_title(''); $paged = get_query_var('paged'); $allpages = $wp_query->max_num_pages; if ($paged > 1) printf(' – Page %s of %s',$paged,$allpages);?></title>
@@ -14,8 +15,6 @@ use Roots\Sage\Assets;
 
     <link rel="icon" type="image/x-icon" href="<?= Assets\asset_path('images/favicon.ico'); ?>" />
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-
-    <?php wp_head(); ?>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

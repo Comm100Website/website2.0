@@ -4,7 +4,9 @@
 if (strpos($_SERVER['HTTP_REFERER'], 'comm100.com') !== false) {
     $ipaddress = '';
 
-    if ($_SERVER['HTTP_CLIENT_IP']) {
+    if (array_key_exists('ip', $_GET)) {
+        $ipaddress = $_GET['ip'];
+    } elseif($_SERVER['HTTP_CLIENT_IP']) {
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
     } elseif($_SERVER['HTTP_X_FORWARDED_FOR']) {
         $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
@@ -22,13 +24,10 @@ if (strpos($_SERVER['HTTP_REFERER'], 'comm100.com') !== false) {
         $ipaddress = 'UNKNOWN';
     }
 
-    echo $ipaddress;
-
     $data = array("key" => '93a94bee701e61a781c480ae1bedcbc9', "query" => $ipaddress, "page" => $_SERVER['HTTP_REFERER'], "page_title" => 'Page Title');
 
     // Open connection
     $ch = curl_init();
-echo 'https://api.demandbase.com/api/v2/ip.json?' . http_build_query($data);
     curl_setopt($ch, CURLOPT_URL, 'https://api.demandbase.com/api/v2/ip.json?' . http_build_query($data));
     curl_setopt($ch, CURLOPT_POST, false);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));

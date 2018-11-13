@@ -147,7 +147,7 @@ add_action('generate_rewrite_rules', __NAMESPACE__.'\\register_resource_rewrite_
 
 function exclude_resources($query) {
     if(!is_admin() && $query->is_main_query() && (is_post_type_archive('commresource') || is_tax('commresourcecat'))) {
-        $query->set('meta_query', [
+        $query->set('meta_query', [[
             [
                 'key' => 'exclude_from_archive',
                 'type' => 'BINARY',
@@ -159,7 +159,20 @@ function exclude_resources($query) {
                 'compare' => 'NOT EXISTS'
             ],
             'relation' => 'or'
-        ]);
+        ],[
+            [
+                'key' => 'featured_resource',
+                'type' => 'BINARY',
+                'value' => '1',
+                'compare' => '!='
+            ],
+            [
+                'key' => 'featured_resource',
+                'compare' => 'NOT EXISTS'
+            ],
+            'relation' => 'or'
+        ],
+        'relation' => 'and']);
     }
 }
 add_action('pre_get_posts', __NAMESPACE__.'\\exclude_resources');
@@ -172,6 +185,8 @@ function offset_resource_and_post( $query ) {
 
         if (is_post_type_archive('commresource') || is_tax('commresourcecat')):
             $offset = 3 - count(get_field('resources_ctas', 'options'));
+
+
         endif;
 
         if (is_home() || is_post_type_archive('post') || is_tax('category') || is_tax('tag')):
