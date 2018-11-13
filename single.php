@@ -77,6 +77,7 @@ use Roots\Sage\Analytics;
                                 <?php Analytics\setPostViews(get_the_ID()); ?>
                                 <!-- Related articles -->
                                 <?php
+                                    /*
                                     $tags = wp_get_post_tags(get_the_ID());
                                     if ($tags) {
                                         $first_tag = $tags[0]->term_id;
@@ -112,6 +113,7 @@ use Roots\Sage\Analytics;
 
                                     <?php }
                                    }
+                                   */
                                 ?>
                                 <div class="c-center c-margin-t-80">
                                     <a href="/blog/" class="btn btn-lg c-btn-border-2x c-btn-square c-theme-btn c-font-sbold" title="Back to All">
