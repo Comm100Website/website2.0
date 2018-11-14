@@ -1992,6 +1992,9 @@ Template Post Type: commresource, page
                     echo '<div class="col-sm-8 landingPage-content">';
                         // loop through the rows of data
                         echo '<h3>' . get_sub_field('title') . '</h3>';
+                        if( get_sub_field('summary') ):
+                            echo '<div class="landingPage-summary">' . get_sub_field('summary') . '</div>';
+                        endif;
                         echo get_sub_field('paragraph');
                    
 
