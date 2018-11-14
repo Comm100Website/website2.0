@@ -8482,13 +8482,14 @@ h5.feature-column__title {
   margin-bottom: 0;
 }
 .threeTab__Detail--contentList li:before {
-  content: "+";
-  // width: 4px;
-  // height: 4px;
-  // border-radius: 100%;
-  // background: #5c6873;
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background: #5c6873;
   position: absolute;
   left: 40px;
+  margin-top: 12px;
   color: #3dc4ff;
   font-family: Ubuntu Bold,sans-serif;
   // margin-top: 12px;
@@ -9422,7 +9423,7 @@ h2.video-title {
   ul {
     li {
       a {
-        display: block;
+        display: inline-block;
       }
 
       &.option-title {

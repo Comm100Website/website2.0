@@ -370,11 +370,14 @@ use Roots\Sage\Assets;
 
                 $logo_repeater = get_sub_field('logo_repeater');
                 // check if the nested repeater field has rows of data
+                $desktop_items = get_sub_field('desktop_items');
+                $tablet_items = get_sub_field('tablet_items');
+                $mobile_items = get_sub_field('mobile_items');
                 if( have_rows('logo_repeater') ):
 
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="6" data-desktop-items="6" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1" data-auto-play="5000">';
+                    echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="' . $desktop_items. '" data-desktop-items="' . $desktop_items . '" data-desktop-small-items="' . $tablet_items . '" data-tablet-items="' . $tablet_items . '" data-mobile-small-items="' . $mobile_items . '" data-auto-play="5000">';
                     echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';
                         // loop through the rows of data
                     while ( have_rows('logo_repeater') ) : the_row();
