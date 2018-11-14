@@ -152,14 +152,16 @@ function exclude_resources($query) {
         $args = array(
             'post_type' => 'commresource',
             'meta_key' => 'exclude_from_archive',
-            'meta_value' => '1'
+            'meta_value' => '1',
+            'posts_per_page' => -1
          );
          $excludedPosts = get_posts( $args );
 
         $args = array(
             'post_type' => 'commresource',
             'meta_key' => 'featured_resource',
-            'meta_value' => '1'
+            'meta_value' => '1',
+            'posts_per_page' => -1
          );
         $featuredResourcePosts = get_posts( $args );
 
