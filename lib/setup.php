@@ -150,8 +150,7 @@ function assets() {
 
     //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
     //screen and let the JS pick where the user should be redirected to.
-    if (get_field('activate_demandbase')) {
-        //!is_user_logged_in() &&
+    if (!is_user_logged_in() && get_field('activate_demandbase')) {
         $dbData = array(
             'theme_url' => get_template_directory_uri()
         );
