@@ -147,32 +147,30 @@ add_action('generate_rewrite_rules', __NAMESPACE__.'\\register_resource_rewrite_
 
 function exclude_resources($query) {
     if(!is_admin() && $query->is_main_query() && (is_post_type_archive('commresource') || is_tax('commresourcecat'))) {
-        $query->set('meta_query', [[
-            [
-                'key' => 'exclude_from_archive',
-                'type' => 'BINARY',
-                'value' => '1',
-                'compare' => '!='
-            ],
-            [
-                'key' => 'exclude_from_archive',
-                'compare' => 'NOT EXISTS'
-            ],
-            'relation' => 'or'
-        ],[
-            [
-                'key' => 'featured_resource',
-                'type' => 'BINARY',
-                'value' => '1',
-                'compare' => '!='
-            ],
-            [
-                'key' => 'featured_resource',
-                'compare' => 'NOT EXISTS'
-            ],
-            'relation' => 'or'
-        ],
-        'relation' => 'and']);
+        //We previously tried to set these up as meta_query parameters, but the DB is too big to handle those sorts of joines,
+        //so we'll do two smaller queries to grab the excluded posts and then just add them to the post__not_in parameter
+        $args = array(
+            'post_type' => 'commresource',
+            'meta_key' => 'exclude_from_archive',
+            'meta_value' => '1'
+         );
+         $excludedPosts = get_posts( $args );
+
+        $args = array(
+            'post_type' => 'commresource',
+            'meta_key' => 'featured_resource',
+            'meta_value' => '1'
+         );
+        $featuredResourcePosts = get_posts( $args );
+
+        if ($featuredResourcePosts) {
+            $excludedPosts = array_merge($excludedPosts, $featuredResourcePosts);
+        }
+
+        if ($excludedPosts) {
+            $excludedPostIDs = wp_list_pluck($excludedPosts, 'ID');
+            $query->set('post__not_in', $excludedPostIDs);
+        }
     }
 }
 add_action('pre_get_posts', __NAMESPACE__.'\\exclude_resources');
