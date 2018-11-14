@@ -6452,10 +6452,6 @@ button.btn-video-close span {
   margin-top: 10px;
 }
 .c-article__sharebutton {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  border-top: 1px solid #aaa;
-  border-bottom: 1px solid #aaa;
   padding-top: 50px;
   padding-bottom: 50px;
 }
@@ -9263,7 +9259,7 @@ h2.video-title {
       margin-top: 460px;
     }
   }
-  
+
   .h1-tag {
     font: {
       family: Ubuntu Bold,sans-serif;
@@ -9314,7 +9310,7 @@ h2.video-title {
   .featurelist-wrap {
     position: relative;
     padding: 100px 20px 16px;
-    
+
     &::before {
       border-radius: 12px;
       background: #fff;
@@ -9398,7 +9394,7 @@ h2.video-title {
 
   &--close {
     color: #5e6d79;
-    
+
     &:before {
       transform: rotate(-90deg);
     }
