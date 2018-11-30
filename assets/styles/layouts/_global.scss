@@ -5551,11 +5551,13 @@
   font-family: "Ubuntu Regular", sans-serif;
   color: #606c78;
 }
-.c-navbar--secondary li.current_page_item:not(.menu-item--home) a {
+.c-navbar--secondary li.current_page_item:not(.menu-item--home) a,
+.c-navbar--secondary li.current-page-ancestor:not(.menu-item--home) a, {
   font-family: "Ubuntu Bold", sans-serif;
   position: relative;
 }
-.c-navbar--secondary li.current_page_item:not(.menu-item--home) a:before {
+.c-navbar--secondary li.current_page_item:not(.menu-item--home) a:before,
+.c-navbar--secondary li.current-page-ancestor:not(.menu-item--home) a:before {
   content: "";
   height: 3px;
   background: #339ed8;
@@ -7652,6 +7654,9 @@ h5.feature-column__title {
 .customerProfile-info__value {
   font-family: "Ubuntu Bold", sans-serif;
 }
+.customerProfile-info:nth-child(2n+1) .customerProfile-info__value {
+  width: 95%;
+}
 .customerstory-header h5 {
   font-size: 24px;
 }
@@ -8001,12 +8006,12 @@ h5.feature-column__title {
   padding: 0 4.5px 60px;
   margin-bottom: 20px;
 }
-.resourceCard-item:nth-child(3n + 1) {
-  padding-left: 0;
-}
-.resourceCard-item:nth-child(3n) {
-  padding-right: 0;
-}
+// .resourceCard-item:nth-child(3n + 1) {
+//   padding-left: 0;
+// }
+// .resourceCard-item:nth-child(3n) {
+//   padding-right: 0;
+// }
 .resourceCard-item img {
   border-radius: 20px;
   width: 100%;

@@ -1057,6 +1057,56 @@ Template Name:Solution Industries Landing
                 echo '</div>';
                
             endif;   
+
+            // check current row layout
+            if( get_row_layout() == 'resource_card_group' ):
+                $title = get_sub_field('title');
+                // check if the nested repeater field has rows of data
+                if( have_rows('resource_repeater') ):
+
+                    echo '<div class="c-content-box c-size-md c-content-box--grey">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12">';
+                        // loop through the rows of data
+                    if ($title):
+                        echo '<h3 class="top-resources">' . $title . '</h3>';
+                    endif;
+                    echo '<div class="resourceCard-group">';
+                    while ( have_rows('resource_repeater') ) : the_row();
+
+                        $title = get_sub_field('title');
+                        $type = get_sub_field('type');
+                        $image = get_sub_field('image');
+                        $link = get_sub_field('link');
+                        $linkcontent = '';
+
+                        if ($link):
+                            $linkcontent = '<div class="resourceCard-item-link">' .
+                                    '<a class="c-redirectLink" href="' . $link['url'] . '" target="' . $link['target'] . '">' .
+                                        $link['title'] .
+                                    '</a>' .
+                                '</div>';
+                        endif;
+
+                        echo    '<div class="resourceCard-item">' .
+                                    '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" />' .
+                                    '<div class="resourceCard-item-tag">' . $type . '</div>' .
+                                    '<h5 class="resourceCard-item-title">' . $title . '</h3>' .
+                                    $linkcontent .
+                                '</div>';
+                    endwhile;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+
+                endif;
+
+
+            endif;
         endwhile;
 
         else :
