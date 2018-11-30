@@ -45,6 +45,13 @@ function store_tracking_vars() {
 }
 add_action('init', __NAMESPACE__ . '\\store_tracking_vars');
 
+function setCacheControl() {
+    if ( !is_user_logged_in() ) {
+        header( 'Cache-Control: public, max-age=1800' );
+    }
+    
+}
+add_action( 'send_headers', __NAMESPACE__ . '\\setCacheControl' );
 
 //Count Post Views
 function getPostViews($postID){
