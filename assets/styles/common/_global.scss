@@ -68,6 +68,7 @@ textarea {
 .text-center {
   text-align: center;
 }
+.text-right { text-align: right; }
 address,
 dl,
 hr,
@@ -119,7 +120,10 @@ strong {
   font-weight: 700;
 }
 dfn {
-  font-family: "Ubuntu Regular Italic", sans-serif !important;
+  color: #5e6d79;
+  font-size: 22px;
+  line-height: 1.54;
+  font-family: "Ubuntu Light Italic", sans-serif !important;
   font-style: italic;
 }
 sub,
@@ -523,3 +527,4 @@ body {
 }
 
 .screen-reader-text { display: none; }
+.hidden { display: none!important; }

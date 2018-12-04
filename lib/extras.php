@@ -7,6 +7,7 @@ use Roots\Sage\Setup;
  * Add <body> classes
  */
 function body_class($classes) {
+    global $post;
     $classes[0] = 'page-'.$classes[0];
 
     for ($i = 0; $i < count($classes); $i++) {
@@ -20,6 +21,13 @@ function body_class($classes) {
         if (!in_array(basename(get_permalink()), $classes)) {
             $classes[] = ' page-'.basename(get_permalink());
         }
+    }
+
+    if ($post && get_field('activate_demandbase', $post->ID) && get_field('demandbase_page_type', $post->ID)) {
+        $classes[] = 'db-audience-'.sanitize_title(get_field('demandbase_audience', $post->ID)->post_title);
+    } elseif (isset($_COOKIE['audience']) && isset($_COOKIE['country'])) {
+        $classes[] = 'db-audience-'.sanitize_title($_COOKIE['audience']);
+        $classes[] = 'db-audience-'.sanitize_title($_COOKIE['country']);
     }
 
   return $classes;
@@ -37,10 +45,14 @@ function custom_excerpt_length( $length ) {
 }
 add_filter('excerpt_length', __NAMESPACE__.'\\custom_excerpt_length', 999);
 
-function get_post_taxonomy($taxonomy) {
-    global $post;
+function get_post_taxonomy($taxonomy, $postID) {
 
-    $post_terms = wp_get_post_terms($post->ID, $taxonomy);
+    if (!$postID) {
+        global $post;
+        $postID = $post->ID;
+    }
+
+    $post_terms = wp_get_post_terms($postID, $taxonomy);
     $term = '';
 
 	if (count($post_terms) > 0):
