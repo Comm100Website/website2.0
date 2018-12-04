@@ -19,9 +19,9 @@ function setup() {
     remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
 
     // Remove p tags from category description
-    remove_filter('term_description','wpautop');
+    // remove_filter('term_description','wpautop');
     // Remove p and br tags from page content
-    remove_filter('the_content', 'wpautop');
+    // remove_filter('the_content', 'wpautop');
 
     // Make theme available for translation
     // Community translations can be found at https://github.com/roots/sage-translations
@@ -115,7 +115,7 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540803011000');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540sd11000');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -151,6 +151,7 @@ function assets() {
     //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
     //screen and let the JS pick where the user should be redirected to.
     if (!is_user_logged_in() && get_field('activate_demandbase')) {
+    // if (get_field('activate_demandbase')) {
         $dbData = array(
             'theme_url' => get_template_directory_uri()
         );
@@ -179,7 +180,15 @@ function assets() {
                 $dbAudiencePages->the_post();
 
                 if (get_field('demandbase_page_type') == 'audience') {
-                    $dbData['db_audiences'][get_field('demandbase_audience')->post_title] = get_permalink();
+                    $dbAudiencePost = get_field('demandbase_audience');
+
+                    if (get_field('audience_type', $dbAudiencePost->ID) == 'segment') {
+                        $dbData['db_audiences'][get_field('db_audience_segment', $dbAudiencePost->ID)] = get_permalink();
+                    } else {
+                        foreach (get_field('countries', $dbAudiencePost->ID) as $country) {
+                            $dbData['db_audiences'][$country['country']] = get_permalink();
+                        }
+                    }
                 }
             }
             wp_reset_postdata();

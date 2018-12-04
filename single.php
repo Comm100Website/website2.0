@@ -16,32 +16,33 @@ use Roots\Sage\Analytics;
                         <div class="c-content-blog-post-1-view">
                             <div class="c-content-blog-post-1">
                                 <div class="c-title c-margin-t-0">
-                                    <h1 class="c-margin-t-0">
+                                    <div class="post-feature-image c-margin-b-20"><?php the_post_thumbnail('full'); ?></div>
+                                    <h1 class="c-margin-t-0 c-margin-b-0">
                                         <?php the_title(); ?>
                                     </h1>
                                 </div>
-                                <div class="c-panel c-margin-b-30">
-                                            <span>
-                                                <?php the_time('F jS, Y'); ?> |
-                                                <?php
-                                                    //author
-                                                    $recent_author_str='';
-                                                    if ( function_exists( 'coauthors_posts_links' ) ) {
-                                                        $recent_authors = get_coauthors();
-                                                        foreach($recent_authors as $recent_author){
-                                                            $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
-                                                        }
-                                                        echo substr($recent_author_str,0,strlen($recent_author_str)-2);
-                                                    } else {
-                                                        echo '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.
-                                                            the_author().
-                                                        '</a>';
-                                                    }
-                                                ?> |
-                                                <!-- <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> |  -->
-                                                <?php the_category(', ');?> |
-                                                <?php echo do_shortcode('[rt_reading_time label="Estimated Reading Time:" postfix="minutes"]'); ?>
-                                            </span>
+                                <div class="c-margin-b-30 post-meta">
+                                    <span>
+                                        <?php the_time('F jS, Y'); ?> |
+                                        <?php
+                                            //author
+                                            $recent_author_str='';
+                                            if ( function_exists( 'coauthors_posts_links' ) ) {
+                                                $recent_authors = get_coauthors();
+                                                foreach($recent_authors as $recent_author){
+                                                    $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
+                                                }
+                                                echo substr($recent_author_str,0,strlen($recent_author_str)-2);
+                                            } else {
+                                                echo '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.
+                                                    the_author().
+                                                '</a>';
+                                            }
+                                        ?> |
+                                        <!-- <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author(); ?></a> |  -->
+                                        <?php the_category(', ');?> |
+                                        <?php echo do_shortcode('[rt_reading_time label="Estimated Reading Time:" postfix="minutes"]'); ?>
+                                    </span>
                                 </div>
                                 <div class="c-desc c-article">
                                     <?php the_content(); ?>
@@ -54,13 +55,15 @@ use Roots\Sage\Analytics;
                                     $userdata = get_userdata( $coauthor->ID );
                                 ?>
                                     <div class="authorsure-author-box">
-                                        <?php echo get_avatar( $userdata->user_email, 100 ); ?>
-                                        <h4>
-                                            About <a href="<?php echo $archive_link; ?>">
-                                                <?php echo $userdata->display_name; ?>
-                                            </a>
-                                        </h4>
-                                        <p ><?php echo $userdata->user_description; ?></p>
+                                        <div class="author-thumb"><?php echo get_avatar( $userdata->user_email, 100 ); ?></div>
+                                        <div class="author-details">
+                                            <h4>
+                                                About <a href="<?php echo $archive_link; ?>">
+                                                    <?php echo $userdata->display_name; ?>
+                                                </a>
+                                            </h4>
+                                            <p><?php echo $userdata->user_description; ?></p>
+                                        </div>
                                     </div>
                                 <?php
                                 endforeach;
@@ -115,7 +118,7 @@ use Roots\Sage\Analytics;
                                    }
                                    */
                                 ?>
-                                <div class="c-center c-margin-t-80">
+                                <div class="c-center c-margin-t-20">
                                     <a href="/blog/" class="btn btn-lg c-btn-border-2x c-btn-square c-theme-btn c-font-sbold" title="Back to All">
                                         Back to All</a>
                                 </div>
