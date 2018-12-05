@@ -29,7 +29,7 @@ function redirect_to_db_audience(user_audience, user_country) {
     // console.log('User Audience: ', user_audience);
 
     //If the user has an audience and we have a list of audience pages for this page that was set in the theme setup, we'll then test and see if the user is on the right page.
-    if (user_audience && dbGlobal.db_audiences) {
+    if ((user_audience || user_country)  && dbGlobal.db_audiences) {
         for (var db_audience in dbGlobal.db_audiences){
             // console.log(user_audience, db_audience);
 
