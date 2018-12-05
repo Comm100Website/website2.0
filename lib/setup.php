@@ -75,6 +75,14 @@ function setup() {
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
+function remove_p_on_pages() {
+    if ( is_page() ) {
+        remove_filter( 'the_content', 'wpautop' );
+        remove_filter( 'the_excerpt', 'wpautop' );
+    }
+}
+add_action( 'wp_head', __NAMESPACE__ . '\\remove_p_on_pages' );
+
 function remove_recent_comments_style() {
     global $wp_widget_factory;
     remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style'  ) );
