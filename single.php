@@ -122,7 +122,10 @@ use Roots\Sage\Analytics;
                                     <a href="/blog/" class="btn btn-lg c-btn-border-2x c-btn-square c-theme-btn c-font-sbold" title="Back to All">
                                         Back to All</a>
                                 </div>
-                                <?= get_template_part('template-parts/comments'); ?>
+                                <?php
+                                // Turned off due to low quality comments.
+                                // get_template_part('template-parts/comments');
+                                ?>
                             </div>
 
 
