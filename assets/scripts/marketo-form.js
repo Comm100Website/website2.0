@@ -59,11 +59,12 @@
             var email = form.vals().Email;
             var requestUrl = '';
             switch (formtype) {
+                case undefined:
                 case 'partner':
                 case 'contact':
                     requestUrl = window.location.href;
                     break;
-                case 'requstdemo':
+                case 'requestdemo':
                     requestUrl = document.referrer;
                     break;
                 default: break;

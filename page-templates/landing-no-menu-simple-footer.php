@@ -2231,6 +2231,62 @@ use Roots\Sage\Assets;
                     echo '</div>';
                 endif;
 
+
+                // check current row layout
+                if( get_row_layout() == 'hero_banner_demo_form' ):
+
+                    $h1_tag = get_sub_field('h1_tag');
+                    $h1_title = get_sub_field('h1_title');
+                    $description = get_sub_field('description');
+                    $header_background_image = get_sub_field('background_image');
+                    $header_form_code = get_sub_field('form_code');
+                    $form_note = get_sub_field('form_note');
+
+                    $style_bg = '';
+                    if ($header_background_image):
+                        $style_bg = 'style="background-image: url(' . $header_background_image['url'] . ')"';
+                    endif;
+
+
+                    echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    
+                    echo '<div class="col-sm-6">';
+                        echo '<div class="banner--freetrial__description">';
+                            if ($h1_tag):
+                                echo '<div class="h1-tag">' .
+                                        $h1_tag .
+                                    '</div>';
+                            endif;
+                            if ($h1_title):
+                                echo '<h1>' .
+                                        $h1_title .
+                                    '</h1>';
+                            endif;
+                            if ($description):
+                                echo $description;
+                            endif;
+                        echo '</div>';
+                    echo '</div>';
+
+                    if ($header_form_code):
+                        echo 
+                            '<div class="col-sm-5 col-sm-push-1">' .
+                                $header_form_code .
+                                '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                '<div class="form-note">' . $form_note . '</div>'.
+                            '</div>';
+                            
+
+                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+                
+
                 // check current row layout
                 if( get_row_layout() == 'custom_story' ):
                     $background_color = get_sub_field('background_color');
