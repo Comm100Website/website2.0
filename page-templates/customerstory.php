@@ -409,6 +409,39 @@ Template Name:customerstory
 					echo '</div>';
 					echo '</div>';
 				endif;  
+
+				// check current row layout
+				if( get_row_layout() == 'about_bio' ):
+
+					$avatar = get_sub_field('avatar');
+					$bio = get_sub_field('bio');
+					$signature = get_sub_field('signature');
+	
+					echo '<div class="c-content-box c-size-md">';
+					echo '<div class="container">';
+					echo '<div class="row">';
+					echo '<div class="col-sm-12">';
+					echo '<div class="bio">';
+	
+	
+					if ($avatar):
+						echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="380" height="380">';
+					endif;
+					if ($bio):
+						echo $bio;
+					endif;
+					if ($signature):
+						echo '<div class="bio-signature">' .
+								$signature .
+							'</div>';
+					endif;
+	
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+				endif;
 			endwhile;
 		
         else :
