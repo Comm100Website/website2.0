@@ -7583,7 +7583,7 @@ h3.highlight {
   flex: 1;
 }
 .three-column__item img {
-  width: 80px;
+  // width: 80px;
   height: 80px;
   margin-bottom: 30px;
 }
@@ -8096,10 +8096,15 @@ h5.feature-column__title {
   margin: 50px auto;
 }
 .bio {
-  margin-left: 180px;
+  position: relative;
+  margin-left: 190px;
   padding: 60px 50px 60px 250px;
   border-radius: 40px;
   color: rgba(94, 109, 121, 0.7);
+}
+.bio--small {
+  margin-left: 90px;
+  padding-left: 150px;
 }
 .bio p {
   line-height: 30px;
@@ -8110,13 +8115,21 @@ h5.feature-column__title {
   width: 380px;
   box-shadow: 0 3px 4.7px 0.3px rgba(0, 86, 124, 0.27);
 }
+.bio--small .avatar {
+  width: 180px;
+  height: 180px;
+}
 .bio .avatar {
   box-shadow: none;
 }
 @media screen and (min-width: 768px) {
   .bio .avatar {
     position: absolute;
-    left: 0;
+    left: -190px;
+  }
+  .bio--small .avatar {
+    left: -90px;
+    top: 150px;
   }
 }
 .bio-signature {
@@ -9314,7 +9327,7 @@ h2.video-title {
     size: cover;
   }
 
-  &__description {
+  &__description:not(.banner--freetrial__description--top) {
     @media screen and (min-width: 768px) {
       margin-top: 460px;
     }

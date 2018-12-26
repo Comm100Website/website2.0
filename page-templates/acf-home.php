@@ -1589,7 +1589,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="three-column__item">' .
-                                        Assets\get_acf_image($icon, '', 80, 80) .
+                                        Assets\get_acf_image($icon, '', '', 80) .
                                         '<h5 class="three-column__title">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .

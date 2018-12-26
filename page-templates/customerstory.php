@@ -221,9 +221,9 @@ Template Name:customerstory
 							$signature = get_sub_field('signature');
 							
 							if ($avatar):
-								echo '<div class="bio">';
+								echo '<div class="bio bio--small">';
 								if ($avatar):
-									echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="380" height="380">';
+									echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="180" height="180">';
 								endif;
 								if ($bio):
 									echo $bio;

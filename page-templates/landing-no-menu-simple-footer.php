@@ -1014,6 +1014,7 @@ use Roots\Sage\Assets;
                         while ( have_rows('image_text_column_repeater') ) : the_row();
 
                             $headline = get_sub_field('title');
+                            $title_color = get_sub_field('title_color');
                             $body = get_sub_field('description');
                             $image = get_sub_field('image');
                             $image_position = get_sub_field('image_position');
@@ -1066,7 +1067,7 @@ use Roots\Sage\Assets;
                                             '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
                                         '</div>' .
                                         '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                            '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
+                                            '<h3 class="highlight highlight--' . $title_color . '">' . $headline . '</h3>' .
                                             $body .
                                             $linkcontent .
                                         '</div>' .
@@ -1366,7 +1367,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="three-column__item">' .
-                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
+                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="" height="80" />' .
                                         '<h5 class="three-column__title">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
@@ -2184,6 +2185,7 @@ use Roots\Sage\Assets;
                     $h1_title = get_sub_field('h1_title');
                     $description = get_sub_field('description');
                     $header_background_image = get_sub_field('background_image');
+                    $background_image_align = get_sub_field('background_image_align');
                     $header_form_code = get_sub_field('form_code');
                     $form_note = get_sub_field('form_note');
 
@@ -2193,12 +2195,17 @@ use Roots\Sage\Assets;
                     endif;
 
 
+                    $banner_description_style = '';
+                    if ($background_image_align == 'bottom'):
+                        $banner_description_style = 'banner--freetrial__description--top';
+                    endif;
+
                     echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     
                     echo '<div class="col-sm-6">';
-                        echo '<div class="banner--freetrial__description">';
+                        echo '<div class="banner--freetrial__description ' . $banner_description_style . '">';
                             if ($h1_tag):
                                 echo '<div class="h1-tag">' .
                                         $h1_tag .
@@ -2239,6 +2246,7 @@ use Roots\Sage\Assets;
                     $h1_title = get_sub_field('h1_title');
                     $description = get_sub_field('description');
                     $header_background_image = get_sub_field('background_image');
+                    $background_image_align = get_sub_field('background_image_align');
                     $header_form_code = get_sub_field('form_code');
                     $form_note = get_sub_field('form_note');
 
@@ -2248,12 +2256,17 @@ use Roots\Sage\Assets;
                     endif;
 
 
+                    $banner_description_style = '';
+                    if ($background_image_align == 'bottom'):
+                        $banner_description_style = 'banner--freetrial__description--top';
+                    endif;
+
                     echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     
                     echo '<div class="col-sm-6">';
-                        echo '<div class="banner--freetrial__description">';
+                        echo '<div class="banner--freetrial__description ' . $banner_description_style . '">';
                             if ($h1_tag):
                                 echo '<div class="h1-tag">' .
                                         $h1_tag .

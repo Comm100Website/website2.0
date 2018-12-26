@@ -600,6 +600,7 @@ Template Name:Solution Use Case Landing
                     while ( have_rows('image_text_column_repeater') ) : the_row();
 
                         $headline = get_sub_field('title');
+                        $title_color = get_sub_field('title_color');
                         $body = get_sub_field('description');
                         $image = get_sub_field('image');
                         $image_position = get_sub_field('image_position');
@@ -652,7 +653,7 @@ Template Name:Solution Use Case Landing
                                         '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
                                     '</div>' .
                                     '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                        '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
+                                        '<h3 class="highlight highlight--' . $title_color . '">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
                                     '</div>' .
