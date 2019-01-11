@@ -2023,11 +2023,12 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'leads_form' ):
+                    $background_color = get_sub_field('background_color');
                     $title = get_sub_field('title');
                     $form = get_sub_field('form');
                     $form_note = get_sub_field('form_note');
 
-                    echo '<div class="c-content-box c-size-md">' .
+                    echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">' .
                             '<div class="container">' .
                                 '<div class="row">' .
                                     '<div class="col-sm-6 col-sm-push-3">' .
@@ -2322,6 +2323,242 @@ use Roots\Sage\Assets;
                             '</div>' .
                         '</div>';
                 endif;
+
+                // check current row layout
+                if( get_row_layout() == 'landing_context' ):
+                    if( have_rows('paragraph_repeater') ):
+                        echo '<div class="c-content-box c-size-md">' .
+                                    '<div class="container">' .
+                                        '<div class="row">' .
+                                            '<div class="col-sm-12">' .
+                                                '<div class="landingContent">';
+                                                    while ( have_rows('paragraph_repeater') ) : the_row();
+                                                        echo get_sub_field('paragraph');
+                                                    endwhile;
+                        echo                    '</div>' .
+                                            '</div>' .
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>';
+                    endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'icon_content_list' ):
+                    if( have_rows('icon_content_list_repeater') ):
+                        echo '<div class="c-content-box">' .
+                                    '<div class="container">' .
+                                        '<div class="row">' .
+                                            '<div class="col-sm-12">' .
+                                                '<div class="icon-content-list">';
+                        while ( have_rows('icon_content_list_repeater') ) : the_row();
+                            $icon = get_sub_field('icon');
+                            $title = get_sub_field('title');
+                            $content = get_sub_field('content');
+                            
+                            echo '<div class="icon-content-list__element clearfix">' .
+                                    '<div class="icon-content-list__icon">' .
+                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
+                                    '</div>' .
+                                    '<div class="icon-content-list__content">' .
+                                        '<div class="icon-content-list__title">' .
+                                            '<strong>' . $title . '</strong>' .
+                                        '</div>' .
+                                        '<div class="icon-content-list__desc">' .
+                                            $content .
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>';
+                        endwhile;
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'sticky_content' ):
+                    echo '<div class="c-content-box">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-12">';
+                                        
+                                    if( have_rows('sticky_nav') ):
+                                        echo '<nav class="nav--sticky hidden-xs">' .
+                                                '<ul>';
+                                        while ( have_rows('sticky_nav') ) : the_row();
+                                            $if_divider = get_sub_field('if_divider');
+                                            $sticky_nav_element_text = get_sub_field('sticky_nav_element_text');
+                                            $anchor = get_sub_field('anchor');
+
+                                            if ($if_divider):
+                                                while ( have_rows('sticky_nav_element_divider') ) : the_row();
+                                                    echo '<li><hr style="border-top-color: ' . get_sub_field('sticky_nav_element_divider_color') . '; border-top-width: 1px;"></li>';
+                                                endwhile;
+                                                
+                                            else:
+                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>'; 
+                                            endif;
+                                            
+                                        endwhile;
+                                        echo '</ul>';
+                                        echo '</nav>';
+                                    endif;
+                                   
+                                    if ( have_rows('sticky_details_list') ):
+                                        echo '<section class="content--sticky">';
+                                        while ( have_rows('sticky_details_list') ) : the_row();
+                                            while ( have_rows('sticky_details') ) : the_row();
+                                            $id = get_sub_field('id');
+                                            $logo = get_sub_field('logo');
+                                            $url = get_sub_field('url');
+                                            $headquarters = get_sub_field('headquarters');
+                                            $founded = get_sub_field('founded');
+                                            $integration = get_sub_field('integration');
+                                            $best_for = get_sub_field('best_for');
+                                            
+                                            echo '<article id="' . $id . '">';
+                                            echo '<div class="companyInfo">' .
+                                                    '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '" />' .
+                                                    '<div class="companyInfo__url">' .
+                                                        $url .
+                                                    '</div>' .
+                                                    '<div class="companyInfo__details">' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__location">' .
+                                                            'Headquarters<br>' .
+                                                            '<strong>' . $headquarters . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__founded">' .
+                                                            'Founded<br>' .
+                                                            '<strong>' . $founded . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="clear"></div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__integration">' .
+                                                            '<strong>' . $integration . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__wards">' .
+                                                            'Best for<br>' .
+                                                            '<strong>' . $best_for . '</strong>' .
+                                                        '</div>' .
+                                                    '</div>' .
+                                                '</div>';
+
+                                                if (have_rows('collapse_content')):
+                                                    echo '<div class="collapse-container">';
+                                                        while (have_rows('collapse_content')) : the_row();
+                                                            $title = get_sub_field('title');
+                                                            echo '<div class="collapse">' .
+                                                                    '<div class="collapse__title collapse__title--' . preg_replace('# #', '', $title) . '">' .
+                                                                        $title .
+                                                                    '</div>';
+
+                                                                    if (have_rows('list')):
+                                                                        echo '<div class="collapse__content">' .
+                                                                                '<ul>';
+                                                                                while (have_rows('list')) : the_row();
+                                                                                    echo '<li>' . get_sub_field('list_element') . '</li>';
+                                                                                endwhile;
+                                                                        echo '</ul>' .
+                                                                            '</div>';
+                                                                    endif;
+                                                                    
+                                                            echo  '</div>';
+                                                        endwhile;
+                                                    echo '</div>';
+                                                endif;
+
+                                                if (have_rows('icon_content_list')):
+                                                    echo '<div class="row icon-content-list-1">';
+                                                        while (have_rows('icon_content_list')) : the_row();
+                                                            $icon = get_sub_field('icon');
+                                                            $title = get_sub_field('title');
+                                                            echo '<div class="col-sm-6">' .
+                                                                    '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" />' .
+                                                                    '<div class="icon-content-list-1__title">' .
+                                                                        $title .
+                                                                    '</div>';
+
+                                                                    if (have_rows('content_list')):
+                                                                        echo '<div class="icon-content-list-1__desc">' .
+                                                                                '<ul>';
+                                                                        while (have_rows('content_list')) : the_row();
+                                                                            echo '<li>' . get_sub_field('content_list_element') . '</li>';
+                                                                        endwhile;
+                                                                        echo  '</ul>' .
+                                                                            '</div>';
+                                                                    endif;
+                                                                
+                                                                    
+                                                                echo '</div>';
+                                                        endwhile;
+                                                    echo '</div>';
+                                                endif;
+                                            echo '</article>';
+
+                                            endwhile;
+                                        endwhile;
+                                        echo '</section>';
+                                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'table' ):
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-12">';
+                            $anchor = get_sub_field('anchor');
+                            $title = get_sub_field('title');
+                            echo '<div class="docs-main" id="' . $anchor . '">';
+                            echo '<h3 class="c-center">' . $title . '</h3>';
+
+                            $table = get_sub_field( 'table_content' );
+                            if ( $table ):
+                                echo '<table class="tablesaw" data-tablesaw-mode="swipe" data-tablesaw-minimap>';
+                                    if ( $table['header'] ) {
+                                        echo '<thead>';
+                                            echo '<tr>';
+                                                $i = 0;
+                                                foreach ( $table['header'] as $th ) {
+                                                    $i++;
+                                                    echo '<th scope="col"' . ($i == 1 ? 'data-tablesaw-priority="persist"' : '') . '>';
+                                                        echo $th['c'];
+                                                    echo '</th>';
+                                                }
+                                            echo '</tr>';
+                                        echo '</thead>';
+                                    }
+                                    echo '<tbody>';
+                                        $i = 0;
+                                        foreach ( $table['body'] as $tr ) {
+                                            echo '<tr>';
+                                                foreach ( $tr as $td ) {
+                                                    $i++;
+                                                    echo '<td class="' . ($i == 1 ? 'title' : '') . '">';
+                                                        echo $td['c'];
+                                                    echo '</td>';
+                                                }
+                                            echo '</tr>';
+                                        }
+                                    echo '</tbody>';
+                                echo '</table>';
+
+                                echo '<script src="https://www.comm100.com/wp-content/themes/comm100/dist/scripts/tablesaw.js" type="text/javascript"></script>';
+                            endif;
+                            echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
             endwhile;
         else :
 

@@ -370,7 +370,7 @@ var LayoutHeader = function() {
 	var f = parseInt(jQuery(".c-layout-header").attr("data-minimize-offset") > 0 ? parseInt(jQuery(".c-layout-header").attr("data-minimize-offset")) : 0);
 	var prevScrollTop = 0;
 	var currentScrollTop = 0;
-	var mainBarOffsetTop = jQuery('.c-mainbar').offset().top;
+	var mainBarOffsetTop = jQuery('.c-mainbar').length > 0 ? jQuery('.c-mainbar').offset().top : 0;
 	var d = function() {
 		currentScrollTop = jQuery(window).scrollTop();
 
@@ -926,6 +926,40 @@ var tourscroll = function() {
 	};
 }();
 
+function offset(el) {
+    var rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
+
+
+var stickyScroll = function() {
+	return {
+		init: function() {
+			var mainNavLinks = document.querySelectorAll(".nav--sticky ul li a");
+			// var mainSections = document.querySelectorAll(".content--sticky > article");
+
+			window.addEventListener("scroll", function(event) {
+				var fromTop = window.scrollY;
+				
+				mainNavLinks.forEach(function(link) {
+					var section = document.querySelector(link.hash);
+				
+					if (
+						fromTop >= parseInt(offset(section).top)  &&
+						fromTop < parseInt(offset(section).top + section.offsetHeight)
+					) {
+						link.classList.add("active");
+					} else {
+						link.classList.remove("active");
+					}
+				});
+			});
+		}
+	};
+}();
+
 jQuery(document).ready(function() {
 	revealAnimate.init();
 	new WOW({
@@ -1008,6 +1042,7 @@ jQuery(document).ready(function() {
 			tourscroll.init();
 		}, 3000);
 	}
+	stickyScroll.init();
 	if(getCookies('ifshownotify') === null || getCookies('ifshownotify') !== '0'){
 		jQuery('.notify').show();
 		// jQuery('.c-layout-header-fixed .c-layout-header').css('top', '50px');
@@ -1708,6 +1743,11 @@ jQuery(function() {
 		jQuery('.featurelist-title').on('click', function () {
             jQuery(this).toggleClass('featurelist-title--close');
             jQuery(this).next('.featurelist-content').slideToggle(200);
+		});
+		
+		jQuery('.collapse__title').on('click', function () {
+            jQuery(this).toggleClass('collapse__title--open');
+            jQuery(this).next('.collapse__content').slideToggle(200);
         });
 
 		if (!window.mobilecheck()) {

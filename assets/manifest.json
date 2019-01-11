@@ -21,7 +21,13 @@
         "files": [
             "scripts/marketo-form.js"
         ]
-    }
+    },
+    "tablesaw.js": {
+      "files": [
+          "scripts/tablesaw.js",
+          "scripts/tablesaw-init.js"
+      ]
+  }
   },
   "config": {
     "devUrl": "http://dev.comm100.com"

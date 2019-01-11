@@ -31,8 +31,8 @@
   .mktoForm input[type="number"],
   .mktoForm input[type="date"],
   .mktoForm select.mktoField {
-    line-height: 1.3333333;
-    height: 46px;
+    line-height: 1.3333333!important;
+    height: 46px!important;
     border: 1px solid #d0d7de;
   }
 

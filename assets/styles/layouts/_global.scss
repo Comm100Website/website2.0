@@ -7452,7 +7452,7 @@ h3.highlight {
     display: flex;
     display: -moz-flex;
     display: -webkit-flex;
-    align-items: flex-end;
+    align-items: center;
   }
   .img-text-column--left .img-text-column__text {
     padding-left: 80px;
@@ -7617,7 +7617,7 @@ h5.three-column__title {
   padding-bottom: 10px;
 }
 h5.feature-column__title {
-  font-size: 28px !important;
+  font-size: 22px !important;
 }
 .feature-column__desc,
 .feature-column__item p,
@@ -9548,4 +9548,224 @@ h2.video-title {
 
         strong { font-family: 'Ubuntu Bold', sans-serif; font-weight: 700;}
     }
+}
+
+.landingContent {
+  p {
+    margin-bottom: 30px;
+  }
+}
+
+.icon-content-list__element {
+  margin-bottom: 40px;
+
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
+
+  .icon-content-list__icon {
+    float: left;
+  }
+
+  .icon-content-list__content {
+    float: left;
+    margin-left: 30px;
+    max-width: calc(100% - 110px);
+  }
+
+}
+
+.nav--sticky {
+  position: sticky;
+  top: 95px;
+  float: left;
+  
+
+  ul {
+    margin-left: 0;
+    padding-left: 0;
+    width: 150px;
+    margin-right: 60px;
+  }
+
+  li {
+    margin-bottom: 20px;
+
+    &:hover {
+      font-family: 'Ubuntu Bold', sans-serif;
+    }
+    
+    a {
+      color: #5e6d79;
+      display: block;
+      border-bottom: 4px solid transparent;
+    }
+    
+  }
+
+  .active {
+    font-family: 'Ubuntu Bold', sans-serif;
+    border-bottom-color: #0094d4;
+  }
+}
+
+.content--sticky {
+  float: left;
+
+  @media screen and (min-width: 767px) {
+    width: calc(100% - 210px);
+  }
+
+  > article {
+    padding: 60px;
+    margin-bottom: 60px;
+    background: #F3F8FB;
+
+    @media screen and (max-width: 767px) {
+      padding: 20px;
+    }
+  }
+
+  .companyInfo {
+    .companyInfo__url {
+      margin-top: 12px;
+      margin-bottom: 60px;
+    }
+
+    .companyInfo__details {
+      > .companyInfo__detailsInfo {
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 60px;
+        padding-left: 90px;
+        margin-bottom: 60px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    .companyInfo__location {
+      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      @media screen and (min-width: 768px) {
+        float: left;
+        width: 50%;
+      }
+    }
+    .companyInfo__founded {
+      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      @media screen and (min-width: 768px) {
+        float: left;
+        width: 50%;
+      }
+    }
+    .companyInfo__integration {
+      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+    }
+    .companyInfo__wards {
+      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+    }
+  }
+
+  .collapse-container {
+    margin-bottom: 80px;
+    
+    .collapse {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e0e2e1;
+
+      .collapse__title {
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 60px;
+        padding-left: 90px;
+        margin-bottom: 10px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+        font-size: 24px;
+
+        @media screen and (max-width: 767px) {
+          font-size: 20px;
+        }
+
+        &:before, &:after {
+          content: "";
+          position: absolute;
+          right: 30px;
+          width: 16px;
+          height: 4px;
+          background: #3dc4ff;
+          margin-top: 16px;
+          bottom: 28px;
+        }
+
+        &:before {
+          transform: rotate(-90deg);
+          transform-origin: center center;
+          transition: transform .2s ease-out;
+        }
+
+        &--open {
+          &:before {
+            transform: rotate(0deg);
+          }
+        }
+      }
+      
+
+      .collapse__title--ProductScope {
+        background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      }
+
+      .collapse__content {
+        display: none;
+
+        ul {
+          list-style-type: disc;
+          color: rgba(96,108,120,.6);
+          margin-left: 70px;
+
+          @media screen and (max-width: 767px) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.icon-content-list-1 {
+  img {
+    margin-bottom: 20px;
+  }
+
+  .icon-content-list-1__title {
+    font-weight: 700;
+    font-family: 'Ubuntu Bold', sans-serif;
+    margin-bottom: 15px;
+  }
+
+  .icon-content-list-1__desc {
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.tablesaw {
+  .fa-star, .fa-star-half-o, .fa-star-o {
+    color: #ffc12c;
+    font-size: 32px;
+    margin-left: 5px;
+  }
 }
