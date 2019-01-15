@@ -2380,10 +2380,11 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'sticky_content' ):
+                    $distance_of_top = get_sub_field('distance_of_top');
                     echo '<div class="c-content-box">' .
                             '<div class="container">' .
                                 '<div class="row">' .
-                                    '<div class="col-sm-12">';
+                                    '<div class="col-sm-12" style="margin-top: ' . $distance_of_top . 'px">';
                                         
                                     if( have_rows('sticky_nav') ):
                                         echo '<nav class="nav--sticky hidden-xs">' .
@@ -2444,25 +2445,22 @@ use Roots\Sage\Assets;
                                                         '</div>' .
                                                     '</div>' .
                                                 '</div>';
-
+                                                echo '<hr style="border-top-color: #7F868e; border-top-width: 1px; margin-bottom: 30px; ">';
                                                 if (have_rows('collapse_content')):
                                                     echo '<div class="collapse-container">';
                                                         while (have_rows('collapse_content')) : the_row();
                                                             $title = get_sub_field('title');
+                                                            $content = get_sub_field('content');
                                                             echo '<div class="collapse">' .
                                                                     '<div class="collapse__title collapse__title--' . preg_replace('# #', '', $title) . '">' .
                                                                         $title .
                                                                     '</div>';
 
-                                                                    if (have_rows('list')):
-                                                                        echo '<div class="collapse__content">' .
-                                                                                '<ul>';
-                                                                                while (have_rows('list')) : the_row();
-                                                                                    echo '<li>' . get_sub_field('list_element') . '</li>';
-                                                                                endwhile;
-                                                                        echo '</ul>' .
-                                                                            '</div>';
-                                                                    endif;
+                                                                    
+                                                                    echo '<div class="collapse__content">' .
+                                                                            $content .
+                                                                        '</div>';
+                                                                    
                                                                     
                                                             echo  '</div>';
                                                         endwhile;

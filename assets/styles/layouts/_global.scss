@@ -9553,6 +9553,10 @@ h2.video-title {
 .landingContent {
   p {
     margin-bottom: 30px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -9636,7 +9640,7 @@ h2.video-title {
       > .companyInfo__detailsInfo {
         background-repeat: no-repeat;
         background-position: left center;
-        background-size: 60px;
+        // background-size: 60px;
         padding-left: 90px;
         margin-bottom: 60px;
         height: 60px;
@@ -9646,24 +9650,28 @@ h2.video-title {
       }
     }
     .companyInfo__location {
-      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-headquarters.svg);
+      background-size: 30px 45px;
       @media screen and (min-width: 768px) {
         float: left;
         width: 50%;
       }
     }
     .companyInfo__founded {
-      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-founded.svg);
+      background-size: 42px 43px;
       @media screen and (min-width: 768px) {
         float: left;
         width: 50%;
       }
     }
     .companyInfo__integration {
-      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-checkmark.svg);
+      background-size: 45px 40px;
     }
     .companyInfo__wards {
-      background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-bestfor.svg);
+      background-size: 47px 49px;
     }
   }
 
@@ -9671,16 +9679,16 @@ h2.video-title {
     margin-bottom: 80px;
     
     .collapse {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 14px;
+      padding-bottom: 14px;
       border-bottom: 2px solid #e0e2e1;
 
       .collapse__title {
         background-repeat: no-repeat;
         background-position: left center;
-        background-size: 60px;
+        // background-size: 60px;
         padding-left: 90px;
-        margin-bottom: 10px;
+        // margin-bottom: 10px;
         height: 60px;
         display: flex;
         flex-direction: column;
@@ -9719,16 +9727,35 @@ h2.video-title {
       
 
       .collapse__title--ProductScope {
-        background-image: url(https://www.comm100.com/wp-content/uploads/images/LiveChat-Conversations.svg);
+        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-productscope.svg);
+        background-size: 46px 49px;
+      }
+      .collapse__title--Security {
+        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-security.svg);
+        background-size: 37px 42px;
+      }
+      .collapse__title--EaseofUse {
+        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-easyuse.svg);
+        background-size: 24px 47px;
+      }
+      .collapse__title--CustomerService {
+        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-customer-service.svg);
+        background-size: 35px 35px;
+      }
+      .collapse__title--Pricing {
+        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-pricing.svg);
+        background-size: 24px 45px;
       }
 
       .collapse__content {
         display: none;
+        color: rgba(96,108,120,.6);
+        padding-left: 90px;
 
         ul {
           list-style-type: disc;
-          color: rgba(96,108,120,.6);
-          margin-left: 70px;
+          margin-left: 0;
+          padding-left: 20px;
 
           @media screen and (max-width: 767px) {
             margin-left: 0;
