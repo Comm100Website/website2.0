@@ -1003,11 +1003,11 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'image-text' ):
-
+                    $background_color = get_sub_field('background_color');
                     // check if the nested repeater field has rows of data
                     if( have_rows('image_text_column_repeater') ):
 
-                        echo '<div class="c-content-box c-size-md">';
+                        echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                             // loop through the rows of data
@@ -1265,24 +1265,45 @@ use Roots\Sage\Assets;
                 // check current row layout
                 if( get_row_layout() == 'testimonial' ):
 
+                    $alignment = get_sub_field('alignment');
+                    $background_image = get_sub_field('background_image');
                     $quote = get_sub_field('quote');
                     $signature = get_sub_field('signature');
+                    $signature_image = get_sub_field('signature_image');
                     $story_link = get_sub_field('story_link');
                     $background_color = get_sub_field('background_color');
 
+                    $colsType = '';
+                    if ($alignment == 'left'):
+                        $colsType = 'col-sm-7';
+                    elseif ($alignment == 'center'):
+                        $colsType = 'col-sm-10 col-sm-push-1';
+                    endif;
 
-                    echo '<div class="c-content-box c-size-xlg c-content-box--' . $background_color . ' ">';
+                    $style_bg = '';
+                    if ($background_image):
+                        $style_bg = 'style="background-image: url(' . $background_image['url'] . ')"';
+                    endif;
+
+                    echo '<div class="c-content-box c-content-box__quote c-size-xlg c-content-box--' . $background_color . ' " ' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="col-sm-10 col-sm-push-1 c-quote">';
+                    echo '<div class="' . $colsType . ' c-quote">';
 
                     if ($quote):
                         echo '<div class="c-quote__content">' .
                                 $quote .
                             '</div>';
                     endif;
+
+                    $signatureImage = '';
+                    if ($signature_image):
+                        $signatureImage = '<img src="' . $signature_image['url'] . '" alt="' . $signature_image['alt'] . '" width="80" height="80" />';
+                    endif;
+
                     if ($signature):
                         echo '<div class="c-quote__signature">' .
+                                $signatureImage .
                                 $signature .
                             '</div>';
                     endif;
@@ -1386,11 +1407,12 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == '2-column_for_feature' ):
+                    $background_color = get_sub_field('background_color');
                     $color = get_sub_field('color');
                     // check if the nested repeater field has rows of data
                     if( have_rows('column') ):
 
-                        echo '<div class="c-content-box c-size-md">';
+                        echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                         echo '<div class="col-sm-12 feature-column">';
@@ -2358,7 +2380,7 @@ use Roots\Sage\Assets;
                             
                             echo '<div class="icon-content-list__element clearfix">' .
                                     '<div class="icon-content-list__icon">' .
-                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
+                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
                                     '</div>' .
                                     '<div class="icon-content-list__content">' .
                                         '<div class="icon-content-list__title">' .
@@ -2551,6 +2573,117 @@ use Roots\Sage\Assets;
                                 echo '<script src="https://www.comm100.com/wp-content/themes/comm100/dist/scripts/tablesaw.js" type="text/javascript"></script>';
                             endif;
                             echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'feature_header' ):
+
+
+
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 feature__header">';
+
+                    $feature_header = get_sub_field('feature_header');
+                    if ($feature_header):
+                        while ( have_rows('feature_header') ) : the_row();
+                            $h1_tag = get_sub_field('h1_tag');
+                            $h1 = get_sub_field('h1');
+                            $description = get_sub_field('description');
+                            $download = get_sub_field('download');
+                            $image = get_sub_field('image');
+                            $video = get_sub_field('video');
+                                if ($h1_tag):
+                                    echo '<div class="h1-tag">' .
+                                            $h1_tag .
+                                        '</div>';
+                                endif;
+                                if ($h1):
+                                    echo '<h1>' .
+                                            $h1 .
+                                        '</h1>';
+                                endif;
+
+                                if ($description):
+                                    echo $description;
+                                endif;
+                                if ($download):
+                                    while ( have_rows('download') ) : the_row();
+                                        $installuninstall = get_sub_field('installuninstall');
+                                        if (have_rows('download_content')):
+                                            echo '<div class="download">';
+                                            while ( have_rows('download_content') ) : the_row();
+                                                $download_link = get_sub_field('download_link');
+                                                $download_img = get_sub_field('download_img');
+                                                echo '<a href="' . $download_link . '">' .
+                                                        '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                                    '</a>';
+                                            endwhile;
+                                            echo '<div class="c-margin-t-10 c-font-14">' .
+                                                        '<a href="/eula/" target="_blank">EULA</a> | ' .
+                                                        '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
+                                                                $installuninstall['title'] .
+                                                            '</a>' .
+                                                    '</div>';
+                                            echo '</div>';
+                                        endif;
+                                    endwhile;
+                                endif;
+                                if ($image):
+                                    echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
+                                endif;
+                                if ($video):
+                                    echo '<div class="row video-content">' . 
+                                            '<div class="col-sm-10 col-sm-push-1">' . 
+                                                $video .
+                                            '</div>' .
+                                        '</div>';
+                                endif;
+                        endwhile;
+                    endif;
+
+                    $normal_content = get_sub_field('normal_content');
+                    if ($normal_content):
+                        while ( have_rows('normal_content') ) : the_row();
+                            $header_headline = get_sub_field('h1_title');
+                            $header_slogan = get_sub_field('subtitle');
+                            $header_description = get_sub_field('description');
+                            $call_to_action = get_sub_field('call_to_action');
+                            echo '<div id="notInServiceCountry" class="thankyou" style="display: none">';
+                                if ($header_headline):
+                                    echo '<h1>' .
+                                            $header_headline .
+                                        '</h1>';
+                                endif;
+                                if ($header_slogan):
+                                    echo '<h2>' .
+                                            $header_slogan .
+                                        '</h2>';
+                                endif;
+                                if ($header_description):
+                                    echo '<div class="thankyou__desc">' .
+                                            $header_description .
+                                        '</div>';
+                                endif;
+
+                                if ($call_to_action):
+                                    echo '<div class="thankyou__calltoaction">' .
+                                            '<a class="btn btn-xlg btn-link--green" href="' . $call_to_action['url'] . '" target="' . $call_to_action['target'] . '">' .
+                                                $call_to_action['title'] .
+                                            '</a>';
+                                        '</div>';
+                                endif;
+                            echo '</div>';
+                        endwhile;
+                    endif;
+
+
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';

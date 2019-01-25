@@ -590,11 +590,11 @@ Template Name:Platform Multichannel
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
-                
+                $background_color = get_sub_field('background_color');
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
                     
-                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                         // loop through the rows of data
@@ -935,11 +935,12 @@ Template Name:Platform Multichannel
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature' ):
+                $background_color = get_sub_field('background_color');                                
                 $color = get_sub_field('color');                                
                 // check if the nested repeater field has rows of data
                 if( have_rows('column') ):
                     
-                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 feature-column">';

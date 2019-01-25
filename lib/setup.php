@@ -123,7 +123,7 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540sd110005');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540sd110009');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');

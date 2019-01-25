@@ -7414,6 +7414,10 @@ h3.highlight {
   top: 0;
   bottom: 0;
 }
+.c-content-box__quote {
+  background-size: cover;
+  background-position: no-repeat;
+}
 .c-quote,
 .c-quote__content {
   position: relative;
@@ -7527,6 +7531,14 @@ h3.highlight {
 .c-quote__signature {
   margin-top: 20px;
   font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    margin-right: 30px;
+    border-radius: 100%;
+  }
 }
 @media screen and (max-width: 767px) {
   .c-quote__content:after,
@@ -9563,9 +9575,9 @@ h2.video-title {
 .icon-content-list__element {
   margin-bottom: 40px;
 
-  // &:last-child {
-  //   margin-bottom: 0;
-  // }
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   .icon-content-list__icon {
     float: left;
@@ -9614,14 +9626,15 @@ h2.video-title {
 }
 
 .content--sticky {
-  float: left;
+  
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: 768px) {
+    float: left;
     width: calc(100% - 210px);
   }
 
   > article {
-    padding: 60px;
+    padding: 100px 60px 60px 60px;
     margin-bottom: 60px;
     background: #F3F8FB;
 
@@ -9640,38 +9653,42 @@ h2.video-title {
       > .companyInfo__detailsInfo {
         background-repeat: no-repeat;
         background-position: left center;
-        // background-size: 60px;
+        background-size: 50px;
         padding-left: 90px;
         margin-bottom: 60px;
         height: 60px;
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        @media screen and (max-width: 767px) {
+          background-size: 60px;
+        }
       }
     }
     .companyInfo__location {
-      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-headquarters.svg);
-      background-size: 30px 45px;
+      background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Headquarters.svg);
+      // background-size: 30px 45px;
       @media screen and (min-width: 768px) {
         float: left;
         width: 50%;
       }
     }
     .companyInfo__founded {
-      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-founded.svg);
-      background-size: 42px 43px;
+      background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Founded.svg);
+      // background-size: 42px 43px;
       @media screen and (min-width: 768px) {
         float: left;
         width: 50%;
       }
     }
     .companyInfo__integration {
-      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-checkmark.svg);
-      background-size: 45px 40px;
+      background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Pros-0115.svg);
+      // background-size: 45px 40px;
     }
     .companyInfo__wards {
-      background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-bestfor.svg);
-      background-size: 47px 49px;
+      background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-BestFor.svg);
+      // background-size: 47px 49px;
     }
   }
 
@@ -9686,7 +9703,7 @@ h2.video-title {
       .collapse__title {
         background-repeat: no-repeat;
         background-position: left center;
-        // background-size: 60px;
+        background-size: 50px;
         padding-left: 90px;
         // margin-bottom: 10px;
         height: 60px;
@@ -9727,24 +9744,24 @@ h2.video-title {
       
 
       .collapse__title--ProductScope {
-        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-productscope.svg);
-        background-size: 46px 49px;
+        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-ProductScope-0115.svg);
+        // background-size: 46px 49px;
       }
       .collapse__title--Security {
-        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-security.svg);
-        background-size: 37px 42px;
+        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Security-0115.svg);
+        // background-size: 37px 42px;
       }
       .collapse__title--EaseofUse {
-        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-easyuse.svg);
-        background-size: 24px 47px;
+        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-EaseOfUse-0115.svg);
+        // background-size: 24px 47px;
       }
       .collapse__title--CustomerService {
-        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-customer-service.svg);
-        background-size: 35px 35px;
+        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-CustomerService-0115.svg);
+        // background-size: 35px 35px;
       }
       .collapse__title--Pricing {
-        background-image: url(https://www.comm100.com/wp-content/uploads/2019/01/icon-pricing.svg);
-        background-size: 24px 45px;
+        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Pricing-0115.svg);
+        // background-size: 24px 45px;
       }
 
       .collapse__content {
