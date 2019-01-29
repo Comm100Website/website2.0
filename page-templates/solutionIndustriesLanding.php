@@ -611,11 +611,11 @@ Template Name:Solution Industries Landing
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
-                
+                $background_color = get_sub_field('background_color');
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
                     
-                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                         // loop through the rows of data
