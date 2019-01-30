@@ -2428,6 +2428,42 @@ use Roots\Sage\Assets;
                 endif;
 
                 // check current row layout
+                if( get_row_layout() == '2-columns_form' ):
+                    $title = get_sub_field('title');
+                    $description = get_sub_field('description');
+                    $form = get_sub_field('form');
+                    $form_note = get_sub_field('form_note');
+
+                    $title_container = '';
+                    if ($title):
+                        $title_container = '<h3 class="highlight highlight--blue">' . $title . '</h3>';
+                    endif;
+
+                    $desc_container = '';
+                    if ($description):
+                        $desc_container = '<div class="two-columns-form__desc">' . $description . '</div>';
+                    endif;
+
+
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-10 col-sm-push-1">' .
+                                        '<div class="two-columns-form">' .
+                                            $desc_container .
+                                            $title_container .
+                                            $form .
+                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                            '<div class="form-note">' . $form_note . '</div>'.
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>' .
+                            '</div>' .
+                        '</div>';
+
+                endif;
+
+                // check current row layout
                 if( get_row_layout() == 'compare_list' ):
                     $title = get_sub_field('title');
                     echo '<div class="c-content-box c-size-md">';
@@ -2919,6 +2955,221 @@ use Roots\Sage\Assets;
                     endif;
 
                     echo '</tbody></table>';
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'tabs' ):
+                    if( have_rows('tab_wrap') ):
+    
+                        // loop through the rows of data
+                        while ( have_rows('tab_wrap') ) : the_row();
+                            $header_headline = get_sub_field('h1_title');
+                            $header_slogan = get_sub_field('subtitle');
+                            $header_description = get_sub_field('description');
+    
+                            // check if the nested repeater field has rows of data
+                            if( have_rows('tab_content') ):
+    
+                                echo '<div class="c-content-box c-size-md">';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+    
+                                echo '<div class="col-sm-12 threeTab__head c-center">' .
+                                        '<h1>' . $header_headline . '</h1>' .
+                                        '<h2>' .
+                                            $header_slogan .
+                                        '</h2>' .
+                                        $header_description .
+                                    '</div>';
+    
+                                echo '<div class="col-sm-12">';
+                                echo '<div class="threeTab__Index--Wrap clearfix">';
+                                    // loop through the rows of data
+    
+                                while ( have_rows('tab_content') ) : the_row();
+    
+                                    $color = get_sub_field('color');
+                                    $tag = get_sub_field('tag');
+                                    $headline = get_sub_field('headline');
+                                    $body = get_sub_field('body');
+                                    $link = get_sub_field('link');
+    
+                                    echo    '<div class="threeTab__Index">' .
+                                                '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
+                                                '<h3>' . $headline . '</h3>' .
+                                            '</div>';
+    
+                                endwhile;
+    
+                                echo '</div>';
+                                echo '<div class="threeTab__Detail-wrap">';
+    
+                                // pricing live chat details
+    
+                                while ( have_rows('tab_details') ) : the_row();
+    
+                                    $title = get_sub_field('title');
+                                    $description = get_sub_field('description');
+    
+                                    $featurelist_wrap = '';
+                                    if (have_rows('content')):
+    
+                                        while ( have_rows('content') ) : the_row();
+                                            $sub_title = get_sub_field('sub_title');
+                                            $icon = get_sub_field('icon');
+                                            $featurelist_wrap .= '<div class="col-sm-6 threeTab__Detail--col">';
+                                            $featurelist_wrap .= '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />';
+                                            $featurelist_wrap .= '<p class="threeTab__Detail--subTitle">' . $sub_title . '</p>';
+                                            $featurelist_wrap .= '<ul class="threeTab__Detail--contentList">';
+                                            // $li_feature_list = '';
+                                            while ( have_rows('content_list') ) : the_row();
+                                                $content_list_point = get_sub_field('content_list_point');
+                                                $featurelist_wrap .= '<li>' . $content_list_point . '</li>';
+                                            endwhile;
+                                            $featurelist_wrap .= '</ul></div>';
+                                        endwhile;
+                                    endif;
+    
+    
+                                    $cta = get_sub_field('cta');
+                                    $linkcontent = '';
+    
+                                    if ($cta):
+                                        while ( have_rows('cta') ) : the_row();
+                                            $cta_link_type = get_sub_field('cta_link_type');
+                                            $cta_link = get_sub_field('cta_link');
+                                            if ($cta_link):
+                                                switch ($cta_link_type) {
+                                                    case 'green' :
+                                                            $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    case 'blue' :
+                                                            $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    case 'white' :
+                                                            $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    case 'link' :
+                                                            $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    default: break;
+                                                }
+                                            endif;
+                                        endwhile;
+                                        if ($linkcontent !== ''):
+                                            $linkcontent = '<div class="threeTab__Detail--action"> ' . $linkcontent . ' </div>';
+                                        endif;
+                                    endif;
+    
+                                    echo    '<div class="threeTab__Detail clearfix">' .
+                                                $tabMobileAI .
+                                                '<div class="threeTab__Detail--col-wrap clearfix">' .
+    
+                                                    '<div class="threeTab__Detail--title">' . $title . '</div>' .
+                                                    '<div class="threeTab__Detail--summary">' . $description . '</div>' .
+                                                    $featurelist_wrap .
+                                                '</div>' .
+                                            '</div>';
+    
+                                endwhile;
+    
+    
+                                // end pricing live chat details
+    
+    
+    
+    
+                                echo '</div>';
+    
+    
+    
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+    
+                            endif;
+                        endwhile;
+                    endif;
+                endif;
+    
+                // check current row layout
+                if( get_row_layout() == 'partner_contact' ):
+                    $image = get_sub_field('image');
+                    $title = get_sub_field('title');
+                    $contact_form = get_sub_field('contact_form');
+                    $form_note = get_sub_field('form_note');
+    
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+    
+                                    '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
+                                    '<div class="col-sm-7">' .
+                                        '<div class="contact-form">' .
+                                            '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
+                                            $contact_form .
+                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                            '<div class="form-note">' . $form_note . '</div>'.
+                                        '</div>' .
+                                    '</div>' .
+    
+                                '</div>' .
+                            '</div>' .
+                        '</div>';
+    
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'thank_you_hero_head' ):
+
+                    $header_headline = get_sub_field('h1_title');
+                    $header_slogan = get_sub_field('subtitle');
+                    $header_description = get_sub_field('description');
+                    $call_to_action = get_sub_field('call_to_action');
+
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 thankyou">';
+
+
+                    if ($header_headline):
+                        echo '<h1>' .
+                                $header_headline .
+                            '</h1>';
+                    endif;
+                    if ($header_slogan):
+                        echo '<h2 class="c-margin-t-20">' .
+                                $header_slogan .
+                            '</h2>';
+                    endif;
+                    if ($header_description):
+                        echo '<div class="thankyou__desc">' .
+                                $header_description .
+                            '</div>';
+                    endif;
+
+                    if ($call_to_action):
+                        echo '<div class="thankyou__calltoaction">' .
+                                '<a class="btn btn-xlg btn-link--green" href="' . $call_to_action['url'] . '" target="' . $call_to_action['target'] . '">' .
+                                    $call_to_action['title'] .
+                                '</a>';
+                            '</div>';
+                    endif;
 
                     echo '</div>';
                     echo '</div>';

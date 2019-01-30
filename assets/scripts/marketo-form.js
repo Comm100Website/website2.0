@@ -57,6 +57,7 @@
             }  
             var formtype = form.vals().formtype;
             var email = form.vals().Email;
+            var partner_Email__c = form.vals().Partner_Email__c;
             var requestUrl = '';
             switch (formtype) {
                 case undefined:
@@ -70,21 +71,32 @@
                 default: break;
             }
             if(email){
-                if(typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
+                if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
                     form.submitable(false);
                     var emailElem = form.getFormElem().find("#Email");
                     form.showErrorMessage("Must be Business email.", emailElem);
-                }else{
-                    jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
-                    AddFieldsAndVaulesStringToCookie(form);
-                    form.submitable(true);
-                    if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0) {
+                    return;
+                } 
+                
+                if (typeof(partner_Email__c) !== 'undefined') {
+                    if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(partner_Email__c)) {
+                        form.submitable(false);
+                        var emailElem = form.getFormElem().find("#Partner_Email__c");
+                        form.showErrorMessage("Must be Business email.", emailElem);
                         return;
-                    }
-                    if(jQuery("#downloadlink").length > 0) {
-                        jQuery("#downloadlink")[0].click();
-                    }
+                    } 
+                } 
+
+                jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
+                AddFieldsAndVaulesStringToCookie(form);
+                form.submitable(true);
+                if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0) {
+                    return;
                 }
+                if(jQuery("#downloadlink").length > 0) {
+                    jQuery("#downloadlink")[0].click();
+                }
+                
             }
         });
     });
