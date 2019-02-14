@@ -1,6 +1,17 @@
 /*! Tablesaw - v3.1.0 - 2018-12-10
 * https://github.com/filamentgroup/tablesaw
 * Copyright (c) 2018 Filament Group; Licensed MIT */
+.docs-main {
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .tablesaw-subtitle {
+    font-family: Ubuntu Bold, sans-serif;
+    font-size: 25px;
+    margin-bottom: 40px;
+  }
+}
 
 .tablesaw {
     width: 100%;
@@ -306,6 +317,10 @@
     text-align: left;
     vertical-align: middle;
     border: 1px solid #e0e2e1;
+
+    @media screen and (max-width: 767px) {
+      padding: 0.8em 0.6em;
+    }
   }
   
   .tablesaw-sortable-btn {
@@ -317,22 +332,23 @@
     text-align: center;
     border-top: none;
     border-left: none;
+    border-right: none;
     font-family: 'Ubuntu Regular', sans-serif;
     font-weight: 400;
   }
   
-  .tablesaw thead th:last-child {
-    border-right: none;
-  }
+  // .tablesaw thead th:last-child {
+  //   border-right: none;
+  // }
   
   .tablesaw td {
-    border-left: none;
+    // border-left: none;
     text-align: center;
   }
   
-  .tablesaw td:last-child {
-    border-right: none;
-  }
+  // .tablesaw td:last-child {
+  //   border-right: none;
+  // }
   
   
   /* Table rows have a gray bottom stroke by default */
@@ -355,6 +371,11 @@
   .tablesaw-swipe .tablesaw-swipe-cellpersist {
     font-family: 'Ubuntu Regular', sans-serif;
     text-align: left;
+    width: 25%;
+
+    @media screen and (max-width: 767px) {
+      font-size: 16px;
+    }
   }
   
   .tablesaw-swipe-shadow .tablesaw-swipe-cellpersist {
