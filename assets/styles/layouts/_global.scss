@@ -9573,7 +9573,13 @@ h2.video-title {
 }
 
 .icon-content-list__element {
+  
   margin-bottom: 40px;
+
+  @media screen and (min-width: 768px) {
+    float: left;
+    width: 50%;
+  }
 
   &:last-child {
     margin-bottom: 0;
@@ -9647,6 +9653,7 @@ h2.video-title {
     .companyInfo__url {
       margin-top: 12px;
       margin-bottom: 60px;
+      word-break: break-all;
     }
 
     .companyInfo__details {
@@ -9663,6 +9670,7 @@ h2.video-title {
 
         @media screen and (max-width: 767px) {
           background-size: 60px;
+          height: auto;
         }
       }
     }
@@ -9700,11 +9708,15 @@ h2.video-title {
       padding-bottom: 14px;
       border-bottom: 2px solid #e0e2e1;
 
+      img {
+        float: left;
+      }
+
       .collapse__title {
         background-repeat: no-repeat;
         background-position: left center;
         background-size: 50px;
-        padding-left: 90px;
+        padding-left: 40px;
         // margin-bottom: 10px;
         height: 60px;
         display: flex;
@@ -9716,6 +9728,7 @@ h2.video-title {
 
         @media screen and (max-width: 767px) {
           font-size: 20px;
+          padding-left: 20px;
         }
 
         &:before, &:after {
@@ -9743,26 +9756,26 @@ h2.video-title {
       }
       
 
-      .collapse__title--ProductScope {
-        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-ProductScope-0115.svg);
-        // background-size: 46px 49px;
-      }
-      .collapse__title--Security {
-        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Security-0115.svg);
-        // background-size: 37px 42px;
-      }
-      .collapse__title--EaseofUse {
-        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-EaseOfUse-0115.svg);
-        // background-size: 24px 47px;
-      }
-      .collapse__title--CustomerService {
-        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-CustomerService-0115.svg);
-        // background-size: 35px 35px;
-      }
-      .collapse__title--Pricing {
-        background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Pricing-0115.svg);
-        // background-size: 24px 45px;
-      }
+      // .collapse__title--ProductScope {
+      //   background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-ProductScope-0115.svg);
+      //   // background-size: 46px 49px;
+      // }
+      // .collapse__title--Security {
+      //   background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Security-0115.svg);
+      //   // background-size: 37px 42px;
+      // }
+      // .collapse__title--EaseofUse {
+      //   background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-EaseOfUse-0115.svg);
+      //   // background-size: 24px 47px;
+      // }
+      // .collapse__title--CustomerService {
+      //   background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-CustomerService-0115.svg);
+      //   // background-size: 35px 35px;
+      // }
+      // .collapse__title--Pricing {
+      //   background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-Pricing-0115.svg);
+      //   // background-size: 24px 45px;
+      // }
 
       .collapse__content {
         display: none;
@@ -9809,7 +9822,26 @@ h2.video-title {
 .tablesaw {
   .fa-star, .fa-star-half-o, .fa-star-o {
     color: #ffc12c;
-    font-size: 32px;
-    margin-left: 5px;
+    font-size: 26px;
+    margin-left: 15px;
+
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      margin-left: 5px;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.btn.c-navbar-wrapper__btn {
+  float: right;
+
+  @media screen and (max-width: 767px) {
+    margin-top: -55px;
+    margin-right: 15px;
+    padding: 10px 12px!important;
   }
 }

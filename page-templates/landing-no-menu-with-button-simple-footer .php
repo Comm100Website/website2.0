@@ -1,11 +1,11 @@
 <?php
 /*
-Template Name:Landing No Menu Simple Footer
+Template Name:Landing No Menu With Button Simple Footer
 */
 
 use Roots\Sage\Assets;
 ?>
-<?php get_template_part('template-parts/header', 'no-menu'); ?>
+<?php get_template_part('template-parts/header', 'no-menu-with-button'); ?>
 
 
 <div class="c-layout-page c-layout-page-fixed">
