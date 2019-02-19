@@ -2,6 +2,7 @@
 /*
 Template Name:Platform Multichannel
 */
+use Roots\Sage\Assets;
 ?>
 <?php get_template_part('template-parts/header'); ?>
 <div class="c-navbar--secondary visible-md">
@@ -590,21 +591,49 @@ Template Name:Platform Multichannel
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
+
                 $background_color = get_sub_field('background_color');
+                $image_text_title = get_sub_field('image_text_title');
+                $image_text_title_color = get_sub_field('image_text_title_color');
+                $image_text_description = get_sub_field('image_text_description');
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
-                    
-                    echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
+                    echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
                     echo '<div class="container">';
                     echo '<div class="row">';
+                        
+                    if ($image_text_title):
+                        echo '<div class="col-sm-10 col-sm-push-1 c-center">';
+                            echo '<div class="img-text-title img-text-title--' . $image_text_title_color . '">' . $image_text_title . '</div>';
+                            if ($image_text_description):
+                                echo '<div class="img-text-desc">' . $image_text_description . '</div>';
+                            endif;
+                        echo '</div>';
+                    endif;
+                        
+                    
+                    echo '<div class="clear"></div>';
                         // loop through the rows of data
                     while ( have_rows('image_text_column_repeater') ) : the_row();
 
+                        $anchor_id = get_sub_field('anchor_id');
                         $headline = get_sub_field('title');
+                        $title_color = get_sub_field('title_color');
                         $body = get_sub_field('description');
                         $image = get_sub_field('image');
                         $image_position = get_sub_field('image_position');
                         $cta = get_sub_field('cta');
+
+                        $anchor_id_content = '';
+                        if ($anchor_id):
+                            $anchor_id_content = 'id="' . $anchor_id . '"';
+                        endif;
+
+                        $title_color_class = '';
+                        if ($title_color !== 'none'):
+                            $title_color_class = 'highlight highlight--' . $title_color;
+                        endif;
+
                         $pull6 = '';
                         $push6 = '';
                         if ($image_position == 'right') :
@@ -643,18 +672,16 @@ Template Name:Platform Multichannel
                                     }
                                 endif;
                             endwhile;
-                            
                             if ($linkcontent !== ''):
                                 $linkcontent = '<div class="img-text-column__link"> ' . $linkcontent . ' </div>';
                             endif;
                         endif;
 
-                        echo    '<div class="img-text-column img-text-column--' . $image_position . ' clearfix">' .
-                                    '<div class="col-sm-6 ' . $push6 . ' img-text-column__img">' .
-                                        '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
+                        echo    '<div ' . $anchor_id_content . ' class="img-text-column img-text-column--' . $image_position . ' clearfix">' .
+                                    '<div class="col-sm-6 ' . $push6 . ' img-text-column__img">'.Assets\get_acf_image($image).
                                     '</div>' .
                                     '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                        '<h3>' . $headline . '</h3>' .
+                                        '<h3 class="' . $title_color_class . '">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
                                     '</div>' .
@@ -667,8 +694,8 @@ Template Name:Platform Multichannel
 
                 endif;
 
-               
-            endif;    
+
+            endif;  
 
             // check current row layout
             if( get_row_layout() == '1-column' ):
