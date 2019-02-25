@@ -1945,7 +1945,7 @@ Template Post Type: commresource, page
                         echo '<div class="col-sm-4 landingPage-download">';
                             echo '<h3 class="highlight highlight--blue">' . get_sub_field('download_title') . '</h3>';
                             echo get_sub_field('download_form');
-                            echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js?v=20181023"></script>';
+                            echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js?v=20190219"></script>';
                             echo '<div class="form-note">' . get_sub_field('download_form_note') . '</div>';
                         echo '</div>';
                         echo '</div>';

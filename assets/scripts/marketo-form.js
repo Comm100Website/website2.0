@@ -142,7 +142,7 @@ function WriteCookies(Key, Value, expire) {
     else {
         ep = new Date((new Date()).getTime() + 365 * 24 * 3600 * 1000);
     }
-    ep = ";expires=" + ep.toGMTString();
+    ep = ";path=/;expires=" + ep.toGMTString();
     document.cookie = Key + "=" + Value + ep;
 }
 function IfCookieExists(key) {
