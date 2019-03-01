@@ -206,29 +206,5 @@
 <script type="text/javascript">
 var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:5000239,div_id:"comm100-button-5000239"}),t.site_id=10000,t.main_code_plan=5000239,e("https://chatserver.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://hostedmax.comm100.com/chatserver/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
 </script>
-<script type="text/javascript">
-    Comm100API.onReady = function () {
-        var campaignIds = Comm100API.get('livechat.campaignIds');
-        if (campaignIds != null) {
-            var divId = "comm100-button-" + campaignIds[0];
-            var divObj = document.getElementById(divId);
-            Comm100API.on('livechat.invitation.display', function (invitation) {
-                setTimeout(function () {
-                    var iframe = divObj.getElementsByTagName("iframe");
-                    if (iframe != null) {
-                        var all = iframe[0].contentWindow.document.getElementsByTagName("div");
-                        for (var i = 0; i < all.length; i++) {
-                            if (all[i].className === "invitation__message") {
-                                all[i].innerHTML = all[i].innerHTML.replace("{company name}", Demandbase_CompanyName);
-                                break;
-                            }
-                        }
-                    }
-                }, 1000);
-            });
-        }
-    };
-</script>
-
 <!--End Comm100 Live Chat Code-->
 <!-- END: LAYOUT/BASE/BOTTOM -->
