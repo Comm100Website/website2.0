@@ -1164,7 +1164,7 @@ jQuery(document).ready(function() {
 									var invitation = iframe[0].contentWindow.document.querySelector('.invitation__message');
 									invitation.innerHTML = invitation.innerHTML.replace("{company name}", Demandbase_CompanyName);
 								}
-							}, 0);
+							}, 1000);
 						});
 					}
 				} 

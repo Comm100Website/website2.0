@@ -146,7 +146,9 @@ function assets() {
     wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
     wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
 
-    wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190303, true);
+    if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) { 
+        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190303, true);
+    }
 
     $localizeData = array(
         'theme_url' => get_template_directory_uri(),
