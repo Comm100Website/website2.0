@@ -11,9 +11,9 @@
             </div>
             <a 
                 class="c-navbar-wrapper__btn btn btn-xlg btn-link--green" 
-                href="#freetrial"
+                href="#bookdemo"
             >
-                Free trial
+                Book a Demo
             </a>
         </div>
     </div>
