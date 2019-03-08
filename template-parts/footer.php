@@ -163,11 +163,6 @@
                 <span>
                     <img src="/wp-content/uploads/2018/10/Footer-Certificate-PCI.svg" alt="PCI" width="107" height="44">
                 </span>
-                <span id="truste">
-                    <a href="//privacy.truste.com/privacy-seal/validation?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" target="_blank">
-                        <img style="border: none;" src="//privacy-policy.truste.com/privacy-seal/seal?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" alt="TRUSTe" width="111" height="38">
-                    </a>
-                </span>
                 <span><img src="/wp-content/uploads/2018/10/Footer-Certificate-MicrosoftGoldPartner.svg" alt="Microsoft Partner" width="89" height="41" class="c-sm-margin-t-10"></span>
                 <span><img src="/wp-content/uploads/2018/10/Footer-Certificate-SalesForce.svg" alt="Salesforce Partner" width="133" height="51" class="c-sm-margin-t-10"></span>
             </div>

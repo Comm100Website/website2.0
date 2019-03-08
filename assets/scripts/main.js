@@ -1117,7 +1117,7 @@ jQuery(document).ready(function() {
 						'juniperresearch.com', 
 						'ventanaresearch.com', 
 						'aberdeen.com',
-						'comm100.com',
+						// 'comm100.com',
 					];
 					// Demandbase_Target_Account
 					// var demandbaseTargetAccount = '';
