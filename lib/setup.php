@@ -146,7 +146,7 @@ function assets() {
     wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
     wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
 
-    if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) { 
+    if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) {
         wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190303, true);
     }
 
@@ -158,10 +158,6 @@ function assets() {
 
     wp_localize_script('sage/js', 'commGlobal', $localizeData);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8a5e37d68b28f11be641faafa33f5215d9abd027
 	$dbData = array(
 		'theme_url' => get_template_directory_uri()
 	);
@@ -179,7 +175,9 @@ function assets() {
                     'key' => 'default_audience_page',
                     'value' => $demandBaseParentPage
                 ]
-            ]
+            ],
+            'order' => 'asc',
+            'orderby' => 'menu_order',
         ];
 
         $dbAudiencePages = new WP_Query($args);
@@ -195,25 +193,35 @@ function assets() {
                 if (get_field('demandbase_page_type') == 'audience') {
                     $dbAudiencePost = get_field('demandbase_audience');
 
-                    if (get_field('audience_type', $dbAudiencePost->ID) == 'segment') {
-                        $dbData['db_audiences'][get_field('db_audience_segment', $dbAudiencePost->ID)] = get_permalink();
-                    } else {
-                        foreach (get_field('countries', $dbAudiencePost->ID) as $country) {
-                            $dbData['db_audiences'][$country['country']] = get_permalink();
+                    foreach (get_field('audience_values', $dbAudiencePost->ID) as $value) {
+                        if (get_field('audience_type', $dbAudiencePost->ID) == 'country') {
+                            $dbData['db_audiences'][] = [
+                                'field' => 'country_name',
+                                'value' => $value['value'],
+                                'url' => get_permalink()
+                            ];
+
+                            $dbData['db_audiences'][] = [
+                                'field' => 'registry_country',
+                                'value' => $value['value'],
+                                'url' => get_permalink()
+                            ];
+                        } else {
+                            $dbData['db_audiences'][] = [
+                                'field' => get_field('audience_type', $dbAudiencePost->ID),
+                                'value' => $value['value'],
+                                'url' => get_permalink()
+                            ];
                         }
                     }
                 }
             }
             wp_reset_postdata();
         }
+
+        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, time(), false);
+        wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
     }
-	
-	wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, null, false);
-	wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
-
-	wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, null, false);
-	wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
-
 
 //   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }

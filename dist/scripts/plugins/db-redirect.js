@@ -1,5 +1,4 @@
-var DEMAND_BASE_COOKIE = 'audience';
-var DEMAND_BASE_COUNTRY_COOKIE = 'country';
+var DEMAND_BASE_COOKIE = 'dbvisitorinfo';
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -28,22 +27,43 @@ function eraseCookie(name) {
 
 function setBodyClass() {
     if (document.body) {
-        document.body.classList.add("db-audience-" + encodeURI(getCookie(DEMAND_BASE_COOKIE).replace(' ', '-').toLowerCase()));
-	    document.body.classList.add("db-audience-" + encodeURI(getCookie(DEMAND_BASE_COUNTRY_COOKIE).replace(' ', '-').toLowerCase()));
+        var dbInfo = JSON.parse(getCookie(DEMAND_BASE_COOKIE));
+
+        if (dbInfo) {
+            var dbFields = [
+                'registry_country',
+                'country_name',
+                'industry',
+                'sub_industry',
+                'audience',
+                'audience_segment',
+            ];
+
+            for (var i = 0; i < dbFields.length; i++) {
+                if (dbInfo.hasOwnProperty(dbFields[i])) {
+                    document.body.classList.add("db-audience-" + encodeURI(dbInfo[dbFields[i]].replace(' ', '-').toLowerCase()));
+                }
+            }
+        }
     }
 }
-function redirect_to_db_audience(user_audience, user_country) {
+
+function redirect_to_db_audience(userinfo) {
     var audiencePageURL = dbGlobal.db_default;
 
-    // console.log('User Audience: ', user_audience);
+    // console.log('User Audience', userinfo);
+    // console.log('DB Audiences', dbGlobal.db_audiences);
 
     //If the user has an audience and we have a list of audience pages for this page that was set in the theme setup, we'll then test and see if the user is on the right page.
-    if ((user_audience || user_country)  && dbGlobal.db_audiences) {
-        for (var db_audience in dbGlobal.db_audiences){
-            // console.log(user_audience, db_audience);
-
-            if (user_audience == db_audience || user_country == db_audience) {
-                audiencePageURL = dbGlobal.db_audiences[db_audience];
+    if (userinfo && dbGlobal.db_audiences) {
+        for (var i = 0; i < dbGlobal.db_audiences.length; i++) {
+            // console.log(dbGlobal.db_audiences[i]);
+            if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field)) {
+                // console.log(dbGlobal.db_audiences[i].field + ': ' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value);
+                if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field) && userinfo[dbGlobal.db_audiences[i].field] == dbGlobal.db_audiences[i].value) {
+                    audiencePageURL = dbGlobal.db_audiences[i].url;
+                    break;
+                }
             }
         }
     }
@@ -60,7 +80,6 @@ function redirect_to_db_audience(user_audience, user_country) {
 
 if (location.search.indexOf('reset=')>=0) {
     eraseCookie(DEMAND_BASE_COOKIE);
-    eraseCookie(DEMAND_BASE_COUNTRY_COOKIE);
 }
 
 if (!getCookie(DEMAND_BASE_COOKIE)) {
@@ -82,19 +101,12 @@ if (!getCookie(DEMAND_BASE_COOKIE)) {
         	if (xhr.status === 200) {
 				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
 				var responseJSON = JSON.parse(xhr.responseText);
-				var country = responseJSON.registry_country;
 
-				if (responseJSON.country_name) {
-					country = responseJSON.country_name;
-				}
-
-				setCookie(DEMAND_BASE_COUNTRY_COOKIE, country, 365);
-				setCookie(DEMAND_BASE_COOKIE, responseJSON.audience_segment, 365);
-
+                setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 365);
 				setBodyClass();
 
 				if (dbGlobal.db_audiences) {
-					redirect_to_db_audience(responseJSON.audience_segment, country);
+					redirect_to_db_audience(responseJSON);
 				}
 			}
         }
@@ -103,7 +115,7 @@ if (!getCookie(DEMAND_BASE_COOKIE)) {
 } else {
 	if (dbGlobal.db_audiences) {
 		//The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.
-    	redirect_to_db_audience(getCookie(DEMAND_BASE_COOKIE), getCookie(DEMAND_BASE_COUNTRY_COOKIE));
+    	redirect_to_db_audience(JSON.parse(getCookie(DEMAND_BASE_COOKIE)));
 	}
 
 	setBodyClass();
