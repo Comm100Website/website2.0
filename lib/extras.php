@@ -23,12 +23,17 @@ function body_class($classes) {
         }
     }
 
-    if ($post && get_field('activate_demandbase', $post->ID) && get_field('demandbase_page_type', $post->ID)) {
-        $classes[] = 'db-audience-'.sanitize_title(get_field('demandbase_audience', $post->ID)->post_title);
-    } elseif (isset($_COOKIE['audience']) && isset($_COOKIE['country'])) {
-        $classes[] = 'db-audience-'.sanitize_title($_COOKIE['audience']);
-        $classes[] = 'db-audience-'.sanitize_title($_COOKIE['country']);
-    }
+    // if ($post && get_field('activate_demandbase', $post->ID) && get_field('demandbase_page_type', $post->ID) && get_field('demandbase_audience', $post->ID)) {
+    //     $classes[] = 'db-audience-'.sanitize_title(get_field('demandbase_audience', $post->ID)->post_title);
+    // } else {
+    //     if (isset($_COOKIE['audience'])) {
+    //         $classes[] = 'db-audience-'.sanitize_title($_COOKIE['audience']);
+    //     }
+
+    //     if (isset($_COOKIE['country'])) {
+    //         $classes[] = 'db-audience-'.sanitize_title($_COOKIE['country']);
+    //     }
+    // }
 
   return $classes;
 }
