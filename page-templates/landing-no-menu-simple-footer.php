@@ -1003,17 +1003,18 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'image-text' ):
-
+                    $background_color = get_sub_field('background_color');
                     // check if the nested repeater field has rows of data
                     if( have_rows('image_text_column_repeater') ):
 
-                        echo '<div class="c-content-box c-size-md">';
+                        echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                             // loop through the rows of data
                         while ( have_rows('image_text_column_repeater') ) : the_row();
 
                             $headline = get_sub_field('title');
+                            $title_color = get_sub_field('title_color');
                             $body = get_sub_field('description');
                             $image = get_sub_field('image');
                             $image_position = get_sub_field('image_position');
@@ -1066,7 +1067,7 @@ use Roots\Sage\Assets;
                                             '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
                                         '</div>' .
                                         '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                            '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
+                                            '<h3 class="highlight highlight--' . $title_color . '">' . $headline . '</h3>' .
                                             $body .
                                             $linkcontent .
                                         '</div>' .
@@ -1264,24 +1265,45 @@ use Roots\Sage\Assets;
                 // check current row layout
                 if( get_row_layout() == 'testimonial' ):
 
+                    $alignment = get_sub_field('alignment');
+                    $background_image = get_sub_field('background_image');
                     $quote = get_sub_field('quote');
                     $signature = get_sub_field('signature');
+                    $signature_image = get_sub_field('signature_image');
                     $story_link = get_sub_field('story_link');
                     $background_color = get_sub_field('background_color');
 
+                    $colsType = '';
+                    if ($alignment == 'left'):
+                        $colsType = 'col-sm-7';
+                    elseif ($alignment == 'center'):
+                        $colsType = 'col-sm-10 col-sm-push-1';
+                    endif;
 
-                    echo '<div class="c-content-box c-size-xlg c-content-box--' . $background_color . ' ">';
+                    $style_bg = '';
+                    if ($background_image):
+                        $style_bg = 'style="background-image: url(' . $background_image['url'] . ')"';
+                    endif;
+
+                    echo '<div class="c-content-box c-content-box__quote c-size-xlg c-content-box--' . $background_color . ' " ' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="col-sm-10 col-sm-push-1 c-quote">';
+                    echo '<div class="' . $colsType . ' c-quote">';
 
                     if ($quote):
                         echo '<div class="c-quote__content">' .
                                 $quote .
                             '</div>';
                     endif;
+
+                    $signatureImage = '';
+                    if ($signature_image):
+                        $signatureImage = '<img src="' . $signature_image['url'] . '" alt="' . $signature_image['alt'] . '" width="80" height="80" />';
+                    endif;
+
                     if ($signature):
                         echo '<div class="c-quote__signature">' .
+                                $signatureImage .
                                 $signature .
                             '</div>';
                     endif;
@@ -1366,7 +1388,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="three-column__item">' .
-                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
+                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="" height="80" />' .
                                         '<h5 class="three-column__title">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
@@ -1385,11 +1407,12 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == '2-column_for_feature' ):
+                    $background_color = get_sub_field('background_color');
                     $color = get_sub_field('color');
                     // check if the nested repeater field has rows of data
                     if( have_rows('column') ):
 
-                        echo '<div class="c-content-box c-size-md">';
+                        echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
                         echo '<div class="col-sm-12 feature-column">';
@@ -2022,11 +2045,13 @@ use Roots\Sage\Assets;
 
                 // check current row layout
                 if( get_row_layout() == 'leads_form' ):
+                    $anchor = get_sub_field('anchor');
+                    $background_color = get_sub_field('background_color');
                     $title = get_sub_field('title');
                     $form = get_sub_field('form');
                     $form_note = get_sub_field('form_note');
 
-                    echo '<div class="c-content-box c-size-md">' .
+                    echo '<div id="' . $anchor . '" class="c-content-box c-size-md c-content-box--' . $background_color . '">' .
                             '<div class="container">' .
                                 '<div class="row">' .
                                     '<div class="col-sm-6 col-sm-push-3">' .
@@ -2184,6 +2209,7 @@ use Roots\Sage\Assets;
                     $h1_title = get_sub_field('h1_title');
                     $description = get_sub_field('description');
                     $header_background_image = get_sub_field('background_image');
+                    $background_image_align = get_sub_field('background_image_align');
                     $header_form_code = get_sub_field('form_code');
                     $form_note = get_sub_field('form_note');
 
@@ -2193,12 +2219,17 @@ use Roots\Sage\Assets;
                     endif;
 
 
+                    $banner_description_style = '';
+                    if ($background_image_align == 'bottom'):
+                        $banner_description_style = 'banner--freetrial__description--top';
+                    endif;
+
                     echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     
                     echo '<div class="col-sm-6">';
-                        echo '<div class="banner--freetrial__description">';
+                        echo '<div class="banner--freetrial__description ' . $banner_description_style . '">';
                             if ($h1_tag):
                                 echo '<div class="h1-tag">' .
                                         $h1_tag .
@@ -2231,6 +2262,68 @@ use Roots\Sage\Assets;
                     echo '</div>';
                 endif;
 
+
+                // check current row layout
+                if( get_row_layout() == 'hero_banner_demo_form' ):
+
+                    $h1_tag = get_sub_field('h1_tag');
+                    $h1_title = get_sub_field('h1_title');
+                    $description = get_sub_field('description');
+                    $header_background_image = get_sub_field('background_image');
+                    $background_image_align = get_sub_field('background_image_align');
+                    $header_form_code = get_sub_field('form_code');
+                    $form_note = get_sub_field('form_note');
+
+                    $style_bg = '';
+                    if ($header_background_image):
+                        $style_bg = 'style="background-image: url(' . $header_background_image['url'] . ')"';
+                    endif;
+
+
+                    $banner_description_style = '';
+                    if ($background_image_align == 'bottom'):
+                        $banner_description_style = 'banner--freetrial__description--top';
+                    endif;
+
+                    echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    
+                    echo '<div class="col-sm-6">';
+                        echo '<div class="banner--freetrial__description ' . $banner_description_style . '">';
+                            if ($h1_tag):
+                                echo '<div class="h1-tag">' .
+                                        $h1_tag .
+                                    '</div>';
+                            endif;
+                            if ($h1_title):
+                                echo '<h1>' .
+                                        $h1_title .
+                                    '</h1>';
+                            endif;
+                            if ($description):
+                                echo $description;
+                            endif;
+                        echo '</div>';
+                    echo '</div>';
+
+                    if ($header_form_code):
+                        echo 
+                            '<div class="col-sm-5 col-sm-push-1">' .
+                                $header_form_code .
+                                '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                '<div class="form-note">' . $form_note . '</div>'.
+                            '</div>';
+                            
+
+                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+                
+
                 // check current row layout
                 if( get_row_layout() == 'custom_story' ):
                     $background_color = get_sub_field('background_color');
@@ -2247,12 +2340,367 @@ use Roots\Sage\Assets;
                                     '<div class="col-sm-8">' .
                                         '<h4 class="c-margin-b-25">' . $title . '</h4>' .
                                         '<p>Industry: <strong>' . $industry . '</strong></p>' .
-                                        '<p>Headquarters: <strong>' . $headquarters . '</strong></p>' .
+                                        '<p>Headquartered: <strong>' . $headquarters . '</strong></p>' .
                                     '</div>' .
                                 '</div>' .
                             '</div>' .
                         '</div>';
                 endif;
+
+                // check current row layout
+                if( get_row_layout() == 'landing_context' ):
+                    if( have_rows('paragraph_repeater') ):
+                        echo '<div class="c-content-box c-size-md">' .
+                                    '<div class="container">' .
+                                        '<div class="row">' .
+                                            '<div class="col-sm-12">' .
+                                                '<div class="landingContent">';
+                                                    while ( have_rows('paragraph_repeater') ) : the_row();
+                                                        echo get_sub_field('paragraph');
+                                                    endwhile;
+                        echo                    '</div>' .
+                                            '</div>' .
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>';
+                    endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'icon_content_list' ):
+                    if( have_rows('icon_content_list_repeater') ):
+                        echo '<div class="c-content-box">' .
+                                    '<div class="container">' .
+                                        '<div class="row">' .
+                                            '<div class="col-sm-12">' .
+                                                '<div class="icon-content-list">';
+                        while ( have_rows('icon_content_list_repeater') ) : the_row();
+                            $icon = get_sub_field('icon');
+                            $title = get_sub_field('title');
+                            $content = get_sub_field('content');
+                            
+                            echo '<div class="icon-content-list__element clearfix">' .
+                                    '<div class="icon-content-list__icon">' .
+                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
+                                    '</div>' .
+                                    '<div class="icon-content-list__content">' .
+                                        '<div class="icon-content-list__title">' .
+                                            '<strong>' . $title . '</strong>' .
+                                        '</div>' .
+                                        '<div class="icon-content-list__desc">' .
+                                            $content .
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>';
+                        endwhile;
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'sticky_content' ):
+                    $distance_of_top = get_sub_field('distance_of_top');
+                    echo '<div class="c-content-box">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-12" style="margin-top: ' . $distance_of_top . 'px">';
+                                        
+                                    if( have_rows('sticky_nav') ):
+                                        echo '<nav class="nav--sticky hidden-xs">' .
+                                                '<ul>';
+                                        while ( have_rows('sticky_nav') ) : the_row();
+                                            $if_divider = get_sub_field('if_divider');
+                                            $sticky_nav_element_text = get_sub_field('sticky_nav_element_text');
+                                            $anchor = get_sub_field('anchor');
+
+                                            if ($if_divider):
+                                                while ( have_rows('sticky_nav_element_divider') ) : the_row();
+                                                    echo '<li><hr style="border-top-color: ' . get_sub_field('sticky_nav_element_divider_color') . '; border-top-width: 1px;"></li>';
+                                                endwhile;
+                                                
+                                            else:
+                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>'; 
+                                            endif;
+                                            
+                                        endwhile;
+                                        echo '</ul>';
+                                        echo '</nav>';
+                                    endif;
+                                   
+                                    if ( have_rows('sticky_details_list') ):
+                                        echo '<section class="content--sticky">';
+                                        while ( have_rows('sticky_details_list') ) : the_row();
+                                            while ( have_rows('sticky_details') ) : the_row();
+                                            $id = get_sub_field('id');
+                                            $logo = get_sub_field('logo');
+                                            $url = get_sub_field('url');
+                                            $headquarters = get_sub_field('headquarters');
+                                            $founded = get_sub_field('founded');
+                                            $integration = get_sub_field('integration');
+                                            $best_for = get_sub_field('best_for');
+                                            
+                                            echo '<article id="' . $id . '">';
+                                            echo '<div class="companyInfo">' .
+                                                    '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '" />' .
+                                                    '<div class="companyInfo__url">' .
+                                                        $url .
+                                                    '</div>' .
+                                                    '<div class="companyInfo__details">' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__location">' .
+                                                            'Headquartered<br>' .
+                                                            '<strong>' . $headquarters . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__founded">' .
+                                                            'Founded<br>' .
+                                                            '<strong>' . $founded . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="clear"></div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__integration">' .
+                                                            '<strong>' . $integration . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__wards">' .
+                                                            'Best for<br>' .
+                                                            '<strong>' . $best_for . '</strong>' .
+                                                        '</div>' .
+                                                    '</div>' .
+                                                '</div>';
+                                                echo '<hr style="border-top-color: #7F868e; border-top-width: 1px; margin-bottom: 30px; ">';
+                                                if (have_rows('collapse_content')):
+                                                    echo '<div class="collapse-container">';
+                                                        while (have_rows('collapse_content')) : the_row();
+                                                            $icon = get_sub_field('icon');
+                                                            $title = get_sub_field('title');
+                                                            $content = get_sub_field('content');
+                                                            echo '<div class="collapse">' .
+                                                                    '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
+                                                                    '<div class="collapse__title">' .
+                                                                        $title .
+                                                                    '</div>';
+
+                                                                    
+                                                                    echo '<div class="collapse__content">' .
+                                                                            $content .
+                                                                        '</div>';
+                                                                    
+                                                                    
+                                                            echo  '</div>';
+                                                        endwhile;
+                                                    echo '</div>';
+                                                endif;
+
+                                                if (have_rows('icon_content_list')):
+                                                    echo '<div class="row icon-content-list-1">';
+                                                        while (have_rows('icon_content_list')) : the_row();
+                                                            $icon = get_sub_field('icon');
+                                                            $title = get_sub_field('title');
+                                                            echo '<div class="col-sm-6">' .
+                                                                    '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
+                                                                    '<div class="icon-content-list-1__title">' .
+                                                                        $title .
+                                                                    '</div>';
+
+                                                                    if (have_rows('content_list')):
+                                                                        echo '<div class="icon-content-list-1__desc">' .
+                                                                                '<ul>';
+                                                                        while (have_rows('content_list')) : the_row();
+                                                                            echo '<li>' . get_sub_field('content_list_element') . '</li>';
+                                                                        endwhile;
+                                                                        echo  '</ul>' .
+                                                                            '</div>';
+                                                                    endif;
+                                                                
+                                                                    
+                                                                echo '</div>';
+                                                        endwhile;
+                                                    echo '</div>';
+                                                endif;
+                                            echo '</article>';
+
+                                            endwhile;
+                                        endwhile;
+                                        echo '</section>';
+                                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'table' ):
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-10 col-sm-push-1">';
+                            $anchor = get_sub_field('anchor');
+                            $title = get_sub_field('title');
+                            $subtitle = get_sub_field('subtitle');
+                            echo '<div class="docs-main" id="' . $anchor . '">';
+                            echo '<h3>' . $title . '</h3>';
+
+                            $subtitle_container = '';
+                            if ($subtitle):
+                                $subtitle_container = '<h5 class="tablesaw-subtitle">' . $subtitle . '</h5>';
+                            endif;
+
+                            echo $subtitle_container;
+
+                            $table = get_sub_field( 'table_content' );
+                            if ( $table ):
+                                echo '<table class="tablesaw" data-tablesaw-mode="swipe" data-tablesaw-minimap>';
+                                    if ( $table['header'] ) {
+                                        echo '<thead>';
+                                            echo '<tr>';
+                                                $i = 0;
+                                                foreach ( $table['header'] as $th ) {
+                                                    $i++;
+                                                    echo '<th scope="col"' . ($i == 1 ? 'data-tablesaw-priority="persist"' : '') . '>';
+                                                        echo $th['c'];
+                                                    echo '</th>';
+                                                }
+                                            echo '</tr>';
+                                        echo '</thead>';
+                                    }
+                                    echo '<tbody>';
+                                        $i = 0;
+                                        foreach ( $table['body'] as $tr ) {
+                                            echo '<tr>';
+                                                foreach ( $tr as $td ) {
+                                                    $i++;
+                                                    echo '<td class="' . ($i == 1 ? 'title' : '') . '">';
+                                                        echo $td['c'];
+                                                    echo '</td>';
+                                                }
+                                            echo '</tr>';
+                                        }
+                                    echo '</tbody>';
+                                echo '</table>';
+
+                                echo '<script src="https://www.comm100.com/wp-content/themes/comm100/dist/scripts/tablesaw.js" type="text/javascript"></script>';
+                            endif;
+                            echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'feature_header' ):
+
+
+
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 feature__header">';
+
+                    $feature_header = get_sub_field('feature_header');
+                    if ($feature_header):
+                        while ( have_rows('feature_header') ) : the_row();
+                            $h1_tag = get_sub_field('h1_tag');
+                            $h1 = get_sub_field('h1');
+                            $description = get_sub_field('description');
+                            $download = get_sub_field('download');
+                            $image = get_sub_field('image');
+                            $video = get_sub_field('video');
+                                if ($h1_tag):
+                                    echo '<div class="h1-tag">' .
+                                            $h1_tag .
+                                        '</div>';
+                                endif;
+                                if ($h1):
+                                    echo '<h1>' .
+                                            $h1 .
+                                        '</h1>';
+                                endif;
+
+                                if ($description):
+                                    echo $description;
+                                endif;
+                                if ($download):
+                                    while ( have_rows('download') ) : the_row();
+                                        $installuninstall = get_sub_field('installuninstall');
+                                        if (have_rows('download_content')):
+                                            echo '<div class="download">';
+                                            while ( have_rows('download_content') ) : the_row();
+                                                $download_link = get_sub_field('download_link');
+                                                $download_img = get_sub_field('download_img');
+                                                echo '<a href="' . $download_link . '">' .
+                                                        '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                                    '</a>';
+                                            endwhile;
+                                            echo '<div class="c-margin-t-10 c-font-14">' .
+                                                        '<a href="/eula/" target="_blank">EULA</a> | ' .
+                                                        '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
+                                                                $installuninstall['title'] .
+                                                            '</a>' .
+                                                    '</div>';
+                                            echo '</div>';
+                                        endif;
+                                    endwhile;
+                                endif;
+                                if ($image):
+                                    echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
+                                endif;
+                                if ($video):
+                                    echo '<div class="row video-content">' . 
+                                            '<div class="col-sm-10 col-sm-push-1">' . 
+                                                $video .
+                                            '</div>' .
+                                        '</div>';
+                                endif;
+                        endwhile;
+                    endif;
+
+                    $normal_content = get_sub_field('normal_content');
+                    if ($normal_content):
+                        while ( have_rows('normal_content') ) : the_row();
+                            $header_headline = get_sub_field('h1_title');
+                            $header_slogan = get_sub_field('subtitle');
+                            $header_description = get_sub_field('description');
+                            $call_to_action = get_sub_field('call_to_action');
+                            echo '<div id="notInServiceCountry" class="thankyou" style="display: none">';
+                                if ($header_headline):
+                                    echo '<h1>' .
+                                            $header_headline .
+                                        '</h1>';
+                                endif;
+                                if ($header_slogan):
+                                    echo '<h2>' .
+                                            $header_slogan .
+                                        '</h2>';
+                                endif;
+                                if ($header_description):
+                                    echo '<div class="thankyou__desc">' .
+                                            $header_description .
+                                        '</div>';
+                                endif;
+
+                                if ($call_to_action):
+                                    echo '<div class="thankyou__calltoaction">' .
+                                            '<a class="btn btn-xlg btn-link--green" href="' . $call_to_action['url'] . '" target="' . $call_to_action['target'] . '">' .
+                                                $call_to_action['title'] .
+                                            '</a>';
+                                        '</div>';
+                                endif;
+                            echo '</div>';
+                        endwhile;
+                    endif;
+
+
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
             endwhile;
         else :
 

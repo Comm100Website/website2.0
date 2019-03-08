@@ -589,17 +589,18 @@ Template Name:Solution Use Case Landing
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
-                
+                $background_color = get_sub_field('background_color');
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
                     
-                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                         // loop through the rows of data
                     while ( have_rows('image_text_column_repeater') ) : the_row();
 
                         $headline = get_sub_field('title');
+                        $title_color = get_sub_field('title_color');
                         $body = get_sub_field('description');
                         $image = get_sub_field('image');
                         $image_position = get_sub_field('image_position');
@@ -652,7 +653,7 @@ Template Name:Solution Use Case Landing
                                         '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
                                     '</div>' .
                                     '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                        '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
+                                        '<h3 class="highlight highlight--' . $title_color . '">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
                                     '</div>' .

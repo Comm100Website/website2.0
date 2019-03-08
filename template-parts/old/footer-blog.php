@@ -134,9 +134,6 @@
                                     <span class="c-padding-left-10">
                                         <img src="<?php bloginfo('template_url');?>/assets/base/img/content/security/pci.png" alt="PCI" width="100" height="43">
                                     </span>
-                                    <span id="truste" class="c-padding-left-10">
-                                        <a href="//privacy.truste.com/privacy-seal/validation?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" target="_blank"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" alt="TRUSTe"/></a>
-                                    </span>
                                     <span class="c-padding-left-10">
                                         <a title="Click for the Business Review of Comm100 Network Corporation, a Computer Software Publishers &amp; Developers in Vancouver BC"
                                         href="//www.bbb.org/mbc/business-reviews/computer-software-publishers-and-developers/comm100-network-corporation-in-vancouver-bc-1264631#sealclick" target="_blank">

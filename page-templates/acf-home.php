@@ -1589,7 +1589,7 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="three-column__item">' .
-                                        Assets\get_acf_image($icon, '', 80, 80) .
+                                        Assets\get_acf_image($icon, '', '', 80) .
                                         '<h5 class="three-column__title">' . $headline . '</h3>' .
                                         $body .
                                         $linkcontent .
@@ -2428,6 +2428,42 @@ use Roots\Sage\Assets;
                 endif;
 
                 // check current row layout
+                if( get_row_layout() == '2-columns_form' ):
+                    $title = get_sub_field('title');
+                    $description = get_sub_field('description');
+                    $form = get_sub_field('form');
+                    $form_note = get_sub_field('form_note');
+
+                    $title_container = '';
+                    if ($title):
+                        $title_container = '<h3 class="highlight highlight--blue">' . $title . '</h3>';
+                    endif;
+
+                    $desc_container = '';
+                    if ($description):
+                        $desc_container = '<div class="two-columns-form__desc">' . $description . '</div>';
+                    endif;
+
+
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-10 col-sm-push-1">' .
+                                        '<div class="two-columns-form">' .
+                                            $desc_container .
+                                            $title_container .
+                                            $form .
+                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                            '<div class="form-note">' . $form_note . '</div>'.
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>' .
+                            '</div>' .
+                        '</div>';
+
+                endif;
+
+                // check current row layout
                 if( get_row_layout() == 'compare_list' ):
                     $title = get_sub_field('title');
                     echo '<div class="c-content-box c-size-md">';
@@ -2920,6 +2956,464 @@ use Roots\Sage\Assets;
 
                     echo '</tbody></table>';
 
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'tabs' ):
+                    if( have_rows('tab_wrap') ):
+    
+                        // loop through the rows of data
+                        while ( have_rows('tab_wrap') ) : the_row();
+                            $header_headline = get_sub_field('h1_title');
+                            $header_slogan = get_sub_field('subtitle');
+                            $header_description = get_sub_field('description');
+    
+                            // check if the nested repeater field has rows of data
+                            if( have_rows('tab_content') ):
+    
+                                echo '<div class="c-content-box c-size-md">';
+                                echo '<div class="container">';
+                                echo '<div class="row">';
+    
+                                echo '<div class="col-sm-12 threeTab__head c-center">' .
+                                        '<h1>' . $header_headline . '</h1>' .
+                                        '<h2>' .
+                                            $header_slogan .
+                                        '</h2>' .
+                                        $header_description .
+                                    '</div>';
+    
+                                echo '<div class="col-sm-12">';
+                                echo '<div class="threeTab__Index--Wrap clearfix">';
+                                    // loop through the rows of data
+    
+                                while ( have_rows('tab_content') ) : the_row();
+    
+                                    $color = get_sub_field('color');
+                                    $tag = get_sub_field('tag');
+                                    $headline = get_sub_field('headline');
+                                    $body = get_sub_field('body');
+                                    $link = get_sub_field('link');
+    
+                                    echo    '<div class="threeTab__Index">' .
+                                                '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
+                                                '<h3>' . $headline . '</h3>' .
+                                            '</div>';
+    
+                                endwhile;
+    
+                                echo '</div>';
+                                echo '<div class="threeTab__Detail-wrap">';
+    
+                                // pricing live chat details
+    
+                                while ( have_rows('tab_details') ) : the_row();
+    
+                                    $title = get_sub_field('title');
+                                    $description = get_sub_field('description');
+    
+                                    $featurelist_wrap = '';
+                                    if (have_rows('content')):
+    
+                                        while ( have_rows('content') ) : the_row();
+                                            $sub_title = get_sub_field('sub_title');
+                                            $icon = get_sub_field('icon');
+                                            $featurelist_wrap .= '<div class="col-sm-6 threeTab__Detail--col">';
+                                            $featurelist_wrap .= '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />';
+                                            $featurelist_wrap .= '<p class="threeTab__Detail--subTitle">' . $sub_title . '</p>';
+                                            $featurelist_wrap .= '<ul class="threeTab__Detail--contentList">';
+                                            // $li_feature_list = '';
+                                            while ( have_rows('content_list') ) : the_row();
+                                                $content_list_point = get_sub_field('content_list_point');
+                                                $featurelist_wrap .= '<li>' . $content_list_point . '</li>';
+                                            endwhile;
+                                            $featurelist_wrap .= '</ul></div>';
+                                        endwhile;
+                                    endif;
+    
+    
+                                    $cta = get_sub_field('cta');
+                                    $linkcontent = '';
+    
+                                    if ($cta):
+                                        while ( have_rows('cta') ) : the_row();
+                                            $cta_link_type = get_sub_field('cta_link_type');
+                                            $cta_link = get_sub_field('cta_link');
+                                            if ($cta_link):
+                                                switch ($cta_link_type) {
+                                                    case 'green' :
+                                                            $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    case 'blue' :
+                                                            $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    case 'white' :
+                                                            $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    case 'link' :
+                                                            $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                    $cta_link['title'] .
+                                                                '</a>';
+                                                            break;
+                                                    default: break;
+                                                }
+                                            endif;
+                                        endwhile;
+                                        if ($linkcontent !== ''):
+                                            $linkcontent = '<div class="threeTab__Detail--action"> ' . $linkcontent . ' </div>';
+                                        endif;
+                                    endif;
+    
+                                    echo    '<div class="threeTab__Detail clearfix">' .
+                                                $tabMobileAI .
+                                                '<div class="threeTab__Detail--col-wrap clearfix">' .
+    
+                                                    '<div class="threeTab__Detail--title">' . $title . '</div>' .
+                                                    '<div class="threeTab__Detail--summary">' . $description . '</div>' .
+                                                    $featurelist_wrap .
+                                                '</div>' .
+                                            '</div>';
+    
+                                endwhile;
+    
+    
+                                // end pricing live chat details
+    
+    
+    
+    
+                                echo '</div>';
+    
+    
+    
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+                                echo '</div>';
+    
+                            endif;
+                        endwhile;
+                    endif;
+                endif;
+    
+                // check current row layout
+                if( get_row_layout() == 'partner_contact' ):
+                    $image = get_sub_field('image');
+                    $title = get_sub_field('title');
+                    $contact_form = get_sub_field('contact_form');
+                    $form_note = get_sub_field('form_note');
+    
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+    
+                                    '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
+                                    '<div class="col-sm-7">' .
+                                        '<div class="contact-form">' .
+                                            '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
+                                            $contact_form .
+                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
+                                            '<div class="form-note">' . $form_note . '</div>'.
+                                        '</div>' .
+                                    '</div>' .
+    
+                                '</div>' .
+                            '</div>' .
+                        '</div>';
+    
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'thank_you_hero_head' ):
+
+                    $header_headline = get_sub_field('h1_title');
+                    $header_slogan = get_sub_field('subtitle');
+                    $header_description = get_sub_field('description');
+                    $call_to_action = get_sub_field('call_to_action');
+
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12 thankyou">';
+
+
+                    if ($header_headline):
+                        echo '<h1>' .
+                                $header_headline .
+                            '</h1>';
+                    endif;
+                    if ($header_slogan):
+                        echo '<h2 class="c-margin-t-20">' .
+                                $header_slogan .
+                            '</h2>';
+                    endif;
+                    if ($header_description):
+                        echo '<div class="thankyou__desc">' .
+                                $header_description .
+                            '</div>';
+                    endif;
+
+                    if ($call_to_action):
+                        echo '<div class="thankyou__calltoaction">' .
+                                '<a class="btn btn-xlg btn-link--green" href="' . $call_to_action['url'] . '" target="' . $call_to_action['target'] . '">' .
+                                    $call_to_action['title'] .
+                                '</a>';
+                            '</div>';
+                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'landing_context' ):
+                    if( have_rows('paragraph_repeater') ):
+                        echo '<div class="c-content-box c-size-md">' .
+                                    '<div class="container">' .
+                                        '<div class="row">' .
+                                            '<div class="col-sm-12">' .
+                                                '<div class="landingContent">';
+                                                    while ( have_rows('paragraph_repeater') ) : the_row();
+                                                        echo get_sub_field('paragraph');
+                                                    endwhile;
+                        echo                    '</div>' .
+                                            '</div>' .
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>';
+                    endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'icon_content_list' ):
+                    if( have_rows('icon_content_list_repeater') ):
+                        echo '<div class="c-content-box">' .
+                                    '<div class="container">' .
+                                        '<div class="row">' .
+                                            '<div class="col-sm-12">' .
+                                                '<div class="icon-content-list">';
+                        while ( have_rows('icon_content_list_repeater') ) : the_row();
+                            $icon = get_sub_field('icon');
+                            $title = get_sub_field('title');
+                            $content = get_sub_field('content');
+                            
+                            echo '<div class="icon-content-list__element clearfix">' .
+                                    '<div class="icon-content-list__icon">' .
+                                        '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
+                                    '</div>' .
+                                    '<div class="icon-content-list__content">' .
+                                        '<div class="icon-content-list__title">' .
+                                            '<strong>' . $title . '</strong>' .
+                                        '</div>' .
+                                        '<div class="icon-content-list__desc">' .
+                                            $content .
+                                        '</div>' .
+                                    '</div>' .
+                                '</div>';
+                        endwhile;
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    endif;
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'sticky_content' ):
+                    $distance_of_top = get_sub_field('distance_of_top');
+                    echo '<div class="c-content-box">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-12" style="margin-top: ' . $distance_of_top . 'px">';
+                                        
+                                    if( have_rows('sticky_nav') ):
+                                        echo '<nav class="nav--sticky hidden-xs">' .
+                                                '<ul>';
+                                        while ( have_rows('sticky_nav') ) : the_row();
+                                            $if_divider = get_sub_field('if_divider');
+                                            $sticky_nav_element_text = get_sub_field('sticky_nav_element_text');
+                                            $anchor = get_sub_field('anchor');
+
+                                            if ($if_divider):
+                                                while ( have_rows('sticky_nav_element_divider') ) : the_row();
+                                                    echo '<li><hr style="border-top-color: ' . get_sub_field('sticky_nav_element_divider_color') . '; border-top-width: 1px;"></li>';
+                                                endwhile;
+                                                
+                                            else:
+                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>'; 
+                                            endif;
+                                            
+                                        endwhile;
+                                        echo '</ul>';
+                                        echo '</nav>';
+                                    endif;
+                                   
+                                    if ( have_rows('sticky_details_list') ):
+                                        echo '<section class="content--sticky">';
+                                        while ( have_rows('sticky_details_list') ) : the_row();
+                                            while ( have_rows('sticky_details') ) : the_row();
+                                            $id = get_sub_field('id');
+                                            $logo = get_sub_field('logo');
+                                            $url = get_sub_field('url');
+                                            $headquarters = get_sub_field('headquarters');
+                                            $founded = get_sub_field('founded');
+                                            $integration = get_sub_field('integration');
+                                            $best_for = get_sub_field('best_for');
+                                            
+                                            echo '<article id="' . $id . '">';
+                                            echo '<div class="companyInfo">' .
+                                                    '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '" />' .
+                                                    '<div class="companyInfo__url">' .
+                                                        $url .
+                                                    '</div>' .
+                                                    '<div class="companyInfo__details">' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__location">' .
+                                                            'Headquartered<br>' .
+                                                            '<strong>' . $headquarters . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__founded">' .
+                                                            'Founded<br>' .
+                                                            '<strong>' . $founded . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="clear"></div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__integration">' .
+                                                            '<strong>' . $integration . '</strong>' .
+                                                        '</div>' .
+                                                        '<div class="companyInfo__detailsInfo companyInfo__wards">' .
+                                                            'Best for<br>' .
+                                                            '<strong>' . $best_for . '</strong>' .
+                                                        '</div>' .
+                                                    '</div>' .
+                                                '</div>';
+                                                echo '<hr style="border-top-color: #7F868e; border-top-width: 1px; margin-bottom: 30px; ">';
+                                                if (have_rows('collapse_content')):
+                                                    echo '<div class="collapse-container">';
+                                                        while (have_rows('collapse_content')) : the_row();
+                                                            $icon = get_sub_field('icon');
+                                                            $title = get_sub_field('title');
+                                                            $content = get_sub_field('content');
+                                                            echo '<div class="collapse">' .
+                                                                    '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
+                                                                    '<div class="collapse__title">' .
+                                                                        $title .
+                                                                    '</div>';
+
+                                                                    
+                                                                    echo '<div class="collapse__content">' .
+                                                                            $content .
+                                                                        '</div>';
+                                                                    
+                                                                    
+                                                            echo  '</div>';
+                                                        endwhile;
+                                                    echo '</div>';
+                                                endif;
+
+                                                if (have_rows('icon_content_list')):
+                                                    echo '<div class="row icon-content-list-1">';
+                                                        while (have_rows('icon_content_list')) : the_row();
+                                                            $icon = get_sub_field('icon');
+                                                            $title = get_sub_field('title');
+                                                            echo '<div class="col-sm-6">' .
+                                                                    '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
+                                                                    '<div class="icon-content-list-1__title">' .
+                                                                        $title .
+                                                                    '</div>';
+
+                                                                    if (have_rows('content_list')):
+                                                                        echo '<div class="icon-content-list-1__desc">' .
+                                                                                '<ul>';
+                                                                        while (have_rows('content_list')) : the_row();
+                                                                            echo '<li>' . get_sub_field('content_list_element') . '</li>';
+                                                                        endwhile;
+                                                                        echo  '</ul>' .
+                                                                            '</div>';
+                                                                    endif;
+                                                                
+                                                                    
+                                                                echo '</div>';
+                                                        endwhile;
+                                                    echo '</div>';
+                                                endif;
+                                            echo '</article>';
+
+                                            endwhile;
+                                        endwhile;
+                                        echo '</section>';
+                                    endif;
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
+                // check current row layout
+                if( get_row_layout() == 'table' ):
+                    echo '<div class="c-content-box c-size-md">' .
+                            '<div class="container">' .
+                                '<div class="row">' .
+                                    '<div class="col-sm-10 col-sm-push-1">';
+                            $anchor = get_sub_field('anchor');
+                            $title = get_sub_field('title');
+                            $subtitle = get_sub_field('subtitle');
+                            echo '<div class="docs-main" id="' . $anchor . '">';
+                            echo '<h3>' . $title . '</h3>';
+
+                            $subtitle_container = '';
+                            if ($subtitle):
+                                $subtitle_container = '<h5 class="tablesaw-subtitle">' . $subtitle . '</h5>';
+                            endif;
+
+                            echo $subtitle_container;
+
+                            $table = get_sub_field( 'table_content' );
+                            if ( $table ):
+                                echo '<table class="tablesaw" data-tablesaw-mode="swipe" data-tablesaw-minimap>';
+                                    if ( $table['header'] ) {
+                                        echo '<thead>';
+                                            echo '<tr>';
+                                                $i = 0;
+                                                foreach ( $table['header'] as $th ) {
+                                                    $i++;
+                                                    echo '<th scope="col"' . ($i == 1 ? 'data-tablesaw-priority="persist"' : '') . '>';
+                                                        echo $th['c'];
+                                                    echo '</th>';
+                                                }
+                                            echo '</tr>';
+                                        echo '</thead>';
+                                    }
+                                    echo '<tbody>';
+                                        $i = 0;
+                                        foreach ( $table['body'] as $tr ) {
+                                            echo '<tr>';
+                                                foreach ( $tr as $td ) {
+                                                    $i++;
+                                                    echo '<td class="' . ($i == 1 ? 'title' : '') . '">';
+                                                        echo $td['c'];
+                                                    echo '</td>';
+                                                }
+                                            echo '</tr>';
+                                        }
+                                    echo '</tbody>';
+                                echo '</table>';
+
+                                echo '<script src="https://www.comm100.com/wp-content/themes/comm100/dist/scripts/tablesaw.js" type="text/javascript"></script>';
+                            endif;
+                            echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';

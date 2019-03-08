@@ -197,6 +197,7 @@ Template Name:customerstory
 					$title = get_sub_field('title');
 					$sub_title = get_sub_field('sub_title');
 					$title_align = get_sub_field('title_align');
+					$about_bio = get_sub_field('about_bio');
 
 					echo '<div class="c-content-box c-size-md">';
 					echo '<div class="container">';
@@ -212,6 +213,31 @@ Template Name:customerstory
 					endif;
 					echo '</div>';
 					
+					if ($about_bio):
+	
+						while ( have_rows('about_bio') ) : the_row();
+							$avatar = get_sub_field('avatar');
+							$bio = get_sub_field('bio');
+							$signature = get_sub_field('signature');
+							
+							if ($avatar):
+								echo '<div class="bio bio--small">';
+								if ($avatar):
+									echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="180" height="180">';
+								endif;
+								if ($bio):
+									echo $bio;
+								endif;
+								if ($signature):
+									echo '<div class="bio-signature">' .
+											$signature .
+										'</div>';
+								endif;
+								echo '</div>';
+							endif;
+							
+						endwhile;
+					endif;
 
 					if ( get_sub_field('customer_list') ):
 						echo '<div class="storyCard-list">';
@@ -409,6 +435,39 @@ Template Name:customerstory
 					echo '</div>';
 					echo '</div>';
 				endif;  
+
+				// check current row layout
+				if( get_row_layout() == 'about_bio' ):
+
+					$avatar = get_sub_field('avatar');
+					$bio = get_sub_field('bio');
+					$signature = get_sub_field('signature');
+	
+					echo '<div class="c-content-box c-size-md">';
+					echo '<div class="container">';
+					echo '<div class="row">';
+					echo '<div class="col-sm-12">';
+					echo '<div class="bio">';
+	
+	
+					if ($avatar):
+						echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="380" height="380">';
+					endif;
+					if ($bio):
+						echo $bio;
+					endif;
+					if ($signature):
+						echo '<div class="bio-signature">' .
+								$signature .
+							'</div>';
+					endif;
+	
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+				endif;
 			endwhile;
 		
         else :

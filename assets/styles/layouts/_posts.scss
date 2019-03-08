@@ -110,7 +110,7 @@
 .c-tag {
     background: $brand-primary; display: inline-block; color: #FFF; border-radius: 0 4px 4px 0; box-shadow: 1px 1px 4px rgba(0,0,0,0.2); padding: 8px 22px; line-height: 1; font-size: 12px; font-family: 'Ubuntu Bold', sans-serif; font-weight: 700; position: absolute; top: 40px; left: 0; z-index: 2;
 
-    &:after { content: ''; display: block; height: 30px; width: 46px; background: transparent url(../images/content/blog/tag-tail.png) no-repeat 0 0; background-size: 100% auto; position: absolute; top: 100%; left: 3px; }
+    &:after { content: ''; display: block; height: 30px; width: 46px; background: transparent url(/wp-content/uploads/2019/01/image/png/tag-tail.png) no-repeat 0 0; background-size: 100% auto; position: absolute; top: 100%; left: 3px; }
 }
 
 .related-posts {

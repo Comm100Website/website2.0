@@ -1,3 +1,6 @@
+var DEMAND_BASE_COOKIE = 'audience';
+var DEMAND_BASE_COUNTRY_COOKIE = 'country';
+
 function setCookie(name,value,days) {
     var expires = "";
     if (days) {
@@ -23,6 +26,12 @@ function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
 
+function setBodyClass() {
+    if (document.body) {
+        document.body.classList.add("db-audience-" + encodeURI(getCookie(DEMAND_BASE_COOKIE).replace(' ', '-').toLowerCase()));
+	    document.body.classList.add("db-audience-" + encodeURI(getCookie(DEMAND_BASE_COUNTRY_COOKIE).replace(' ', '-').toLowerCase()));
+    }
+}
 function redirect_to_db_audience(user_audience, user_country) {
     var audiencePageURL = dbGlobal.db_default;
 
@@ -49,9 +58,6 @@ function redirect_to_db_audience(user_audience, user_country) {
     }
 }
 
-var DEMAND_BASE_COOKIE = 'audience';
-var DEMAND_BASE_COUNTRY_COOKIE = 'country';
-
 if (location.search.indexOf('reset=')>=0) {
     eraseCookie(DEMAND_BASE_COOKIE);
     eraseCookie(DEMAND_BASE_COUNTRY_COOKIE);
@@ -69,25 +75,36 @@ if (!getCookie(DEMAND_BASE_COOKIE)) {
     // console.log(requestURL);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', requestURL, false);
-    xhr.onload = function() {
-        //We got a DB API response.
-        if (xhr.status === 200) {
-            //Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
-            var responseJSON = JSON.parse(xhr.responseText);
-            var country = responseJSON.registry_country;
+    xhr.open('GET', requestURL, true);
+    xhr.onload = function(e) {
+        if (xhr.readyState === 4) {
+			//We got a DB API response.
+        	if (xhr.status === 200) {
+				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
+				var responseJSON = JSON.parse(xhr.responseText);
+				var country = responseJSON.registry_country;
 
-            if (responseJSON.country_name) {
-                country = responseJSON.country_name;
-            }
+				if (responseJSON.country_name) {
+					country = responseJSON.country_name;
+				}
 
-            setCookie(DEMAND_BASE_COUNTRY_COOKIE, country, 365);
-            setCookie(DEMAND_BASE_COOKIE, responseJSON.audience_segment, 365);
-            redirect_to_db_audience(responseJSON.audience_segment, country);
+				setCookie(DEMAND_BASE_COUNTRY_COOKIE, country, 365);
+				setCookie(DEMAND_BASE_COOKIE, responseJSON.audience_segment, 365);
+
+				setBodyClass();
+
+				if (dbGlobal.db_audiences) {
+					redirect_to_db_audience(responseJSON.audience_segment, country);
+				}
+			}
         }
     };
     xhr.send();
 } else {
-    //The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.
-    redirect_to_db_audience(getCookie(DEMAND_BASE_COOKIE), getCookie(DEMAND_BASE_COUNTRY_COOKIE));
+	if (dbGlobal.db_audiences) {
+		//The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.
+    	redirect_to_db_audience(getCookie(DEMAND_BASE_COOKIE), getCookie(DEMAND_BASE_COUNTRY_COOKIE));
+	}
+
+	setBodyClass();
 }

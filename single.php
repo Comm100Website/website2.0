@@ -28,11 +28,12 @@ use Roots\Sage\Analytics;
                                             //author
                                             $recent_author_str='';
                                             if ( function_exists( 'coauthors_posts_links' ) ) {
-                                                $recent_authors = get_coauthors();
-                                                foreach($recent_authors as $recent_author){
-                                                    $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
-                                                }
-                                                echo substr($recent_author_str,0,strlen($recent_author_str)-2);
+                                                // $recent_authors = get_coauthors();
+                                                // foreach($recent_authors as $recent_author){
+                                                //     $recent_author_str .= '<a href="'. get_author_posts_url( $recent_author->ID, $recent_author->user_nicename) . '">'. $recent_author->display_name .'</a>, ';
+                                                // }
+                                                // echo substr($recent_author_str,0,strlen($recent_author_str)-2);
+                                                coauthors_posts_links();
                                             } else {
                                                 echo '<a href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'">'.
                                                     the_author().
@@ -52,17 +53,17 @@ use Roots\Sage\Analytics;
                                 $coauthors = get_coauthors();
                                 foreach( $coauthors as $coauthor ):
                                     $archive_link = get_author_posts_url( $coauthor->ID, $coauthor->user_nicename );
-                                    $userdata = get_userdata( $coauthor->ID );
+                                    // $userdata = get_userdata( $coauthor->ID );
                                 ?>
-                                    <div class="authorsure-author-box">
-                                        <div class="author-thumb"><?php echo get_avatar( $userdata->user_email, 100 ); ?></div>
+                                    <div class="authorsure-author-box clearfix">
+                                        <div class="author-thumb"><?php echo get_avatar( $coauthor->user_email, 100 ); ?></div>
                                         <div class="author-details">
                                             <h4>
                                                 About <a href="<?php echo $archive_link; ?>">
-                                                    <?php echo $userdata->display_name; ?>
+                                                    <?php echo $coauthor->display_name; ?>
                                                 </a>
                                             </h4>
-                                            <p><?php echo $userdata->user_description; ?></p>
+                                            <p><?php echo $coauthor->description; ?></p>
                                         </div>
                                     </div>
                                 <?php

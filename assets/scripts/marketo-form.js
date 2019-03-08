@@ -57,33 +57,46 @@
             }  
             var formtype = form.vals().formtype;
             var email = form.vals().Email;
+            var partner_Email__c = form.vals().Partner_Email__c;
             var requestUrl = '';
             switch (formtype) {
+                case undefined:
                 case 'partner':
                 case 'contact':
                     requestUrl = window.location.href;
                     break;
-                case 'requstdemo':
+                case 'requestdemo':
                     requestUrl = document.referrer;
                     break;
                 default: break;
             }
             if(email){
-                if(typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
+                if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
                     form.submitable(false);
                     var emailElem = form.getFormElem().find("#Email");
                     form.showErrorMessage("Must be Business email.", emailElem);
-                }else{
-                    jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
-                    AddFieldsAndVaulesStringToCookie(form);
-                    form.submitable(true);
-                    if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0) {
+                    return;
+                } 
+                
+                if (typeof(partner_Email__c) !== 'undefined') {
+                    if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(partner_Email__c)) {
+                        form.submitable(false);
+                        var emailElem = form.getFormElem().find("#Partner_Email__c");
+                        form.showErrorMessage("Must be Business email.", emailElem);
                         return;
-                    }
-                    if(jQuery("#downloadlink").length > 0) {
-                        jQuery("#downloadlink")[0].click();
-                    }
+                    } 
+                } 
+
+                jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
+                AddFieldsAndVaulesStringToCookie(form);
+                form.submitable(true);
+                if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0) {
+                    return;
                 }
+                if(jQuery("#downloadlink").length > 0) {
+                    jQuery("#downloadlink")[0].click();
+                }
+                
             }
         });
     });
@@ -129,7 +142,7 @@ function WriteCookies(Key, Value, expire) {
     else {
         ep = new Date((new Date()).getTime() + 365 * 24 * 3600 * 1000);
     }
-    ep = ";expires=" + ep.toGMTString();
+    ep = ";path=/;expires=" + ep.toGMTString();
     document.cookie = Key + "=" + Value + ep;
 }
 function IfCookieExists(key) {

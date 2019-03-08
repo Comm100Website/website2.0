@@ -115,11 +115,8 @@ use Roots\Sage\Assets;
                             <span><img src="/wp-content/uploads/images/hipaa-logo.png" alt="HIPAA" width="127" height="44" class="c-sm-margin-t-10"></span>
                             <span><img src="/wp-content/uploads/images/logo-iso-27001.png?v=20180202" alt="ISO 27001" width="85" height="85" class="c-sm-margin-t-10"></span>
                             <span class="c-padding-left-10">
-                                        <img src="<?= Assets\asset_path('images/content/security/pci.png'); ?>" alt="PCI" width="100" height="43">
-                                    </span>
-                                    <span id="truste" class="c-padding-left-10">
-                                   <a href="//privacy.truste.com/privacy-seal/validation?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" target="_blank"><img style="border: none" src="//privacy-policy.truste.com/privacy-seal/seal?rid=75257e22-f2a1-46d8-9653-38277e4a9cd2" alt="TRUSTe"/></a>
-                                </span>
+                                <img src="<?= Assets\asset_path('images/content/security/pci.png'); ?>" alt="PCI" width="100" height="43">
+                            </span>
                             <span class="c-padding-left-10">
                                         <a title="Click for the Business Review of Comm100 Network Corporation, a Computer Software Publishers &amp; Developers in Vancouver BC"
                                         href="//www.bbb.org/mbc/business-reviews/computer-software-publishers-and-developers/comm100-network-corporation-in-vancouver-bc-1264631#sealclick" target="_blank">
@@ -163,29 +160,7 @@ use Roots\Sage\Assets;
 <script type="text/javascript">
   var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:5000239,div_id:"comm100-button-5000239"}),t.site_id=10000,t.main_code_plan=5000239,e("https://chatserver.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://hostedmax.comm100.com/chatserver/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
 </script>
-<script type="text/javascript">
-    Comm100API.onReady = function () {
-        var campaignIds = Comm100API.get('livechat.campaignIds');
-        if (campaignIds != null) {
-            var divId = "comm100-button-" + campaignIds[0];
-            var divObj = document.getElementById(divId);
-            Comm100API.on('livechat.invitation.display', function (invitation) {
-                setTimeout(function () {
-                    var iframe = divObj.getElementsByTagName("iframe");
-                    if (iframe != null) {
-                        var all = iframe[0].contentWindow.document.getElementsByTagName("div");
-                        for (var i = 0; i < all.length; i++) {
-                            if (all[i].className === "invitation__message") {
-                                all[i].innerHTML = all[i].innerHTML.replace("{company name}", Demandbase_CompanyName);
-                                break;
-                            }
-                        }
-                    }
-                }, 1000);
-            });
-        }
-    };
-</script>
+
 <!--End Comm100 Live Chat Code-->
 <div id="namespace-chatbutton"></div>
 <!-- END: LAYOUT/BASE/BOTTOM -->

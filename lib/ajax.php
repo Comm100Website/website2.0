@@ -758,3 +758,16 @@ function dedicatedrequestcallback(){
     wp_mail( $multiple_recipients, $subject, $body, $headers );
     wp_die();
 }
+
+
+//get demandbase info
+add_action('wp_ajax_getDemandbaseInfo_action', __NAMESPACE__.'\\getDemandbaseInfo');
+add_action('wp_ajax_nopriv_getDemandbaseInfo_action', __NAMESPACE__.'\\getDemandbaseInfo');
+
+function getDemandbaseInfo(){
+    $demandbaseInfo = 'https://api.company-target.com/api/v2/ip.json?key=6cfe49696fbfb1ad98d42d29b19556c8&query=' . get_visitor_ip();
+    $demandbaseInfoJson = file_get_contents($demandbaseInfo);
+    echo $demandbaseInfoJson;
+
+    wp_die();
+}

@@ -370,7 +370,7 @@ var LayoutHeader = function() {
 	var f = parseInt(jQuery(".c-layout-header").attr("data-minimize-offset") > 0 ? parseInt(jQuery(".c-layout-header").attr("data-minimize-offset")) : 0);
 	var prevScrollTop = 0;
 	var currentScrollTop = 0;
-	var mainBarOffsetTop = jQuery('.c-mainbar').offset().top;
+	var mainBarOffsetTop = jQuery('.c-mainbar').length > 0 ? jQuery('.c-mainbar').offset().top : 0;
 	var d = function() {
 		currentScrollTop = jQuery(window).scrollTop();
 
@@ -926,6 +926,42 @@ var tourscroll = function() {
 	};
 }();
 
+function offset(el) {
+    var rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
+
+
+var stickyScroll = function() {
+	return {
+		init: function() {
+			var mainNavLinks = document.querySelectorAll(".nav--sticky ul li a");
+			// var mainSections = document.querySelectorAll(".content--sticky > article");
+
+			window.addEventListener("scroll", function(event) {
+				var fromTop = window.scrollY;
+				
+				mainNavLinks.forEach(function(link) {
+					var section = document.querySelector(link.hash);
+				
+					if (
+						fromTop >= parseInt(offset(section).top)  &&
+						fromTop < parseInt(offset(section).top + section.offsetHeight)
+					) {
+						link.classList.add("active");
+					} else {
+						link.classList.remove("active");
+					}
+				});
+			});
+		}
+	};
+}();
+
+var Demandbase_Target_Account = 0;
+var Demandbase_CompanyName = '';
 jQuery(document).ready(function() {
 	revealAnimate.init();
 	new WOW({
@@ -1008,6 +1044,7 @@ jQuery(document).ready(function() {
 			tourscroll.init();
 		}, 3000);
 	}
+	stickyScroll.init();
 	if(getCookies('ifshownotify') === null || getCookies('ifshownotify') !== '0'){
 		jQuery('.notify').show();
 		// jQuery('.c-layout-header-fixed .c-layout-header').css('top', '50px');
@@ -1061,6 +1098,80 @@ jQuery(document).ready(function() {
         }
     });
   }
+
+  	(function getDemandbaseInfo() {
+		var transferData ={};
+		transferData.action = 'getDemandbaseInfo_action';
+		jQuery.ajax({
+			type: 'POST',
+			url: commGlobal.ajax_url,
+			data: transferData,
+			success: function(msg) {
+				if (msg) {
+					var demandbaseInfo = JSON.parse(msg);
+					Demandbase_CompanyName = demandbaseInfo.marketing_alias || demandbaseInfo.company_name || '';
+					var demandDomains = [
+						'gartner.com', 
+						'forrester.com', 
+						'ovum.informa.com', 
+						'juniperresearch.com', 
+						'ventanaresearch.com', 
+						'aberdeen.com',
+						// 'comm100.com',
+					];
+					// Demandbase_Target_Account
+					// var demandbaseTargetAccount = '';
+					if (demandbaseInfo.web_site && demandDomains.indexOf(demandbaseInfo.web_site.toLowerCase())) {
+						Demandbase_Target_Account = 1;
+					} else {
+						var demandBaseRevenueRange = demandbaseInfo.revenue_range;
+						if (demandBaseRevenueRange) {
+							var regex = /\$[0-9]*(M|B)(( - \$[0-9]*(M|B))?)/gi;
+							demandBaseRevenueRange = demandBaseRevenueRange.replace(/(^\s+)|(\s+$)|\s+/g, '')  //remove blank space
+																		.replace(/\$/gi, '')
+																		.replace(/M/gi, '000000')
+																		.replace(/B/gi, '000000000');
+							var demandBaseRevenueRangeArray = demandBaseRevenueRange.split('-');
+							if (demandBaseRevenueRangeArray.length > 1 && 
+								demandBaseRevenueRangeArray[0] >= 100000000 && 
+								demandBaseRevenueRangeArray[1] <= 5000000000) {
+									Demandbase_Target_Account = 1;
+							} else if (demandBaseRevenueRangeArray[0] >= 100000000 && 
+								demandBaseRevenueRangeArray[0] <= 5000000000) {
+									Demandbase_Target_Account = 1;
+							}
+						}
+					}
+
+					
+					// Demandbase_Target_Account = 1; // test
+					// var campaignIds = Comm100API && Comm100API.get('livechat.campaignIds');
+					// if (campaignIds) {
+					Comm100API.onReady = function () {
+						var divId = 'comm100-container';
+						var divObj = document.getElementById(divId);
+						Comm100API.on && Comm100API.on('livechat.invitation.display', function () {
+							setTimeout(function () {
+								var iframe = divObj.getElementsByTagName("iframe");
+								if (iframe != null) {
+									// var all = iframe[0].contentWindow.document.getElementsByTagName("div");
+									// for (var i = 0; i < all.length; i++) {
+									// 	if (all[i].className === "invitation__message") {
+									// 		all[i].innerHTML = all[i].innerHTML.replace("{company name}", Demandbase_CompanyName);
+									// 		break;
+									// 	}
+									// }
+									var invitation = iframe[0].contentWindow.document.querySelector('.invitation__message');
+									invitation.innerHTML = invitation.innerHTML.replace("{company name}", Demandbase_CompanyName);
+								}
+							}, 1000);
+						});
+					}
+				} 
+			}
+		});
+	})();
+	
 
   function showVisitorIP() {
     var ajaxData = {
@@ -1708,6 +1819,11 @@ jQuery(function() {
 		jQuery('.featurelist-title').on('click', function () {
             jQuery(this).toggleClass('featurelist-title--close');
             jQuery(this).next('.featurelist-content').slideToggle(200);
+		});
+		
+		jQuery('.collapse__title').on('click', function () {
+            jQuery(this).toggleClass('collapse__title--open');
+            jQuery(this).next('.collapse__content').slideToggle(200);
         });
 
 		if (!window.mobilecheck()) {
