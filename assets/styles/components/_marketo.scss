@@ -118,6 +118,10 @@
     padding-top: 9px;
     border: 1px solid #ccc;
     outline: none;
+
+    @media screen and (max-width: 767px) {
+        height: 3.4em !important;
+    }
 }
 .mktoForm .mktoLabel {
     font-weight: 300;
