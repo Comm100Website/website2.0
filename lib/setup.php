@@ -196,18 +196,21 @@ function assets() {
                     foreach (get_field('audience_values', $dbAudiencePost->ID) as $value) {
                         if (get_field('audience_type', $dbAudiencePost->ID) == 'country') {
                             $dbData['db_audiences'][] = [
+                                'order' => $dbAudiencePost->menu_order,
                                 'field' => 'country_name',
                                 'value' => $value['value'],
                                 'url' => get_permalink()
                             ];
 
                             $dbData['db_audiences'][] = [
+                                'order' => $dbAudiencePost->menu_order,
                                 'field' => 'registry_country',
                                 'value' => $value['value'],
                                 'url' => get_permalink()
                             ];
                         } else {
                             $dbData['db_audiences'][] = [
+                                'order' => $dbAudiencePost->menu_order,
                                 'field' => get_field('audience_type', $dbAudiencePost->ID),
                                 'value' => $value['value'],
                                 'url' => get_permalink()
@@ -216,7 +219,10 @@ function assets() {
                     }
                 }
             }
+
             wp_reset_postdata();
+
+            array_multisort(array_column($dbData['db_audiences'], 'order'), SORT_ASC, $dbData['db_audiences']);
         }
 
         wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, time(), false);
