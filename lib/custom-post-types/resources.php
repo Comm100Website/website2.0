@@ -36,7 +36,7 @@ function register_resource_post_type() {
         'hierarchical'       => true,
         'menu_position'      => null,
         'taxonomies'         => array('post_tag'),
-        'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' , 'tags')
+        'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' , 'tags', 'revisions')
     );
 
     register_post_type('commresource', $args);
