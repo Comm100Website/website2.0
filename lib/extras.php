@@ -39,6 +39,26 @@ function body_class($classes) {
 }
 add_filter('body_class', __NAMESPACE__ . '\\body_class');
 
+function exclude_kb_index_xml_sitemap($archive_url, $post_type) {
+    // var_dump($post_type);
+    if ($post_type == 'kbe_knowledgebase') {
+        $archive_url = get_site_url().'/livechat/knowledgebase/';
+    }
+
+    return $archive_url;
+}
+add_filter('wpseo_sitemap_post_type_archive_link', __NAMESPACE__.'\\exclude_knowledge_base_index_xml_sitemap', 99999, 2);
+add_filter('wpseo_enable_xml_sitemap_transient_caching', '__return_false');
+
+// function exclude_kb_index_xml_sitemap($url, $type, $object) {
+//     if ($url['loc'] == get_site_url()."/knowledgebase/" || $url == get_site_url()."/knowledgebase/") {
+//         return false;
+//     }
+
+//     return $url;
+// }
+// add_filter('wpseo_sitemap_entry', __NAMESPACE__.'\\exclude_kb_index_xml_sitemap', 99999, 3);
+
 //Remove [...] string using Filters
 function ellipsis_excerpt_more( $more ) {
     return ' <a href="'.get_permalink().'" class="read-more">+ Read More</a>';
