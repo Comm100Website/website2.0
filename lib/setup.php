@@ -192,28 +192,41 @@ function assets() {
 
                 if (get_field('demandbase_page_type') == 'audience') {
                     $dbAudiencePost = get_field('demandbase_audience');
+                    $excludeAudiences = [];
 
-                    foreach (get_field('audience_values', $dbAudiencePost->ID) as $value) {
-                        if (get_field('audience_type', $dbAudiencePost->ID) == 'country') {
+                    if (get_field('exclude_audiences', $dbAudiencePost->ID)) {
+                        foreach (get_field('exclude_audiences', $dbAudiencePost->ID) as $audience) {
+                            $excludeAudiences[] = [
+                                'field' => $audience['audience_field'],
+                                'value' => $audience['value']
+                            ];
+                        }
+                    }
+
+                    foreach (get_field('audience_values', $dbAudiencePost->ID) as $audience) {
+                        if ($audience['audience_field'] == 'country') {
                             $dbData['db_audiences'][] = [
                                 'order' => $dbAudiencePost->menu_order,
                                 'field' => 'country_name',
-                                'value' => $value['value'],
-                                'url' => get_permalink()
+                                'value' => $audience['value'],
+                                'url' => get_permalink(),
+                                'exclude' => $excludeAudiences,
                             ];
 
                             $dbData['db_audiences'][] = [
                                 'order' => $dbAudiencePost->menu_order,
                                 'field' => 'registry_country',
-                                'value' => $value['value'],
-                                'url' => get_permalink()
+                                'value' => $audience['value'],
+                                'url' => get_permalink(),
+                                'exclude' => $excludeAudiences,
                             ];
                         } else {
                             $dbData['db_audiences'][] = [
                                 'order' => $dbAudiencePost->menu_order,
-                                'field' => get_field('audience_type', $dbAudiencePost->ID),
-                                'value' => $value['value'],
-                                'url' => get_permalink()
+                                'field' => $audience['audience_field'],
+                                'value' => $audience['value'],
+                                'url' => get_permalink(),
+                                'exclude' => $excludeAudiences,
                             ];
                         }
                     }
@@ -225,7 +238,7 @@ function assets() {
             array_multisort(array_column($dbData['db_audiences'], 'order'), SORT_ASC, $dbData['db_audiences']);
         }
 
-        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, time(), false);
+        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190410.1', false);
         wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
     }
 

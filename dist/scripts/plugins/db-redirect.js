@@ -51,8 +51,8 @@ function setBodyClass() {
 function redirect_to_db_audience(userinfo) {
     var audiencePageURL = dbGlobal.db_default;
 
-    // console.log('User Audience', userinfo);
-    // console.log('DB Audiences', dbGlobal.db_audiences);
+    console.log('User Audience', userinfo);
+    console.log('DB Audiences', dbGlobal.db_audiences);
 
     //If the user has an audience and we have a list of audience pages for this page that was set in the theme setup, we'll then test and see if the user is on the right page.
     if (userinfo && dbGlobal.db_audiences) {
@@ -61,28 +61,45 @@ function redirect_to_db_audience(userinfo) {
             if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field)) {
                 // console.log(dbGlobal.db_audiences[i].field + ': ' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value);
                 if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field) && userinfo[dbGlobal.db_audiences[i].field] == dbGlobal.db_audiences[i].value) {
-                    audiencePageURL = dbGlobal.db_audiences[i].url;
-                    break;
+                    var excluded = false;
+
+                    //Now check to see if the user's audience is excluded from this rule. If it is we'll set the audience page to the current URL so we won't get redirected
+                    if (dbGlobal.db_audiences[i].exclude.length > 0) {
+                        for (var x = 0; x < dbGlobal.db_audiences[i].exclude.length; x++) {
+                            if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].exclude[x].field) && userinfo[dbGlobal.db_audiences[i].exclude[x].field] == dbGlobal.db_audiences[i].exclude[x].value) {
+                                excluded = true;
+                                console.log('User excluded based on ' + dbGlobal.db_audiences[i].exclude[x].field + ' matching ' + dbGlobal.db_audiences[i].exclude[x].value);
+                            }
+                        }
+                    }
+
+                    if (!excluded) {
+                        console.log('User matched based on ' + dbGlobal.db_audiences[i].field + ' matching ' + dbGlobal.db_audiences[i].value);
+
+                        audiencePageURL = dbGlobal.db_audiences[i].url;
+                        break;
+                    }
                 }
             }
         }
     }
 
-    // console.log('audience url', audiencePageURL);
+    console.log('audience url', audiencePageURL);
 
     var currentPageURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
 
     if (audiencePageURL != currentPageURL) {
-        // console.log('Would have redirected to ' + audiencePageURL);
+        console.log('Would have redirected to ' + audiencePageURL);
         window.location.href = audiencePageURL;
     }
 }
 
-if (location.search.indexOf('reset=')>=0) {
-    eraseCookie(DEMAND_BASE_COOKIE);
-}
+// if (location.search.indexOf('reset=')>=0) {
+//     console.log('Erasing Cookies');
+//     eraseCookie(DEMAND_BASE_COOKIE);
+// }
 
-if (!getCookie(DEMAND_BASE_COOKIE)) {
+if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     //This script will call the DemandBase API, which we'll pass through our local theme in order to hide the API key. Then we can check the DemandBase audience assigned to the user and if it's different than the current page, then we'll redirect them to the appropriate DB page.
     var requestURL = dbGlobal.theme_url + '/ajax/demandbase-api.php';
 
