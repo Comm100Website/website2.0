@@ -2,17 +2,25 @@
 namespace Roots\Sage\Analytics;
 
 function store_tracking_vars() {
+
     if (!isset($_COOKIE['landingUrl1'])) {
         setcookie("landingUrl1",'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],time()+3600*24*365,"/",".comm100.com");
     }
 
-    if (!isset($_COOKIE['R_url'])) {
+    if (!isset($_COOKIE['R_url']) && isset($_SERVER['HTTP_REFERER'])) {
         setcookie("R_url",$_SERVER['HTTP_REFERER'],time()+3600*24*365,'/','.comm100.com');
     }
 
     $parts = parse_url(strtolower('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']));
+    $partsQuery = '';
+    $query = [];
 
-    parse_str($parts['query'], $query);
+    console.log($parts);
+
+    if (isset($parts['query'])) {
+        parse_str($parts['query'], $query);
+    }
+
     if (isset($query['c_cid'])) {
         if (!isset($_COOKIE['C_cId'])) {
             setcookie("C_cId",$query['c_cid'],time()+3600*24*365,'/');

@@ -1067,7 +1067,7 @@ use Roots\Sage\Assets;
                         echo '<div class="c-content-box c-size-md c-content-box--' . $background_color . '">';
                         echo '<div class="container">';
                         echo '<div class="row">';
-                            
+
                         if ($image_text_title):
                             echo '<div class="col-sm-10 col-sm-push-1 c-center">';
                                 echo '<div class="img-text-title img-text-title--' . $image_text_title_color . '">' . $image_text_title . '</div>';
@@ -1076,8 +1076,8 @@ use Roots\Sage\Assets;
                                 endif;
                             echo '</div>';
                         endif;
-                            
-                        
+
+
                         echo '<div class="clear"></div>';
                             // loop through the rows of data
                         while ( have_rows('image_text_column_repeater') ) : the_row();
@@ -2052,7 +2052,7 @@ use Roots\Sage\Assets;
 
                 endif;
 
-                
+
                 // check current row layout
                 if( get_row_layout() == 'feature_list' ):
                     if( have_rows('feature_list_repeater') ):
@@ -2174,7 +2174,7 @@ use Roots\Sage\Assets;
                         endwhile;
                         echo '</div>';
                     endif;
-                    if( have_rows('feature_list_repeater') ):    
+                    if( have_rows('feature_list_repeater') ):
                         while ( have_rows('feature_list_repeater') ) : the_row();
                             echo '<div class="featurelist-wrap">';
 
@@ -2202,16 +2202,16 @@ use Roots\Sage\Assets;
                             $feature_list_content = get_sub_field('feature_list_content');
                             if( have_rows('feature_list_content') ):
                                 echo '<div class="featurelist clearfix">';
-                                
+
                                 while ( have_rows('feature_list_content') ) : the_row();
                                     echo '<div class="featurelist-type">';
                                     $feature_name = get_sub_field('feature_name');
                                     if ($feature_name):
                                         echo '<div class="featurelist-title">' . $feature_name . '</div>';
                                     endif;
-                                    
+
                                     echo '<div class="featurelist-content">';
-                                    
+
                                         while ( have_rows('feature_content') ) : the_row();
                                         echo '<ul class="clearfix">';
                                         $feature_list_content_feature = get_sub_field('feature_list_content_feature');
@@ -2264,12 +2264,12 @@ use Roots\Sage\Assets;
                                         echo '<li>' . $featurecontentEnt . '</li>';
                                         echo '</ul>';
                                         endwhile;
-                                    
+
                                     echo '</div>';
                                     echo '</div>';
                                 endwhile;
                                 echo '</div>';
-                                
+
                             endif;
 
                             echo '</div>';
@@ -2704,8 +2704,8 @@ use Roots\Sage\Assets;
                                     echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
                                 endif;
                                 if ($video):
-                                    echo '<div class="row video-content">' . 
-                                            '<div class="col-sm-10 col-sm-push-1">' . 
+                                    echo '<div class="row video-content">' .
+                                            '<div class="col-sm-10 col-sm-push-1">' .
                                                 $video .
                                             '</div>' .
                                         '</div>';
@@ -2965,20 +2965,20 @@ use Roots\Sage\Assets;
                 // check current row layout
                 if( get_row_layout() == 'tabs' ):
                     if( have_rows('tab_wrap') ):
-    
+
                         // loop through the rows of data
                         while ( have_rows('tab_wrap') ) : the_row();
                             $header_headline = get_sub_field('h1_title');
                             $header_slogan = get_sub_field('subtitle');
                             $header_description = get_sub_field('description');
-    
+
                             // check if the nested repeater field has rows of data
                             if( have_rows('tab_content') ):
-    
+
                                 echo '<div class="c-content-box c-size-md">';
                                 echo '<div class="container">';
                                 echo '<div class="row">';
-    
+
                                 echo '<div class="col-sm-12 threeTab__head c-center">' .
                                         '<h1>' . $header_headline . '</h1>' .
                                         '<h2>' .
@@ -2986,39 +2986,39 @@ use Roots\Sage\Assets;
                                         '</h2>' .
                                         $header_description .
                                     '</div>';
-    
+
                                 echo '<div class="col-sm-12">';
                                 echo '<div class="threeTab__Index--Wrap clearfix">';
                                     // loop through the rows of data
-    
+
                                 while ( have_rows('tab_content') ) : the_row();
-    
+
                                     $color = get_sub_field('color');
                                     $tag = get_sub_field('tag');
                                     $headline = get_sub_field('headline');
                                     $body = get_sub_field('body');
                                     $link = get_sub_field('link');
-    
+
                                     echo    '<div class="threeTab__Index">' .
                                                 '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                                 '<h3>' . $headline . '</h3>' .
                                             '</div>';
-    
+
                                 endwhile;
-    
+
                                 echo '</div>';
                                 echo '<div class="threeTab__Detail-wrap">';
-    
+
                                 // pricing live chat details
-    
+
                                 while ( have_rows('tab_details') ) : the_row();
-    
+
                                     $title = get_sub_field('title');
                                     $description = get_sub_field('description');
-    
+
                                     $featurelist_wrap = '';
                                     if (have_rows('content')):
-    
+
                                         while ( have_rows('content') ) : the_row();
                                             $sub_title = get_sub_field('sub_title');
                                             $icon = get_sub_field('icon');
@@ -3034,11 +3034,11 @@ use Roots\Sage\Assets;
                                             $featurelist_wrap .= '</ul></div>';
                                         endwhile;
                                     endif;
-    
-    
+
+
                                     $cta = get_sub_field('cta');
                                     $linkcontent = '';
-    
+
                                     if ($cta):
                                         while ( have_rows('cta') ) : the_row();
                                             $cta_link_type = get_sub_field('cta_link_type');
@@ -3073,50 +3073,50 @@ use Roots\Sage\Assets;
                                             $linkcontent = '<div class="threeTab__Detail--action"> ' . $linkcontent . ' </div>';
                                         endif;
                                     endif;
-    
+
                                     echo    '<div class="threeTab__Detail clearfix">' .
                                                 $tabMobileAI .
                                                 '<div class="threeTab__Detail--col-wrap clearfix">' .
-    
+
                                                     '<div class="threeTab__Detail--title">' . $title . '</div>' .
                                                     '<div class="threeTab__Detail--summary">' . $description . '</div>' .
                                                     $featurelist_wrap .
                                                 '</div>' .
                                             '</div>';
-    
+
                                 endwhile;
-    
-    
+
+
                                 // end pricing live chat details
-    
-    
-    
-    
+
+
+
+
                                 echo '</div>';
-    
-    
-    
-                                echo '</div>';
-                                echo '</div>';
+
+
+
                                 echo '</div>';
                                 echo '</div>';
-    
+                                echo '</div>';
+                                echo '</div>';
+
                             endif;
                         endwhile;
                     endif;
                 endif;
-    
+
                 // check current row layout
                 if( get_row_layout() == 'partner_contact' ):
                     $image = get_sub_field('image');
                     $title = get_sub_field('title');
                     $contact_form = get_sub_field('contact_form');
                     $form_note = get_sub_field('form_note');
-    
+
                     echo '<div class="c-content-box c-size-md">' .
                             '<div class="container">' .
                                 '<div class="row">' .
-    
+
                                     '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
                                     '<div class="col-sm-7">' .
                                         '<div class="contact-form">' .
@@ -3126,11 +3126,11 @@ use Roots\Sage\Assets;
                                             '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
-    
+
                                 '</div>' .
                             '</div>' .
                         '</div>';
-    
+
                 endif;
 
                 // check current row layout
@@ -3208,7 +3208,7 @@ use Roots\Sage\Assets;
                             $icon = get_sub_field('icon');
                             $title = get_sub_field('title');
                             $content = get_sub_field('content');
-                            
+
                             echo '<div class="icon-content-list__element clearfix">' .
                                     '<div class="icon-content-list__icon">' .
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
@@ -3238,7 +3238,7 @@ use Roots\Sage\Assets;
                             '<div class="container">' .
                                 '<div class="row">' .
                                     '<div class="col-sm-12" style="margin-top: ' . $distance_of_top . 'px">';
-                                        
+
                                     if( have_rows('sticky_nav') ):
                                         echo '<nav class="nav--sticky hidden-xs">' .
                                                 '<ul>';
@@ -3251,16 +3251,16 @@ use Roots\Sage\Assets;
                                                 while ( have_rows('sticky_nav_element_divider') ) : the_row();
                                                     echo '<li><hr style="border-top-color: ' . get_sub_field('sticky_nav_element_divider_color') . '; border-top-width: 1px;"></li>';
                                                 endwhile;
-                                                
+
                                             else:
-                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>'; 
+                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>';
                                             endif;
-                                            
+
                                         endwhile;
                                         echo '</ul>';
                                         echo '</nav>';
                                     endif;
-                                   
+
                                     if ( have_rows('sticky_details_list') ):
                                         echo '<section class="content--sticky">';
                                         while ( have_rows('sticky_details_list') ) : the_row();
@@ -3272,7 +3272,7 @@ use Roots\Sage\Assets;
                                             $founded = get_sub_field('founded');
                                             $integration = get_sub_field('integration');
                                             $best_for = get_sub_field('best_for');
-                                            
+
                                             echo '<article id="' . $id . '">';
                                             echo '<div class="companyInfo">' .
                                                     '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '" />' .
@@ -3311,12 +3311,12 @@ use Roots\Sage\Assets;
                                                                         $title .
                                                                     '</div>';
 
-                                                                    
+
                                                                     echo '<div class="collapse__content">' .
                                                                             $content .
                                                                         '</div>';
-                                                                    
-                                                                    
+
+
                                                             echo  '</div>';
                                                         endwhile;
                                                     echo '</div>';
@@ -3342,8 +3342,8 @@ use Roots\Sage\Assets;
                                                                         echo  '</ul>' .
                                                                             '</div>';
                                                                     endif;
-                                                                
-                                                                    
+
+
                                                                 echo '</div>';
                                                         endwhile;
                                                     echo '</div>';
@@ -3371,7 +3371,7 @@ use Roots\Sage\Assets;
                             $title = get_sub_field('title');
                             $subtitle = get_sub_field('subtitle');
                             echo '<div class="docs-main" id="' . $anchor . '">';
-                            echo '<h3>' . $title . '</h3>';
+                            echo '<h3 class="three-column-title">' . $title . '</h3>';
 
                             $subtitle_container = '';
                             if ($subtitle):

@@ -26,7 +26,6 @@ if (strpos($_SERVER['HTTP_REFERER'], 'comm100.com') !== false) {
 
     $data = array("key" => '93a94bee701e61a781c480ae1bedcbc9', "query" => $ipaddress, "page" => $_SERVER['HTTP_REFERER'], "page_title" => 'Page Title');
 
-
     // Open connection
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://api.demandbase.com/api/v2/ip.json?' . http_build_query($data));

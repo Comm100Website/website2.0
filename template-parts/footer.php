@@ -136,21 +136,6 @@
                     <a href="//www.linkedin.com/company/comm100-network-corporation" class="socicon-btn socicon-btn-circle socicon-solid c-theme-on-hover fa fa-linkedin tooltips" data-original-title="LinkedIn" data-container="body"></a>
                     <a href="//twitter.com/comm100" class="socicon-btn socicon-btn-circle socicon-solid c-theme-on-hover fa fa-twitter tooltips" data-original-title="Twitter" data-container="body"></a>
                     <a href="//www.facebook.com/comm100" class="socicon-btn socicon-btn-circle socicon-solid c-theme-on-hover fa fa-facebook tooltips" data-original-title="Facebook" data-container="body"></a>
-                    <a href="//plus.google.com/+Comm100"
-                       class="socicon-btn socicon-btn-circle socicon-solid c-theme-on-hover tooltips"
-                       data-original-title="Google"
-                       data-container="body"
-                       style="width: 26px; margin-left: 10px;">
-                        <svg version="1.1" id="layer_googleplus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 39.4 24.6" style="enable-background:new 0 0 39.4 24.6;" xml:space="preserve">
-                            <g>
-                                <path class="path--googleplus" d="M24.1,12.6c0,2.4-0.5,4.4-1.5,6.3c-1,1.8-2.4,3.2-4.2,4.3c-1.8,1-3.9,1.5-6.2,1.5C10,24.7,7.9,24.1,6,23
-                                    s-3.4-2.6-4.5-4.5S0,14.5,0,12.3S0.5,8,1.6,6.2s2.6-3.4,4.5-4.5s4-1.7,6.2-1.7c3.2,0,5.9,1.1,8.2,3.2l-3.3,3.2
-                                    c-1.3-1.2-2.9-1.9-4.9-1.9c-1.4,0-2.6,0.3-3.8,1C7.3,6.3,6.4,7.2,5.7,8.4s-1,2.5-1,3.9s0.3,2.7,1,3.9s1.6,2.1,2.8,2.8
-                                    c1.2,0.7,2.4,1,3.8,1c1.5,0,2.8-0.3,3.9-1c0.9-0.5,1.6-1.2,2.2-2.2c0.5-0.7,0.8-1.4,0.9-2.1h-7v-4.3h11.6
-                                    C24.1,11.2,24.1,11.9,24.1,12.6z M35.8,7.4h-3.6V11h-3.5v3.6h3.5v3.6h3.6v-3.6h3.6V11h-3.6V7.4z"></path>
-                            </g>
-                        </svg>
-                    </a>
 
                 </div>
             </div>

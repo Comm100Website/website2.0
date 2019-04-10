@@ -1,6 +1,5 @@
 <?php
 use Roots\Sage\Analytics;
-use WP_Query;
 
 $args = [
     'post_type' => 'post',

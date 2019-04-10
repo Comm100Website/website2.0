@@ -12,8 +12,7 @@
             <a 
                 class="c-navbar-wrapper__btn btn btn-xlg btn-link--green" 
                 href="#bookdemo"
-            >
-                Book a Demo
+            >Book demo
             </a>
         </div>
     </div>

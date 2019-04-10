@@ -2227,7 +2227,7 @@ use Roots\Sage\Assets;
                     echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    
+
                     echo '<div class="col-sm-6">';
                         echo '<div class="banner--freetrial__description ' . $banner_description_style . '">';
                             if ($h1_tag):
@@ -2247,13 +2247,13 @@ use Roots\Sage\Assets;
                     echo '</div>';
 
                     if ($header_form_code):
-                        echo 
+                        echo
                             '<div class="col-sm-5 col-sm-push-1">' .
                                 $header_form_code .
                                 // '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
                                 '<div class="form-note">' . $form_note . '</div>'.
                             '</div>';
-                            
+
 
                     endif;
 
@@ -2288,7 +2288,7 @@ use Roots\Sage\Assets;
                     echo '<div class="c-content-box c-size-lg banner--freetrial"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    
+
                     echo '<div class="col-sm-6">';
                         echo '<div class="banner--freetrial__description ' . $banner_description_style . '">';
                             if ($h1_tag):
@@ -2308,13 +2308,13 @@ use Roots\Sage\Assets;
                     echo '</div>';
 
                     if ($header_form_code):
-                        echo 
+                        echo
                             '<div class="col-sm-5 col-sm-push-1">' .
                                 $header_form_code .
                                 '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
                                 '<div class="form-note">' . $form_note . '</div>'.
                             '</div>';
-                            
+
 
                     endif;
 
@@ -2322,7 +2322,7 @@ use Roots\Sage\Assets;
                     echo '</div>';
                     echo '</div>';
                 endif;
-                
+
 
                 // check current row layout
                 if( get_row_layout() == 'custom_story' ):
@@ -2378,7 +2378,7 @@ use Roots\Sage\Assets;
                             $icon = get_sub_field('icon');
                             $title = get_sub_field('title');
                             $content = get_sub_field('content');
-                            
+
                             echo '<div class="icon-content-list__element clearfix">' .
                                     '<div class="icon-content-list__icon">' .
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="50" height="50" />' .
@@ -2408,7 +2408,7 @@ use Roots\Sage\Assets;
                             '<div class="container">' .
                                 '<div class="row">' .
                                     '<div class="col-sm-12" style="margin-top: ' . $distance_of_top . 'px">';
-                                        
+
                                     if( have_rows('sticky_nav') ):
                                         echo '<nav class="nav--sticky hidden-xs">' .
                                                 '<ul>';
@@ -2421,16 +2421,16 @@ use Roots\Sage\Assets;
                                                 while ( have_rows('sticky_nav_element_divider') ) : the_row();
                                                     echo '<li><hr style="border-top-color: ' . get_sub_field('sticky_nav_element_divider_color') . '; border-top-width: 1px;"></li>';
                                                 endwhile;
-                                                
+
                                             else:
-                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>'; 
+                                                echo '<li><a href="#' . $anchor . '">' . $sticky_nav_element_text . '</a></li>';
                                             endif;
-                                            
+
                                         endwhile;
                                         echo '</ul>';
                                         echo '</nav>';
                                     endif;
-                                   
+
                                     if ( have_rows('sticky_details_list') ):
                                         echo '<section class="content--sticky">';
                                         while ( have_rows('sticky_details_list') ) : the_row();
@@ -2442,7 +2442,7 @@ use Roots\Sage\Assets;
                                             $founded = get_sub_field('founded');
                                             $integration = get_sub_field('integration');
                                             $best_for = get_sub_field('best_for');
-                                            
+
                                             echo '<article id="' . $id . '">';
                                             echo '<div class="companyInfo">' .
                                                     '<img src="' . $logo['url'] . '" alt="' . $logo['alt'] . '" />' .
@@ -2481,12 +2481,12 @@ use Roots\Sage\Assets;
                                                                         $title .
                                                                     '</div>';
 
-                                                                    
+
                                                                     echo '<div class="collapse__content">' .
                                                                             $content .
                                                                         '</div>';
-                                                                    
-                                                                    
+
+
                                                             echo  '</div>';
                                                         endwhile;
                                                     echo '</div>';
@@ -2512,8 +2512,8 @@ use Roots\Sage\Assets;
                                                                         echo  '</ul>' .
                                                                             '</div>';
                                                                     endif;
-                                                                
-                                                                    
+
+
                                                                 echo '</div>';
                                                         endwhile;
                                                     echo '</div>';
@@ -2541,7 +2541,7 @@ use Roots\Sage\Assets;
                             $title = get_sub_field('title');
                             $subtitle = get_sub_field('subtitle');
                             echo '<div class="docs-main" id="' . $anchor . '">';
-                            echo '<h3>' . $title . '</h3>';
+                            echo '<h3 class="three-column-title">' . $title . '</h3>';
 
                             $subtitle_container = '';
                             if ($subtitle):
@@ -2649,8 +2649,8 @@ use Roots\Sage\Assets;
                                     echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
                                 endif;
                                 if ($video):
-                                    echo '<div class="row video-content">' . 
-                                            '<div class="col-sm-10 col-sm-push-1">' . 
+                                    echo '<div class="row video-content">' .
+                                            '<div class="col-sm-10 col-sm-push-1">' .
                                                 $video .
                                             '</div>' .
                                         '</div>';

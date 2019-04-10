@@ -1,26 +1,19 @@
 <?php
 /*
-Template Name:Resources
+Template Name: Resources
 Template Post Type: commresource, page
 */
 ?>
 <?php get_header(); ?>
 </header>
-
 <div class="c-layout-page c-layout-page-fixed primary-page">
-
-
     <?php
-
         // check if the flexible content field has rows of data
         if( have_rows('modules') ):
-
             // loop through the rows of data
             while ( have_rows('modules') ) : the_row();
-
                 // check current row layout
                 if( get_row_layout() == 'hero_head' ):
-
                     $header_headline = get_sub_field('h1_title');
                     $header_slogan = get_sub_field('subtitle');
                     $header_description = get_sub_field('description');
@@ -29,7 +22,6 @@ Template Post Type: commresource, page
                     echo '<div class="container header">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 c-center">';
-
 
                     if ($header_headline):
                         echo '<h1>' .
@@ -169,8 +161,6 @@ Template Post Type: commresource, page
                                 }
                             endif;
                         endwhile;
-
-
                     endif;
                     echo '</div>';
                     echo '</div>';
@@ -180,7 +170,6 @@ Template Post Type: commresource, page
 
                 // check current row layout
                 if( get_row_layout() == 'resources_list' ):
-
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';

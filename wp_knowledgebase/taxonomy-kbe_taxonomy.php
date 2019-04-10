@@ -1,6 +1,6 @@
 <?php
     get_header('knowledgebase');
-    
+
     // Classes For main content div
     if(KBE_SIDEBAR_INNER == 0) {
         $kbe_content_class = 'class="kbe_content_full"';
@@ -9,7 +9,7 @@
     } elseif(KBE_SIDEBAR_INNER == 2) {
         $kbe_content_class = 'class="kbe_content_left"';
     }
-    
+
     // Classes For sidebar div
     if(KBE_SIDEBAR_INNER == 0) {
         $kbe_sidebar_class = 'kbe_aside_none';
@@ -18,11 +18,11 @@
     } elseif(KBE_SIDEBAR_INNER == 2) {
         $kbe_sidebar_class = 'kbe_aside_right';
     }
-    
+
     // Query for Category
     $kbe_cat_slug = get_queried_object()->slug;
     $kbe_cat_name = get_queried_object()->name;
-    
+
     $kbe_tax_post_args = array(
         'post_type' => KBE_POST_TYPE,
         'posts_per_page' => 999,
@@ -57,7 +57,7 @@
                                     }
                                 ?>
                                 <!--/Breadcrum-->
-                                    
+
                                 <!--search field-->
                                 <?php
                                     if(KBE_SEARCH_SETTING == 1){
@@ -65,16 +65,16 @@
                                     }
                                 ?>
                                 <!--/search field-->
-                                    
+
                                 <!--content-->
                                 <div id="kbe_content" <?php echo $kbe_content_class; ?>>
-                                    <!--leftcol--> 
+                                    <!--leftcol-->
                                     <div class="kbe_leftcol">
 
                                         <!--<articles>-->
                                         <div class="kbe_articles">
                                             <h1>Articles in "<?php echo $kbe_cat_name; ?>"</h1>
-
+                                            <br/>
                                             <ul class="c-ul-kb">
                                                 <?php
                                                     if($kbe_tax_post_qry->have_posts()) :
@@ -106,8 +106,8 @@
 
                                 </div>
                                 <!--/content-->
-                                
-                               
+
+
                             </div>
                         </div>
                     </div>

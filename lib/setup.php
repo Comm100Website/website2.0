@@ -123,7 +123,7 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540sd11000f');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540s9900f');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -233,14 +233,17 @@ function assets() {
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 0);
 
-// add_filter( 'wp_enqueue_scripts', 'wpse8170_enqueue_my_scripts', 0 );
-// // or if you enqueue your scripts on init action
-// // add_action( 'init', 'wpse8170_enqueue_my_scripts', 0 );
+//Disable the custom permalinks plugin on Knowledge Base category pages otherwise it won't load the custom template.
+add_filter('custom_permalinks_request_ignore', __NAMESPACE__ . '\\ignore_custom_permalinks_on_kb_category', 0, 1 );
+function ignore_custom_permalinks_on_kb_category($request) {
+    $ignore = false;
 
-// function wpse8170_enqueue_my_scripts() {
-//     wp_enqueue_script( 'myscript', 'http://path/to/my/script.js', array( 'jquery' ) );
-//     // my else scripts go here...
-// }
+    if (strpos($request, 'livechat/knowledgebase/category') !== false) {
+        $ignore = '__true'; //__true is what they compare in the custom permalinks plugin.
+    }
+
+    return $ignore;
+}
 
 function dequeue_css_from_plugins() {
     wp_dequeue_style( 'kbe_theme_style' );
