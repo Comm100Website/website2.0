@@ -1,4 +1,4 @@
-var DEMAND_BASE_COOKIE = 'dbvisitorinfo';
+var DEMAND_BASE_COOKIE = 'db_visitor_info';
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -25,11 +25,9 @@ function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
 
-function setBodyClass() {
+function setBodyClass(userInfo) {
     if (document.body) {
-        var dbInfo = JSON.parse(getCookie(DEMAND_BASE_COOKIE));
-
-        if (dbInfo) {
+        if (userInfo) {
             var dbFields = [
                 'registry_country',
                 'country_name',
@@ -40,8 +38,8 @@ function setBodyClass() {
             ];
 
             for (var i = 0; i < dbFields.length; i++) {
-                if (dbInfo.hasOwnProperty(dbFields[i])) {
-                    document.body.classList.add("db-audience-" + encodeURI(dbInfo[dbFields[i]].replace(' ', '-').toLowerCase()));
+                if (userInfo.hasOwnProperty(dbFields[i])) {
+                    document.body.classList.add("db-audience-" + encodeURI(userInfo[dbFields[i]].replace(' ', '-').toLowerCase()));
                 }
             }
         }
@@ -51,15 +49,16 @@ function setBodyClass() {
 function redirect_to_db_audience(userinfo) {
     var audiencePageURL = dbGlobal.db_default;
 
-    console.log('User Audience', userinfo);
-    console.log('DB Audiences', dbGlobal.db_audiences);
+    // console.log('User Audience', userinfo);
+    // console.log('DB Audiences', dbGlobal.db_audiences);
 
     //If the user has an audience and we have a list of audience pages for this page that was set in the theme setup, we'll then test and see if the user is on the right page.
     if (userinfo && dbGlobal.db_audiences) {
         for (var i = 0; i < dbGlobal.db_audiences.length; i++) {
-            // console.log(dbGlobal.db_audiences[i]);
+            console.log(dbGlobal.db_audiences[i]);
             if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field)) {
-                // console.log(dbGlobal.db_audiences[i].field + ': ' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value);
+                console.log('Audience field [' + dbGlobal.db_audiences[i].field + '] (' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value + ')');
+
                 if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field) && userinfo[dbGlobal.db_audiences[i].field] == dbGlobal.db_audiences[i].value) {
                     var excluded = false;
 
@@ -68,7 +67,7 @@ function redirect_to_db_audience(userinfo) {
                         for (var x = 0; x < dbGlobal.db_audiences[i].exclude.length; x++) {
                             if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].exclude[x].field) && userinfo[dbGlobal.db_audiences[i].exclude[x].field] == dbGlobal.db_audiences[i].exclude[x].value) {
                                 excluded = true;
-                                console.log('User excluded based on ' + dbGlobal.db_audiences[i].exclude[x].field + ' matching ' + dbGlobal.db_audiences[i].exclude[x].value);
+                                // console.log('User excluded based on ' + dbGlobal.db_audiences[i].exclude[x].field + ' matching ' + dbGlobal.db_audiences[i].exclude[x].value);
                             }
                         }
                     }
@@ -108,7 +107,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
         requestURL += '?ip=' + urlParams.get('ip');
     }
 
-    // console.log(requestURL);
+    console.log('Request URL: ' + requestURL);
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', requestURL, true);
@@ -119,8 +118,10 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
 				var responseJSON = JSON.parse(xhr.responseText);
 
-                setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 365);
-				setBodyClass();
+                // setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 365);
+				setBodyClass(responseJSON);
+
+                console.log('DB Query', responseJSON);
 
 				if (dbGlobal.db_audiences) {
 					redirect_to_db_audience(responseJSON);
@@ -130,10 +131,12 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     };
     xhr.send();
 } else {
+    var userInfo = JSON.parse(getCookie(DEMAND_BASE_COOKIE));
+
 	if (dbGlobal.db_audiences) {
 		//The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.
-    	redirect_to_db_audience(JSON.parse(getCookie(DEMAND_BASE_COOKIE)));
+    	redirect_to_db_audience(userInfo);
 	}
 
-	setBodyClass();
+	setBodyClass(userInfo);
 }

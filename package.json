@@ -58,5 +58,8 @@
   },
   "dependencies": {
     "natives": "^1.1.6"
+  },
+  "resolutions": {
+    "natives": "1.1.3"
   }
 }
