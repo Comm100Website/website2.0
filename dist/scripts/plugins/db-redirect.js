@@ -55,9 +55,9 @@ function redirect_to_db_audience(userinfo) {
     //If the user has an audience and we have a list of audience pages for this page that was set in the theme setup, we'll then test and see if the user is on the right page.
     if (userinfo && dbGlobal.db_audiences) {
         for (var i = 0; i < dbGlobal.db_audiences.length; i++) {
-            console.log(dbGlobal.db_audiences[i]);
+            // console.log(dbGlobal.db_audiences[i]);
             if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field)) {
-                console.log('Audience field [' + dbGlobal.db_audiences[i].field + '] (' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value + ')');
+                // console.log('Audience field [' + dbGlobal.db_audiences[i].field + '] (' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value + ')');
 
                 if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field) && userinfo[dbGlobal.db_audiences[i].field] == dbGlobal.db_audiences[i].value) {
                     var excluded = false;
@@ -73,7 +73,7 @@ function redirect_to_db_audience(userinfo) {
                     }
 
                     if (!excluded) {
-                        console.log('User matched based on ' + dbGlobal.db_audiences[i].field + ' matching ' + dbGlobal.db_audiences[i].value);
+                        // console.log('User matched based on ' + dbGlobal.db_audiences[i].field + ' matching ' + dbGlobal.db_audiences[i].value);
 
                         audiencePageURL = dbGlobal.db_audiences[i].url;
                         break;
@@ -83,12 +83,12 @@ function redirect_to_db_audience(userinfo) {
         }
     }
 
-    console.log('audience url', audiencePageURL);
+    // console.log('audience url', audiencePageURL);
 
     var currentPageURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
 
     if (audiencePageURL != currentPageURL) {
-        console.log('Would have redirected to ' + audiencePageURL);
+        // console.log('Would have redirected to ' + audiencePageURL);
         window.location.href = audiencePageURL;
     }
 }
@@ -105,9 +105,11 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     if (location.search.indexOf('ip=')>=0) {
         var urlParams = new URLSearchParams(window.location.search);
         requestURL += '?ip=' + urlParams.get('ip');
+    } else {
+        requestURL += '?cache=false';
     }
 
-    console.log('Request URL: ' + requestURL);
+    // console.log('Request URL: ' + requestURL);
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', requestURL, true);
@@ -121,7 +123,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
                 // setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 365);
 				setBodyClass(responseJSON);
 
-                console.log('DB Query', responseJSON);
+                // console.log('DB Query', responseJSON);
 
 				if (dbGlobal.db_audiences) {
 					redirect_to_db_audience(responseJSON);
