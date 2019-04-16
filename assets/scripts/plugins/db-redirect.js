@@ -1,4 +1,4 @@
-var DEMAND_BASE_COOKIE = 'db_visitor_info';
+var DEMAND_BASE_COOKIE = 'db_user_info';
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -120,7 +120,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
 				var responseJSON = JSON.parse(xhr.responseText);
 
-                // setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 365);
+                setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 1);
 				setBodyClass(responseJSON);
 
                 // console.log('DB Query', responseJSON);

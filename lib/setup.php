@@ -238,7 +238,7 @@ function assets() {
             array_multisort(array_column($dbData['db_audiences'], 'order'), SORT_ASC, $dbData['db_audiences']);
         }
 
-        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190410.1', false);
+        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190415.9', false);
         wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
     }
 
