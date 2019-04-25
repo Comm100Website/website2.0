@@ -1110,6 +1110,28 @@ jQuery(document).ready(function() {
 				if (msg) {
 					var demandbaseInfo = JSON.parse(msg);
 					Demandbase_CompanyName = demandbaseInfo.marketing_alias || demandbaseInfo.company_name || '';
+					Comm100API.onReady = function () {
+						var divId = 'comm100-container';
+						var divObj = document.getElementById(divId);
+						Comm100API.on && Comm100API.on('livechat.invitation.display', function () {
+							
+							var iframe = divObj.getElementsByTagName("iframe");
+							if (iframe != null) {
+								// var all = iframe[0].contentWindow.document.getElementsByTagName("div");
+								// for (var i = 0; i < all.length; i++) {
+								// 	if (all[i].className === "invitation__message") {
+								// 		all[i].innerHTML = all[i].innerHTML.replace("{company name}", Demandbase_CompanyName);
+								// 		break;
+								// 	}
+								// }
+								var invitation = iframe[0].contentWindow.document.querySelector('.invitation__message');
+								invitation.innerHTML = invitation.innerHTML.replace("{company name}", Demandbase_CompanyName);
+							}
+							
+						});
+					}
+
+
 					var demandDomains = [
 						'gartner.com', 
 						'forrester.com', 
@@ -1121,52 +1143,36 @@ jQuery(document).ready(function() {
 					];
 					// Demandbase_Target_Account
 					// var demandbaseTargetAccount = '';
-					if (demandbaseInfo.web_site && demandDomains.indexOf(demandbaseInfo.web_site.toLowerCase())) {
-						Demandbase_Target_Account = 1;
-					} else {
-						var demandBaseRevenueRange = demandbaseInfo.revenue_range;
-						if (demandBaseRevenueRange) {
-							var regex = /\$[0-9]*(M|B)(( - \$[0-9]*(M|B))?)/gi;
-							demandBaseRevenueRange = demandBaseRevenueRange.replace(/(^\s+)|(\s+$)|\s+/g, '')  //remove blank space
-																		.replace(/\$/gi, '')
-																		.replace(/M/gi, '000000')
-																		.replace(/B/gi, '000000000');
-							var demandBaseRevenueRangeArray = demandBaseRevenueRange.split('-');
-							if (demandBaseRevenueRangeArray.length > 1 && 
-								demandBaseRevenueRangeArray[0] >= 100000000 && 
-								demandBaseRevenueRangeArray[1] <= 5000000000) {
-									Demandbase_Target_Account = 1;
-							} else if (demandBaseRevenueRangeArray[0] >= 100000000 && 
-								demandBaseRevenueRangeArray[0] <= 5000000000) {
-									Demandbase_Target_Account = 1;
+					setTimeout(function() {
+						if (demandbaseInfo.web_site && demandDomains.indexOf(demandbaseInfo.web_site.toLowerCase())) {
+							Demandbase_Target_Account = 1;
+						} else {
+							var demandBaseRevenueRange = demandbaseInfo.revenue_range;
+							if (demandBaseRevenueRange) {
+								var regex = /\$[0-9]*(M|B)(( - \$[0-9]*(M|B))?)/gi;
+								demandBaseRevenueRange = demandBaseRevenueRange.replace(/(^\s+)|(\s+$)|\s+/g, '')  //remove blank space
+																			.replace(/\$/gi, '')
+																			.replace(/M/gi, '000000')
+																			.replace(/B/gi, '000000000');
+								var demandBaseRevenueRangeArray = demandBaseRevenueRange.split('-');
+								if (demandBaseRevenueRangeArray.length > 1 && 
+									demandBaseRevenueRangeArray[0] >= 100000000 && 
+									demandBaseRevenueRangeArray[1] <= 5000000000) {
+										Demandbase_Target_Account = 1;
+								} else if (demandBaseRevenueRangeArray[0] >= 100000000 && 
+									demandBaseRevenueRangeArray[0] <= 5000000000) {
+										Demandbase_Target_Account = 1;
+								}
 							}
 						}
-					}
+					}, 3000);
+					
 
 					
 					// Demandbase_Target_Account = 1; // test
 					// var campaignIds = Comm100API && Comm100API.get('livechat.campaignIds');
 					// if (campaignIds) {
-					Comm100API.onReady = function () {
-						var divId = 'comm100-container';
-						var divObj = document.getElementById(divId);
-						Comm100API.on && Comm100API.on('livechat.invitation.display', function () {
-							setTimeout(function () {
-								var iframe = divObj.getElementsByTagName("iframe");
-								if (iframe != null) {
-									// var all = iframe[0].contentWindow.document.getElementsByTagName("div");
-									// for (var i = 0; i < all.length; i++) {
-									// 	if (all[i].className === "invitation__message") {
-									// 		all[i].innerHTML = all[i].innerHTML.replace("{company name}", Demandbase_CompanyName);
-									// 		break;
-									// 	}
-									// }
-									var invitation = iframe[0].contentWindow.document.querySelector('.invitation__message');
-									invitation.innerHTML = invitation.innerHTML.replace("{company name}", Demandbase_CompanyName);
-								}
-							}, 1000);
-						});
-					}
+					
 				} 
 			}
 		});
