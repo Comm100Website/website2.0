@@ -15,7 +15,7 @@ function store_tracking_vars() {
     $partsQuery = '';
     $query = [];
 
-    console.log($parts);
+    //console.log($parts);
 
     if (isset($parts['query'])) {
         parse_str($parts['query'], $query);

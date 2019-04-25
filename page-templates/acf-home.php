@@ -2839,6 +2839,25 @@ use Roots\Sage\Assets;
                 endif;
 
                 // check current row layout
+                if( get_row_layout() == 'share_this' ):
+
+                    $title = get_sub_field('title');
+                    $share_this_code = get_sub_field('share_this_code');
+
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-12">';
+                        echo '<div class="social-share">';
+                        echo '<h3>' . $title . '</h3>';
+                        echo $share_this_code;
+                        echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2faac9507104da"></script>';
+                endif;
+
+                // check current row layout
                 if( get_row_layout() == 'video' ):
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';

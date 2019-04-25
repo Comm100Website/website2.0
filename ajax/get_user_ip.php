@@ -4,7 +4,7 @@
 if (strpos($_SERVER['HTTP_REFERER'], 'comm100.com') !== false) {
     $ipaddress = '';
 
-    if ($_SERVER['HTTP_CLIENT_IP']) {
+    if($_SERVER['HTTP_CLIENT_IP']) {
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
     } elseif($_SERVER['HTTP_X_FORWARDED_FOR']) {
         $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];

@@ -549,6 +549,19 @@ use Roots\Sage\Assets;
                     echo '</div>';
                 endif;
 
+                // check current row layout
+                if( get_row_layout() == 'video' ):
+                    echo '<div class="c-content-box c-size-md">';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="col-sm-push-1 col-sm-10 video-content">';
+                    echo get_sub_field('video');
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                endif;
+
                 if( get_row_layout() == 'hero_banner_form' ):
 
                     $header_headline = get_sub_field('h1_title');
