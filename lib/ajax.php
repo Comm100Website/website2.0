@@ -2,6 +2,7 @@
 namespace Roots\Sage\Ajax;
 
 use Roots\Sage\Assets;
+use WP_Query;
 
 // Display User IP in WordPress
 function get_the_user_ip() {
@@ -768,6 +769,62 @@ function getDemandbaseInfo(){
     $demandbaseInfo = 'https://api.company-target.com/api/v2/ip.json?key=6cfe49696fbfb1ad98d42d29b19556c8&query=' . get_visitor_ip();
     $demandbaseInfoJson = file_get_contents($demandbaseInfo);
     echo $demandbaseInfoJson;
+
+    wp_die();
+}
+
+add_action( 'wp_ajax_nopriv_press_release_pagination', __NAMESPACE__.'\\press_release_ajax_pagination' );
+add_action( 'wp_ajax_press_release_pagination', __NAMESPACE__.'\\press_release_ajax_pagination' );
+
+function press_release_ajax_pagination() {
+    check_ajax_referer('press_release_ajax_nonce', 'security');
+
+    $paged = $_POST['page'];
+
+    $args = [
+        'post_type' => 'releases',
+        'posts_per_page' => 6,
+        'post_status' => 'publish',
+        'paged' => $paged,
+    ];
+
+    $pressQuery = new WP_Query($args);
+    if ($pressQuery->have_posts()):
+        while ($pressQuery->have_posts()):
+            $pressQuery->the_post();
+            get_template_part('template-parts/content', 'press');
+        endwhile;
+
+        wp_reset_postdata();
+    endif;
+
+    wp_die();
+}
+
+add_action( 'wp_ajax_nopriv_news_pagination', __NAMESPACE__.'\\news_ajax_pagination' );
+add_action( 'wp_ajax_news_pagination', __NAMESPACE__.'\\news_ajax_pagination' );
+
+function news_ajax_pagination() {
+    check_ajax_referer('news_ajax_nonce', 'security');
+
+    $paged = $_POST['page'];
+
+    $args = [
+        'post_type' => 'news',
+        'posts_per_page' => 6,
+        'post_status' => 'publish',
+        'paged' => $paged,
+    ];
+
+    $pressQuery = new WP_Query($args);
+    if ($pressQuery->have_posts()):
+        while ($pressQuery->have_posts()):
+            $pressQuery->the_post();
+            get_template_part('template-parts/content', 'press');
+        endwhile;
+
+        wp_reset_postdata();
+    endif;
 
     wp_die();
 }

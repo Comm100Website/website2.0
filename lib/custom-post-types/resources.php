@@ -161,8 +161,19 @@ function exclude_resources($query) {
             'post_type' => 'commresource',
             'meta_key' => 'featured_resource',
             'meta_value' => '1',
-            'posts_per_page' => -1
+            'posts_per_page' => 2
          );
+
+         if (is_tax('commresourcecat')):
+            $args['tax_query'] = [
+                [
+                    'taxonomy' => 'commresourcecat',
+                    'field'    => 'term_id',
+                    'terms'    => get_queried_object_id(),
+                ]
+            ];
+        endif;
+
         $featuredResourcePosts = get_posts( $args );
 
         if ($featuredResourcePosts) {
@@ -185,12 +196,25 @@ function offset_resource_and_post( $query ) {
 
         if (is_post_type_archive('commresource') || is_tax('commresourcecat')):
             $offset = 3 - count(get_field('resources_ctas', 'options'));
-
-
         endif;
 
         if (is_home() || is_post_type_archive('post') || is_tax('category') || is_tax('tag')):
-            $offset = 3 - count(get_field('blog_ctas', 'options')) + 1;
+            $blogCTAs = get_field('blog_ctas', 'options');
+            $ctaCount = 0;
+
+            if ($blogCTAs):
+                foreach($blogCTAs as $key => $cta):
+                    if(isset($cta['feature_in_archive']) && $cta['feature_in_archive']):
+                        $ctaCount++;
+                    endif;
+                endforeach;
+            endif;
+
+            if ($ctaCount >= 3) {
+                $ctaCount = 3;
+            }
+
+            $offset = 3 - $ctaCount + 1;
         endif;
 
         if ($offset > 0) {

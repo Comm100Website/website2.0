@@ -1,2 +1,2 @@
-!function(n){wp.customize("blogname",function(t){t.bind(function(t){n(".brand").text(t)})})}(jQuery);
+!function(t){wp.customize("blogname",function(n){n.bind(function(n){t(".brand").text(n)})})}(jQuery);
 //# sourceMappingURL=customizer.js.map

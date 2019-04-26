@@ -5718,21 +5718,51 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   border-color: #0094d4;
   background: #0094d4;
 }
-.c-theme-btn.c-btn-border-2x {
-  color: #0094d4;
-  border-width: 1px;
-  border-color: #0094d4;
-  background: 0;
-  border-radius: 10px;
-  box-shadow: 0 0 0 3px #0094d4 inset;
+
+.c-theme-btn {
+    &.c-btn-border-1x, &.c-btn-border-2x {
+        color: #0094d4 !important;
+        border-width: 1px;
+        border-color: #0094d4;
+        background: 0;
+        border-radius: 10px;
+        box-shadow: 0 0 0 3px #0094d4 inset;
+
+        &:active, &:focus, &:hover {
+          color: #fff !important;
+          border-color: #0094d4;
+          background: #0094d4;
+        }
+    }
+
+    &.c-btn-border-1x {
+        box-shadow: none;
+        border-width: 2px;
+    }
 }
-.c-theme-btn.c-btn-border-2x:active,
-.c-theme-btn.c-btn-border-2x:focus,
-.c-theme-btn.c-btn-border-2x:hover {
-  color: #fff;
-  border-color: #0094d4;
-  background: #0094d4;
+
+.c-grey-btn {
+    &.c-btn-border-1x, &.c-btn-border-2x {
+        color: $grey-medium !important;
+        border-width: 1px;
+        border-color: $grey-medium;
+        background: 0;
+        border-radius: 10px;
+        box-shadow: 0 0 0 3px $grey-medium inset;
+
+        &:active, &:focus, &:hover {
+          color: #fff !important;
+          border-color: $grey-medium;
+          background: $grey-medium;
+        }
+    }
+
+    &.c-btn-border-1x {
+        box-shadow: none;
+        border-width: 2px;
+    }
 }
+
 .c-theme-btn.c-btn-border-2x:active {
   background-image: none;
 }
@@ -6474,6 +6504,7 @@ button.btn-video-close span {
     width: 900px;
   }
 }
+
 .at-cv-lightbox-background {
   background: #000 !important;
   opacity: 0.65 !important;
@@ -6751,10 +6782,23 @@ button.btn-video-close span {
   .menu-item--other {
     border-left: 1px solid #ddd;
   }
+
   .dropdown-menu .menu-item {
     float: left;
     margin-right: 75px;
   }
+
+  .menu-item-24217, .menu-item-24212 {
+    .dropdown-menu {
+        min-width: 155px !important;
+
+        .menu-item {
+            float: none;
+            margin-right: 0;
+        }
+    }
+  }
+
   .dropdown-menu .menu-item--other,
   .dropdown-menu .menu-item.menu-industry,
   .dropdown-menu .menu-item.menu-partners {
@@ -7367,6 +7411,8 @@ h3.highlight {
     background-position: left center;
   }
 }
+
+
 .promotion_headline {
   font-size: 24px;
 }
@@ -7451,6 +7497,7 @@ h3.highlight {
 .img-text-column:last-child, .img-text:last-child {
     margin-bottom: 0;
 }
+
 @media screen and (min-width: 768px) {
   .img-text-column {
     display: flex;
@@ -7461,7 +7508,11 @@ h3.highlight {
   .img-text-column--left .img-text-column__text {
     padding-left: 80px;
   }
+
+  .d-flex { display: flex; }
+  .align-items-center { align-items: center; }
 }
+
 @media screen and (max-width: 767px) {
   .img-text-card__img {
     position: relative;
@@ -7482,6 +7533,19 @@ h3.highlight {
     padding-left: 20px;
     padding-right: 20px;
   }
+
+  .d-flex {
+    > div {
+        margin-bottom: 40px;
+
+        &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  .mb-xs-1 { margin-bottom: 15px; }
+  .mb-xs-2 { margin-bottom: 30px; }
+  .mb-xs-3 { margin-bottom: 45px; }
+  .mb-xs-4 { margin-bottom: 60px; }
 }
 .c-quote {
   font-size: 30px;
@@ -9573,7 +9637,7 @@ h2.video-title {
 }
 
 .icon-content-list__element {
-  
+
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {
@@ -9601,7 +9665,7 @@ h2.video-title {
   position: sticky;
   top: 95px;
   float: left;
-  
+
 
   ul {
     margin-left: 0;
@@ -9616,13 +9680,13 @@ h2.video-title {
     &:hover {
       font-family: 'Ubuntu Bold', sans-serif;
     }
-    
+
     a {
       color: #5e6d79;
       display: block;
       border-bottom: 4px solid transparent;
     }
-    
+
   }
 
   .active {
@@ -9632,7 +9696,7 @@ h2.video-title {
 }
 
 .content--sticky {
-  
+
 
   @media screen and (min-width: 768px) {
     float: left;
@@ -9702,7 +9766,7 @@ h2.video-title {
 
   .collapse-container {
     margin-bottom: 80px;
-    
+
     .collapse {
       padding-top: 14px;
       padding-bottom: 14px;
@@ -9754,7 +9818,7 @@ h2.video-title {
           }
         }
       }
-      
+
 
       // .collapse__title--ProductScope {
       //   background-image: url(/wp-content/uploads/2019/01/Campaign-Top10LiveChatSoftwareReview-ProductScope-0115.svg);

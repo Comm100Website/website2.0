@@ -30,6 +30,6 @@
   }
   },
   "config": {
-    "devUrl": "http://dev.comm100.com"
+    "devUrl": "https://dev.comm100.com"
   }
 }

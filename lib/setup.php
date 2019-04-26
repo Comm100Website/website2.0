@@ -122,42 +122,7 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
 /**
  * Theme assets
  */
-function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540s9900f');
-
-    if (is_single() && comments_open() && get_option('thread_comments')) {
-        wp_enqueue_script('comment-reply');
-    }
-
-    //   if (!is_admin()) {
-    //     // comment out the next two lines to load the local copy of jQuery
-    //     wp_deregister_script('jquery');
-    //     wp_deregister_script('jquery-migrate');
-
-    //     wp_register_script('jquery', Assets\asset_path('scripts/plugins/jquery.js'), false, '1.11.3', false);
-    //     wp_register_script('jquery-migrate', Assets\asset_path('scripts/plugins/jquery-migrate.min.js'), ['jquery'], '1.2.1', false);
-
-    //     wp_enqueue_script('jquery');
-    //     wp_enqueue_script('jquery-migrate');
-    //   }
-
-    // wp_enqueue_script('comm100api', 'https://www.comm100.com/integrationsapi/apihandler.ashx', '', null, true);
-    wp_enqueue_script('sage/bootstrap', Assets\asset_path('scripts/plugins/bootstrap.js'), ['jquery'], null, true);
-    wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
-    wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
-
-    if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) {
-        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190416, true);
-    }
-
-    $localizeData = array(
-        'theme_url' => get_template_directory_uri(),
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'site_url' => get_site_url()
-    );
-
-    wp_localize_script('sage/js', 'commGlobal', $localizeData);
-
+function db_assets() {
 	$dbData = array(
 		'theme_url' => get_template_directory_uri()
 	);
@@ -238,13 +203,62 @@ function assets() {
             array_multisort(array_column($dbData['db_audiences'], 'order'), SORT_ASC, $dbData['db_audiences']);
         }
 
-        wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190415.9', false);
-        wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
+        // wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190415.9', false);
+        // wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
+        echo '<script type="text/javascript">
+        /* <![CDATA[ */
+        var dbGlobal = '.json_encode($dbData).';
+        /* ]]> */
+        </script>';
+        echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js').'"></script>';
+
+    }
+}
+add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
+
+
+/**
+ * Theme assets
+ */
+function assets() {
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540s9900de');
+
+    if (is_single() && comments_open() && get_option('thread_comments')) {
+        wp_enqueue_script('comment-reply');
     }
 
+    //   if (!is_admin()) {
+    //     // comment out the next two lines to load the local copy of jQuery
+    //     wp_deregister_script('jquery');
+    //     wp_deregister_script('jquery-migrate');
+
+    //     wp_register_script('jquery', Assets\asset_path('scripts/plugins/jquery.js'), false, '1.11.3', false);
+    //     wp_register_script('jquery-migrate', Assets\asset_path('scripts/plugins/jquery-migrate.min.js'), ['jquery'], '1.2.1', false);
+
+    //     wp_enqueue_script('jquery');
+    //     wp_enqueue_script('jquery-migrate');
+    //   }
+
+    // wp_enqueue_script('comm100api', 'https://www.comm100.com/integrationsapi/apihandler.ashx', '', null, true);
+    wp_enqueue_script('sage/bootstrap', Assets\asset_path('scripts/plugins/bootstrap.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/jqueryeasing', Assets\asset_path('scripts/plugins/jquery.easing.min.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
+
+    if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) {
+        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190416, true);
+    }
+
+    $localizeData = array(
+        'theme_url' => get_template_directory_uri(),
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'site_url' => get_site_url()
+    );
+
+    wp_localize_script('sage/js', 'commGlobal', $localizeData);
 //   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 0);
+
 
 //Disable the custom permalinks plugin on Knowledge Base category pages otherwise it won't load the custom template.
 add_filter('custom_permalinks_request_ignore', __NAMESPACE__ . '\\ignore_custom_permalinks_on_kb_category', 0, 1 );

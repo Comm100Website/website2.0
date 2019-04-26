@@ -1,0 +1,111 @@
+body.page-template-newsroom {
+    .nav--sticky {
+        li {
+            border-bottom: solid 1px #dfe2e4;
+            padding: 0 8px 16px;
+            margin-bottom: 16px;
+            line-height: 1;
+
+            a { border-bottom: 0; }
+        }
+    }
+
+    // .c-layout-page { overflow-x: hidden; }
+
+    .loadmore {
+        position: relative;
+
+        &.loading:after {
+            overflow: hidden;
+            display: block;
+            position: absolute;
+            animation: ellipsis steps(4,end) 900ms infinite;
+            content: "\2026"; /* ascii code for the ellipsis character */
+            width: 0px;
+            right: 20px;
+            top: 15px;
+        }
+    }
+
+    .content--sticky {
+        a { color: #606c78; }
+    }
+
+    .post {
+        padding: 30px 30px;
+
+        h4 { margin-bottom: 5px; margin-top: 0; }
+        .post-meta { color: $grey-medium; }
+        .excerpt { display: none; margin-top: 15px; }
+    }
+
+    #press .post:first-child {
+        background: $blue-light;
+        margin-bottom: 30px;
+        padding: 40px 30px 45px;
+
+        .excerpt { display: block; }
+    }
+
+    #news .post {
+        padding-bottom: 0;
+
+        .inner {
+            border-bottom: solid 1px #c7ced4;
+            padding-bottom: 24px;
+        }
+
+        &:last-child .inner { border-bottom: 0; }
+        &:first-child { padding-top: 0; }
+    }
+
+    .award {
+        margin-bottom: 80px;
+
+        &:last-child { margin-bottom: 0; }
+    }
+
+    #about {
+        p, ul, h3, h4 {
+            margin-bottom: 35px;
+
+            &:last-child { margin-bottom: 0; }
+        }
+
+        h3, h4 { padding-top: 10px; }
+
+        ul li { list-style: disc; }
+    }
+
+    section {
+        padding: 85px 0;
+
+        &:first-child { padding-top: 0; }
+        h2 { margin-bottom: 60px; }
+
+        &.bg-blue {
+            position: relative;
+
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                height: 100%;
+                width: 100vw;
+                background: $blue-light;
+                z-index: -1;
+                top: 0;
+                left: 50%;
+                right: 50%;
+                margin-left: -50vw;
+                margin-right: -50vw;
+            }
+        }
+    }
+
+    @media (min-width: 768px) {
+        .content--sticky section.bg-blue:after {
+            margin-left: calc(-50vw - 105px);
+        }
+    }
+}

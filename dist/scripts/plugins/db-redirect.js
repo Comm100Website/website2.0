@@ -25,6 +25,16 @@ function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
 
+function urlParam(name) {
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return decodeURI(results[1]) || 0;
+    }
+}
+
 function setBodyClass(userInfo) {
     if (document.body) {
         if (userInfo) {
@@ -103,8 +113,8 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     var requestURL = dbGlobal.theme_url + '/ajax/demandbase-api.php';
 
     if (location.search.indexOf('ip=')>=0) {
-        var urlParams = new URLSearchParams(window.location.search);
-        requestURL += '?ip=' + urlParams.get('ip');
+        urlParam(name)
+        requestURL += '?ip=' + urlParam('ip');
     } else {
         requestURL += '?cache=false';
     }

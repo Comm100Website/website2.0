@@ -2488,3 +2488,9 @@
     transform: translate3d(0, -100%, 0);
   }
 }
+
+@keyframes ellipsis {
+    to {
+        width: 1.25em;
+    }
+}
