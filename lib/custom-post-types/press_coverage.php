@@ -56,12 +56,10 @@ function set_custom_press_coverage_columns($custom_columns){
     switch ($custom_columns)
     {
         case 'press_article_link':
-            echo '<a href="'.get_field('meta-news-url').'" target="_blank">View Article</a>';
+            echo '<a href="'.get_field('article_url').'" target="_blank">View Article</a>';
             break;
         case 'press_media_outlet':
-            if (get_field('media_outlet_logo')):
-                echo '<img src="'.get_field('media_outlet_logo').'" height="24" />';
-            endif;
+            the_field('source');
             break;
     }
 }
