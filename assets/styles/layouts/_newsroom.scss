@@ -1,5 +1,11 @@
 body.page-template-newsroom {
+    p, ul {
+        margin-bottom: 30px;
+    }
+
     .nav--sticky {
+        top: 145px;
+
         li {
             border-bottom: solid 1px #dfe2e4;
             padding: 0 8px 16px;
@@ -45,6 +51,18 @@ body.page-template-newsroom {
         padding: 40px 30px 45px;
 
         .excerpt { display: block; }
+    }
+
+    #announcements {
+        .post {
+            &:first-child {
+                background: $blue-light;
+                margin-bottom: 30px;
+                padding: 40px 30px 45px;
+            }
+
+            .excerpt { display: block; }
+        }
     }
 
     #news .post {

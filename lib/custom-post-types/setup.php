@@ -2,6 +2,7 @@
 namespace Roots\Sage\CustomPostTypes\Setup;
 
 $cpt_includes = [
+    'lib/custom-post-types/announcements.php',
     'lib/custom-post-types/resources.php',
     'lib/custom-post-types/press_release.php',
     'lib/custom-post-types/press_coverage.php',

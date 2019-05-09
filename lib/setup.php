@@ -210,7 +210,7 @@ function db_assets() {
         var dbGlobal = '.json_encode($dbData).';
         /* ]]> */
         </script>';
-        echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js').'"></script>';
+        echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=1').'"></script>';
 
     }
 }
@@ -221,7 +221,7 @@ add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540s9900de');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540s9900f');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -280,3 +280,16 @@ function dequeue_css_from_plugins() {
     wp_deregister_style( 'authorsure' );
 }
 add_action( 'wp_print_scripts', __NAMESPACE__.'\\dequeue_css_from_plugins' );
+
+/**
+ * Block User Enumeration
+ */
+function block_user_enumeration_attempts() {
+    if ( is_admin() ) return;
+
+    $author_by_id = ( isset( $_REQUEST['author'] ) && is_numeric( $_REQUEST['author'] ) );
+
+    if ( $author_by_id )
+        wp_die( 'Author archives have been disabled.' );
+}
+add_action( 'template_redirect', __NAMESPACE__.'\\block_user_enumeration_attempts' );

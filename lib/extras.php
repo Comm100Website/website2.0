@@ -23,6 +23,11 @@ function body_class($classes) {
         }
     }
 
+
+    if (isset($_SERVER['HTTP_CF_IPCOUNTRY'])) {
+        $classes[] .= 'country-'.$_SERVER["HTTP_CF_IPCOUNTRY"];
+    }
+
     // if ($post && get_field('activate_demandbase', $post->ID) && get_field('demandbase_page_type', $post->ID) && get_field('demandbase_audience', $post->ID)) {
     //     $classes[] = 'db-audience-'.sanitize_title(get_field('demandbase_audience', $post->ID)->post_title);
     // } else {

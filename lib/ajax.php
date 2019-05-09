@@ -783,7 +783,7 @@ function press_release_ajax_pagination() {
 
     $args = [
         'post_type' => 'releases',
-        'posts_per_page' => 6,
+        'posts_per_page' => 5,
         'post_status' => 'publish',
         'paged' => $paged,
     ];
@@ -811,7 +811,7 @@ function news_ajax_pagination() {
 
     $args = [
         'post_type' => 'news',
-        'posts_per_page' => 6,
+        'posts_per_page' => 5,
         'post_status' => 'publish',
         'paged' => $paged,
     ];
@@ -821,6 +821,34 @@ function news_ajax_pagination() {
         while ($pressQuery->have_posts()):
             $pressQuery->the_post();
             get_template_part('template-parts/content', 'press');
+        endwhile;
+
+        wp_reset_postdata();
+    endif;
+
+    wp_die();
+}
+
+add_action( 'wp_ajax_nopriv_announcements_pagination', __NAMESPACE__.'\\announcements_ajax_pagination' );
+add_action( 'wp_ajax_announcements_pagination', __NAMESPACE__.'\\announcements_ajax_pagination' );
+
+function announcements_ajax_pagination() {
+    check_ajax_referer('announcements_ajax_nonce', 'security');
+
+    $paged = $_POST['page'];
+
+    $args = [
+        'post_type' => 'announcement',
+        'posts_per_page' => 5,
+        'post_status' => 'publish',
+        'paged' => $paged,
+    ];
+
+    $pressQuery = new WP_Query($args);
+    if ($pressQuery->have_posts()):
+        while ($pressQuery->have_posts()):
+            $pressQuery->the_post();
+            get_template_part('template-parts/content', 'announcement');
         endwhile;
 
         wp_reset_postdata();

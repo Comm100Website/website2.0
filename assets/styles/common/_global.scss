@@ -31,7 +31,16 @@ a {
   -moz-transition: all 0.2s ease-out;
   -ms-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
+
+  &.link-underline {
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+  }
 }
+
 h1,
 h2,
 h3,

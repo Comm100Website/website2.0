@@ -1,3 +1,11 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    header( 'HTTP/1.1 301 Moved Permanently' );
+    header( 'Location: /' );
+    die();
+}
+?>
+
 <?php use Roots\Sage\Navigation; ?>
 <?php get_template_part('template-parts/header'); ?>
 </header>
