@@ -942,14 +942,12 @@ var stickyScroll = function() {
 
 			window.addEventListener("scroll", function(event) {
 				var fromTop = window.scrollY;
-				
+
 				mainNavLinks.forEach(function(link) {
 					var section = document.querySelector(link.hash);
-				
-					if (
-						fromTop >= parseInt(offset(section).top)  &&
-						fromTop < parseInt(offset(section).top + section.offsetHeight)
-					) {
+                    var menuOffset = 132;
+
+					if (fromTop >= (parseInt(offset(section).top) - menuOffset) && fromTop < (parseInt(offset(section).top + section.offsetHeight) - menuOffset)) {
 						link.classList.add("active");
 					} else {
 						link.classList.remove("active");
@@ -1114,7 +1112,7 @@ jQuery(document).ready(function() {
 						var divId = 'comm100-container';
 						var divObj = document.getElementById(divId);
 						Comm100API.on && Comm100API.on('livechat.invitation.display', function () {
-							
+
 							var iframe = divObj.getElementsByTagName("iframe");
 							if (iframe != null) {
 								// var all = iframe[0].contentWindow.document.getElementsByTagName("div");
@@ -1127,17 +1125,17 @@ jQuery(document).ready(function() {
 								var invitation = iframe[0].contentWindow.document.querySelector('.invitation__message');
 								invitation.innerHTML = invitation.innerHTML.replace("{company name}", Demandbase_CompanyName);
 							}
-							
+
 						});
 					}
 
 
 					var demandDomains = [
-						'gartner.com', 
-						'forrester.com', 
-						'ovum.informa.com', 
-						'juniperresearch.com', 
-						'ventanaresearch.com', 
+						'gartner.com',
+						'forrester.com',
+						'ovum.informa.com',
+						'juniperresearch.com',
+						'ventanaresearch.com',
 						'aberdeen.com',
 						// 'comm100.com',
 					];
@@ -1155,29 +1153,29 @@ jQuery(document).ready(function() {
 																			.replace(/M/gi, '000000')
 																			.replace(/B/gi, '000000000');
 								var demandBaseRevenueRangeArray = demandBaseRevenueRange.split('-');
-								if (demandBaseRevenueRangeArray.length > 1 && 
-									demandBaseRevenueRangeArray[0] >= 100000000 && 
+								if (demandBaseRevenueRangeArray.length > 1 &&
+									demandBaseRevenueRangeArray[0] >= 100000000 &&
 									demandBaseRevenueRangeArray[1] <= 5000000000) {
 										Demandbase_Target_Account = 1;
-								} else if (demandBaseRevenueRangeArray[0] >= 100000000 && 
+								} else if (demandBaseRevenueRangeArray[0] >= 100000000 &&
 									demandBaseRevenueRangeArray[0] <= 5000000000) {
 										Demandbase_Target_Account = 1;
 								}
 							}
 						}
 					}, 3000);
-					
 
-					
+
+
 					// Demandbase_Target_Account = 1; // test
 					// var campaignIds = Comm100API && Comm100API.get('livechat.campaignIds');
 					// if (campaignIds) {
-					
-				} 
+
+				}
 			}
 		});
 	})();
-	
+
 
   function showVisitorIP() {
     var ajaxData = {
@@ -1826,7 +1824,7 @@ jQuery(function() {
             jQuery(this).toggleClass('featurelist-title--close');
             jQuery(this).next('.featurelist-content').slideToggle(200);
 		});
-		
+
 		jQuery('.collapse__title').on('click', function () {
             jQuery(this).toggleClass('collapse__title--open');
             jQuery(this).next('.collapse__content').slideToggle(200);

@@ -1,4 +1,4 @@
-var DEMAND_BASE_COOKIE = 'db_user_info';
+var DEMAND_BASE_COOKIE = 'db_userinfo';
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -40,6 +40,7 @@ function setBodyClass(userInfo) {
         if (userInfo) {
             var dbFields = [
                 'registry_country',
+                'registry_country_code',
                 'country_name',
                 'industry',
                 'sub_industry',
@@ -135,7 +136,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 
                 // console.log('DB Query', responseJSON);
 
-				if (dbGlobal.db_audiences) {
+				if (dbGlobal.db_active && dbGlobal.db_audiences) {
 					redirect_to_db_audience(responseJSON);
 				}
 			}
@@ -145,10 +146,10 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 } else {
     var userInfo = JSON.parse(getCookie(DEMAND_BASE_COOKIE));
 
-	if (dbGlobal.db_audiences) {
+	setBodyClass(userInfo);
+
+    if (dbGlobal.db_active && dbGlobal.db_audiences) {
 		//The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.
     	redirect_to_db_audience(userInfo);
 	}
-
-	setBodyClass(userInfo);
 }

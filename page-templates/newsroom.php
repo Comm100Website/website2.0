@@ -169,6 +169,7 @@ use Roots\Sage\Assets;
                             </script>
                             <?php endif; ?>
                         </section>
+<?php /*
                         <section id="announcements">
                             <?php if(get_field('announcements_section_title')): ?>
                                 <h2><?= get_field('announcements_section_title'); ?></h2>
@@ -237,7 +238,8 @@ use Roots\Sage\Assets;
                             </script>
                             <?php endif; ?>
                         </section>
-                        <section id="awards" class="bg-blue">
+*/ ?>
+                        <section id="awards">
                             <?php if(get_field('awards_section_title')): ?>
                                 <h2><?= get_field('awards_section_title'); ?></h2>
                             <?php endif; ?>
@@ -255,7 +257,7 @@ use Roots\Sage\Assets;
                                 </div>
                             <?php endforeach; ?>
                         </section>
-                        <section id="media">
+                        <section id="media" class="bg-blue">
                             <?php if(get_field('media_section_title')): ?>
                                 <h2><?= get_field('media_section_title'); ?></h2>
                             <?php endif; ?>

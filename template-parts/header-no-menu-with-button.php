@@ -9,11 +9,26 @@
                     <span class="c-logo-img"><img src="<?= get_site_url(); ?>/wp-content/uploads/images/logo-comm100.svg" alt="Comm100" class="c-desktop-logo"/></span>
                 </a>
             </div>
-            <a 
-                class="c-navbar-wrapper__btn btn btn-xlg btn-link--green" 
-                href="#freetrial"
-            >
-                Free trial
+            <?php
+            $buttonURL = '#freetrial';
+            $buttonTarget = '';
+            $buttonLabel = 'Free trial';
+            $customButton = get_field('header_button');
+
+            if ($customButton) {
+                $buttonURL = $customButton['url'];
+                $buttonLabel = $customButton['title'];
+
+                if (isset($customButton['target']) && !empty($customButton['target'])) {
+                    $buttonTarget = 'target="'.$customButton['target'].'"';
+                }
+            }
+            ?>
+            <a
+                class="c-navbar-wrapper__btn btn btn-xlg btn-link--green"
+                href="<?= $buttonURL; ?>"
+                <?= $buttonTarget; ?>
+            ><?= $buttonLabel; ?>
             </a>
         </div>
     </div>

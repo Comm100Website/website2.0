@@ -1972,26 +1972,28 @@ Template Post Type: commresource, page
 
                 // check current row layout
                 if( get_row_layout() == 'webinar_gated_context' ):
-
-
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row landingPage">';
 
                     echo '<div class="col-sm-8 landingPage-content">';
-                        // loop through the rows of data
-                        echo '<h3>' . get_sub_field('title') . '</h3>';
-                        if( get_sub_field('summary') ):
-                            echo '<div class="landingPage-summary">' . get_sub_field('summary') . '</div>';
-                        endif;
-                        echo get_sub_field('paragraph');
 
+                    // loop through the rows of data
+                    echo '<h3>' . get_sub_field('title') . '</h3>';
+                    if( get_sub_field('summary') ):
+                        echo '<div class="landingPage-summary">' . get_sub_field('summary') . '</div>';
+                    endif;
+                    echo get_sub_field('paragraph');
 
                     if( have_rows('speaker') ):
                         while ( have_rows('speaker') ) : the_row();
-                        echo '<div class="speakers-container">';
-                            echo '<h3>' . get_sub_field('title') . '</h3>';
-                            if( have_rows('speaker_details') ):
+                            if (have_rows('speaker_details')):
+                                echo '<div class="speakers-container">';
+
+                                if (get_sub_field('title')):
+                                    echo '<h3>' . get_sub_field('title') . '</h3>';
+                                endif;
+
                                 while ( have_rows('speaker_details') ) : the_row();
                                     $avatar = get_sub_field('avatar');
                                     echo '<div class="speaker">' .
@@ -2000,16 +2002,20 @@ Template Post Type: commresource, page
                                         '<div class="speaker-profile">' . get_sub_field('profile') . '</div>' .
                                     '</div>';
                                 endwhile;
+                                echo '</div>';
                             endif;
-                        echo '</div>';
                         endwhile;
                     endif;
 
                     if( have_rows('host') ):
                         while ( have_rows('host') ) : the_row();
-                        echo '<div class="speakers-container">';
-                            echo '<h3>' . get_sub_field('title') . '</h3>';
                             if( have_rows('host_details') ):
+                                echo '<div class="speakers-container">';
+
+                                if (get_sub_field('title')):
+                                    echo '<h3>' . get_sub_field('title') . '</h3>';
+                                endif;
+
                                 while ( have_rows('host_details') ) : the_row();
                                     $avatar = get_sub_field('host_avatar');
                                     echo '<div class="speaker">' .
@@ -2018,8 +2024,9 @@ Template Post Type: commresource, page
                                         '<div class="speaker-profile">' . get_sub_field('profile') . '</div>' .
                                     '</div>';
                                 endwhile;
+
+                                echo '</div>';
                             endif;
-                        echo '</div>';
                         endwhile;
                     endif;
 
@@ -2088,9 +2095,9 @@ Template Post Type: commresource, page
 
                         if( have_rows('speaker') ):
                             while ( have_rows('speaker') ) : the_row();
+                            if( have_rows('speaker_details') ):
                             echo '<div class="speakers-container">';
                                 echo '<h3>' . get_sub_field('title') . '</h3>';
-                                if( have_rows('speaker_details') ):
                                     while ( have_rows('speaker_details') ) : the_row();
                                         $avatar = get_sub_field('avatar');
                                         echo '<div class="speaker">' .
@@ -2099,16 +2106,16 @@ Template Post Type: commresource, page
                                             '<div class="speaker-profile">' . get_sub_field('profile') . '</div>' .
                                         '</div>';
                                     endwhile;
+                                    echo '</div>';
                                 endif;
-                            echo '</div>';
                             endwhile;
                         endif;
 
                         if( have_rows('host') ):
                             while ( have_rows('host') ) : the_row();
+                            if( have_rows('host_details') ):
                             echo '<div class="speakers-container">';
                                 echo '<h3>' . get_sub_field('title') . '</h3>';
-                                if( have_rows('host_details') ):
                                     while ( have_rows('host_details') ) : the_row();
                                         $avatar = get_sub_field('host_avatar');
                                         echo '<div class="speaker">' .
@@ -2117,8 +2124,8 @@ Template Post Type: commresource, page
                                             '<div class="speaker-profile">' . get_sub_field('profile') . '</div>' .
                                         '</div>';
                                     endwhile;
+                                    echo '</div>';
                                 endif;
-                            echo '</div>';
                             endwhile;
                         endif;
 
