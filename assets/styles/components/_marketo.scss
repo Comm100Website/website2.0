@@ -59,6 +59,8 @@
     color: #555 !important;
     border: 1px solid #ccc;
 }
+.checkbox-list-form .mktoForm .mktoButtonWrap .mktoButton:active,
+.mktoForm .mktoButtonWrap.mktoNative .mktoButton:active,
 .mktoForm .mktoButtonWrap.mktoBlueBox .mktoButton:active {
     color: #fff;
     border-color: #9fca08;
@@ -66,6 +68,8 @@
     background-image: none !important;
     text-shadow: none;
 }
+.checkbox-list-form .mktoForm .mktoButtonWrap .mktoButton,
+.mktoForm .mktoButtonWrap.mktoNative .mktoButton,
 .mktoForm .mktoButtonWrap.mktoBlueBox .mktoButton {
     color: #fff;
     border: 1px solid #aedd09 !important;
@@ -101,6 +105,61 @@
     font-size: 20px;
     font-weight: 400;
 }
+
+.narrow-form .mktoForm {
+    width: 100% !important;
+    max-width: 360px;
+
+    .mktoRadioList,
+    .mktoCheckboxList {
+        width: 100% !important;
+
+        input { margin-right: 10px; position: relative; top: 2px; }
+        label {
+            text-align: left !important; margin-bottom: 20px !important;
+
+            &:last-child { margin-bottom: 0 !important; }
+        }
+    }
+
+    .mktoButtonRow {
+        text-align: center !important;
+        margin-top: 24px !important;
+    }
+}
+
+.align-center .mktoForm {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.checkbox-list-form .mktoForm {
+    max-width: 460px;
+
+    .mktoFormRow {
+        .mktoLabel {
+            display: block;
+            width: 100% !important;
+            text-align: left !important;
+            margin-bottom: 10px !important;
+            padding-left: 30px !important;
+            height: auto;
+
+            strong {
+                display: inline-block;
+                margin-bottom: 10px;
+                font-weight: 300;
+                font-family: Ubuntu,Helvetica,Arial,sans-serif !important;
+            }
+        }
+
+        .mktoCheckboxList {
+            position: absolute;
+
+        }
+    }
+}
+
 .mktoForm .mktoButtonWrap.mktoBlueBox .mktoButton:hover {
     color: #fff;
     border-color: #9fca08 !important;
@@ -234,7 +293,7 @@
     color: #0094d4;
     border-bottom: none;
   }
-  
+
   // .mktoForm .mktoRequiredField label.mktoLabel {
   //   display: block;
   //   position: absolute;
@@ -245,14 +304,14 @@
     padding-right: 40px !important;
   }
 
-  .mktoForm > .mktoFormRow:nth-of-type(1), 
+  .mktoForm > .mktoFormRow:nth-of-type(1),
   .mktoForm > .mktoFormRow:nth-of-type(2) {
     clear: none;
     float: left;
     width: 50%;
   }
-  
+
   .mktoForm .mktoButtonRow {
     text-align: center;
   }
-} 
+}

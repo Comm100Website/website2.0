@@ -1857,6 +1857,14 @@ jQuery(function() {
         init: function() {
             App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
 
+
+            $('a.scroll-to-anchor').click(function(e) {
+                e.preventDefault();
+
+                var dest = $(this).attr('href');
+                $('html,body').animate({scrollTop: $(dest).offset().top - 100},'slow');
+            });
+
             // Create the dropdown based nav for mobile devices on the resources and blog sections.
             if ($('.post-nav').length) {
                 $("<select class='visible-xs form-control' />").appendTo(".post-nav");

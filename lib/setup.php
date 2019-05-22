@@ -130,7 +130,7 @@ function db_assets() {
 
 	//If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
     //screen and let the JS pick where the user should be redirected to.
-    if (!is_user_logged_in() || 1==1) {
+    if (!is_user_logged_in()) {
 
         //If we're on a DemandBase activated page we'll also get the DB settings.
         if (get_field('activate_demandbase')) {
@@ -221,7 +221,7 @@ add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '1540s99002323f');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '20190519.1');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -301,3 +301,9 @@ function exclude_custom_permalink_post_types( $post_type ) {
     return '__false';
   }
   add_filter( 'custom_permalinks_exclude_post_type', __NAMESPACE__.'\\exclude_custom_permalink_post_types');
+
+function custom_mime_types($mime_types){
+    $mime_types['eps'] = 'application/postscript'; //Adding photoshop files
+    return $mime_types;
+}
+add_filter('upload_mimes', __NAMESPACE__.'\\custom_mime_types', 1, 1);

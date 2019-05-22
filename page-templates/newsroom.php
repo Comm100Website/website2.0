@@ -29,7 +29,7 @@ use Roots\Sage\Assets;
                     <nav class="nav--sticky hidden-xs">
                         <ul>
                             <?php foreach(get_field('menu') as $item): ?>
-                                <li><a href="<?= $item['menu_item']['url']; ?>" class=""><?= $item['menu_item']['title']; ?></a></li>
+                                <li><a href="<?= $item['menu_item']['url']; ?>" class="scroll-to-anchor"><?= $item['menu_item']['title']; ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     </nav>

@@ -5251,14 +5251,15 @@ ul.list-style-alpha {
   margin-left: 0;
 }
 .c-article .table-fornumbersOfCols {
-  font-size: 13px !important;
+  font-size: 12px !important;
 }
 .c-article .table-fornumbersOfCols th {
   font-family: "Ubuntu Bold", sans-serif;
+  word-break: break-all;
 }
 .c-article .table-fornumbersOfCols td,
 .c-article .table-fornumbersOfCols th {
-  padding: 15px 12px;
+  padding: 15px 8px;
 }
 .c-article .content-img {
   margin-top: 20px;

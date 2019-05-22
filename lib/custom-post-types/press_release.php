@@ -30,7 +30,7 @@ function register_press_release_post_type() {
         'capability_type' => 'post',
         'hierarchical' => false,
         'menu_icon' => 'dashicons-megaphone',
-        'rewrite' => array("slug" => '/releases', "with_front" => false),
+        'rewrite' => array("slug" => '/newsroom/press', "with_front" => false),
         'menu_position' => 20,
         'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'author')
     );
