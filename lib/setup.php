@@ -130,89 +130,86 @@ function db_assets() {
 
 	//If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
     //screen and let the JS pick where the user should be redirected to.
-    if (!is_user_logged_in()) {
+    //If we're on a DemandBase activated page we'll also get the DB settings.
+    if (get_field('activate_demandbase')) {
+        $demandBaseParentPage = (get_field('demandbase_page_type') == 'audience' ? get_field('default_audience_page')->ID : get_the_ID());
 
-        //If we're on a DemandBase activated page we'll also get the DB settings.
-        if (get_field('activate_demandbase')) {
-            $demandBaseParentPage = (get_field('demandbase_page_type') == 'audience' ? get_field('default_audience_page')->ID : get_the_ID());
+        $args = [
+            'post_type' => 'any',
+            'posts_per_page' => -1,
+            'meta_query' => [
+                [
+                    'key' => 'default_audience_page',
+                    'value' => $demandBaseParentPage
+                ]
+            ],
+            'order' => 'asc',
+            'orderby' => 'menu_order',
+        ];
 
-            $args = [
-                'post_type' => 'any',
-                'posts_per_page' => -1,
-                'meta_query' => [
-                    [
-                        'key' => 'default_audience_page',
-                        'value' => $demandBaseParentPage
-                    ]
-                ],
-                'order' => 'asc',
-                'orderby' => 'menu_order',
-            ];
+        $dbAudiencePages = new WP_Query($args);
 
-            $dbAudiencePages = new WP_Query($args);
+        $dbData['db_default'] = get_permalink($demandBaseParentPage);
 
-            $dbData['db_default'] = get_permalink($demandBaseParentPage);
+        if ($dbAudiencePages->have_posts()) {
+            $dbData['db_audiences'] = array();
 
-            if ($dbAudiencePages->have_posts()) {
-                $dbData['db_audiences'] = array();
+            while ($dbAudiencePages->have_posts()) {
+                $dbAudiencePages->the_post();
 
-                while ($dbAudiencePages->have_posts()) {
-                    $dbAudiencePages->the_post();
+                if (get_field('demandbase_page_type') == 'audience') {
+                    $dbAudiencePost = get_field('demandbase_audience');
+                    $excludeAudiences = [];
 
-                    if (get_field('demandbase_page_type') == 'audience') {
-                        $dbAudiencePost = get_field('demandbase_audience');
-                        $excludeAudiences = [];
-
-                        if (get_field('exclude_audiences', $dbAudiencePost->ID)) {
-                            foreach (get_field('exclude_audiences', $dbAudiencePost->ID) as $audience) {
-                                $excludeAudiences[] = [
-                                    'field' => $audience['audience_field'],
-                                    'value' => $audience['value']
-                                ];
-                            }
+                    if (get_field('exclude_audiences', $dbAudiencePost->ID)) {
+                        foreach (get_field('exclude_audiences', $dbAudiencePost->ID) as $audience) {
+                            $excludeAudiences[] = [
+                                'field' => $audience['audience_field'],
+                                'value' => $audience['value']
+                            ];
                         }
+                    }
 
-                        foreach (get_field('audience_values', $dbAudiencePost->ID) as $audience) {
-                            if ($audience['audience_field'] == 'country') {
-                                $dbData['db_audiences'][] = [
-                                    'order' => $dbAudiencePost->menu_order,
-                                    'field' => 'country_name',
-                                    'value' => $audience['value'],
-                                    'url' => get_permalink(),
-                                    'exclude' => $excludeAudiences,
-                                ];
+                    foreach (get_field('audience_values', $dbAudiencePost->ID) as $audience) {
+                        if ($audience['audience_field'] == 'country') {
+                            $dbData['db_audiences'][] = [
+                                'order' => $dbAudiencePost->menu_order,
+                                'field' => 'country_name',
+                                'value' => $audience['value'],
+                                'url' => get_permalink(),
+                                'exclude' => $excludeAudiences,
+                            ];
 
-                                $dbData['db_audiences'][] = [
-                                    'order' => $dbAudiencePost->menu_order,
-                                    'field' => 'registry_country',
-                                    'value' => $audience['value'],
-                                    'url' => get_permalink(),
-                                    'exclude' => $excludeAudiences,
-                                ];
-                            } else {
-                                $dbData['db_audiences'][] = [
-                                    'order' => $dbAudiencePost->menu_order,
-                                    'field' => $audience['audience_field'],
-                                    'value' => $audience['value'],
-                                    'url' => get_permalink(),
-                                    'exclude' => $excludeAudiences,
-                                ];
-                            }
+                            $dbData['db_audiences'][] = [
+                                'order' => $dbAudiencePost->menu_order,
+                                'field' => 'registry_country',
+                                'value' => $audience['value'],
+                                'url' => get_permalink(),
+                                'exclude' => $excludeAudiences,
+                            ];
+                        } else {
+                            $dbData['db_audiences'][] = [
+                                'order' => $dbAudiencePost->menu_order,
+                                'field' => $audience['audience_field'],
+                                'value' => $audience['value'],
+                                'url' => get_permalink(),
+                                'exclude' => $excludeAudiences,
+                            ];
                         }
                     }
                 }
-
-                wp_reset_postdata();
-
-                array_multisort(array_column($dbData['db_audiences'], 'order'), SORT_ASC, $dbData['db_audiences']);
             }
-        }
 
-        // wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190415.9', false);
-        // wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
-        echo "<script type='text/javascript'>/* <![CDATA[ */ var dbGlobal = ".json_encode($dbData)."; /* ]]> */</script>";
-        echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=20190516.1').'"></script>';
+            wp_reset_postdata();
+
+            array_multisort(array_column($dbData['db_audiences'], 'order'), SORT_ASC, $dbData['db_audiences']);
+        }
     }
+
+    // wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190415.9', false);
+    // wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
+    echo "<script type='text/javascript'>/* <![CDATA[ */ var dbGlobal = ".json_encode($dbData)."; /* ]]> */</script>";
+    echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=20190531.3').'"></script>';
 }
 add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
 
@@ -221,7 +218,7 @@ add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '20190519.1');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '20190519.7');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -245,7 +242,7 @@ function assets() {
     wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
 
     if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) {
-        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190416, true);
+        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190521.2, true);
     }
 
     $localizeData = array(
@@ -303,7 +300,7 @@ function exclude_custom_permalink_post_types( $post_type ) {
   add_filter( 'custom_permalinks_exclude_post_type', __NAMESPACE__.'\\exclude_custom_permalink_post_types');
 
 function custom_mime_types($mime_types){
-    $mime_types['eps'] = 'application/postscript'; //Adding photoshop files
+    $mime_types['eps'] = array('application/postscript', 'image/x-eps', 'application/octet-stream'); //Adding photoshop files
     return $mime_types;
 }
 add_filter('upload_mimes', __NAMESPACE__.'\\custom_mime_types', 1, 1);

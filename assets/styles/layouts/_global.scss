@@ -2772,11 +2772,11 @@
     padding: 20px 0;
   }
   .c-content-box.c-size-md {
-    padding: 30px 0;
+    padding: 60px 0;
   }
   .c-content-box.c-size-lg,
   .c-content-box.c-size-xlg {
-    padding: 40px 0;
+    padding: 80px 0;
   }
 }
 .c-content-box--lightblue {
@@ -8242,6 +8242,35 @@ h5.feature-column__title {
   margin-top: 0;
   padding-top: 90px;
 }
+
+body.page-template-customerstory {
+    .avatar-top {
+        .avatar {
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 6rem;
+        }
+
+        .bio--small {
+            margin-left: 0;
+            padding-left: 0;
+            padding: 0;
+            text-align: center;
+            background: transparent;
+
+            a {
+                text-decoration: none;
+                font-family: $font-family-bold;
+                color: $grey-medium;
+
+                &:hover, &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 767px) {
   .img-text-vertical img {
     width: 100%;

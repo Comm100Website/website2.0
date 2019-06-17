@@ -5,7 +5,7 @@ Template Name:customerstory
 ?>
 <?php get_template_part('template-parts/header'); ?>
 </header>
-  
+
 <div class="c-layout-page c-layout-page-fixed">
 
     <?php
@@ -15,7 +15,7 @@ Template Name:customerstory
             // loop through the rows of data
             while ( have_rows('modules') ) : the_row();
 				if( get_row_layout() == 'hero_banner' ):
-					
+
 					$customer_name = get_sub_field('customer');
 					$title = get_sub_field('title');
 					$background_img = get_sub_field('background_image');
@@ -24,11 +24,11 @@ Template Name:customerstory
 					if ($background_img):
 						$style_bg = 'style="background-image: url(' . $background_img['url'] . ')"';
 					endif;
-					
+
 					echo '<div class="c-content-box banner"' . $style_bg . '>';
 					echo '<div class="container">';
 					echo '<div class="col-sm-7 customerstory-header">';
-					if ($customer_name):                    
+					if ($customer_name):
 						echo '<h5>' . $customer_name . '</h5>';
 					endif;
 					if ($title):
@@ -37,8 +37,8 @@ Template Name:customerstory
 
 					echo '</div>';
 					echo '</div>';
-					echo '</div>';	
-					
+					echo '</div>';
+
 				endif;
 
 				if( get_row_layout() == 'company_profile' ):
@@ -50,7 +50,7 @@ Template Name:customerstory
 					echo '<div class="container">';
 					echo '<div class="row">';
 					echo '<div class="col-sm-12">';
-					
+
 					echo '<div class="customerProfile clearfix">';
 					echo '<div class="col-sm-4 customerProfile__col">';
 					if ($company_name):
@@ -59,7 +59,7 @@ Template Name:customerstory
 
 					if ($logo):
 						echo '<img src="' . $logo['url'] . '">';
-					endif;					
+					endif;
 					echo '</div>';
 
 					if ($details):
@@ -76,13 +76,13 @@ Template Name:customerstory
 						endwhile;
 						echo '</div>';
 					endif;
-					
+
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
-					
+
 				endif;
 
 				if ( get_row_layout() == 'customer_story_body' ):
@@ -93,23 +93,23 @@ Template Name:customerstory
 						echo '<div class="container">';
 						echo '<div class="row">';
 						echo '<div class="col-sm-12 customerArticle">';
-			
-						while ( have_rows('body') ): the_row();				
+
+						while ( have_rows('body') ): the_row();
 							if ( get_row_layout() == 'description_paragraph' ):
 								$description = get_sub_field('description_paragraph');
 								echo '<div class="customerArticle-intro">' . $description . '</div>';
 							endif;
-			
+
 							if ( get_row_layout() == 'title' ):
 								$title = get_sub_field('title_content');
 								echo '<h3>' . $title . '</h3>';
 							endif;
-			
+
 							if ( get_row_layout() == 'paragraph' ):
 								$context = get_sub_field('paragraph_body');
 								echo $context;
 							endif;
-			
+
 							if ( get_row_layout() == 'quote' ):
 								echo '<div class="c-quote c-background--gray">';
 								$content = get_sub_field('content');
@@ -122,17 +122,17 @@ Template Name:customerstory
 								endif;
 								echo '</div>';
 							endif;
-			
+
 							if ( get_row_layout() == 'cta'):
 								echo '<div class="customerArticle-CTA">';
 								$cta_title = get_sub_field('cta_title');
 								$cta_link = get_sub_field('cta_link');
 								$cta_link_type = get_sub_field('cta_link_type');
-			
+
 								if ($cta_title):
 									echo '<h2>' . $cta_title . '</h2>';
 								endif;
-								
+
 								if ($cta_link):
 									switch ($cta_link_type) {
 										case 'green' :
@@ -157,11 +157,11 @@ Template Name:customerstory
 												break;
 										default: break;
 									}
-								endif;					
+								endif;
 								echo '</div>';
 							endif;
 						endwhile;
-			
+
 						echo '</div>';
 						echo '</div>';
 						echo '</div>';
@@ -198,12 +198,44 @@ Template Name:customerstory
 					$sub_title = get_sub_field('sub_title');
 					$title_align = get_sub_field('title_align');
 					$about_bio = get_sub_field('about_bio');
+					$bgLayout = get_sub_field('background_width');
+					$avatar = '';
+					$bio = '';
+					$signature = '';
+					$avatar_location = '';
 
-					echo '<div class="c-content-box c-size-md">';
+					$containerCSSClass = 'background-'.$bgLayout;
+
+					if ($bgLayout == 'full-width') {
+						$containerCSSClass .= ' c-content-box--grey ';
+					}
+
+					if ($about_bio):
+						while ( have_rows('about_bio') ) : the_row();
+
+							$avatar = get_sub_field('avatar');
+
+							if ($avatar) {
+								$avatar = '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="180" height="180">';
+							}
+
+							$bio = get_sub_field('bio');
+							$signature = get_sub_field('signature');
+							$avatar_location = get_sub_field('avatar_location');
+							$containerCSSClass .= ' avatar-'.$avatar_location;
+						endwhile;
+					endif;
+
+					echo '<div class="c-content-box c-size-md '. $containerCSSClass .'">';
 					echo '<div class="container">';
 					echo '<div class="row">';
 					echo '<div class="col-sm-12 storyCard">';
 					echo '<div class="c-' . $title_align . '">';
+
+					if ($avatar && $avatar_location == 'top') {
+						echo $avatar;
+					}
+
 					if ($title):
 						echo '<h1>' . $title . '</h1>';
 					endif;
@@ -211,32 +243,25 @@ Template Name:customerstory
 					if ($sub_title):
 						echo '<h2>' . $sub_title . '</h2>';
 					endif;
+
 					echo '</div>';
-					
-					if ($about_bio):
-	
-						while ( have_rows('about_bio') ) : the_row();
-							$avatar = get_sub_field('avatar');
-							$bio = get_sub_field('bio');
-							$signature = get_sub_field('signature');
-							
-							if ($avatar):
-								echo '<div class="bio bio--small">';
-								if ($avatar):
-									echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="180" height="180">';
-								endif;
-								if ($bio):
-									echo $bio;
-								endif;
-								if ($signature):
-									echo '<div class="bio-signature">' .
-											$signature .
-										'</div>';
-								endif;
-								echo '</div>';
-							endif;
-							
-						endwhile;
+
+					if ($avatar || $bio || $signature):
+						echo '<div class="bio bio--small">';
+						if ($avatar && $avatar_location != 'top'):
+							echo $avatar;
+						endif;
+
+						if ($bio):
+							echo $bio;
+						endif;
+
+						if ($signature):
+							echo '<div class="bio-signature">' .
+									$signature .
+								'</div>';
+						endif;
+						echo '</div>';
 					endif;
 
 					if ( get_sub_field('customer_list') ):
@@ -251,7 +276,7 @@ Template Name:customerstory
 							$title = get_sub_field('title');
 							$subtitle = get_sub_field('sub_title');
 							$description = get_sub_field('description');
-							
+
 							if ($type == 'calltoaction'):
 								$linkcontent='';
 								if ($link):
@@ -299,7 +324,7 @@ Template Name:customerstory
 									 	'</div>' .
 									 '</div>';
 							endif;
-                        
+
                     	endwhile;
 
 						echo '</div>';
@@ -336,7 +361,7 @@ Template Name:customerstory
 						endwhile;
 						echo '</div>';
 					endif;
-					
+
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
@@ -345,46 +370,46 @@ Template Name:customerstory
 
 				// check current row layout
 				if( get_row_layout() == 'line' ):
-                
+
 					$height = get_sub_field('height');
 					$color = get_sub_field('color');
-	
+
 					echo '<div class="c-content-box">';
 					echo '<div class="container">';
 					echo '<div class="row">';
 					echo '<div class="col-sm-12">';
-	
+
 					if ($height):
 						echo '<hr style="border-top-color: ' . $color . '; border-top-width: ' . $height . 'px " />';
 					endif;
-					
+
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
-				   
-				endif;   
+
+				endif;
 
 				// check current row layout
 				if( get_row_layout() == 'cta' ):
-                
+
 					$calltoaction_type = get_sub_field('type');
 					$calltoaction_title = get_sub_field('title');
 					$calltoaction_subtitle = get_sub_field('subtitle');
 					$calltoaction_description = get_sub_field('description');
 					$calltoaction_bg = get_sub_field('background_image');
 					$calltoaction_cta = get_sub_field('cta');
-	
+
 					$style_bg = '';
 					if ($calltoaction_bg):
 						$style_bg = 'style="background-image: url(' . $calltoaction_bg['url'] . ')"';
 					endif;
-	
+
 					echo '<div class="c-content-box c-size-md c-content-box--bg" ' . $style_bg . '>';
 					echo '<div class="container">';
 					echo '<div class="row">';
 					echo '<div class="col-sm-12 callToAction callToAction--' . $calltoaction_type . '">';
-	
+
 					if ($calltoaction_title):
 						echo '<h3>' .
 								$calltoaction_title .
@@ -396,7 +421,7 @@ Template Name:customerstory
 							'</p>';
 					endif;
 					if ($calltoaction_cta):
-	
+
 						while ( have_rows('cta') ) : the_row();
 							$cta_link_type = get_sub_field('cta_link_type');
 							$cta_link = get_sub_field('cta_link');
@@ -426,15 +451,15 @@ Template Name:customerstory
 								}
 							endif;
 						endwhile;
-						
-						
+
+
 					endif;
-					
+
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
-				endif;  
+				endif;
 
 				// check current row layout
 				if( get_row_layout() == 'about_bio' ):
@@ -442,14 +467,14 @@ Template Name:customerstory
 					$avatar = get_sub_field('avatar');
 					$bio = get_sub_field('bio');
 					$signature = get_sub_field('signature');
-	
+
 					echo '<div class="c-content-box c-size-md">';
 					echo '<div class="container">';
 					echo '<div class="row">';
 					echo '<div class="col-sm-12">';
 					echo '<div class="bio">';
-	
-	
+
+
 					if ($avatar):
 						echo '<img class="avatar" src="' . $avatar['url'] . '" alt="' . $avatar['alt'] . '" width="380" height="380">';
 					endif;
@@ -461,7 +486,7 @@ Template Name:customerstory
 								$signature .
 							'</div>';
 					endif;
-	
+
 					echo '</div>';
 					echo '</div>';
 					echo '</div>';
@@ -469,11 +494,11 @@ Template Name:customerstory
 					echo '</div>';
 				endif;
 			endwhile;
-		
+
         else :
 
         // no layouts found
-    
+
         endif;
     ?>
 

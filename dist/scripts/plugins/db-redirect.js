@@ -25,6 +25,10 @@ function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
 
+function isUserLoggedIn() {
+    return (document.cookie.indexOf('wp-settings') != -1);
+}
+
 function urlParam(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results==null){
@@ -36,7 +40,7 @@ function urlParam(name) {
 }
 
 function setBodyClass(userInfo) {
-    if (document.body) {
+    if( document.readyState !== 'loading' ) {
         if (userInfo) {
             var dbFields = [
                 'registry_country',
@@ -53,7 +57,17 @@ function setBodyClass(userInfo) {
                     document.body.classList.add("db-audience-" + encodeURI(userInfo[dbFields[i]].replace(' ', '-').toLowerCase()));
                 }
             }
+
+            console.log('Set Body Class', document.body.classList);
+
+            var event = new Event('db-audiences-set', { bubbles: true });
+            document.body.dispatchEvent(event);
         }
+    } else {
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log( 'document was not ready, place code here' );
+            setBodyClass(userInfo);
+        });
     }
 }
 
@@ -99,8 +113,11 @@ function redirect_to_db_audience(userinfo) {
     var currentPageURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
 
     if (audiencePageURL != currentPageURL) {
-        // console.log('Would have redirected to ' + audiencePageURL);
-        window.location.href = audiencePageURL;
+        if (isUserLoggedIn()) {
+            console.log('DB would have redirected to ' + audiencePageURL);
+        } else {
+            window.location.href = audiencePageURL;
+        }
     }
 }
 
@@ -129,7 +146,11 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 			//We got a DB API response.
         	if (xhr.status === 200) {
 				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
-				var responseJSON = JSON.parse(xhr.responseText);
+                if (document.body.classList.contains('logged-in')) {
+                    console.log(xhr.responseText);
+                }
+
+                var responseJSON = JSON.parse(xhr.responseText);
 
                 setCookie(DEMAND_BASE_COOKIE, JSON.stringify(responseJSON), 1);
 				setBodyClass(responseJSON);
@@ -147,6 +168,10 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     var userInfo = JSON.parse(getCookie(DEMAND_BASE_COOKIE));
 
 	setBodyClass(userInfo);
+
+    if (isUserLoggedIn()) {
+        console.log(userInfo);
+    }
 
     if (dbGlobal.db_active && dbGlobal.db_audiences) {
 		//The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.

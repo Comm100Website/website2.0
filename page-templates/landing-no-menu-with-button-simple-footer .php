@@ -2653,9 +2653,14 @@ use Roots\Sage\Assets;
                                             while ( have_rows('download_content') ) : the_row();
                                                 $download_link = get_sub_field('download_link');
                                                 $download_img = get_sub_field('download_img');
-                                                echo '<a href="' . $download_link . '">' .
-                                                        '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
-                                                    '</a>';
+
+                                                if (get_sub_field('link_type') == 'btn') {
+                                                    echo '<a class="btn btn-xlg c-btn-border-2x c-theme-btn c-margin-l-60" href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' . $download_link['title'] . '</a>';
+                                                } else {
+                                                    echo '<a href="' . $download_link['url'] . '">' .
+                                                            '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                                        '</a>';
+                                                }
                                             endwhile;
                                             echo '<div class="c-margin-t-10 c-font-14">' .
                                                         '<a href="/eula/" target="_blank">EULA</a> | ' .

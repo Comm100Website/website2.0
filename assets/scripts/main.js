@@ -1,5 +1,4 @@
 /* jshint ignore:start */
-
 function setCookies(h, g, f) {
 	var e = new Date();
 	e.setDate(e.getDate() + f);
@@ -1883,6 +1882,23 @@ jQuery(function() {
                     window.location = $(this).find("option:selected").val();
                 });
             }
+
+            $('body').on('change', '#Email_Opt_In_for_Marketing_Team__c, #Email_Opt_In_for_Product__c, #Email_Opt_In_for_Sales__c', function() {
+                console.log('Non-Unsubscribe Change');
+                console.log($(this));
+                console.log($(this).prop('checked'));
+                if ($(this).prop('checked')) {
+                    $('#Unsubscribed').prop('checked', false);
+                }
+            });
+
+            $('body').on('change', '#Unsubscribed', function() {
+                console.log('Unsubscribe Change');
+                console.log($(this).prop('checked'));
+                if ($(this).prop('checked')) {
+                    $('#Email_Opt_In_for_Marketing_Team__c, #Email_Opt_In_for_Product__c, #Email_Opt_In_for_Sales__c').prop('checked', false);
+                }
+            });
         },
         finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

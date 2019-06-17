@@ -28,9 +28,16 @@ use Roots\Sage\Assets;
                 <div class="col-sm-12">
                     <nav class="nav--sticky hidden-xs">
                         <ul>
-                            <?php foreach(get_field('menu') as $item): ?>
-                                <li><a href="<?= $item['menu_item']['url']; ?>" class="scroll-to-anchor"><?= $item['menu_item']['title']; ?></a></li>
-                            <?php endforeach; ?>
+                            <?php
+                            $iCount = 0;
+
+                            foreach(get_field('menu') as $item):
+                            ?>
+                                <li><a href="<?= $item['menu_item']['url']; ?>" class="scroll-to-anchor <?= ($iCount == 0 ? 'active' : ''); ?>"><?= $item['menu_item']['title']; ?></a></li>
+                            <?php
+                                $iCount++;
+                            endforeach;
+                            ?>
                         </ul>
                     </nav>
                     <div class="content--sticky">
@@ -265,9 +272,10 @@ use Roots\Sage\Assets;
                         </section>
                     </div>
                 </div>
-                <section id="mediacontact" class="bg-blue col-xs-12 text-center">
-                    <p>For all media inqueries please contact</p>
-                    <a href="mailto:<?= get_field('media_contact_email'); ?>"><?= get_field('media_contact_email'); ?></a>
+                <section id="mediacontact" class="col-xs-12 text-center">
+                    <p>For all media inquiries please contact</p>
+                    <a href="mailto:<?= get_field('media_contact_email'); ?>"><?= get_field('media_contact_email'); ?></a><br/>
+                    <a href="tel:6174262222">617-426-2222</a>
                 </section>
             </div>
         </div>

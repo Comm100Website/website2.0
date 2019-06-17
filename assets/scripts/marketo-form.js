@@ -51,10 +51,13 @@
     MktoForms2.whenReady(function (form){
         //map your results from REST call to the corresponding field name on the form
         GetFieldsAndValuesToPrefill(form);
+        SetConsentVisibility();
+        document.body.addEventListener('db-audiences-set', SetConsentVisibility());
+
         form.onValidate(function(isValid){
             if (!isValid) {
-                return;  
-            }  
+                return;
+            }
             var formtype = form.vals().formtype;
             var email = form.vals().Email;
             var partner_Email__c = form.vals().Partner_Email__c;
@@ -76,16 +79,16 @@
                     var emailElem = form.getFormElem().find("#Email");
                     form.showErrorMessage("Must be Business email.", emailElem);
                     return;
-                } 
-                
+                }
+
                 if (typeof(partner_Email__c) !== 'undefined') {
                     if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(partner_Email__c)) {
                         form.submitable(false);
                         var emailElem = form.getFormElem().find("#Partner_Email__c");
                         form.showErrorMessage("Must be Business email.", emailElem);
                         return;
-                    } 
-                } 
+                    }
+                }
 
                 jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
                 AddFieldsAndVaulesStringToCookie(form);
@@ -96,7 +99,7 @@
                 if(jQuery("#downloadlink").length > 0) {
                     jQuery("#downloadlink")[0].click();
                 }
-                
+
             }
         });
     });
@@ -109,9 +112,33 @@
         }
         return true;
     }
-
-
 })();
+
+function SetConsentVisibility() {
+    var consentCheckbox = document.getElementById('Explicit_Consent__c');
+
+    console.log('Set Visibility', consentCheckbox);
+    console.log('Body Class', document.body.classList);
+
+    if (consentCheckbox) {
+        var userExcluded = false;
+        var excludedCountries = ['at', 'be', 'bg', 'hr', 'ca', 'cy', 'cz', 'dk', 'ee', 'fi', 'fr', 'de', 'gr', 'hu', 'ie', 'it', 'lv', 'lt', 'lu', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'si', 'es', 'se', 'gb'];
+
+        for (var i = 0; i < excludedCountries.length; i++) {
+            if (document.body.classList.contains('db-audience-' + excludedCountries[i])) {
+                userExcluded = true;
+                break;
+            }
+        }
+
+        if (userExcluded) {
+            document.getElementById('implied_consent_notice').style.display = 'none';
+            consentCheckbox.parentNode.parentNode.parentNode.parentNode.classList.add('single-checkbox');
+        } else {
+            consentCheckbox.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+        }
+    }
+}
 
 function AddFieldsAndVaulesStringToCookie(form) {
     var fieldsAndValues = {
