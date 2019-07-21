@@ -124,7 +124,8 @@ template {
   display: none;
 }
 b,
-strong {
+strong,
+.strong {
   font-family: "Ubuntu Bold", sans-serif !important;
   font-weight: 700;
 }
@@ -308,6 +309,9 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
+.text-light {
+    color: #fff;
+}
 a {
   text-decoration: none;
   color: #3dc4ff;
@@ -374,6 +378,7 @@ p,
 pre {
   margin: 0 0 10px;
 }
+.h2 { font-size: 36px; }
 h4,
 h5,
 h6 {
@@ -413,6 +418,10 @@ h1 {
 }
 small {
   font-size: 85%;
+
+  &.fineprint {
+      font-size: 13px;
+  }
 }
 mark {
   color: #000;

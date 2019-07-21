@@ -93,9 +93,9 @@ function get_acf_image($image, $class = '', $height = '', $width = '') {
 }
 
 function lazy_load_img_src($imageSrc) {
-    if(function_exists('get_rocket_option') && get_rocket_option('lazyload') && !(defined('DONOTROCKETOPTIMIZE') && DONOTROCKETOPTIMIZE)):
-        return 'src="data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=" data-lazy-src="'.$imageSrc.'"';
-    endif;
+    // if(function_exists('get_rocket_option') && get_rocket_option('lazyload') && !(defined('DONOTROCKETOPTIMIZE') && DONOTROCKETOPTIMIZE)):
+    //     return 'src="data:image/gif;base64,R0lGODdhAQABAPAAAP///wAAACwAAAAAAQABAEACAkQBADs=" data-lazy-src="'.$imageSrc.'"';
+    // endif;
 
     return 'src="'.$imageSrc.'"';
 }

@@ -1,2 +1,198 @@
-function SetConsentVisibility(){var o=document.getElementById("Explicit_Consent__c");if(console.log("Set Visibility",o),console.log("Body Class",document.body.classList),o){for(var e=!1,i=["at","be","bg","hr","ca","cy","cz","dk","ee","fi","fr","de","gr","hu","ie","it","lv","lt","lu","mt","nl","pl","pt","ro","sk","si","es","se","gb"],a=0;a<i.length;a++)if(document.body.classList.contains("db-audience-"+i[a])){e=!0;break}e?(document.getElementById("implied_consent_notice").style.display="none",o.parentNode.parentNode.parentNode.parentNode.classList.add("single-checkbox")):o.parentNode.parentNode.parentNode.parentNode.style.display="none"}}function AddFieldsAndVaulesStringToCookie(o){var e={Email:o.vals().Email,FirstName:o.vals().FirstName,LastName:o.vals().LastName,Company:o.vals().Company,Phone:o.vals().Phone,Job_Role__c:o.vals().Job_Role__c,No_of_Live_Chat_Agents__c:o.vals().No_of_Live_Chat_Agents__c,Comment__c:o.vals().Comment__c};WriteCookies("_comm100_mkto_fvs",JSON.stringify(e),30)}function GetFieldsAndValuesToPrefill(o){var e=GetCookie("_comm100_mkto_fvs");if(null!=e){var i=JSON.parse(e);o.vals(i)}}function WriteCookies(o,e,i){var a="";a=";path=/;expires="+(a=null!=i?new Date((new Date).getTime()+24*i*3600*1e3):new Date((new Date).getTime()+31536e6)).toGMTString(),document.cookie=o+"="+e+a}function IfCookieExists(o){return-1!=(document.cookie+";").indexOf(o)}function GetCookie(o){var e,i=null,a=document.cookie+";",c=a.indexOf(o);return-1!=c&&(c+=o.length,e=a.indexOf(";",c),i=unescape(a.substring(c+1,e))),i}!function(){var a=["@skynet.","@interfree.","@valyoo.","@myself.","@cheerful.","@terra.","@sify.","@blumail.","@rediffmail.","@googlemail.","@email.com","@ireland.","@colombia.","@mac.","@ymail.","@uol.","@ig.","@bol.","@sapo.","@alice.","@me.","@yeah.","@139.","@qq.","@126.","@sohu.","@163.","@sina.","@aol.","@mail.","@care2.","@mywyamial.","@hotpop.","@myspace.","@zapak.","@lavabit.","@bigstring.","@live.","@hotmail.","@fastmail.","@inbox.","@gawab.","@zenbe.","@yahoo.","@gmx.","@aim.","@gmail.","@ssinfosysinc.com","@icloud.","@romandie.com","@bellsouth.net","@wans.net,","@verizon.net","@swbell.net","@kimo.com","@geocities.com","@flash.net","@btopenworld.com","@btinternet.com","@bellsouth.net","@talk21.com","@yahooxtra.co.nz","@y7mail.com","@wans.net,","@ameritech.net,","@bell.ca","@sympatico.ca","@windowslive.es","@hotmail.ca","@tuitionjobsportal.com","@yhg.biz","@posteo.net","@yandex.","@yopmail.","@outlook","@centurylink.net","@mtnl.net.in","@dudumail.","@facebook.com","@breakthru.com","@cox.net","@q.com","@takdhinadin.","@dvaar.","@indiawrites","@tadka","@india.","@imail.","@timepass.","@zmail.","@cytanet.com.cy","@yahoo.co.uk","@safe-mail.net","@mailcatch.com","@virgilio.it","@a1.perwebsolutions.in","@mailcatch.com","@spiceweb.net","@comcast.net","@rediff.com","@rocketmail","@yopmail.com","@insightbb","@katamail.com","@att.net","@inwind.it","@xtra.co.nz","secretary.net","salesperson.net","rescueteam.com","representative.com","repairman.com","registerednurses.com","realtyagent.com","radiologist.net","qualityservice.com","publicist.com","programmer.net","priest.com","presidency.com","politician.com","planetmail.net","planetmail.com","physicist.net","photographer.net","pediatrician.com","orthodontist.net","optician.com","net-shopping.com","musician.org","minister.com","lobbyist.com","legislator.com","journalist.com","job4u.com","insurer.com","instructor.net","instruction.com","hot-shot.com","homemail.com","hairdresser.net","groupmail.com","graphic-designer.com","graduate.org","geologist.com","gardener.com","fireman.net","financier.com","fastservice.com","execs.com","doctor.com","disposable.com","diplomats.com","deliveryman.com","cyberservices.com","counsellor.com","coolsite.net","computer4u.com","comic.com","columnist.com","collector.org","clubmember.org","clerk.com","chemist.com","chef.net","cash4u.com","brew-meister.com","birdlover.com","bikerider.com","bartender.net","auctioneer.net","artlover.com","arcticmail.com","archaeologist.com","appraiser.net","angelic.com","alumnidirector.com","alumni.com","allergist.com","adexec.com","activist.com","contractor.net","uymail.com","@hotmail.bs","@hotmail.at","@hotmail.co.uk","@coldmail.nu","@hushmail.com","@getemail.co.za","@garcesrealestate.com","hush.ai","aircraftmail.com","2trom.com","@frontier.","@charter","@aesinc.us.com","@zing.vn","@shaw.","@21cn.","@china.","@vip.163.","@libero.it","@nadlanu.","@tiscali.","@scoremusic.","@MAIL.RU","@nadlanu.","@cbn.","@netvigator.","@vip.126.","@vip.sina.","@ctimail.","@canada.","@usa.","@tom.","@zoho","@263.","@in.","@sbcglobal.","@msn.","@telus.","saintly.com","religious.com","reincarnate.com","protestant.com","muslim.com","innocent.com","disciples.com","torontomail.com","swissmail.com","swedenmail.com","spainmail.com","scotlandmail.com","samerica.com","safrica.com","polandmail.com","munich.com","moscowmail.com","mexicomail.com","koreamail.com","italymail.com","israelmail.com","irelandmail.com","germanymail.com","europemail.com","englandmail.com","dutchmail.com","dublin.com","chinamail.com","brazilmail.com","berlin.com","australiamail.com","asia-mail.com","africamail.com","sanfranmail.com","pacificwest.com","pacific-ocean.com","nycmail.com","dallasmail.com","californiamail.com","bellair.net","reggaefan.com","reborn.com","ravemail.com","oath.com","ninfan.com","metalfan.com","madonnafan.com","kissfans.com","hiphopfan.com","elvisfan.com","discofan.com","acdcfan.com","rocketship.com","null.net","mail-me.com","inorbit.com","humanoid.net","housemail.com","cyber-wizard.com","cybergal.com","cyberdude.com","toke.com","snakebite.com","petlover.com","nonpartisan.com","marchmail.com","lovecat.com","kittymail.com","keromail.com","hilarious.com","hackermail.com","greenmail.net","galaxyhit.com","doramail.com","doglover.com","dbzmail.com","cutey.com","catlover.com","bsdmail.com","brew-master.com","boardermail.com","blader.com","atheist.com","linuxmail.org","techie.com","accountant.com","cheerful.com","engineer.com","dr.com","writeme.com","iname.com","asia.com","europe.com","post.com","consultant.com","myself.com","email.com","mail.com","@prodigy.net.mx","@optusnet","@myway.","workmail.com","worker.com","webname.com","umpire.com","tvstar.com","toothfairy.com","therapist.net","theplate.com","technologist.com","tech-center.com","teachers.org","surgical.net","songwriter.net","solution4u.com","sociologist.com","socialworker.net","@outlook."];function n(o){for(var e=0;e<a.length;e++){var i=a[e];if(-1!=o.indexOf(i))return!1}return!0}MktoForms2.whenReady(function(t){GetFieldsAndValuesToPrefill(t),SetConsentVisibility(),document.body.addEventListener("db-audiences-set",SetConsentVisibility()),t.onValidate(function(o){if(o){var e=t.vals().formtype,i=t.vals().Email,a=t.vals().Partner_Email__c,c="";switch(e){case void 0:case"partner":case"contact":c=window.location.href;break;case"requestdemo":c=document.referrer}if(i){if(void 0!==e&&"contact"!==e&&!n(i)){t.submitable(!1);var m=t.getFormElem().find("#Email");return void t.showErrorMessage("Must be Business email.",m)}if(void 0!==a&&void 0!==e&&"contact"!==e&&!n(a)){t.submitable(!1);m=t.getFormElem().find("#Partner_Email__c");return void t.showErrorMessage("Must be Business email.",m)}if(jQuery("input[name='Request_URL__c']")[0].value=c,AddFieldsAndVaulesStringToCookie(t),t.submitable(!0),0<=navigator.userAgent.indexOf("MSIE")||0<=navigator.userAgent.indexOf("Trident/"))return;0<jQuery("#downloadlink").length&&jQuery("#downloadlink")[0].click()}}})})}();
+/* jshint ignore:start */
+(function (){
+    // Please include the email domains you would like to block in this list
+    var invalidDomains = ["@skynet.", "@interfree.", "@valyoo.", "@myself.", "@cheerful.", "@terra.",
+    "@sify.", "@blumail.", "@rediffmail.", "@googlemail.", "@email.com", "@ireland.", "@colombia.",
+    "@mac.", "@ymail.", "@uol.", "@ig.", "@bol.", "@sapo.", "@alice.", "@me.", "@yeah.", "@139.",
+    "@qq.", "@126.", "@sohu.", "@163.", "@sina.", "@aol.", "@mail.", "@care2.", "@mywyamial.",
+    "@hotpop.", "@myspace.", "@zapak.", "@lavabit.", "@bigstring.", "@live.", "@hotmail.",
+    "@fastmail.", "@inbox.", "@gawab.", "@zenbe.", "@yahoo.", "@gmx.", "@aim.", "@gmail.",
+    "@ssinfosysinc.com", "@icloud.", "@romandie.com", "@bellsouth.net", "@wans.net,", "@verizon.net",
+    "@swbell.net", "@kimo.com", "@geocities.com", "@flash.net", "@btopenworld.com", "@btinternet.com",
+    "@bellsouth.net", "@talk21.com", "@yahooxtra.co.nz", "@y7mail.com", "@wans.net,", "@ameritech.net,",
+    "@bell.ca", "@sympatico.ca", "@windowslive.es", "@hotmail.ca", "@tuitionjobsportal.com", "@yhg.biz",
+    "@posteo.net", "@yandex.", "@yopmail.", "@outlook", "@centurylink.net", "@mtnl.net.in", "@dudumail.",
+    "@facebook.com", "@breakthru.com", "@cox.net", "@q.com", "@takdhinadin.", "@dvaar.", "@indiawrites", "@tadka",
+    "@india.", "@imail.", "@timepass.", "@zmail.", "@cytanet.com.cy", "@yahoo.co.uk", "@safe-mail.net",
+    "@mailcatch.com", "@virgilio.it", "@a1.perwebsolutions.in", "@mailcatch.com", "@spiceweb.net", "@comcast.net",
+    "@rediff.com", "@rocketmail", "@yopmail.com", "@insightbb", "@katamail.com", "@att.net", "@inwind.it",
+    "@xtra.co.nz", "secretary.net", "salesperson.net", "rescueteam.com", "representative.com", "repairman.com",
+    "registerednurses.com", "realtyagent.com", "radiologist.net", "qualityservice.com", "publicist.com", "programmer.net",
+    "priest.com", "presidency.com", "politician.com", "planetmail.net", "planetmail.com", "physicist.net", "photographer.net",
+    "pediatrician.com", "orthodontist.net", "optician.com", "net-shopping.com", "musician.org", "minister.com", "lobbyist.com",
+    "legislator.com", "journalist.com", "job4u.com", "insurer.com", "instructor.net", "instruction.com", "hot-shot.com",
+    "homemail.com", "hairdresser.net", "groupmail.com", "graphic-designer.com", "graduate.org", "geologist.com", "gardener.com",
+    "fireman.net", "financier.com", "fastservice.com", "execs.com", "doctor.com", "disposable.com", "diplomats.com",
+    "deliveryman.com", "cyberservices.com", "counsellor.com", "coolsite.net", "computer4u.com", "comic.com", "columnist.com",
+    "collector.org", "clubmember.org", "clerk.com", "chemist.com", "chef.net", "cash4u.com", "brew-meister.com", "birdlover.com",
+    "bikerider.com", "bartender.net", "auctioneer.net", "artlover.com", "arcticmail.com", "archaeologist.com", "appraiser.net",
+    "angelic.com", "alumnidirector.com", "alumni.com", "allergist.com", "adexec.com", "activist.com", "contractor.net", "uymail.com",
+    "@hotmail.bs", "@hotmail.at", "@hotmail.co.uk", "@coldmail.nu", "@hushmail.com", "@getemail.co.za", "@garcesrealestate.com",
+    "hush.ai", "aircraftmail.com", "2trom.com", "@frontier.", "@charter", "@aesinc.us.com", "@zing.vn", "@shaw.", "@21cn.",
+    "@china.", "@vip.163.", "@libero.it", "@nadlanu.", "@tiscali.", "@scoremusic.", "@MAIL.RU", "@nadlanu.", "@cbn.", "@netvigator.",
+    "@vip.126.", "@vip.sina.", "@ctimail.", "@canada.", "@usa.", "@tom.", "@zoho", "@263.", "@in.", "@sbcglobal.", "@msn.",
+    "@telus.", "saintly.com", "religious.com", "reincarnate.com", "protestant.com", "muslim.com", "innocent.com", "disciples.com",
+    "torontomail.com", "swissmail.com", "swedenmail.com", "spainmail.com", "scotlandmail.com", "samerica.com", "safrica.com",
+    "polandmail.com", "munich.com", "moscowmail.com", "mexicomail.com", "koreamail.com", "italymail.com", "israelmail.com",
+    "irelandmail.com", "germanymail.com", "europemail.com", "englandmail.com", "dutchmail.com", "dublin.com", "chinamail.com",
+    "brazilmail.com", "berlin.com", "australiamail.com", "asia-mail.com", "africamail.com", "sanfranmail.com", "pacificwest.com",
+    "pacific-ocean.com", "nycmail.com", "dallasmail.com", "californiamail.com", "bellair.net", "reggaefan.com", "reborn.com",
+    "ravemail.com", "oath.com", "ninfan.com", "metalfan.com", "madonnafan.com", "kissfans.com", "hiphopfan.com", "elvisfan.com",
+    "discofan.com", "acdcfan.com", "rocketship.com", "null.net", "mail-me.com", "inorbit.com", "humanoid.net", "housemail.com",
+    "cyber-wizard.com", "cybergal.com", "cyberdude.com", "toke.com", "snakebite.com", "petlover.com", "nonpartisan.com",
+    "marchmail.com", "lovecat.com", "kittymail.com", "keromail.com", "hilarious.com", "hackermail.com", "greenmail.net",
+    "galaxyhit.com", "doramail.com", "doglover.com", "dbzmail.com", "cutey.com", "catlover.com", "bsdmail.com", "brew-master.com",
+    "boardermail.com", "blader.com", "atheist.com", "linuxmail.org", "techie.com", "accountant.com", "cheerful.com",
+    "engineer.com", "dr.com", "writeme.com", "iname.com", "asia.com", "europe.com", "post.com", "consultant.com", "myself.com",
+    "email.com", "mail.com", "@prodigy.net.mx", "@optusnet", "@myway.", "workmail.com", "worker.com", "webname.com", "umpire.com",
+    "tvstar.com", "toothfairy.com", "therapist.net", "theplate.com", "technologist.com", "tech-center.com", "teachers.org",
+    "surgical.net", "songwriter.net", "solution4u.com", "sociologist.com", "socialworker.net", "@outlook."];
+
+    MktoForms2.whenReady(function (form){
+        //map your results from REST call to the corresponding field name on the form
+        GetFieldsAndValuesToPrefill(form);
+        SetConsentVisibility();
+        document.body.addEventListener('db-audiences-set', SetConsentVisibility());
+
+        form.onValidate(function(isValid){
+            if (!isValid) {
+                return;
+            }
+            var formtype = form.vals().formtype;
+            var email = form.vals().Email;
+            var partner_Email__c = form.vals().Partner_Email__c;
+            var requestUrl = '';
+            switch (formtype) {
+                case undefined:
+                case 'partner':
+                case 'contact':
+                    requestUrl = window.location.href;
+                    break;
+                case 'requestdemo':
+                    requestUrl = document.referrer;
+                    break;
+                default: break;
+            }
+            if(email){
+                if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(email)) {
+                    form.submitable(false);
+                    var emailElem = form.getFormElem().find("#Email");
+                    form.showErrorMessage("Must be Business email.", emailElem);
+                    return;
+                }
+
+                if (typeof(partner_Email__c) !== 'undefined') {
+                    if (typeof(formtype) !== 'undefined' && formtype !== 'contact' && !isEmailGood(partner_Email__c)) {
+                        form.submitable(false);
+                        var emailElem = form.getFormElem().find("#Partner_Email__c");
+                        form.showErrorMessage("Must be Business email.", emailElem);
+                        return;
+                    }
+                }
+
+                jQuery("input[name='Request_URL__c']")[0].value = requestUrl;
+                AddFieldsAndVaulesStringToCookie(form);
+                form.submitable(true);
+                if (navigator.userAgent.indexOf('MSIE') >= 0 || navigator.userAgent.indexOf('Trident/') >= 0) {
+                    return;
+                }
+                if(jQuery("#downloadlink").length > 0) {
+                    jQuery("#downloadlink")[0].click();
+                }
+
+            }
+        });
+    });
+    function isEmailGood(email) {
+        for(var i=0; i < invalidDomains.length; i++) {
+            var domain = invalidDomains[i];
+            if (email.indexOf(domain) != -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+})();
+
+function SetConsentVisibility() {
+    var consentCheckbox = document.getElementById('Explicit_Consent__c');
+
+    // console.log('Set Visibility', consentCheckbox);
+    // console.log('Body Class', document.body.classList);
+
+    if (consentCheckbox) {
+        var userExcluded = false;
+        var excludedCountries = ['at', 'be', 'bg', 'hr', 'ca', 'cy', 'cz', 'dk', 'ee', 'fi', 'fr', 'de', 'gr', 'hu', 'ie', 'it', 'lv', 'lt', 'lu', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'si', 'es', 'se', 'gb'];
+
+        for (var i = 0; i < excludedCountries.length; i++) {
+            if (document.body.classList.contains('db-audience-' + excludedCountries[i])) {
+                userExcluded = true;
+                break;
+            }
+        }
+
+        if (userExcluded) {
+            document.getElementById('implied_consent_notice').style.display = 'none';
+            consentCheckbox.parentNode.parentNode.parentNode.parentNode.classList.add('single-checkbox');
+        } else {
+            consentCheckbox.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
+        }
+    }
+}
+
+function AddFieldsAndVaulesStringToCookie(form) {
+    var fieldsAndValues = {
+        Email: form.vals().Email,
+        FirstName: form.vals().FirstName,
+        LastName: form.vals().LastName,
+        Company: form.vals().Company,
+        Phone: form.vals().Phone,
+        Job_Role__c: form.vals().Job_Role__c,
+        No_of_Live_Chat_Agents__c: form.vals().No_of_Live_Chat_Agents__c,
+        Comment__c: form.vals().Comment__c
+    };
+    WriteCookies("_comm100_mkto_fvs", JSON.stringify(fieldsAndValues), 30);
+}
+
+function GetFieldsAndValuesToPrefill(form) {
+    var read = GetCookie("_comm100_mkto_fvs");
+    if (read != null) {
+        var prefillFields = JSON.parse(read);
+        form.vals(prefillFields);
+    }
+}
+function WriteCookies(Key, Value, expire) {
+    var ep = "";
+    if (expire != null) {
+        ep = new Date((new Date()).getTime() + expire * 24 * 3600 * 1000);
+    }
+    else {
+        ep = new Date((new Date()).getTime() + 365 * 24 * 3600 * 1000);
+    }
+    ep = ";path=/;expires=" + ep.toGMTString();
+    document.cookie = Key + "=" + Value + ep;
+}
+function IfCookieExists(key) {
+    var result = null;
+    var myCookie = document.cookie + ";";
+    var startOfCookie = myCookie.indexOf(key);
+    if (startOfCookie != -1) {
+        return true;
+    }
+    return false;
+}
+function GetCookie(key) {
+    var result = null;
+    var myCookie = document.cookie + ";";
+    var startOfCookie = myCookie.indexOf(key);
+    var endOfCookie;
+    if (startOfCookie != -1) {
+        startOfCookie += key.length;
+        endOfCookie = myCookie.indexOf(";", startOfCookie);
+        result = unescape(myCookie.substring(startOfCookie + 1, endOfCookie));
+    }
+    return result;
+}
+/* jshint ignore:end */
+
 //# sourceMappingURL=marketo-form.js.map

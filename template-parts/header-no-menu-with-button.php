@@ -23,9 +23,15 @@
                     $buttonTarget = 'target="'.$customButton['target'].'"';
                 }
             }
+
+            $customButtonColor = 'green';
+
+            if (get_field('header_button_colour')) {
+                $customButtonColor = get_field('header_button_colour');
+            }
             ?>
             <a
-                class="c-navbar-wrapper__btn btn btn-xlg btn-link--green"
+                class="c-navbar-wrapper__btn btn btn-xlg btn-link--<?= $customButtonColor; ?>"
                 href="<?= $buttonURL; ?>"
                 <?= $buttonTarget; ?>
             ><?= $buttonLabel; ?>

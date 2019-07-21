@@ -58,14 +58,14 @@ function setBodyClass(userInfo) {
                 }
             }
 
-            console.log('Set Body Class', document.body.classList);
+            // console.log('Set Body Class', document.body.classList);
 
             var event = new Event('db-audiences-set', { bubbles: true });
             document.body.dispatchEvent(event);
         }
     } else {
         document.addEventListener('DOMContentLoaded', function () {
-            console.log( 'document was not ready, place code here' );
+            // console.log( 'document was not ready, place code here' );
             setBodyClass(userInfo);
         });
     }
@@ -114,7 +114,7 @@ function redirect_to_db_audience(userinfo) {
 
     if (audiencePageURL != currentPageURL) {
         if (isUserLoggedIn()) {
-            console.log('DB would have redirected to ' + audiencePageURL);
+            // console.log('DB would have redirected to ' + audiencePageURL);
         } else {
             window.location.href = audiencePageURL;
         }
@@ -147,7 +147,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
         	if (xhr.status === 200) {
 				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
                 if (document.body.classList.contains('logged-in')) {
-                    console.log(xhr.responseText);
+                    // console.log(xhr.responseText);
                 }
 
                 var responseJSON = JSON.parse(xhr.responseText);
@@ -170,7 +170,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 	setBodyClass(userInfo);
 
     if (isUserLoggedIn()) {
-        console.log(userInfo);
+        // console.log(userInfo);
     }
 
     if (dbGlobal.db_active && dbGlobal.db_audiences) {

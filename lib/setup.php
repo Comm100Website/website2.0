@@ -218,7 +218,7 @@ add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
  * Theme assets
  */
 function assets() {
-    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), '20190519.7');
+    wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), time());
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -242,7 +242,7 @@ function assets() {
     wp_enqueue_script('sage/plugins', Assets\asset_path('scripts/plugins/plugins.min.js'), ['jquery'], null, true);
 
     if ( !is_page_template( 'page-templates/page-noheaderandfooter.php' ) ) {
-        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], 20190521.2, true);
+        wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], time(), true);
     }
 
     $localizeData = array(

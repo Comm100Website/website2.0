@@ -1,0 +1,100 @@
+.content-section.section-live_chat_stats {
+    .bg-light-grey {
+        background: $blue-light;
+        padding: 32px 45px;
+    }
+
+    #stats-step2, #stats-result-form {
+        display: none;
+    }
+
+    #stats-result-form {
+        padding-bottom: 0;
+
+        img {
+            max-width: 80%;
+        }
+
+        hr {
+            margin: 60px 0 0;
+            border-top-color: #606c78;
+        }
+    }
+    .step-container {
+        margin-bottom: 40px;
+    }
+
+    .form-inline {
+        select, input {
+            background: #fff;
+            border-radius: 5px;
+            padding: 8px 10px;
+            margin-left: 15px;
+            border: solid 1px #606c78;
+            box-shadow: none;
+            height: 40px;
+            min-width: 110px;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+    }
+
+    .statistics {
+
+        @media (min-width: $screen-md-min) {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+    }
+
+    .stat-wrap { margin-bottom: 20px; margin-top: 20px; }
+    .statistic {
+        background: #003e5e;
+        color: #fff;
+        box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.3);
+        font-family: $font-family-medium;
+        text-align: center;
+        padding: 45px 30px;
+        height: 100%;
+
+        .value-wrap {
+            color: #3dbfff;
+            font-size: 7.5vw;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .title { font-size: 3.8vw; }
+        .description { font-size: 2.6vw; }
+
+        @media (min-width: $screen-sm-min) {
+            .value-wrap { font-size: 3.7vw; }
+            .title { font-size: 2vw; }
+            .description { font-size: 1.5vw; }
+        }
+
+        @media (min-width: $screen-md-min) {
+            .value-wrap { font-size: 4.5vw; }
+            .title { font-size: 1.6vw; }
+            .description { font-size: 1vw; }
+
+            &#mobile-chats, &#avg-wait-time, &#avg-chat-length {
+                .value-wrap {
+                    min-height: 122px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .value-wrap { font-size: 58px; }
+            .title { font-size: 20px; }
+            .description { font-size: 14px; }
+        }
+    }
+}

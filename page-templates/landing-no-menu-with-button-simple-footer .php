@@ -386,6 +386,9 @@ use Roots\Sage\Assets;
                 endif;
             endwhile;
         endif;
+
+        get_template_part('template-parts/content', 'blocks');
+
         // check if the flexible content field has rows of data
         if( have_rows('modules') ):
 

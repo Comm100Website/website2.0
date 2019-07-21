@@ -1,2 +1,3814 @@
-!function(t){"function"==typeof define&&define.amd?define(["shoestring"],t):"object"==typeof module&&module.exports?module.exports=t():t()}(function(){var i="undefined"!=typeof window?window:this,l=i.document;function c(t,e){var n,a=typeof t;if(!t)return new r([]);if(t.call)return c.ready(t);if(t.constructor===r&&!e)return t;if("string"!=a||0!==t.indexOf("<"))return"string"==a?e?c(e).find(t):(n=l.querySelectorAll(t),new r(n,t)):"[object Array]"===Object.prototype.toString.call(a)||i.NodeList&&t instanceof i.NodeList?new r(t,t):t.constructor===Array?new r(t,t):new r([t],t);var s=l.createElement("div");return s.innerHTML=t,c(s).children().each(function(){s.removeChild(this)})}var r=function(t,e){this.length=0,this.selector=e,c.merge(this,t)};r.prototype.reverse=[].reverse,c.fn=r.prototype,c.Shoestring=r,c.extend=function(t,e){for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t},c.merge=function(t,e){var n,a,s;for(n=+e.length,a=0,s=t.length;a<n;a++)t[s++]=e[a];return t.length=s,t},(i.shoestring=c).fn.each=function(t){return c.each(this,t)},c.each=function(t,e){for(var n=0,a=t.length;n<a&&!1!==e.call(t[n],n,t[n]);n++);return t},c.inArray=function(t,e){for(var n=-1,a=0,s=e.length;a<s;a++)e.hasOwnProperty(a)&&e[a]===t&&(n=a);return n},c.ready=function(t){return e&&t?t.call(l):t?n.push(t):a(),[l]};var o,e=!(c.fn.ready=function(t){return c.ready(t),this}),n=[],a=function(){if(!e){for(;n.length;)n.shift().call(l);e=!0}};function h(t,e){var n=!1;return t.each(function(){for(var t=0;t<e.length;)this===e[t]&&(n=!0),t++}),n}(l.attachEvent?"complete"===l.readyState:"loading"!==l.readyState)?a():(l.addEventListener("DOMContentLoaded",a,!1),l.addEventListener("readystatechange",a,!1),i.addEventListener("load",a,!1)),c.fn.is=function(a){var t,s=!1,i=this;return"string"!=typeof a?h(this,a.length&&a[0]?a:[a]):((t=this.parent()).length||(t=c(l)),t.each(function(t,e){var n;n=e.querySelectorAll(a),s=h(i,n)}),s)},c.fn.data=function(t,e){return void 0===t?this[0]?this[0].shoestringData||{}:void 0:void 0!==e?this.each(function(){this.shoestringData||(this.shoestringData={}),this.shoestringData[t]=e}):this[0]&&this[0].shoestringData?this[0].shoestringData[t]:void 0},c.fn.removeData=function(t){return this.each(function(){void 0!==t&&this.shoestringData?(this.shoestringData[t]=void 0,delete this.shoestringData[t]):this[0].shoestringData={}})},(i.$=c).fn.addClass=function(t){var n=t.replace(/^\s+|\s+$/g,"").split(" ");return this.each(function(){for(var t=0,e=n.length;t<e;t++)void 0===this.className||""!==this.className&&this.className.match(new RegExp("(^|\\s)"+n[t]+"($|\\s)"))||(this.className+=" "+n[t])})},c.fn.add=function(t){var e=[];return this.each(function(){e.push(this)}),c(t).each(function(){e.push(this)}),c(e)},c.fn.append=function(a){return"string"!=typeof a&&void 0===a.nodeType||(a=c(a)),this.each(function(t){for(var e=0,n=a.length;e<n;e++)this.appendChild(0<t?a[e].cloneNode(!0):a[e])})},c.fn.appendTo=function(t){return this.each(function(){c(t).append(this)})},c.fn.attr=function(e,n){var a="string"==typeof e;return void 0===n&&a?this[0]?this[0].getAttribute(e):void 0:this.each(function(){if(a)this.setAttribute(e,n);else for(var t in e)e.hasOwnProperty(t)&&this.setAttribute(t,e[t])})},c.fn.before=function(a){return"string"!=typeof a&&void 0===a.nodeType||(a=c(a)),this.each(function(t){for(var e=0,n=a.length;e<n;e++)this.parentNode.insertBefore(0<t?a[e].cloneNode(!0):a[e],this)})},c.fn.children=function(){var t,e,n=[];return this.each(function(){for(t=this.children,e=-1;e++<t.length-1;)-1===c.inArray(t[e],n)&&n.push(t[e])}),c(n)},c.fn.closest=function(e){var n=[];return e&&this.each(function(){var t;if(c(t=this).is(e))n.push(this);else for(;t.parentElement;){if(c(t.parentElement).is(e)){n.push(t.parentElement);break}t=t.parentElement}}),c(n)},c.cssExceptions={float:["cssFloat"]},function(){var r=c.cssExceptions;function o(t,e){return i.getComputedStyle(t,null).getPropertyValue(e)}var l=["","-webkit-","-ms-","-moz-","-o-","-khtml-"];c._getStyle=function(t,e){var n,a,s,i;if(r[e])for(s=0,i=r[e].length;s<i;s++)if(a=o(t,r[e][s]))return a;for(s=0,i=l.length;s<i;s++)if(a=o(t,n=(l[s]+e).replace(/\-([A-Za-z])/g,function(t,e){return e.toUpperCase()})),n!==e&&(a=a||o(t,e)),l[s]&&(a=a||o(t,l[s]+e)),a)return a}}(),o=c.cssExceptions,c._setStyle=function(t,e,n){var a=function(t){return t.replace(/\-([A-Za-z])/g,function(t,e){return e.toUpperCase()})}(e);if(t.style[e]=n,a!==e&&(t.style[a]=n),o[e])for(var s=0,i=o[e].length;s<i;s++)t.style[o[e][s]]=n},c.fn.css=function(e,t){if(this[0])return"object"==typeof e?this.each(function(){for(var t in e)e.hasOwnProperty(t)&&c._setStyle(this,t,e[t])}):void 0!==t?this.each(function(){c._setStyle(this,e,t)}):c._getStyle(this[0],e)},c.fn.eq=function(t){return this[t]?c(this[t]):c([])},c.fn.filter=function(a){var s=[];return this.each(function(t){var e;if("function"==typeof a)!1!==a.call(this,t)&&s.push(this);else{if(this.parentNode)e=c(a,this.parentNode);else{var n=c(l.createDocumentFragment());n[0].appendChild(this),e=c(a,n)}-1<c.inArray(this,e)&&s.push(this)}}),c(s)},c.fn.find=function(n){var a,s=[];return this.each(function(){for(var t=0,e=(a=this.querySelectorAll(n)).length;t<e;t++)s=s.concat(a[t])}),c(s)},c.fn.first=function(){return this.eq(0)},c.fn.get=function(t){if(void 0!==t)return this[t];for(var e=[],n=0;n<this.length;n++)e.push(this[n]);return e};c.fn.html=function(t){if(void 0!==t)return function(t){if("string"==typeof t||"number"==typeof t)return this.each(function(){this.innerHTML=""+t});var e="";if(void 0!==t.length)for(var n=0,a=t.length;n<a;n++)e+=t[n].outerHTML;else e=t.outerHTML;return this.each(function(){this.innerHTML=e})}.call(this,t);var e="";return this.each(function(){e+=this.innerHTML}),e},function(){function t(t,e){var n,a,s;for(n=a=0;n<t.length;n++){if(e(s=t.item?t.item(n):t[n]))return a;1===s.nodeType&&a++}return-1}c.fn.index=function(e){var n;return n=this,void 0===e?t((this[0]&&this[0].parentNode||l.documentElement).childNodes,function(t){return n[0]===t}):t(n,function(t){return t===c(e,t.parentNode)[0]})}}(),c.fn.insertBefore=function(t){return this.each(function(){c(t).before(this)})},c.fn.last=function(){return this.eq(this.length-1)},c.fn.next=function(){var s=[];return this.each(function(){var t,e,n;t=c(this.parentNode)[0].childNodes;for(var a=0;a<t.length;a++){if(e=t.item(a),n&&1===e.nodeType){s.push(e);break}e===this&&(n=!0)}}),c(s)},c.fn.not=function(e){var n=[];return this.each(function(){var t=c(e,this.parentNode);-1===c.inArray(this,t)&&n.push(this)}),c(n)},c.fn.parent=function(){var t,e=[];return this.each(function(){(t=this===l.documentElement?l:this.parentNode)&&11!==t.nodeType&&e.push(t)}),c(e)},c.fn.prepend=function(s){return"string"!=typeof s&&void 0===s.nodeType||(s=c(s)),this.each(function(t){for(var e=0,n=s.length;e<n;e++){var a=0<t?s[e].cloneNode(!0):s[e];this.firstChild?this.insertBefore(a,this.firstChild):this.appendChild(a)}})},c.fn.prev=function(){var s=[];return this.each(function(){for(var t,e,n,a=(t=c(this.parentNode)[0].childNodes).length-1;0<=a;a--){if(e=t.item(a),n&&1===e.nodeType){s.push(e);break}e===this&&(n=!0)}}),c(s)},c.fn.prevAll=function(){var e=[];return this.each(function(){for(var t=c(this).prev();t.length;)e.push(t[0]),t=t.prev()}),c(e)},c.fn.removeAttr=function(t){return this.each(function(){this.removeAttribute(t)})},c.fn.removeClass=function(t){var s=t.replace(/^\s+|\s+$/g,"").split(" ");return this.each(function(){for(var t,e,n=0,a=s.length;n<a;n++)void 0!==this.className&&(e=new RegExp("(^|\\s)"+s[n]+"($|\\s)","gmi"),t=this.className.replace(e," "),this.className=t.replace(/^\s+|\s+$/g,""))})},c.fn.remove=function(){return this.each(function(){this.parentNode&&this.parentNode.removeChild(this)})},c.fn.replaceWith=function(i){"string"==typeof i&&(i=c(i));var r=[];return 1<i.length&&(i=i.reverse()),this.each(function(t){var e,n=this.cloneNode(!0);if(r.push(n),this.parentNode)if(1===i.length)e=0<t?i[0].cloneNode(!0):i[0],this.parentNode.replaceChild(e,this);else{for(var a=0,s=i.length;a<s;a++)e=0<t?i[a].cloneNode(!0):i[a],this.parentNode.insertBefore(e,this.nextSibling);this.parentNode.removeChild(this)}}),c(r)},c.fn.siblings=function(){if(!this.length)return c([]);for(var t=[],e=this[0].parentNode.firstChild;1===e.nodeType&&e!==this[0]&&t.push(e),e=e.nextSibling;);return c(t)};var u=function(t){var e,n="",a=0,s=t.nodeType;if(s){if(1===s||9===s||11===s){if("string"==typeof t.textContent)return t.textContent;for(t=t.firstChild;t;t=t.nextSibling)n+=u(t)}else if(3===s||4===s)return t.nodeValue}else for(;e=t[a++];)n+=u(e);return n};function d(t,e,n){var a=this.shoestringData.events[t];if(a&&a.length){var s,i,r=[];for(s=0,i=a.length;s<i;s++)e&&e!==a[s].namespace||void 0!==n&&n!==a[s].originalCallback||(this.removeEventListener(t,a[s].callback,!1),r.push(s));for(s=0,i=r.length;s<i;s++)this.shoestringData.events[t].splice(s,1)}}function f(t,e){for(var n in this.shoestringData.events)d.call(this,n,t,e)}return c.fn.text=function(){return u(this)},c.fn.val=function(r){var t;return void 0!==r?this.each(function(){if("SELECT"===this.tagName){var t,e,n,a=this.options,s=[],i=a.length;for(s[0]=r;i--;)((e=a[i]).selected=0<=c.inArray(e.value,s))&&(t=!0,n=i);this.selectedIndex=t?n:-1}else this.value=r}):"SELECT"===(t=this[0]).tagName?t.selectedIndex<0?"":t.options[t.selectedIndex].value:t.value},c._dimension=function(t,e,n){var a;return void 0===n?(a=e.replace(/^[a-z]/,function(t){return t.toUpperCase()}),t[0]["offset"+a]):(n="string"==typeof n?n:n+"px",t.each(function(){this.style[e]=n}))},c.fn.width=function(t){return c._dimension(this,"width",t)},c.fn.wrapInner=function(e){return this.each(function(){var t=this.innerHTML;this.innerHTML="",c(this).append(c(e).html(t))})},c.fn.bind=function(t,r,f){"function"==typeof r&&(f=r,r=null);var p=t.split(" ");function b(t,e,n){var a;if(!t._namespace||t._namespace===e){t.data=r,t.namespace=t._namespace;var s=function(){return!0};t.isDefaultPrevented=function(){return!1};var i=t.preventDefault;return t.target=n||t.target||t.srcElement,t.preventDefault=i?function(){t.isDefaultPrevented=s,i.call(t)}:function(){t.isDefaultPrevented=s,t.returnValue=!1},t.stopPropagation=t.stopPropagation||function(){t.cancelBubble=!0},!1===(a=f.apply(this,[t].concat(t._args)))&&(t.preventDefault(),t.stopPropagation()),a}}return this.each(function(){for(var t,e,n,a,s,i,r,o=this,l=0,c=p.length;l<c;l++){var h=p[l].split("."),u=h[0],d=0<h.length?h[1]:null;t=function(t){return o.ssEventTrigger&&(t._namespace=o.ssEventTrigger._namespace,t._args=o.ssEventTrigger._args,o.ssEventTrigger=null),b.call(o,t,d)},null,r=u,(i=this).shoestringData||(i.shoestringData={}),i.shoestringData.events||(i.shoestringData.events={}),i.shoestringData.loop||(i.shoestringData.loop={}),i.shoestringData.events[r]||(i.shoestringData.events[r]=[]),this.addEventListener(u,t,!1),e=this,n=u,s=void 0,(s={}).isCustomEvent=(a={callfunc:t,isCustomEvent:!1,customEventLoop:null,originalCallback:f,namespace:d}).isCustomEvent,s.callback=a.callfunc,s.originalCallback=a.originalCallback,s.namespace=a.namespace,e.shoestringData.events[n].push(s),a.customEventLoop&&(e.shoestringData.loop[n]=a.customEventLoop)}})},c.fn.on=c.fn.bind,c.fn.unbind=function(t,i){var r=t?t.split(" "):[];return this.each(function(){if(this.shoestringData&&this.shoestringData.events)if(r.length)for(var t,e,n,a=0,s=r.length;a<s;a++)e=(t=r[a].split("."))[0],n=0<t.length?t[1]:null,e?d.call(this,e,n,i):f.call(this,n,i);else f.call(this)})},c.fn.off=c.fn.unbind,c.fn.one=function(t,i){var r=t.split(" ");return this.each(function(){for(var t,a={},e=c(this),n=0,s=r.length;n<s;n++)t=r[n],a[t]=function(t){var e=c(this);for(var n in a)e.unbind(n,a[n]);return i.apply(this,[t].concat(t._args))},e.bind(t,a[t])})},c.fn.triggerHandler=function(t,e){var n,a=t.split(" ")[0],s=this[0];if(l.createEvent&&s.shoestringData&&s.shoestringData.events&&s.shoestringData.events[a]){var i=s.shoestringData.events[a];for(var r in i)i.hasOwnProperty(r)&&((t=l.createEvent("Event")).initEvent(a,!0,!0),(t._args=e).unshift(t),n=i[r].originalCallback.apply(t.target,e))}return n},c.fn.trigger=function(t,r){var o=t.split(" ");return this.each(function(){for(var t,e,n,a=0,s=o.length;a<s;a++){if(e=(t=o[a].split("."))[0],n=0<t.length?t[1]:null,"click"===e&&"INPUT"===this.tagName&&"checkbox"===this.type&&this.click)return this.click(),!1;if(l.createEvent){var i=l.createEvent("Event");i.initEvent(e,!0,!0),i._args=r,i._namespace=n,this.dispatchEvent(i)}}})},c}),function(e,n){"function"==typeof define&&define.amd?define(["shoestring"],function(t){return e.Tablesaw=n(t,e)}):"object"==typeof exports?module.exports=n(require("shoestring"),e):e.Tablesaw=n(shoestring,e)}("undefined"!=typeof window?window:this,function(N,D){"use strict";var S=D.document,e=/complete|loaded/.test(S.readyState);S.addEventListener("DOMContentLoaded",function(){e=!0});var t,a,s,n,i,r,o,l,c,b,h,u,d,A={i18n:{modeStack:"Stack",modeSwipe:"Swipe",modeToggle:"Toggle",modeSwitchColumnsAbbreviated:"Cols",modeSwitchColumns:"Columns",columnToggleButton:"Columns",columnToggleError:"No eligible columns.",sort:"Sort",swipePreviousColumn:"Previous column",swipeNextColumn:"Next column"},mustard:"head"in S&&(!D.blackberry||D.WebKitPoint)&&!D.operamini,$:N,_init:function(t){A.$(t||S).trigger("enhance.tablesaw")},init:function(t){(e=e||/complete|loaded/.test(S.readyState))?A._init(t):"addEventListener"in S&&S.addEventListener("DOMContentLoaded",function(){A._init(t)})}};return N(S).on("enhance.tablesaw",function(){"undefined"!=typeof TablesawConfig&&TablesawConfig.i18n&&(A.i18n=N.extend(A.i18n,TablesawConfig.i18n||{})),A.i18n.modes=[A.i18n.modeStack,A.i18n.modeSwipe,A.i18n.modeToggle]}),A.mustard&&N(S.documentElement).addClass("tablesaw-enhanced"),function(){var n="tablesaw",a="tablesaw-bar",e={create:"tablesawcreate",destroy:"tablesawdestroy",refresh:"tablesawrefresh",resize:"tablesawresize"},s={};A.events=e;var t=function(t){if(!t)throw new Error("Tablesaw requires an element.");this.table=t,this.$table=N(t),this.$thead=this.$table.children().filter("thead").eq(0),this.$tbody=this.$table.children().filter("tbody"),this.mode=this.$table.attr("data-tablesaw-mode")||"stack",this.$toolbar=null,this.attributes={subrow:"data-tablesaw-subrow",ignorerow:"data-tablesaw-ignorerow"},this.init()};t.prototype.init=function(){if(!this.$thead.length)throw new Error("tablesaw: a <thead> is required, but none was found.");if(!this.$thead.find("th").length)throw new Error("tablesaw: no header cells found. Are you using <th> inside of <thead>?");this.$table.attr("id")||this.$table.attr("id",n+"-"+Math.round(1e4*Math.random())),this.createToolbar(),this._initCells(),this.$table.data(n,this),this.$table.trigger(e.create,[this])},t.prototype.getConfig=function(t){var e=N.extend(s,t||{});return N.extend(e,"undefined"!=typeof TablesawConfig?TablesawConfig:{})},t.prototype._getPrimaryHeaderRow=function(){return this._getHeaderRows().eq(0)},t.prototype._getHeaderRows=function(){return this.$thead.children().filter("tr").filter(function(){return!N(this).is("[data-tablesaw-ignorerow]")})},t.prototype._getRowIndex=function(t){return t.prevAll().length},t.prototype._getHeaderRowIndeces=function(){var t=this,e=[];return this._getHeaderRows().each(function(){e.push(t._getRowIndex(N(this)))}),e},t.prototype._getPrimaryHeaderCells=function(t){return(t||this._getPrimaryHeaderRow()).find("th")},t.prototype._$getCells=function(t){var a=this;return N(t).add(t.cells).filter(function(){var t=N(this),e=t.parent(),n=t.is("[colspan]");return!(e.is("["+a.attributes.subrow+"]")||e.is("["+a.attributes.ignorerow+"]")&&n)})},t.prototype._getVisibleColspan=function(){var e=0;return this._getPrimaryHeaderCells().each(function(){var t=N(this);"none"!==t.css("display")&&(e+=parseInt(t.attr("colspan"),10)||1)}),e},t.prototype.getColspanForCell=function(t){var e=this._getVisibleColspan(),n=0;return t.closest("tr").data("tablesaw-rowspanned")&&n++,t.siblings().each(function(){var t=N(this),e=parseInt(t.attr("colspan"),10)||1;"none"!==t.css("display")&&(n+=e)}),e-n},t.prototype.isCellInColumn=function(t,e){return N(t).add(t.cells).filter(function(){return this===e}).length},t.prototype.updateColspanCells=function(a,s,i){var r=this,t=r._getPrimaryHeaderRow();this.$table.find("[rowspan][data-tablesaw-priority]").each(function(){var t=N(this);if("persist"===t.attr("data-tablesaw-priority")){var e=t.closest("tr"),n=parseInt(t.attr("rowspan"),10);1<n&&((e=e.next()).data("tablesaw-rowspanned",!0),n--)}}),this.$table.find("[colspan],[data-tablesaw-maxcolspan]").filter(function(){return N(this).closest("tr")[0]!==t[0]}).each(function(){var t=N(this);if(void 0===i||r.isCellInColumn(s,this)){var e=r.getColspanForCell(t);a&&void 0!==i&&t[0===e?"addClass":"removeClass"](a);var n=parseInt(t.attr("data-tablesaw-maxcolspan"),10);n?n<e&&(e=n):t.attr("data-tablesaw-maxcolspan",t.attr("colspan")),t.attr("colspan",e)}})},t.prototype._findPrimaryHeadersForCell=function(t){for(var e=this._getPrimaryHeaderRow(),n=this._getRowIndex(e),a=[],s=0;s<this.headerMapping.length;s++)if(s!==n)for(var i=0;i<this.headerMapping[s].length;i++)this.headerMapping[s][i]===t&&a.push(this.headerMapping[n][i]);return a},t.prototype.getRows=function(){var t=this;return this.$table.find("tr").filter(function(){return N(this).closest("table").is(t.$table)})},t.prototype.getBodyRows=function(t){return(t?N(t):this.$tbody).children().filter("tr")},t.prototype.getHeaderCellIndex=function(t){for(var e=this.headerMapping[0],n=0;n<e.length;n++)if(e[n]===t)return n;return-1},t.prototype._initCells=function(){this.$table.find("[data-tablesaw-maxcolspan]").each(function(){var t=N(this);t.attr("colspan",t.attr("data-tablesaw-maxcolspan"))});var t=this.getRows(),r=[];t.each(function(t){r[t]=[]}),t.each(function(s){var i=0;N(this).children().each(function(){for(var t=parseInt(this.getAttribute("data-tablesaw-maxcolspan")||this.getAttribute("colspan"),10),e=parseInt(this.getAttribute("rowspan"),10);r[s][i];)i++;if(r[s][i]=this,t)for(var n=0;n<t-1;n++)i++,r[s][i]=this;if(e)for(var a=1;a<e;a++)r[s+a][i]=this;i++})});for(var e=this._getHeaderRowIndeces(),n=0;n<r[0].length;n++)for(var a=0,s=e.length;a<s;a++){var i,o=r[e[a]][n],l=e[a];for(o.cells||(o.cells=[]);l<r.length;)o!==(i=r[l][n])&&o.cells.push(i),l++}this.headerMapping=r},t.prototype.refresh=function(){this._initCells(),this.$table.trigger(e.refresh,[this])},t.prototype._getToolbarAnchor=function(){var t=this.$table.parent();return t.is(".tablesaw-overflow")?t:this.$table},t.prototype._getToolbar=function(t){return t||(t=this._getToolbarAnchor()),t.prev().filter("."+a)},t.prototype.createToolbar=function(){var t=this._getToolbarAnchor(),e=this._getToolbar(t);e.length||(e=N("<div>").addClass(a).insertBefore(t)),this.$toolbar=e,this.mode&&this.$toolbar.addClass("tablesaw-mode-"+this.mode)},t.prototype.destroy=function(){this._getToolbar().each(function(){this.className=this.className.replace(/\btablesaw-mode\-\w*\b/gi,"")});var t=this.$table.attr("id");N(S).off("."+t),N(D).off("."+t),this.$table.trigger(e.destroy,[this]),this.$table.removeData(n)},N.fn[n]=function(){return this.each(function(){N(this).data(n)||new t(this)})};var i=N(S);i.on("enhance.tablesaw",function(t){if(A.mustard){var e=N(t.target);e.parent().length&&(e=e.parent()),e.find("table").filter("[data-tablesaw],[data-tablesaw-mode],[data-tablesaw-sortable]")[n]()}});var r,o,l=!1;i.on("scroll.tablesaw",function(){l=!0,D.clearTimeout(r),r=D.setTimeout(function(){l=!1},300)}),N(D).on("resize",function(){l||(D.clearTimeout(o),o=D.setTimeout(function(){i.trigger(e.resize)},150))}),A.Table=t}(),a="tablesaw-cell-label",s="tablesaw-cell-content",n=t="tablesaw-stack",i="data-tablesaw-no-labels",r="data-tablesaw-hide-empty",(o=function(t,e){this.tablesaw=e,this.$table=N(t),this.labelless=this.$table.is("["+i+"]"),this.hideempty=this.$table.is("["+r+"]"),this.$table.data(n,this)}).prototype.init=function(){if(this.$table.addClass(t),!this.labelless){var n=this;this.$table.find("th, td").filter(function(){return!N(this).closest("thead").length}).filter(function(){return!(N(this).is("["+i+"]")||N(this).closest("tr").is("["+i+"]")||n.hideempty&&!N(this).html())}).each(function(){var r=N(S.createElement("b")).addClass(a),t=N(this);N(n.tablesaw._findPrimaryHeadersForCell(this)).each(function(t){var e=N(this.cloneNode(!0)),n=e.find(".tablesaw-sortable-btn");e.find(".tablesaw-sortable-arrow").remove();var a=e.find("[data-tablesaw-checkall]");if(a.closest("label").remove(),a.length)r=N([]);else{0<t&&r.append(S.createTextNode(", "));for(var s,i=n.length?n[0]:e[0];s=i.firstChild;)r[0].appendChild(s)}}),r.length&&!t.find("."+s).length&&t.wrapInner("<span class='"+s+"'></span>");var e=t.find("."+a);e.length?e.replaceWith(r):(t.prepend(S.createTextNode(" ")),t.prepend(r))})}},o.prototype.destroy=function(){this.$table.removeClass(t),this.$table.find("."+a).remove(),this.$table.find("."+s).each(function(){N(this).replaceWith(N(this.childNodes))})},N(S).on(A.events.create,function(t,e){"stack"===e.mode&&new o(e.table,e).init()}).on(A.events.refresh,function(t,e){"stack"===e.mode&&N(e.table).data(n).init()}).on(A.events.destroy,function(t,e){"stack"===e.mode&&N(e.table).data(n).destroy()}),A.Stack=o,l="tablesawbtn",c={_create:function(){return N(this).each(function(){N(this).trigger("beforecreate."+l)[l]("_init").trigger("create."+l)})},_init:function(){var t=N(this),e=this.getElementsByTagName("select")[0];return e&&N(this).addClass("btn-select tablesaw-btn-select")[l]("_select",e),t},_select:function(t){var e=function(t,e){var n,a,s=N(e).find("option"),i=S.createElement("span"),r=!1;if(i.setAttribute("aria-hidden","true"),i.innerHTML="&#160;",s.each(function(){this.selected&&(i.innerHTML=this.text)}),a=t.childNodes,0<s.length){for(var o=0,l=a.length;o<l;o++)(n=a[o])&&"SPAN"===n.nodeName.toUpperCase()&&(t.replaceChild(i,n),r=!0);r||t.insertBefore(i,t.firstChild)}};e(this,t),N(this).on("change refresh",function(){e(this,t)})}},N.fn[l]=function(t,e,n,a){return this.each(function(){return t&&"string"==typeof t?N.fn[l].prototype[t].call(this,e,n,a):N(this).data(l+"active")?N(this):(N(this).data(l+"active",!0),void N.fn[l].prototype._create.call(this))})},N.extend(N.fn[l].prototype,c),b="tablesaw-coltoggle",(h=function(t){this.$table=N(t),this.$table.length&&(this.tablesaw=this.$table.data("tablesaw"),this.attributes={btnTarget:"data-tablesaw-columntoggle-btn-target",set:"data-tablesaw-columntoggle-set"},this.classes={columnToggleTable:"tablesaw-columntoggle",columnBtnContain:"tablesaw-columntoggle-btnwrap tablesaw-advance",columnBtn:"tablesaw-columntoggle-btn tablesaw-nav-btn down",popup:"tablesaw-columntoggle-popup",priorityPrefix:"tablesaw-priority-"},this.set=[],this.$headers=this.tablesaw._getPrimaryHeaderCells(),this.$table.data(b,this))}).prototype.initSet=function(){var t=this.$table.attr(this.attributes.set);if(t){var e=this.$table[0];this.set=N("table["+this.attributes.set+"='"+t+"']").filter(function(){return this!==e}).get()}},h.prototype.init=function(){if(this.$table.length){var e,t,n,a,s,i,r=this,o=this.tablesaw.getConfig({getColumnToggleLabelTemplate:function(t){return"<label><input type='checkbox' checked>"+t+"</label>"}});this.$table.addClass(this.classes.columnToggleTable),t=(e=this.$table.attr("id"))+"-popup",i=N("<div class='"+this.classes.columnBtnContain+"'></div>"),n=N("<a href='#"+t+"' class='btn tablesaw-btn btn-micro "+this.classes.columnBtn+"' data-popup-link><span>"+A.i18n.columnToggleButton+"</span></a>"),a=N("<div class='"+this.classes.popup+"' id='"+t+"'></div>"),s=N("<div class='tablesaw-btn-group'></div>"),this.$popup=a;var l=!1;this.$headers.each(function(){var t=N(this),e=t.attr("data-tablesaw-priority"),n=r.tablesaw._$getCells(this);e&&"persist"!==e&&(n.addClass(r.classes.priorityPrefix+e),N(o.getColumnToggleLabelTemplate(t.text())).appendTo(s).find('input[type="checkbox"]').data("tablesaw-header",this),l=!0)}),l||s.append("<label>"+A.i18n.columnToggleError+"</label>"),s.appendTo(a),s.find('input[type="checkbox"]').on("change",function(e){var n;f(e.target),r.set.length&&(N(r.$popup).find("input[type='checkbox']").each(function(t){if(this===e.target)return n=t,!1}),N(r.set).each(function(){var t=N(this).data(b).$popup.find("input[type='checkbox']").get(n);t&&(t.checked=e.target.checked,f(t))}))}),n.appendTo(i);var c,h=N(this.$table.attr(this.attributes.btnTarget));i.appendTo(h.length?h:this.tablesaw.$toolbar),n.on("click.tablesaw",function(t){t.preventDefault(),i.is(".visible")?p():(i.addClass("visible"),n.removeClass("down").addClass("up"),N(S).off("click."+e,p),D.clearTimeout(c),c=D.setTimeout(function(){N(S).on("click."+e,p)},15))}),a.appendTo(i),this.$menu=s;var u,d=this.$table.closest(".tablesaw-overflow");d.css("-webkit-overflow-scrolling")&&d.on("scroll",function(){var t=N(this);D.clearTimeout(u),u=D.setTimeout(function(){t.css("-webkit-overflow-scrolling","auto"),D.setTimeout(function(){t.css("-webkit-overflow-scrolling","touch")},0)},100)}),N(D).on(A.events.resize+"."+e,function(){r.refreshToggle()}),this.initSet(),this.refreshToggle()}function f(t){var e=t.checked,n=r.getHeaderFromCheckbox(t),a=r.tablesaw._$getCells(n);a[e?"removeClass":"addClass"]("tablesaw-toggle-cellhidden"),a[e?"addClass":"removeClass"]("tablesaw-toggle-cellvisible"),r.updateColspanCells(n,e),r.$table.trigger("tablesawcolumns")}function p(t){t&&N(t.target).closest("."+r.classes.popup).length||(N(S).off("click."+e),n.removeClass("up").addClass("down"),i.removeClass("visible"))}},h.prototype.getHeaderFromCheckbox=function(t){return N(t).data("tablesaw-header")},h.prototype.refreshToggle=function(){var e=this;this.$menu.find("input").each(function(){var t=e.getHeaderFromCheckbox(this);this.checked="table-cell"===e.tablesaw._$getCells(t).eq(0).css("display")}),this.updateColspanCells()},h.prototype.updateColspanCells=function(t,e){this.tablesaw.updateColspanCells("tablesaw-toggle-cellhidden",t,e)},h.prototype.destroy=function(){this.$table.removeClass(this.classes.columnToggleTable),this.$table.find("th, td").each(function(){N(this).removeClass("tablesaw-toggle-cellhidden").removeClass("tablesaw-toggle-cellvisible"),this.className=this.className.replace(/\bui\-table\-priority\-\d\b/g,"")})},N(S).on(A.events.create,function(t,e){"columntoggle"===e.mode&&new h(e.table).init()}),N(S).on(A.events.destroy,function(t,e){"columntoggle"===e.mode&&N(e.table).data(b).destroy()}),N(S).on(A.events.refresh,function(t,e){"columntoggle"===e.mode&&N(e.table).data(b).refreshToggle()}),A.ColumnToggle=h,function(){function p(t){var e=[];return N(t.childNodes).each(function(){var t=N(this);t.is("input, select")?e.push(t.val()):t.is(".tablesaw-cell-label")||e.push((t.text()||"").replace(/^\s+|\s+$/g,""))}),e.join("")}var u="tablesaw-sortable",o="data-tablesaw-sortable-col",h="data-tablesaw-sortable-default-col",b="data-tablesaw-sortable-numeric",g="data-tablesaw-subrow",v="data-tablesaw-ignorerow",d={head:u+"-head",ascend:u+"-ascending",descend:u+"-descending",switcher:u+"-switch",tableToolbar:"tablesaw-bar-section",sortButton:u+"-btn"},t={_create:function(t){return N(this).each(function(){if(N(this).data(u+"-init"))return!1;N(this).data(u+"-init",!0).trigger("beforecreate."+u)[u]("_init",t).trigger("create."+u)})},_init:function(){var s,i,t,e,a,n,r=N(this),l=r.data("tablesaw");function c(t){N.each(t,function(t,e){var n=N(e);n.removeAttr(h),n.removeClass(d.ascend),n.removeClass(d.descend)})}r.addClass(u),s=r.children().filter("thead").find("th["+o+"]"),t=s,N.each(t,function(t,e){N(e).addClass(d.head)}),e=s,a=function(t){if(!N(t.target).is("a[href]")){t.stopPropagation();var e=N(t.target).closest("["+o+"]"),n=t.data.col,a=s.index(e[0]);c(e.closest("thead").find("th").filter(function(){return this!==e[0]})),e.is("."+d.descend)||!e.is("."+d.ascend)?(r[u]("sortBy",n,!0),a+="_asc"):(r[u]("sortBy",n),a+="_desc"),i&&i.find("select").val(a).trigger("refresh"),t.preventDefault()}},N.each(e,function(t,e){var n=N("<button class='"+d.sortButton+"'/>");n.on("click",{col:e},a),N(e).wrapInner(n).find("button").append("<span class='tablesaw-sortable-arrow'>")}),n=s,N.each(n,function(t,e){var n=N(e);n.is("["+h+"]")&&(n.is("."+d.descend)||n.addClass(d.ascend))}),r.is("[data-tablesaw-sortable-switch]")&&function(n){i=N("<div>").addClass(d.switcher).addClass(d.tableToolbar);var o=["<label>"+A.i18n.sort+":"];o.push('<span class="btn tablesaw-btn"><select>'),n.each(function(t){var e=N(this),n=e.is("["+h+"]"),a=e.is("."+d.descend),s=e.is("["+b+"]"),i=0;N(this.cells.slice(0,5)).each(function(){isNaN(parseInt(p(this),10))||i++});var r=5===i;s||e.attr(b,r?"":"false"),o.push("<option"+(n&&!a?" selected":"")+' value="'+t+'_asc">'+e.text()+" "+(r?"&#x2191;":"(A-Z)")+"</option>"),o.push("<option"+(n&&a?" selected":"")+' value="'+t+'_desc">'+e.text()+" "+(r?"&#x2193;":"(Z-A)")+"</option>")}),o.push("</select></span></label>"),i.html(o.join(""));var t=l.$toolbar.children().eq(0);t.length?i.insertBefore(t):i.appendTo(l.$toolbar),i.find(".tablesaw-btn").tablesawbtn(),i.find("select").on("change",function(){var t=N(this).val().split("_"),e=n.eq(t[0]);c(e.siblings()),r[u]("sortBy",e.get(0),"asc"===t[1])})}(s)},sortRows:function(t,e,n,a,s){var i,r,o,l,c,h,u,d=(r=a.cells,o=s,l=[],N.each(r,function(t,e){for(var n=e.parentNode,a=N(n),s=[],i=a.next();i.is("["+g+"]");)s.push(i[0]),i=i.next();var r=n.parentNode;a.is("["+g+"]")||r===o&&l.push({element:e,cell:p(e),row:n,subrows:s.length?s:null,ignored:a.is("["+v+"]")})}),l),f=N(a).data("tablesaw-sort");return i=!(!f||"function"!=typeof f)&&f(n)||(c=n,h=N(a).is("["+b+"]")&&!N(a).is("["+b+'="false"]'),u=/[^\-\+\d\.]/g,c?function(t,e){return t.ignored||e.ignored?0:h?parseFloat(t.cell.replace(u,""))-parseFloat(e.cell.replace(u,"")):t.cell.toLowerCase()>e.cell.toLowerCase()?1:-1}:function(t,e){return t.ignored||e.ignored?0:h?parseFloat(e.cell.replace(u,""))-parseFloat(t.cell.replace(u,"")):t.cell.toLowerCase()<e.cell.toLowerCase()?1:-1}),function(t){var e,n,a=[];for(e=0,n=t.length;e<n;e++)a.push(t[e].row),t[e].subrows&&a.push(t[e].subrows);return a}(d.sort(i))},makeColDefault:function(t,e){var n=N(t);n.attr(h,"true"),e?(n.removeClass(d.descend),n.addClass(d.ascend)):(n.removeClass(d.ascend),n.addClass(d.descend))},sortBy:function(r,o){var l,c=N(this),h=c.data("tablesaw");h.$tbody.each(function(){var t,e,n,a=N(this),s=h.getBodyRows(this),i=h.headerMapping[0];for(e=0,n=i.length;e<n;e++)if(i[e]===r){l=e;break}for(e=0,n=(t=c[u]("sortRows",s,l,o,r,this)).length;e<n;e++)a.append(t[e])}),c[u]("makeColDefault",r,o),c.trigger("tablesaw-sorted")}};N.fn[u]=function(t){var e,n=Array.prototype.slice.call(arguments,1);return t&&"string"==typeof t?void 0!==(e=N.fn[u].prototype[t].apply(this[0],n))?e:N(this):(N(this).data(u+"-active")||(N(this).data(u+"-active",!0),N.fn[u].prototype._create.call(this,t)),N(this))},N.extend(N.fn[u].prototype,t),N(S).on(A.events.create,function(t,e){e.$table.is("table[data-tablesaw-sortable]")&&e.$table[u]()})}(),function(){var T="disabled",$="tablesaw-fix-persist",k="tablesaw-swipe-cellhidden",x="tablesaw-swipe-cellpersist",_="tablesaw-all-cols-visible",E="data-tablesaw-no-touch";function n(c,o){var l=o.data("tablesaw"),t=N("<div class='tablesaw-advance'></div>"),n=N("<a href='#' class='btn tablesaw-nav-btn tablesaw-btn btn-micro left'>"+A.i18n.swipePreviousColumn+"</a>").appendTo(t),a=N("<a href='#' class='btn tablesaw-nav-btn tablesaw-btn btn-micro right'>"+A.i18n.swipeNextColumn+"</a>").appendTo(t),h=c._getPrimaryHeaderCells(),i=h.not('[data-tablesaw-priority="persist"]'),u=[],r=N(S.head||"head"),d=o.attr("id");if(!h.length)throw new Error("tablesaw swipe: no header cells found.");function e(){o.css({width:"1px"}),o.find("."+k).removeClass(k),u=[],h.each(function(){u.push(this.offsetWidth)}),o.css({width:""})}function f(t){l._$getCells(t).removeClass(k)}function p(t){l._$getCells(t).addClass(k)}function b(){o.removeClass($),N("#"+d+"-persist").remove()}function s(){var t,n="#"+d+".tablesaw-swipe ",a=[],s=o.width(),i=[];if(h.each(function(t){var e;(function(t){return N(t).is('[data-tablesaw-priority="persist"]')})(this)&&(e=this.offsetWidth)<.75*s&&(i.push(t+"-"+e),a.push(n+" ."+x+":nth-child("+(t+1)+") { width: "+e+"px; }"))}),t=i.join("_"),a.length){o.addClass($);var e=N("#"+d+"-persist");e.length&&e.data("tablesaw-hash")===t||(e.remove(),N("<style>"+a.join("\n")+"</style>").attr("id",d+"-persist").data("tablesaw-hash",t).appendTo(r))}}function g(){var a,s=[];return i.each(function(t){var e=N(this),n="none"===e.css("display")||e.is("."+k);if(n||a){if(n&&a)return s[1]=t,!1}else a=!0,s[0]=t}),s}function v(){var t=g();return[t[1]-1,t[0]-1]}function w(t){return-1<t[1]&&t[1]<i.length}function m(){if(function(){var t=o.attr("data-tablesaw-swipe-media");return!t||"matchMedia"in D&&D.matchMedia(t).matches}()){var n=o.parent().width(),a=[],s=0,i=[],r=h.length;h.each(function(t){var e=N(this).is('[data-tablesaw-priority="persist"]');a.push(e),s+=u[t],i.push(s),(e||n<s)&&r--});var e=0===r;h.each(function(t){i[t]>n&&p(this)}),h.each(function(t){a[t]?function(t){l._$getCells(t).addClass(x)}(this):(i[t]<=n||e)&&(e=!1,f(this),l.updateColspanCells(k,this,!0))}),b(),o.trigger("tablesawcolumns")}}function y(t){var e=function(t){return t?g():v()}(t);w(e)&&(isNaN(e[0])&&(e[0]=t?0:i.length-1),s(),p(i.get(e[0])),l.updateColspanCells(k,i.get(e[0]),!1),f(i.get(e[1])),l.updateColspanCells(k,i.get(e[1]),!0),o.trigger("tablesawcolumns"))}function C(t,e){return(t.touches||t.originalEvent.touches)[0][e]}o.addClass("tablesaw-swipe"),e(),t.appendTo(l.$toolbar),d||(d="tableswipe-"+Math.round(1e4*Math.random()),o.attr("id",d)),n.add(a).on("click",function(t){y(!!N(t.target).closest(a).length),t.preventDefault()}),o.is("["+E+"]")||o.on("touchstart.swipetoggle",function(t){var s,i,r=C(t,"pageX"),o=C(t,"pageY"),l=D.pageYOffset;N(D).off(A.events.resize,m),N(this).on("touchmove.swipetoggle",function(t){s=C(t,"pageX"),i=C(t,"pageY")}).on("touchend.swipetoggle",function(){var t=c.getConfig({swipeHorizontalThreshold:30,swipeVerticalThreshold:30}),e=t.swipe?t.swipe.verticalThreshold:t.swipeVerticalThreshold,n=t.swipe?t.swipe.horizontalThreshold:t.swipeHorizontalThreshold,a=Math.abs(D.pageYOffset-l)>=e;Math.abs(i-o)>=e||a||(s-r<-1*n&&y(!0),n<s-r&&y(!1)),D.setTimeout(function(){N(D).on(A.events.resize,m)},300),N(this).off("touchmove.swipetoggle touchend.swipetoggle")})}),o.on("tablesawcolumns.swipetoggle",function(){var t=w(v()),e=w(g());n[t?"removeClass":"addClass"](T),a[e?"removeClass":"addClass"](T),l.$toolbar[t||e?"removeClass":"addClass"](_)}).on("tablesawnext.swipetoggle",function(){y(!0)}).on("tablesawprev.swipetoggle",function(){y(!1)}).on(A.events.destroy+".swipetoggle",function(){var t=N(this);t.removeClass("tablesaw-swipe"),l.$toolbar.find(".tablesaw-advance").remove(),N(D).off(A.events.resize,m),t.off(".swipetoggle")}).on(A.events.refresh,function(){b(),e(),m()}),m(),N(D).on(A.events.resize,m)}N(S).on(A.events.create,function(t,e){"swipe"===e.mode&&n(e,e.$table)})}(),u={attr:{init:"data-tablesaw-minimap"},show:function(t){var e=t.getAttribute(u.attr.init);return""===e||!!(e&&"matchMedia"in D)&&D.matchMedia(e).matches}},N(S).on(A.events.create,function(t,e){"swipe"!==e.mode&&"columntoggle"!==e.mode||!e.$table.is("[ "+u.attr.init+"]")||function(t){var e=t.data("tablesaw"),n=N('<div class="tablesaw-advance minimap">'),a=N('<ul class="tablesaw-advance-dots">').appendTo(n),s="tablesaw-advance-dots-hide";function i(){if(u.show(t[0])){n.css("display","block");var e=a.find("li").removeClass(s);t.find("thead th").each(function(t){"none"===N(this).css("display")&&e.eq(t).addClass(s)})}else n.css("display","none")}t.data("tablesaw")._getPrimaryHeaderCells().each(function(){a.append("<li><i></i></li>")}),n.appendTo(e.$toolbar),i(),N(D).on(A.events.resize,i),t.on("tablesawcolumns.minimap",function(){i()}).on(A.events.destroy+".minimap",function(){var t=N(this);e.$toolbar.find(".tablesaw-advance").remove(),N(D).off(A.events.resize,i),t.off(".minimap")})}(e.$table)}),A.MiniMap=u,d={selectors:{init:"table[data-tablesaw-mode-switch]"},attributes:{excludeMode:"data-tablesaw-mode-exclude"},classes:{main:"tablesaw-modeswitch",toolbar:"tablesaw-bar-section"},modes:["stack","swipe","columntoggle"],init:function(e){var t,n=N(e),a=n.data("tablesaw"),s=n.attr(d.attributes.excludeMode),i=a.$toolbar,r=N("<div>").addClass(d.classes.main+" "+d.classes.toolbar),o=['<label><span class="abbreviated">'+A.i18n.modeSwitchColumnsAbbreviated+'</span><span class="longform">'+A.i18n.modeSwitchColumns+"</span>:"],l=n.attr("data-tablesaw-mode");o.push('<span class="btn tablesaw-btn"><select>');for(var c=0,h=d.modes.length;c<h;c++)s&&s.toLowerCase()===d.modes[c]||(t=l===d.modes[c],o.push("<option"+(t?" selected":"")+' value="'+d.modes[c]+'">'+A.i18n.modes[c]+"</option>"));o.push("</select></span></label>"),r.html(o.join(""));var u=i.find(".tablesaw-advance").eq(0);u.length?r.insertBefore(u):r.appendTo(i),r.find(".tablesaw-btn").tablesawbtn(),r.find("select").on("change",function(t){return d.onModeChange.call(e,t,N(this).val())})},onModeChange:function(t,e){var n=N(this),a=n.data("tablesaw");a.$toolbar.find("."+d.classes.main).remove(),a.destroy(),n.attr("data-tablesaw-mode",e),n.tablesaw()}},N(S).on(A.events.create,function(t,e){e.$table.is(d.selectors.init)&&d.init(e.table)}),function(){var i="tablesawCheckAll";function n(t){this.tablesaw=t,this.$table=t.$table,this.attr="data-tablesaw-checkall",this.checkAllSelector="["+this.attr+"]",this.forceCheckedSelector="["+this.attr+"-checked]",this.forceUncheckedSelector="["+this.attr+"-unchecked]",this.checkboxSelector='input[type="checkbox"]',this.$triggers=null,this.$checkboxes=null,this.$table.data(i)||(this.$table.data(i,this),this.init())}n.prototype._filterCells=function(t){return t.filter(function(){return!N(this).closest("tr").is("[data-tablesaw-subrow],[data-tablesaw-ignorerow]")}).find(this.checkboxSelector).not(this.checkAllSelector)},n.prototype.getCheckboxesForButton=function(t){return this._filterCells(N(N(t).attr(this.attr)))},n.prototype.getCheckboxesForCheckbox=function(t){return this._filterCells(N(N(t).closest("th")[0].cells))},n.prototype.init=function(){var t=this;this.$table.find(this.checkAllSelector).each(function(){N(this).is(t.checkboxSelector)?t.addCheckboxEvents(this):t.addButtonEvents(this)})},n.prototype.addButtonEvents=function(t){var s=this;N(t).on("click",function(t){t.preventDefault();var e,n=s.getCheckboxesForButton(this),a=!0;n.each(function(){this.checked||(a=!1)}),e=!!N(this).is(s.forceCheckedSelector)||!N(this).is(s.forceUncheckedSelector)&&!a,n.each(function(){this.checked=e,N(this).trigger("change."+i)})})},n.prototype.addCheckboxEvents=function(n){var e=this;N(n).on("change",function(){var t=this.checked;e.getCheckboxesForCheckbox(this).each(function(){this.checked=t})});var a=e.getCheckboxesForCheckbox(n);a.on("change."+i,function(){var t=0;a.each(function(){this.checked&&t++});var e=t===a.length;n.checked=e,n.indeterminate=0!==t&&!e})},N(S).on(A.events.create,function(t,e){new n(e)}),A.CheckAll=n}(),A}),function(t){"use strict";if(!("Tablesaw"in t))throw new Error("Tablesaw library not found.");if(!("init"in Tablesaw))throw new Error("Your tablesaw-init.js is newer than the core Tablesaw version.");Tablesaw.init()}("undefined"!=typeof window?window:this);
+/* jshint ignore:start */
+
+/*! Tablesaw - v3.1.0 - 2018-12-10
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2018 Filament Group; Licensed MIT */
+/*! Shoestring - v2.0.0 - 2017-02-14
+* http://github.com/filamentgroup/shoestring/
+* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */ 
+(function( factory ) {
+	if( typeof define === 'function' && define.amd ) {
+			// AMD. Register as an anonymous module.
+			define( [ 'shoestring' ], factory );
+	} else if (typeof module === 'object' && module.exports) {
+		// Node/CommonJS
+		module.exports = factory();
+	} else {
+		// Browser globals
+		factory();
+	}
+}(function () {
+	var win = typeof window !== "undefined" ? window : this;
+	var doc = win.document;
+
+
+	/**
+	 * The shoestring object constructor.
+	 *
+	 * @param {string,object} prim The selector to find or element to wrap.
+	 * @param {object} sec The context in which to match the `prim` selector.
+	 * @returns shoestring
+	 * @this window
+	 */
+	function shoestring( prim, sec ){
+		var pType = typeof( prim ),
+				ret = [],
+				sel;
+
+		// return an empty shoestring object
+		if( !prim ){
+			return new Shoestring( ret );
+		}
+
+		// ready calls
+		if( prim.call ){
+			return shoestring.ready( prim );
+		}
+
+		// handle re-wrapping shoestring objects
+		if( prim.constructor === Shoestring && !sec ){
+			return prim;
+		}
+
+		// if string starting with <, make html
+		if( pType === "string" && prim.indexOf( "<" ) === 0 ){
+			var dfrag = doc.createElement( "div" );
+
+			dfrag.innerHTML = prim;
+
+			// TODO depends on children (circular)
+			return shoestring( dfrag ).children().each(function(){
+				dfrag.removeChild( this );
+			});
+		}
+
+		// if string, it's a selector, use qsa
+		if( pType === "string" ){
+			if( sec ){
+				return shoestring( sec ).find( prim );
+			}
+
+				sel = doc.querySelectorAll( prim );
+
+			return new Shoestring( sel, prim );
+		}
+
+		// array like objects or node lists
+		if( Object.prototype.toString.call( pType ) === '[object Array]' ||
+				(win.NodeList && prim instanceof win.NodeList) ){
+
+			return new Shoestring( prim, prim );
+		}
+
+		// if it's an array, use all the elements
+		if( prim.constructor === Array ){
+			return new Shoestring( prim, prim );
+		}
+
+		// otherwise assume it's an object the we want at an index
+		return new Shoestring( [prim], prim );
+	}
+
+	var Shoestring = function( ret, prim ) {
+		this.length = 0;
+		this.selector = prim;
+		shoestring.merge(this, ret);
+	};
+
+	// TODO only required for tests
+	Shoestring.prototype.reverse = [].reverse;
+
+	// For adding element set methods
+	shoestring.fn = Shoestring.prototype;
+
+	shoestring.Shoestring = Shoestring;
+
+	// For extending objects
+	// TODO move to separate module when we use prototypes
+	shoestring.extend = function( first, second ){
+		for( var i in second ){
+			if( second.hasOwnProperty( i ) ){
+				first[ i ] = second[ i ];
+			}
+		}
+
+		return first;
+	};
+
+	// taken directly from jQuery
+	shoestring.merge = function( first, second ) {
+		var len, j, i;
+
+		len = +second.length,
+		j = 0,
+		i = first.length;
+
+		for ( ; j < len; j++ ) {
+			first[ i++ ] = second[ j ];
+		}
+
+		first.length = i;
+
+		return first;
+	};
+
+	// expose
+	win.shoestring = shoestring;
+
+
+
+	/**
+	 * Iterates over `shoestring` collections.
+	 *
+	 * @param {function} callback The callback to be invoked on each element and index
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.each = function( callback ){
+		return shoestring.each( this, callback );
+	};
+
+	shoestring.each = function( collection, callback ) {
+		var val;
+		for( var i = 0, il = collection.length; i < il; i++ ){
+			val = callback.call( collection[i], i, collection[i] );
+			if( val === false ){
+				break;
+			}
+		}
+
+		return collection;
+	};
+
+
+
+  /**
+	 * Check for array membership.
+	 *
+	 * @param {object} needle The thing to find.
+	 * @param {object} haystack The thing to find the needle in.
+	 * @return {boolean}
+	 * @this window
+	 */
+	shoestring.inArray = function( needle, haystack ){
+		var isin = -1;
+		for( var i = 0, il = haystack.length; i < il; i++ ){
+			if( haystack.hasOwnProperty( i ) && haystack[ i ] === needle ){
+				isin = i;
+			}
+		}
+		return isin;
+	};
+
+
+
+  /**
+	 * Bind callbacks to be run when the DOM is "ready".
+	 *
+	 * @param {function} fn The callback to be run
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.ready = function( fn ){
+		if( ready && fn ){
+			fn.call( doc );
+		}
+		else if( fn ){
+			readyQueue.push( fn );
+		}
+		else {
+			runReady();
+		}
+
+		return [doc];
+	};
+
+	// TODO necessary?
+	shoestring.fn.ready = function( fn ){
+		shoestring.ready( fn );
+		return this;
+	};
+
+	// Empty and exec the ready queue
+	var ready = false,
+		readyQueue = [],
+		runReady = function(){
+			if( !ready ){
+				while( readyQueue.length ){
+					readyQueue.shift().call( doc );
+				}
+				ready = true;
+			}
+		};
+
+	// If DOM is already ready at exec time, depends on the browser.
+	// From: https://github.com/mobify/mobifyjs/blob/526841be5509e28fc949038021799e4223479f8d/src/capture.js#L128
+	if (doc.attachEvent ? doc.readyState === "complete" : doc.readyState !== "loading") {
+		runReady();
+	} else {
+		doc.addEventListener( "DOMContentLoaded", runReady, false );
+		doc.addEventListener( "readystatechange", runReady, false );
+		win.addEventListener( "load", runReady, false );
+	}
+
+
+
+  /**
+	 * Checks the current set of elements against the selector, if one matches return `true`.
+	 *
+	 * @param {string} selector The selector to check.
+	 * @return {boolean}
+	 * @this {shoestring}
+	 */
+	shoestring.fn.is = function( selector ){
+		var ret = false, self = this, parents, check;
+
+		// assume a dom element
+		if( typeof selector !== "string" ){
+			// array-like, ie shoestring objects or element arrays
+			if( selector.length && selector[0] ){
+				check = selector;
+			} else {
+				check = [selector];
+			}
+
+			return _checkElements(this, check);
+		}
+
+		parents = this.parent();
+
+		if( !parents.length ){
+			parents = shoestring( doc );
+		}
+
+		parents.each(function( i, e ) {
+			var children;
+
+					children = e.querySelectorAll( selector );
+
+			ret = _checkElements( self, children );
+		});
+
+		return ret;
+	};
+
+	function _checkElements(needles, haystack){
+		var ret = false;
+
+		needles.each(function() {
+			var j = 0;
+
+			while( j < haystack.length ){
+				if( this === haystack[j] ){
+					ret = true;
+				}
+
+				j++;
+			}
+		});
+
+		return ret;
+	}
+
+
+
+	/**
+	 * Get data attached to the first element or set data values on all elements in the current set.
+	 *
+	 * @param {string} name The data attribute name.
+	 * @param {any} value The value assigned to the data attribute.
+	 * @return {any|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.data = function( name, value ){
+		if( name !== undefined ){
+			if( value !== undefined ){
+				return this.each(function(){
+					if( !this.shoestringData ){
+						this.shoestringData = {};
+					}
+
+					this.shoestringData[ name ] = value;
+				});
+			}
+			else {
+				if( this[ 0 ] ) {
+					if( this[ 0 ].shoestringData ) {
+						return this[ 0 ].shoestringData[ name ];
+					}
+				}
+			}
+		}
+		else {
+			return this[ 0 ] ? this[ 0 ].shoestringData || {} : undefined;
+		}
+	};
+
+
+	/**
+	 * Remove data associated with `name` or all the data, for each element in the current set.
+	 *
+	 * @param {string} name The data attribute name.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeData = function( name ){
+		return this.each(function(){
+			if( name !== undefined && this.shoestringData ){
+				this.shoestringData[ name ] = undefined;
+				delete this.shoestringData[ name ];
+			}	else {
+				this[ 0 ].shoestringData = {};
+			}
+		});
+	};
+
+
+
+	/**
+	 * An alias for the `shoestring` constructor.
+	 */
+	win.$ = shoestring;
+
+
+
+	/**
+	 * Add a class to each DOM element in the set of elements.
+	 *
+	 * @param {string} className The name of the class to be added.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.addClass = function( className ){
+		var classes = className.replace(/^\s+|\s+$/g, '').split( " " );
+
+		return this.each(function(){
+			for( var i = 0, il = classes.length; i < il; i++ ){
+				if( this.className !== undefined &&
+						(this.className === "" ||
+						!this.className.match( new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)"))) ){
+					this.className += " " + classes[ i ];
+				}
+			}
+		});
+	};
+
+
+
+  /**
+	 * Add elements matching the selector to the current set.
+	 *
+	 * @param {string} selector The selector for the elements to add from the DOM
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.add = function( selector ){
+		var ret = [];
+		this.each(function(){
+			ret.push( this );
+		});
+
+		shoestring( selector ).each(function(){
+			ret.push( this );
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string as the last child of each element in the set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.append = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				this.appendChild( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ] );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Insert the current set as the last child of the elements matching the selector.
+	 *
+	 * @param {string} selector The selector after which to append the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.appendTo = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).append( this );
+		});
+	};
+
+
+
+  /**
+	 * Get the value of the first element of the set or set the value of all the elements in the set.
+	 *
+	 * @param {string} name The attribute name.
+	 * @param {string} value The new value for the attribute.
+	 * @return {shoestring|string|undefined}
+	 * @this {shoestring}
+	 */
+	shoestring.fn.attr = function( name, value ){
+		var nameStr = typeof( name ) === "string";
+
+		if( value !== undefined || !nameStr ){
+			return this.each(function(){
+				if( nameStr ){
+					this.setAttribute( name, value );
+				}	else {
+					for( var i in name ){
+						if( name.hasOwnProperty( i ) ){
+							this.setAttribute( i, name[ i ] );
+						}
+					}
+				}
+			});
+		} else {
+			return this[ 0 ] ? this[ 0 ].getAttribute( name ) : undefined;
+		}
+	};
+
+
+
+	/**
+	 * Insert an element or HTML string before each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML or HTMLElement to insert.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.before = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				this.parentNode.insertBefore( i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ], this );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Get the children of the current collection.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.children = function(){
+				var ret = [],
+			childs,
+			j;
+		this.each(function(){
+			childs = this.children;
+			j = -1;
+
+			while( j++ < childs.length-1 ){
+				if( shoestring.inArray(  childs[ j ], ret ) === -1 ){
+					ret.push( childs[ j ] );
+				}
+			}
+		});
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Find an element matching the selector in the set of the current element and its parents.
+	 *
+	 * @param {string} selector The selector used to identify the target element.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.closest = function( selector ){
+		var ret = [];
+
+		if( !selector ){
+			return shoestring( ret );
+		}
+
+		this.each(function(){
+			var element, $self = shoestring( element = this );
+
+			if( $self.is(selector) ){
+				ret.push( this );
+				return;
+			}
+
+			while( element.parentElement ) {
+				if( shoestring(element.parentElement).is(selector) ){
+					ret.push( element.parentElement );
+					break;
+				}
+
+				element = element.parentElement;
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+  shoestring.cssExceptions = {
+		'float': [ 'cssFloat' ]
+	};
+
+
+
+	(function() {
+		var cssExceptions = shoestring.cssExceptions;
+
+		// IE8 uses marginRight instead of margin-right
+		function convertPropertyName( str ) {
+			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
+				return character.toUpperCase();
+			});
+		}
+
+		function _getStyle( element, property ) {
+			return win.getComputedStyle( element, null ).getPropertyValue( property );
+		}
+
+		var vendorPrefixes = [ '', '-webkit-', '-ms-', '-moz-', '-o-', '-khtml-' ];
+
+		/**
+		 * Private function for getting the computed style of an element.
+		 *
+		 * **NOTE** Please use the [css](../css.js.html) method instead.
+		 *
+		 * @method _getStyle
+		 * @param {HTMLElement} element The element we want the style property for.
+		 * @param {string} property The css property we want the style for.
+		 */
+		shoestring._getStyle = function( element, property ) {
+			var convert, value, j, k;
+
+			if( cssExceptions[ property ] ) {
+				for( j = 0, k = cssExceptions[ property ].length; j < k; j++ ) {
+					value = _getStyle( element, cssExceptions[ property ][ j ] );
+
+					if( value ) {
+						return value;
+					}
+				}
+			}
+
+			for( j = 0, k = vendorPrefixes.length; j < k; j++ ) {
+				convert = convertPropertyName( vendorPrefixes[ j ] + property );
+
+				// VendorprefixKeyName || key-name
+				value = _getStyle( element, convert );
+
+				if( convert !== property ) {
+					value = value || _getStyle( element, property );
+				}
+
+				if( vendorPrefixes[ j ] ) {
+					// -vendorprefix-key-name
+					value = value || _getStyle( element, vendorPrefixes[ j ] + property );
+				}
+
+				if( value ) {
+					return value;
+				}
+			}
+
+			return undefined;
+		};
+	})();
+
+
+
+	(function() {
+		var cssExceptions = shoestring.cssExceptions;
+
+		// IE8 uses marginRight instead of margin-right
+		function convertPropertyName( str ) {
+			return str.replace( /\-([A-Za-z])/g, function ( match, character ) {
+				return character.toUpperCase();
+			});
+		}
+
+		/**
+		 * Private function for setting the style of an element.
+		 *
+		 * **NOTE** Please use the [css](../css.js.html) method instead.
+		 *
+		 * @method _setStyle
+		 * @param {HTMLElement} element The element we want to style.
+		 * @param {string} property The property being used to style the element.
+		 * @param {string} value The css value for the style property.
+		 */
+		shoestring._setStyle = function( element, property, value ) {
+			var convertedProperty = convertPropertyName(property);
+
+			element.style[ property ] = value;
+
+			if( convertedProperty !== property ) {
+				element.style[ convertedProperty ] = value;
+			}
+
+			if( cssExceptions[ property ] ) {
+				for( var j = 0, k = cssExceptions[ property ].length; j<k; j++ ) {
+					element.style[ cssExceptions[ property ][ j ] ] = value;
+				}
+			}
+		};
+	})();
+
+
+
+	/**
+	 * Get the compute style property of the first element or set the value of a style property
+	 * on all elements in the set.
+	 *
+	 * @method _setStyle
+	 * @param {string} property The property being used to style the element.
+	 * @param {string|undefined} value The css value for the style property.
+	 * @return {string|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.css = function( property, value ){
+		if( !this[0] ){
+			return;
+		}
+
+		if( typeof property === "object" ) {
+			return this.each(function() {
+				for( var key in property ) {
+					if( property.hasOwnProperty( key ) ) {
+						shoestring._setStyle( this, key, property[key] );
+					}
+				}
+			});
+		}	else {
+			// assignment else retrieve first
+			if( value !== undefined ){
+				return this.each(function(){
+					shoestring._setStyle( this, property, value );
+				});
+			}
+
+			return shoestring._getStyle( this[0], property );
+		}
+	};
+
+
+
+	/**
+	 * Returns the indexed element wrapped in a new `shoestring` object.
+	 *
+	 * @param {integer} index The index of the element to wrap and return.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.eq = function( index ){
+		if( this[index] ){
+			return shoestring( this[index] );
+		}
+
+		return shoestring([]);
+	};
+
+
+
+	/**
+	 * Filter out the current set if they do *not* match the passed selector or
+	 * the supplied callback returns false
+	 *
+	 * @param {string,function} selector The selector or boolean return value callback used to filter the elements.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.filter = function( selector ){
+		var ret = [];
+
+		this.each(function( index ){
+			var wsel;
+
+			if( typeof selector === 'function' ) {
+				if( selector.call( this, index ) !== false ) {
+					ret.push( this );
+				}
+			} else {
+				if( !this.parentNode ){
+					var context = shoestring( doc.createDocumentFragment() );
+
+					context[ 0 ].appendChild( this );
+					wsel = shoestring( selector, context );
+				} else {
+					wsel = shoestring( selector, this.parentNode );
+				}
+
+				if( shoestring.inArray( this, wsel ) > -1 ){
+					ret.push( this );
+				}
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Find descendant elements of the current collection.
+	 *
+	 * @param {string} selector The selector used to find the children
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.find = function( selector ){
+		var ret = [],
+			finds;
+		this.each(function(){
+				finds = this.querySelectorAll( selector );
+
+			for( var i = 0, il = finds.length; i < il; i++ ){
+				ret = ret.concat( finds[i] );
+			}
+		});
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Returns the first element of the set wrapped in a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.first = function(){
+		return this.eq( 0 );
+	};
+
+
+
+	/**
+	 * Returns the raw DOM node at the passed index.
+	 *
+	 * @param {integer} index The index of the element to wrap and return.
+	 * @return {HTMLElement|undefined|array}
+	 * @this shoestring
+	 */
+	shoestring.fn.get = function( index ){
+
+		// return an array of elements if index is undefined
+		if( index === undefined ){
+			var elements = [];
+
+			for( var i = 0; i < this.length; i++ ){
+				elements.push( this[ i ] );
+			}
+
+			return elements;
+		} else {
+			return this[ index ];
+		}
+	};
+
+
+
+	var set = function( html ){
+		if( typeof html === "string" || typeof html === "number" ){
+			return this.each(function(){
+				this.innerHTML = "" + html;
+			});
+		} else {
+			var h = "";
+			if( typeof html.length !== "undefined" ){
+				for( var i = 0, l = html.length; i < l; i++ ){
+					h += html[i].outerHTML;
+				}
+			} else {
+				h = html.outerHTML;
+			}
+			return this.each(function(){
+				this.innerHTML = h;
+			});
+		}
+	};
+	/**
+	 * Gets or sets the `innerHTML` from all the elements in the set.
+	 *
+	 * @param {string|undefined} html The html to assign
+	 * @return {string|shoestring}
+	 * @this shoestring
+	 */
+	shoestring.fn.html = function( html ){
+				if( typeof html !== "undefined" ){
+			return set.call( this, html );
+		} else { // get
+			var pile = "";
+
+			this.each(function(){
+				pile += this.innerHTML;
+			});
+
+			return pile;
+		}
+	};
+
+
+
+	(function() {
+		function _getIndex( set, test ) {
+			var i, result, element;
+
+			for( i = result = 0; i < set.length; i++ ) {
+				element = set.item ? set.item(i) : set[i];
+
+				if( test(element) ){
+					return result;
+				}
+
+				// ignore text nodes, etc
+				// NOTE may need to be more permissive
+				if( element.nodeType === 1 ){
+					result++;
+				}
+			}
+
+			return -1;
+		}
+
+		/**
+		 * Find the index in the current set for the passed selector.
+		 * Without a selector it returns the index of the first node within the array of its siblings.
+		 *
+		 * @param {string|undefined} selector The selector used to search for the index.
+		 * @return {integer}
+		 * @this {shoestring}
+		 */
+		shoestring.fn.index = function( selector ){
+			var self, children;
+
+			self = this;
+
+			// no arg? check the children, otherwise check each element that matches
+			if( selector === undefined ){
+				children = ( ( this[ 0 ] && this[0].parentNode ) || doc.documentElement).childNodes;
+
+				// check if the element matches the first of the set
+				return _getIndex(children, function( element ) {
+					return self[0] === element;
+				});
+			} else {
+
+				// check if the element matches the first selected node from the parent
+				return _getIndex(self, function( element ) {
+					return element === (shoestring( selector, element.parentNode )[ 0 ]);
+				});
+			}
+		};
+	})();
+
+
+
+	/**
+	 * Insert the current set before the elements matching the selector.
+	 *
+	 * @param {string} selector The selector before which to insert the current set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.insertBefore = function( selector ){
+		return this.each(function(){
+			shoestring( selector ).before( this );
+		});
+	};
+
+
+
+	/**
+	 * Returns the last element of the set wrapped in a new `shoestring` object.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.last = function(){
+		return this.eq( this.length - 1 );
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of siblings of each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.next = function(){
+		
+		var result = [];
+
+		// TODO need to implement map
+		this.each(function() {
+			var children, item, found;
+
+			// get the child nodes for this member of the set
+			children = shoestring( this.parentNode )[0].childNodes;
+
+			for( var i = 0; i < children.length; i++ ){
+				item = children.item( i );
+
+				// found the item we needed (found) which means current item value is
+				// the next node in the list, as long as it's viable grab it
+				// NOTE may need to be more permissive
+				if( found && item.nodeType === 1 ){
+					result.push( item );
+					break;
+				}
+
+				// find the current item and mark it as found
+				if( item === this ){
+					found = true;
+				}
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Removes elements from the current set.
+	 *
+	 * @param {string} selector The selector to use when removing the elements.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.not = function( selector ){
+		var ret = [];
+
+		this.each(function(){
+			var found = shoestring( selector, this.parentNode );
+
+			if( shoestring.inArray(this, found) === -1 ){
+				ret.push( this );
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+	/**
+	 * Returns the set of first parents for each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.parent = function(){
+		var ret = [],
+			parent;
+
+		this.each(function(){
+			// no parent node, assume top level
+			// jQuery parent: return the document object for <html> or the parent node if it exists
+			parent = (this === doc.documentElement ? doc : this.parentNode);
+
+			// if there is a parent and it's not a document fragment
+			if( parent && parent.nodeType !== 11 ){
+				ret.push( parent );
+			}
+		});
+
+		return shoestring(ret);
+	};
+
+
+
+	/**
+	 * Add an HTML string or element before the children of each element in the current set.
+	 *
+	 * @param {string|HTMLElement} fragment The HTML string or element to add.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prepend = function( fragment ){
+		if( typeof( fragment ) === "string" || fragment.nodeType !== undefined ){
+			fragment = shoestring( fragment );
+		}
+
+		return this.each(function( i ){
+
+			for( var j = 0, jl = fragment.length; j < jl; j++ ){
+				var insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+				if ( this.firstChild ){
+					this.insertBefore( insertEl, this.firstChild );
+				} else {
+					this.appendChild( insertEl );
+				}
+			}
+		});
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of *one* siblingx before each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prev = function(){
+		
+		var result = [];
+
+		// TODO need to implement map
+		this.each(function() {
+			var children, item, found;
+
+			// get the child nodes for this member of the set
+			children = shoestring( this.parentNode )[0].childNodes;
+
+			for( var i = children.length -1; i >= 0; i-- ){
+				item = children.item( i );
+
+				// found the item we needed (found) which means current item value is
+				// the next node in the list, as long as it's viable grab it
+				// NOTE may need to be more permissive
+				if( found && item.nodeType === 1 ){
+					result.push( item );
+					break;
+				}
+
+				// find the current item and mark it as found
+				if( item === this ){
+					found = true;
+				}
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Returns a `shoestring` object with the set of *all* siblings before each element in the original set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.prevAll = function(){
+		
+		var result = [];
+
+		this.each(function() {
+			var $previous = shoestring( this ).prev();
+
+			while( $previous.length ){
+				result.push( $previous[0] );
+				$previous = $previous.prev();
+			}
+		});
+
+		return shoestring( result );
+	};
+
+
+
+	/**
+	 * Remove an attribute from each element in the current set.
+	 *
+	 * @param {string} name The name of the attribute.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeAttr = function( name ){
+		return this.each(function(){
+			this.removeAttribute( name );
+		});
+	};
+
+
+
+	/**
+	 * Remove a class from each DOM element in the set of elements.
+	 *
+	 * @param {string} className The name of the class to be removed.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.removeClass = function( cname ){
+		var classes = cname.replace(/^\s+|\s+$/g, '').split( " " );
+
+		return this.each(function(){
+			var newClassName, regex;
+
+			for( var i = 0, il = classes.length; i < il; i++ ){
+				if( this.className !== undefined ){
+					regex = new RegExp( "(^|\\s)" + classes[ i ] + "($|\\s)", "gmi" );
+					newClassName = this.className.replace( regex, " " );
+
+					this.className = newClassName.replace(/^\s+|\s+$/g, '');
+				}
+			}
+		});
+	};
+
+
+
+	/**
+	 * Remove the current set of elements from the DOM.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.remove = function(){
+		return this.each(function(){
+			if( this.parentNode ) {
+				this.parentNode.removeChild( this );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Replace each element in the current set with that argument HTML string or HTMLElement.
+	 *
+	 * @param {string|HTMLElement} fragment The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.replaceWith = function( fragment ){
+		if( typeof( fragment ) === "string" ){
+			fragment = shoestring( fragment );
+		}
+
+		var ret = [];
+
+		if( fragment.length > 1 ){
+			fragment = fragment.reverse();
+		}
+		this.each(function( i ){
+			var clone = this.cloneNode( true ),
+				insertEl;
+			ret.push( clone );
+
+			// If there is no parentNode, this is pointless, drop it.
+			if( !this.parentNode ){ return; }
+
+			if( fragment.length === 1 ){
+				insertEl = i > 0 ? fragment[ 0 ].cloneNode( true ) : fragment[ 0 ];
+				this.parentNode.replaceChild( insertEl, this );
+			} else {
+				for( var j = 0, jl = fragment.length; j < jl; j++ ){
+					insertEl = i > 0 ? fragment[ j ].cloneNode( true ) : fragment[ j ];
+					this.parentNode.insertBefore( insertEl, this.nextSibling );
+				}
+				this.parentNode.removeChild( this );
+			}
+		});
+
+		return shoestring( ret );
+	};
+
+
+
+  /**
+	 * Get all of the sibling elements for each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.siblings = function(){
+		
+		if( !this.length ) {
+			return shoestring( [] );
+		}
+
+		var sibs = [], el = this[ 0 ].parentNode.firstChild;
+
+		do {
+			if( el.nodeType === 1 && el !== this[ 0 ] ) {
+				sibs.push( el );
+			}
+
+      el = el.nextSibling;
+		} while( el );
+
+		return shoestring( sibs );
+	};
+
+
+
+	var getText = function( elem ){
+		var node,
+			ret = "",
+			i = 0,
+			nodeType = elem.nodeType;
+
+		if ( !nodeType ) {
+			// If no nodeType, this is expected to be an array
+			while ( (node = elem[i++]) ) {
+				// Do not traverse comment nodes
+				ret += getText( node );
+			}
+		} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+			// Use textContent for elements
+			// innerText usage removed for consistency of new lines (jQuery #11153)
+			if ( typeof elem.textContent === "string" ) {
+				return elem.textContent;
+			} else {
+				// Traverse its children
+				for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
+					ret += getText( elem );
+				}
+			}
+		} else if ( nodeType === 3 || nodeType === 4 ) {
+			return elem.nodeValue;
+		}
+		// Do not include comment or processing instruction nodes
+
+		return ret;
+	};
+
+  /**
+	 * Recursively retrieve the text content of the each element in the current set.
+	 *
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.text = function() {
+		
+		return getText( this );
+	};
+
+
+
+
+	/**
+	 * Get the value of the first element or set the value of all elements in the current set.
+	 *
+	 * @param {string} value The value to set.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.val = function( value ){
+		var el;
+		if( value !== undefined ){
+			return this.each(function(){
+				if( this.tagName === "SELECT" ){
+					var optionSet, option,
+						options = this.options,
+						values = [],
+						i = options.length,
+						newIndex;
+
+					values[0] = value;
+					while ( i-- ) {
+						option = options[ i ];
+						if ( (option.selected = shoestring.inArray( option.value, values ) >= 0) ) {
+							optionSet = true;
+							newIndex = i;
+						}
+					}
+					// force browsers to behave consistently when non-matching value is set
+					if ( !optionSet ) {
+						this.selectedIndex = -1;
+					} else {
+						this.selectedIndex = newIndex;
+					}
+				} else {
+					this.value = value;
+				}
+			});
+		} else {
+			el = this[0];
+
+			if( el.tagName === "SELECT" ){
+				if( el.selectedIndex < 0 ){ return ""; }
+				return el.options[ el.selectedIndex ].value;
+			} else {
+				return el.value;
+			}
+		}
+	};
+
+
+
+	/**
+	 * Private function for setting/getting the offset property for height/width.
+	 *
+	 * **NOTE** Please use the [width](width.js.html) or [height](height.js.html) methods instead.
+	 *
+	 * @param {shoestring} set The set of elements.
+	 * @param {string} name The string "height" or "width".
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this window
+	 */
+	shoestring._dimension = function( set, name, value ){
+		var offsetName;
+
+		if( value === undefined ){
+			offsetName = name.replace(/^[a-z]/, function( letter ) {
+				return letter.toUpperCase();
+			});
+
+			return set[ 0 ][ "offset" + offsetName ];
+		} else {
+			// support integer values as pixels
+			value = typeof value === "string" ? value : value + "px";
+
+			return set.each(function(){
+				this.style[ name ] = value;
+			});
+		}
+	};
+
+
+
+	/**
+	 * Gets the width value of the first element or sets the width for the whole set.
+	 *
+	 * @param {float|undefined} value The value to assign.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.width = function( value ){
+		return shoestring._dimension( this, "width", value );
+	};
+
+
+
+	/**
+	 * Wraps the child elements in the provided HTML.
+	 *
+	 * @param {string} html The wrapping HTML.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.wrapInner = function( html ){
+		return this.each(function(){
+			var inH = this.innerHTML;
+
+			this.innerHTML = "";
+			shoestring( this ).append( shoestring( html ).html( inH ) );
+		});
+	};
+
+
+
+	function initEventCache( el, evt ) {
+		if ( !el.shoestringData ) {
+			el.shoestringData = {};
+		}
+		if ( !el.shoestringData.events ) {
+			el.shoestringData.events = {};
+		}
+		if ( !el.shoestringData.loop ) {
+			el.shoestringData.loop = {};
+		}
+		if ( !el.shoestringData.events[ evt ] ) {
+			el.shoestringData.events[ evt ] = [];
+		}
+	}
+
+	function addToEventCache( el, evt, eventInfo ) {
+		var obj = {};
+		obj.isCustomEvent = eventInfo.isCustomEvent;
+		obj.callback = eventInfo.callfunc;
+		obj.originalCallback = eventInfo.originalCallback;
+		obj.namespace = eventInfo.namespace;
+
+		el.shoestringData.events[ evt ].push( obj );
+
+		if( eventInfo.customEventLoop ) {
+			el.shoestringData.loop[ evt ] = eventInfo.customEventLoop;
+		}
+	}
+
+	/**
+	 * Bind a callback to an event for the currrent set of elements.
+	 *
+	 * @param {string} evt The event(s) to watch for.
+	 * @param {object,function} data Data to be included with each event or the callback.
+	 * @param {function} originalCallback Callback to be invoked when data is define.d.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.bind = function( evt, data, originalCallback ){
+
+				if( typeof data === "function" ){
+			originalCallback = data;
+			data = null;
+		}
+
+		var evts = evt.split( " " );
+
+		// NOTE the `triggeredElement` is purely for custom events from IE
+		function encasedCallback( e, namespace, triggeredElement ){
+			var result;
+
+			if( e._namespace && e._namespace !== namespace ) {
+				return;
+			}
+
+			e.data = data;
+			e.namespace = e._namespace;
+
+			var returnTrue = function(){
+				return true;
+			};
+
+			e.isDefaultPrevented = function(){
+				return false;
+			};
+
+			var originalPreventDefault = e.preventDefault;
+			var preventDefaultConstructor = function(){
+				if( originalPreventDefault ) {
+					return function(){
+						e.isDefaultPrevented = returnTrue;
+						originalPreventDefault.call(e);
+					};
+				} else {
+					return function(){
+						e.isDefaultPrevented = returnTrue;
+						e.returnValue = false;
+					};
+				}
+			};
+
+			// thanks https://github.com/jonathantneal/EventListener
+			e.target = triggeredElement || e.target || e.srcElement;
+			e.preventDefault = preventDefaultConstructor();
+			e.stopPropagation = e.stopPropagation || function () {
+				e.cancelBubble = true;
+			};
+
+			result = originalCallback.apply(this, [ e ].concat( e._args ) );
+
+			if( result === false ){
+				e.preventDefault();
+				e.stopPropagation();
+			}
+
+			return result;
+		}
+
+		return this.each(function(){
+			var domEventCallback,
+				customEventCallback,
+				customEventLoop,
+				oEl = this;
+
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				var split = evts[ i ].split( "." ),
+					evt = split[ 0 ],
+					namespace = split.length > 0 ? split[ 1 ] : null;
+
+				domEventCallback = function( originalEvent ) {
+					if( oEl.ssEventTrigger ) {
+						originalEvent._namespace = oEl.ssEventTrigger._namespace;
+						originalEvent._args = oEl.ssEventTrigger._args;
+
+						oEl.ssEventTrigger = null;
+					}
+					return encasedCallback.call( oEl, originalEvent, namespace );
+				};
+				customEventCallback = null;
+				customEventLoop = null;
+
+				initEventCache( this, evt );
+
+				this.addEventListener( evt, domEventCallback, false );
+
+				addToEventCache( this, evt, {
+					callfunc: customEventCallback || domEventCallback,
+					isCustomEvent: !!customEventCallback,
+					customEventLoop: customEventLoop,
+					originalCallback: originalCallback,
+					namespace: namespace
+				});
+			}
+		});
+	};
+
+	shoestring.fn.on = shoestring.fn.bind;
+
+	
+
+
+	/**
+	 * Unbind a previous bound callback for an event.
+	 *
+	 * @param {string} event The event(s) the callback was bound to..
+	 * @param {function} callback Callback to unbind.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.unbind = function( event, callback ){
+
+		
+		var evts = event ? event.split( " " ) : [];
+
+		return this.each(function(){
+			if( !this.shoestringData || !this.shoestringData.events ) {
+				return;
+			}
+
+			if( !evts.length ) {
+				unbindAll.call( this );
+			} else {
+				var split, evt, namespace;
+				for( var i = 0, il = evts.length; i < il; i++ ){
+					split = evts[ i ].split( "." ),
+					evt = split[ 0 ],
+					namespace = split.length > 0 ? split[ 1 ] : null;
+
+					if( evt ) {
+						unbind.call( this, evt, namespace, callback );
+					} else {
+						unbindAll.call( this, namespace, callback );
+					}
+				}
+			}
+		});
+	};
+
+	function unbind( evt, namespace, callback ) {
+		var bound = this.shoestringData.events[ evt ];
+		if( !(bound && bound.length) ) {
+			return;
+		}
+
+		var matched = [], j, jl;
+		for( j = 0, jl = bound.length; j < jl; j++ ) {
+			if( !namespace || namespace === bound[ j ].namespace ) {
+				if( callback === undefined || callback === bound[ j ].originalCallback ) {
+					this.removeEventListener( evt, bound[ j ].callback, false );
+					matched.push( j );
+				}
+			}
+		}
+
+		for( j = 0, jl = matched.length; j < jl; j++ ) {
+			this.shoestringData.events[ evt ].splice( j, 1 );
+		}
+	}
+
+	function unbindAll( namespace, callback ) {
+		for( var evtKey in this.shoestringData.events ) {
+			unbind.call( this, evtKey, namespace, callback );
+		}
+	}
+
+	shoestring.fn.off = shoestring.fn.unbind;
+
+
+	/**
+	 * Bind a callback to an event for the currrent set of elements, unbind after one occurence.
+	 *
+	 * @param {string} event The event(s) to watch for.
+	 * @param {function} callback Callback to invoke on the event.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.one = function( event, callback ){
+		var evts = event.split( " " );
+
+		return this.each(function(){
+			var thisevt, cbs = {},	$t = shoestring( this );
+
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				thisevt = evts[ i ];
+
+				cbs[ thisevt ] = function( e ){
+					var $t = shoestring( this );
+
+					for( var j in cbs ) {
+						$t.unbind( j, cbs[ j ] );
+					}
+
+					return callback.apply( this, [ e ].concat( e._args ) );
+				};
+
+				$t.bind( thisevt, cbs[ thisevt ] );
+			}
+		});
+	};
+
+
+
+	/**
+	 * Trigger an event on the first element in the set, no bubbling, no defaults.
+	 *
+	 * @param {string} event The event(s) to trigger.
+	 * @param {object} args Arguments to append to callback invocations.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.triggerHandler = function( event, args ){
+		var e = event.split( " " )[ 0 ],
+			el = this[ 0 ],
+			ret;
+
+		// See this.fireEvent( 'on' + evts[ i ], document.createEventObject() ); instead of click() etc in trigger.
+		if( doc.createEvent && el.shoestringData && el.shoestringData.events && el.shoestringData.events[ e ] ){
+			var bindings = el.shoestringData.events[ e ];
+			for (var i in bindings ){
+				if( bindings.hasOwnProperty( i ) ){
+					event = doc.createEvent( "Event" );
+					event.initEvent( e, true, true );
+					event._args = args;
+					args.unshift( event );
+
+					ret = bindings[ i ].originalCallback.apply( event.target, args );
+				}
+			}
+		}
+
+		return ret;
+	};
+
+
+
+	/**
+	 * Trigger an event on each of the DOM elements in the current set.
+	 *
+	 * @param {string} event The event(s) to trigger.
+	 * @param {object} args Arguments to append to callback invocations.
+	 * @return shoestring
+	 * @this shoestring
+	 */
+	shoestring.fn.trigger = function( event, args ){
+		var evts = event.split( " " );
+
+		return this.each(function(){
+			var split, evt, namespace;
+			for( var i = 0, il = evts.length; i < il; i++ ){
+				split = evts[ i ].split( "." ),
+				evt = split[ 0 ],
+				namespace = split.length > 0 ? split[ 1 ] : null;
+
+				if( evt === "click" ){
+					if( this.tagName === "INPUT" && this.type === "checkbox" && this.click ){
+						this.click();
+						return false;
+					}
+				}
+
+				if( doc.createEvent ){
+					var event = doc.createEvent( "Event" );
+					event.initEvent( evt, true, true );
+					event._args = args;
+					event._namespace = namespace;
+
+					this.dispatchEvent( event );
+				}
+			}
+		});
+	};
+
+
+
+	return shoestring;
+}));
+
+(function (root, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(["shoestring"], function (shoestring) {
+      return (root.Tablesaw = factory(shoestring, root));
+    });
+  } else if (typeof exports === 'object') {
+    module.exports = factory(require('shoestring'), root);
+  } else {
+    root.Tablesaw = factory(shoestring, root);
+  }
+}(typeof window !== "undefined" ? window : this, function ($, window) {
+	"use strict";
+
+  var document = window.document;
+// Account for Tablesaw being loaded either before or after the DOMContentLoaded event is fired.
+var domContentLoadedTriggered = /complete|loaded/.test(document.readyState);
+document.addEventListener("DOMContentLoaded", function() {
+	domContentLoadedTriggered = true;
+});
+
+var Tablesaw = {
+	i18n: {
+		modeStack: "Stack",
+		modeSwipe: "Swipe",
+		modeToggle: "Toggle",
+		modeSwitchColumnsAbbreviated: "Cols",
+		modeSwitchColumns: "Columns",
+		columnToggleButton: "Columns",
+		columnToggleError: "No eligible columns.",
+		sort: "Sort",
+		swipePreviousColumn: "Previous column",
+		swipeNextColumn: "Next column"
+	},
+	// cut the mustard
+	mustard:
+		"head" in document && // IE9+, Firefox 4+, Safari 5.1+, Mobile Safari 4.1+, Opera 11.5+, Android 2.3+
+		(!window.blackberry || window.WebKitPoint) && // only WebKit Blackberry (OS 6+)
+		!window.operamini,
+	$: $,
+	_init: function(element) {
+		Tablesaw.$(element || document).trigger("enhance.tablesaw");
+	},
+	init: function(element) {
+		// Account for Tablesaw being loaded either before or after the DOMContentLoaded event is fired.
+		domContentLoadedTriggered =
+			domContentLoadedTriggered || /complete|loaded/.test(document.readyState);
+		if (!domContentLoadedTriggered) {
+			if ("addEventListener" in document) {
+				// Use raw DOMContentLoaded instead of shoestring (may have issues in Android 2.3, exhibited by stack table)
+				document.addEventListener("DOMContentLoaded", function() {
+					Tablesaw._init(element);
+				});
+			}
+		} else {
+			Tablesaw._init(element);
+		}
+	}
+};
+
+$(document).on("enhance.tablesaw", function() {
+	// Extend i18n config, if one exists.
+	if (typeof TablesawConfig !== "undefined" && TablesawConfig.i18n) {
+		Tablesaw.i18n = $.extend(Tablesaw.i18n, TablesawConfig.i18n || {});
+	}
+
+	Tablesaw.i18n.modes = [
+		Tablesaw.i18n.modeStack,
+		Tablesaw.i18n.modeSwipe,
+		Tablesaw.i18n.modeToggle
+	];
+});
+
+if (Tablesaw.mustard) {
+	$(document.documentElement).addClass("tablesaw-enhanced");
+}
+
+(function() {
+	var pluginName = "tablesaw";
+	var classes = {
+		toolbar: "tablesaw-bar"
+	};
+	var events = {
+		create: "tablesawcreate",
+		destroy: "tablesawdestroy",
+		refresh: "tablesawrefresh",
+		resize: "tablesawresize"
+	};
+	var defaultMode = "stack";
+	var initSelector = "table";
+	var initFilterSelector = "[data-tablesaw],[data-tablesaw-mode],[data-tablesaw-sortable]";
+	var defaultConfig = {};
+
+	Tablesaw.events = events;
+
+	var Table = function(element) {
+		if (!element) {
+			throw new Error("Tablesaw requires an element.");
+		}
+
+		this.table = element;
+		this.$table = $(element);
+
+		// only one <thead> and <tfoot> are allowed, per the specification
+		this.$thead = this.$table
+			.children()
+			.filter("thead")
+			.eq(0);
+
+		// multiple <tbody> are allowed, per the specification
+		this.$tbody = this.$table.children().filter("tbody");
+
+		this.mode = this.$table.attr("data-tablesaw-mode") || defaultMode;
+
+		this.$toolbar = null;
+
+		this.attributes = {
+			subrow: "data-tablesaw-subrow",
+			ignorerow: "data-tablesaw-ignorerow"
+		};
+
+		this.init();
+	};
+
+	Table.prototype.init = function() {
+		if (!this.$thead.length) {
+			throw new Error("tablesaw: a <thead> is required, but none was found.");
+		}
+
+		if (!this.$thead.find("th").length) {
+			throw new Error("tablesaw: no header cells found. Are you using <th> inside of <thead>?");
+		}
+
+		// assign an id if there is none
+		if (!this.$table.attr("id")) {
+			this.$table.attr("id", pluginName + "-" + Math.round(Math.random() * 10000));
+		}
+
+		this.createToolbar();
+
+		this._initCells();
+
+		this.$table.data(pluginName, this);
+
+		this.$table.trigger(events.create, [this]);
+	};
+
+	Table.prototype.getConfig = function(pluginSpecificConfig) {
+		// shoestring extend doesn’t support arbitrary args
+		var configs = $.extend(defaultConfig, pluginSpecificConfig || {});
+		return $.extend(configs, typeof TablesawConfig !== "undefined" ? TablesawConfig : {});
+	};
+
+	Table.prototype._getPrimaryHeaderRow = function() {
+		return this._getHeaderRows().eq(0);
+	};
+
+	Table.prototype._getHeaderRows = function() {
+		return this.$thead
+			.children()
+			.filter("tr")
+			.filter(function() {
+				return !$(this).is("[data-tablesaw-ignorerow]");
+			});
+	};
+
+	Table.prototype._getRowIndex = function($row) {
+		return $row.prevAll().length;
+	};
+
+	Table.prototype._getHeaderRowIndeces = function() {
+		var self = this;
+		var indeces = [];
+		this._getHeaderRows().each(function() {
+			indeces.push(self._getRowIndex($(this)));
+		});
+		return indeces;
+	};
+
+	Table.prototype._getPrimaryHeaderCells = function($row) {
+		return ($row || this._getPrimaryHeaderRow()).find("th");
+	};
+
+	Table.prototype._$getCells = function(th) {
+		var self = this;
+		return $(th)
+			.add(th.cells)
+			.filter(function() {
+				var $t = $(this);
+				var $row = $t.parent();
+				var hasColspan = $t.is("[colspan]");
+				// no subrows or ignored rows (keep cells in ignored rows that do not have a colspan)
+				return (
+					!$row.is("[" + self.attributes.subrow + "]") &&
+					(!$row.is("[" + self.attributes.ignorerow + "]") || !hasColspan)
+				);
+			});
+	};
+
+	Table.prototype._getVisibleColspan = function() {
+		var colspan = 0;
+		this._getPrimaryHeaderCells().each(function() {
+			var $t = $(this);
+			if ($t.css("display") !== "none") {
+				colspan += parseInt($t.attr("colspan"), 10) || 1;
+			}
+		});
+		return colspan;
+	};
+
+	Table.prototype.getColspanForCell = function($cell) {
+		var visibleColspan = this._getVisibleColspan();
+		var visibleSiblingColumns = 0;
+		if ($cell.closest("tr").data("tablesaw-rowspanned")) {
+			visibleSiblingColumns++;
+		}
+
+		$cell.siblings().each(function() {
+			var $t = $(this);
+			var colColspan = parseInt($t.attr("colspan"), 10) || 1;
+
+			if ($t.css("display") !== "none") {
+				visibleSiblingColumns += colColspan;
+			}
+		});
+		// console.log( $cell[ 0 ], visibleColspan, visibleSiblingColumns );
+
+		return visibleColspan - visibleSiblingColumns;
+	};
+
+	Table.prototype.isCellInColumn = function(header, cell) {
+		return $(header)
+			.add(header.cells)
+			.filter(function() {
+				return this === cell;
+			}).length;
+	};
+
+	Table.prototype.updateColspanCells = function(cls, header, userAction) {
+		var self = this;
+		var primaryHeaderRow = self._getPrimaryHeaderRow();
+
+		// find persistent column rowspans
+		this.$table.find("[rowspan][data-tablesaw-priority]").each(function() {
+			var $t = $(this);
+			if ($t.attr("data-tablesaw-priority") !== "persist") {
+				return;
+			}
+
+			var $row = $t.closest("tr");
+			var rowspan = parseInt($t.attr("rowspan"), 10);
+			if (rowspan > 1) {
+				$row = $row.next();
+
+				$row.data("tablesaw-rowspanned", true);
+
+				rowspan--;
+			}
+		});
+
+		this.$table
+			.find("[colspan],[data-tablesaw-maxcolspan]")
+			.filter(function() {
+				// is not in primary header row
+				return $(this).closest("tr")[0] !== primaryHeaderRow[0];
+			})
+			.each(function() {
+				var $cell = $(this);
+
+				if (userAction === undefined || self.isCellInColumn(header, this)) {
+				} else {
+					// if is not a user action AND the cell is not in the updating column, kill it
+					return;
+				}
+
+				var colspan = self.getColspanForCell($cell);
+
+				if (cls && userAction !== undefined) {
+					// console.log( colspan === 0 ? "addClass" : "removeClass", $cell );
+					$cell[colspan === 0 ? "addClass" : "removeClass"](cls);
+				}
+
+				// cache original colspan
+				var maxColspan = parseInt($cell.attr("data-tablesaw-maxcolspan"), 10);
+				if (!maxColspan) {
+					$cell.attr("data-tablesaw-maxcolspan", $cell.attr("colspan"));
+				} else if (colspan > maxColspan) {
+					colspan = maxColspan;
+				}
+
+				// console.log( this, "setting colspan to ", colspan );
+				$cell.attr("colspan", colspan);
+			});
+	};
+
+	Table.prototype._findPrimaryHeadersForCell = function(cell) {
+		var $headerRow = this._getPrimaryHeaderRow();
+		var headerRowIndex = this._getRowIndex($headerRow);
+		var results = [];
+
+		for (var rowNumber = 0; rowNumber < this.headerMapping.length; rowNumber++) {
+			if (rowNumber === headerRowIndex) {
+				continue;
+			}
+
+			for (var colNumber = 0; colNumber < this.headerMapping[rowNumber].length; colNumber++) {
+				if (this.headerMapping[rowNumber][colNumber] === cell) {
+					results.push(this.headerMapping[headerRowIndex][colNumber]);
+				}
+			}
+		}
+
+		return results;
+	};
+
+	// used by init cells
+	Table.prototype.getRows = function() {
+		var self = this;
+		return this.$table.find("tr").filter(function() {
+			return $(this)
+				.closest("table")
+				.is(self.$table);
+		});
+	};
+
+	// used by sortable
+	Table.prototype.getBodyRows = function(tbody) {
+		return (tbody ? $(tbody) : this.$tbody).children().filter("tr");
+	};
+
+	Table.prototype.getHeaderCellIndex = function(cell) {
+		var lookup = this.headerMapping[0];
+		for (var colIndex = 0; colIndex < lookup.length; colIndex++) {
+			if (lookup[colIndex] === cell) {
+				return colIndex;
+			}
+		}
+
+		return -1;
+	};
+
+	Table.prototype._initCells = function() {
+		// re-establish original colspans
+		this.$table.find("[data-tablesaw-maxcolspan]").each(function() {
+			var $t = $(this);
+			$t.attr("colspan", $t.attr("data-tablesaw-maxcolspan"));
+		});
+
+		var $rows = this.getRows();
+		var columnLookup = [];
+
+		$rows.each(function(rowNumber) {
+			columnLookup[rowNumber] = [];
+		});
+
+		$rows.each(function(rowNumber) {
+			var coltally = 0;
+			var $t = $(this);
+			var children = $t.children();
+
+			children.each(function() {
+				var colspan = parseInt(
+					this.getAttribute("data-tablesaw-maxcolspan") || this.getAttribute("colspan"),
+					10
+				);
+				var rowspan = parseInt(this.getAttribute("rowspan"), 10);
+
+				// set in a previous rowspan
+				while (columnLookup[rowNumber][coltally]) {
+					coltally++;
+				}
+
+				columnLookup[rowNumber][coltally] = this;
+
+				// TODO? both colspan and rowspan
+				if (colspan) {
+					for (var k = 0; k < colspan - 1; k++) {
+						coltally++;
+						columnLookup[rowNumber][coltally] = this;
+					}
+				}
+				if (rowspan) {
+					for (var j = 1; j < rowspan; j++) {
+						columnLookup[rowNumber + j][coltally] = this;
+					}
+				}
+
+				coltally++;
+			});
+		});
+
+		var headerRowIndeces = this._getHeaderRowIndeces();
+		for (var colNumber = 0; colNumber < columnLookup[0].length; colNumber++) {
+			for (var headerIndex = 0, k = headerRowIndeces.length; headerIndex < k; headerIndex++) {
+				var headerCol = columnLookup[headerRowIndeces[headerIndex]][colNumber];
+
+				var rowNumber = headerRowIndeces[headerIndex];
+				var rowCell;
+
+				if (!headerCol.cells) {
+					headerCol.cells = [];
+				}
+
+				while (rowNumber < columnLookup.length) {
+					rowCell = columnLookup[rowNumber][colNumber];
+
+					if (headerCol !== rowCell) {
+						headerCol.cells.push(rowCell);
+					}
+
+					rowNumber++;
+				}
+			}
+		}
+
+		this.headerMapping = columnLookup;
+	};
+
+	Table.prototype.refresh = function() {
+		this._initCells();
+
+		this.$table.trigger(events.refresh, [this]);
+	};
+
+	Table.prototype._getToolbarAnchor = function() {
+		var $parent = this.$table.parent();
+		if ($parent.is(".tablesaw-overflow")) {
+			return $parent;
+		}
+		return this.$table;
+	};
+
+	Table.prototype._getToolbar = function($anchor) {
+		if (!$anchor) {
+			$anchor = this._getToolbarAnchor();
+		}
+		return $anchor.prev().filter("." + classes.toolbar);
+	};
+
+	Table.prototype.createToolbar = function() {
+		// Insert the toolbar
+		// TODO move this into a separate component
+		var $anchor = this._getToolbarAnchor();
+		var $toolbar = this._getToolbar($anchor);
+		if (!$toolbar.length) {
+			$toolbar = $("<div>")
+				.addClass(classes.toolbar)
+				.insertBefore($anchor);
+		}
+		this.$toolbar = $toolbar;
+
+		if (this.mode) {
+			this.$toolbar.addClass("tablesaw-mode-" + this.mode);
+		}
+	};
+
+	Table.prototype.destroy = function() {
+		// Don’t remove the toolbar, just erase the classes on it.
+		// Some of the table features are not yet destroy-friendly.
+		this._getToolbar().each(function() {
+			this.className = this.className.replace(/\btablesaw-mode\-\w*\b/gi, "");
+		});
+
+		var tableId = this.$table.attr("id");
+		$(document).off("." + tableId);
+		$(window).off("." + tableId);
+
+		// other plugins
+		this.$table.trigger(events.destroy, [this]);
+
+		this.$table.removeData(pluginName);
+	};
+
+	// Collection method.
+	$.fn[pluginName] = function() {
+		return this.each(function() {
+			var $t = $(this);
+
+			if ($t.data(pluginName)) {
+				return;
+			}
+
+			new Table(this);
+		});
+	};
+
+	var $doc = $(document);
+	$doc.on("enhance.tablesaw", function(e) {
+		// Cut the mustard
+		if (Tablesaw.mustard) {
+			var $target = $(e.target);
+			if ($target.parent().length) {
+				$target = $target.parent();
+			}
+
+			$target
+				.find(initSelector)
+				.filter(initFilterSelector)
+				[pluginName]();
+		}
+	});
+
+	// Avoid a resize during scroll:
+	// Some Mobile devices trigger a resize during scroll (sometimes when
+	// doing elastic stretch at the end of the document or from the
+	// location bar hide)
+	var isScrolling = false;
+	var scrollTimeout;
+	$doc.on("scroll.tablesaw", function() {
+		isScrolling = true;
+
+		window.clearTimeout(scrollTimeout);
+		scrollTimeout = window.setTimeout(function() {
+			isScrolling = false;
+		}, 300); // must be greater than the resize timeout below
+	});
+
+	var resizeTimeout;
+	$(window).on("resize", function() {
+		if (!isScrolling) {
+			window.clearTimeout(resizeTimeout);
+			resizeTimeout = window.setTimeout(function() {
+				$doc.trigger(events.resize);
+			}, 150); // must be less than the scrolling timeout above.
+		}
+	});
+
+	Tablesaw.Table = Table;
+})();
+
+(function() {
+	var classes = {
+		stackTable: "tablesaw-stack",
+		cellLabels: "tablesaw-cell-label",
+		cellContentLabels: "tablesaw-cell-content"
+	};
+
+	var data = {
+		key: "tablesaw-stack"
+	};
+
+	var attrs = {
+		labelless: "data-tablesaw-no-labels",
+		hideempty: "data-tablesaw-hide-empty"
+	};
+
+	var Stack = function(element, tablesaw) {
+		this.tablesaw = tablesaw;
+		this.$table = $(element);
+
+		this.labelless = this.$table.is("[" + attrs.labelless + "]");
+		this.hideempty = this.$table.is("[" + attrs.hideempty + "]");
+
+		this.$table.data(data.key, this);
+	};
+
+	Stack.prototype.init = function() {
+		this.$table.addClass(classes.stackTable);
+
+		if (this.labelless) {
+			return;
+		}
+
+		var self = this;
+
+		this.$table
+			.find("th, td")
+			.filter(function() {
+				return !$(this).closest("thead").length;
+			})
+			.filter(function() {
+				return (
+					!$(this).is("[" + attrs.labelless + "]") &&
+					!$(this)
+						.closest("tr")
+						.is("[" + attrs.labelless + "]") &&
+					(!self.hideempty || !!$(this).html())
+				);
+			})
+			.each(function() {
+				var $newHeader = $(document.createElement("b")).addClass(classes.cellLabels);
+				var $cell = $(this);
+
+				$(self.tablesaw._findPrimaryHeadersForCell(this)).each(function(index) {
+					var $header = $(this.cloneNode(true));
+					// TODO decouple from sortable better
+					// Changed from .text() in https://github.com/filamentgroup/tablesaw/commit/b9c12a8f893ec192830ec3ba2d75f062642f935b
+					// to preserve structural html in headers, like <a>
+					var $sortableButton = $header.find(".tablesaw-sortable-btn");
+					$header.find(".tablesaw-sortable-arrow").remove();
+
+					// TODO decouple from checkall better
+					var $checkall = $header.find("[data-tablesaw-checkall]");
+					$checkall.closest("label").remove();
+					if ($checkall.length) {
+						$newHeader = $([]);
+						return;
+					}
+
+					if (index > 0) {
+						$newHeader.append(document.createTextNode(", "));
+					}
+
+					var parentNode = $sortableButton.length ? $sortableButton[0] : $header[0];
+					var el;
+					while ((el = parentNode.firstChild)) {
+						$newHeader[0].appendChild(el);
+					}
+				});
+
+				if ($newHeader.length && !$cell.find("." + classes.cellContentLabels).length) {
+					$cell.wrapInner("<span class='" + classes.cellContentLabels + "'></span>");
+				}
+
+				// Update if already exists.
+				var $label = $cell.find("." + classes.cellLabels);
+				if (!$label.length) {
+					$cell.prepend(document.createTextNode(" "));
+					$cell.prepend($newHeader);
+				} else {
+					// only if changed
+					$label.replaceWith($newHeader);
+				}
+			});
+	};
+
+	Stack.prototype.destroy = function() {
+		this.$table.removeClass(classes.stackTable);
+		this.$table.find("." + classes.cellLabels).remove();
+		this.$table.find("." + classes.cellContentLabels).each(function() {
+			$(this).replaceWith($(this.childNodes));
+		});
+	};
+
+	// on tablecreate, init
+	$(document)
+		.on(Tablesaw.events.create, function(e, tablesaw) {
+			if (tablesaw.mode === "stack") {
+				var table = new Stack(tablesaw.table, tablesaw);
+				table.init();
+			}
+		})
+		.on(Tablesaw.events.refresh, function(e, tablesaw) {
+			if (tablesaw.mode === "stack") {
+				$(tablesaw.table)
+					.data(data.key)
+					.init();
+			}
+		})
+		.on(Tablesaw.events.destroy, function(e, tablesaw) {
+			if (tablesaw.mode === "stack") {
+				$(tablesaw.table)
+					.data(data.key)
+					.destroy();
+			}
+		});
+
+	Tablesaw.Stack = Stack;
+})();
+
+(function() {
+	var pluginName = "tablesawbtn",
+		methods = {
+			_create: function() {
+				return $(this).each(function() {
+					$(this)
+						.trigger("beforecreate." + pluginName)
+						[pluginName]("_init")
+						.trigger("create." + pluginName);
+				});
+			},
+			_init: function() {
+				var oEl = $(this),
+					sel = this.getElementsByTagName("select")[0];
+
+				if (sel) {
+					// TODO next major version: remove .btn-select
+					$(this)
+						.addClass("btn-select tablesaw-btn-select")
+						[pluginName]("_select", sel);
+				}
+				return oEl;
+			},
+			_select: function(sel) {
+				var update = function(oEl, sel) {
+					var opts = $(sel).find("option");
+					var label = document.createElement("span");
+					var el;
+					var children;
+					var found = false;
+
+					label.setAttribute("aria-hidden", "true");
+					label.innerHTML = "&#160;";
+
+					opts.each(function() {
+						var opt = this;
+						if (opt.selected) {
+							label.innerHTML = opt.text;
+						}
+					});
+
+					children = oEl.childNodes;
+					if (opts.length > 0) {
+						for (var i = 0, l = children.length; i < l; i++) {
+							el = children[i];
+
+							if (el && el.nodeName.toUpperCase() === "SPAN") {
+								oEl.replaceChild(label, el);
+								found = true;
+							}
+						}
+
+						if (!found) {
+							oEl.insertBefore(label, oEl.firstChild);
+						}
+					}
+				};
+
+				update(this, sel);
+				// todo should this be tablesawrefresh?
+				$(this).on("change refresh", function() {
+					update(this, sel);
+				});
+			}
+		};
+
+	// Collection method.
+	$.fn[pluginName] = function(arrg, a, b, c) {
+		return this.each(function() {
+			// if it's a method
+			if (arrg && typeof arrg === "string") {
+				return $.fn[pluginName].prototype[arrg].call(this, a, b, c);
+			}
+
+			// don't re-init
+			if ($(this).data(pluginName + "active")) {
+				return $(this);
+			}
+
+			$(this).data(pluginName + "active", true);
+
+			$.fn[pluginName].prototype._create.call(this);
+		});
+	};
+
+	// add methods
+	$.extend($.fn[pluginName].prototype, methods);
+
+	// TODO OOP this and add to Tablesaw object
+})();
+
+(function() {
+	var data = {
+		key: "tablesaw-coltoggle"
+	};
+
+	var ColumnToggle = function(element) {
+		this.$table = $(element);
+
+		if (!this.$table.length) {
+			return;
+		}
+
+		this.tablesaw = this.$table.data("tablesaw");
+
+		this.attributes = {
+			btnTarget: "data-tablesaw-columntoggle-btn-target",
+			set: "data-tablesaw-columntoggle-set"
+		};
+
+		this.classes = {
+			columnToggleTable: "tablesaw-columntoggle",
+			columnBtnContain: "tablesaw-columntoggle-btnwrap tablesaw-advance",
+			columnBtn: "tablesaw-columntoggle-btn tablesaw-nav-btn down",
+			popup: "tablesaw-columntoggle-popup",
+			priorityPrefix: "tablesaw-priority-"
+		};
+
+		this.set = [];
+		this.$headers = this.tablesaw._getPrimaryHeaderCells();
+
+		this.$table.data(data.key, this);
+	};
+
+	// Column Toggle Sets (one column chooser can control multiple tables)
+	ColumnToggle.prototype.initSet = function() {
+		var set = this.$table.attr(this.attributes.set);
+		if (set) {
+			// Should not include the current table
+			var table = this.$table[0];
+			this.set = $("table[" + this.attributes.set + "='" + set + "']")
+				.filter(function() {
+					return this !== table;
+				})
+				.get();
+		}
+	};
+
+	ColumnToggle.prototype.init = function() {
+		if (!this.$table.length) {
+			return;
+		}
+
+		var tableId,
+			id,
+			$menuButton,
+			$popup,
+			$menu,
+			$btnContain,
+			self = this;
+
+		var cfg = this.tablesaw.getConfig({
+			getColumnToggleLabelTemplate: function(text) {
+				return "<label><input type='checkbox' checked>" + text + "</label>";
+			}
+		});
+
+		this.$table.addClass(this.classes.columnToggleTable);
+
+		tableId = this.$table.attr("id");
+		id = tableId + "-popup";
+		$btnContain = $("<div class='" + this.classes.columnBtnContain + "'></div>");
+		// TODO next major version: remove .btn
+		$menuButton = $(
+			"<a href='#" +
+				id +
+				"' class='btn tablesaw-btn btn-micro " +
+				this.classes.columnBtn +
+				"' data-popup-link>" +
+				"<span>" +
+				Tablesaw.i18n.columnToggleButton +
+				"</span></a>"
+		);
+		$popup = $("<div class='" + this.classes.popup + "' id='" + id + "'></div>");
+		$menu = $("<div class='tablesaw-btn-group'></div>");
+
+		this.$popup = $popup;
+
+		var hasNonPersistentHeaders = false;
+		this.$headers.each(function() {
+			var $this = $(this),
+				priority = $this.attr("data-tablesaw-priority"),
+				$cells = self.tablesaw._$getCells(this);
+
+			if (priority && priority !== "persist") {
+				$cells.addClass(self.classes.priorityPrefix + priority);
+
+				$(cfg.getColumnToggleLabelTemplate($this.text()))
+					.appendTo($menu)
+					.find('input[type="checkbox"]')
+					.data("tablesaw-header", this);
+
+				hasNonPersistentHeaders = true;
+			}
+		});
+
+		if (!hasNonPersistentHeaders) {
+			$menu.append("<label>" + Tablesaw.i18n.columnToggleError + "</label>");
+		}
+
+		$menu.appendTo($popup);
+
+		function onToggleCheckboxChange(checkbox) {
+			var checked = checkbox.checked;
+
+			var header = self.getHeaderFromCheckbox(checkbox);
+			var $cells = self.tablesaw._$getCells(header);
+
+			$cells[!checked ? "addClass" : "removeClass"]("tablesaw-toggle-cellhidden");
+			$cells[checked ? "addClass" : "removeClass"]("tablesaw-toggle-cellvisible");
+
+			self.updateColspanCells(header, checked);
+
+			self.$table.trigger("tablesawcolumns");
+		}
+
+		// bind change event listeners to inputs - TODO: move to a private method?
+		$menu.find('input[type="checkbox"]').on("change", function(e) {
+			onToggleCheckboxChange(e.target);
+
+			if (self.set.length) {
+				var index;
+				$(self.$popup)
+					.find("input[type='checkbox']")
+					.each(function(j) {
+						if (this === e.target) {
+							index = j;
+							return false;
+						}
+					});
+
+				$(self.set).each(function() {
+					var checkbox = $(this)
+						.data(data.key)
+						.$popup.find("input[type='checkbox']")
+						.get(index);
+					if (checkbox) {
+						checkbox.checked = e.target.checked;
+						onToggleCheckboxChange(checkbox);
+					}
+				});
+			}
+		});
+
+		$menuButton.appendTo($btnContain);
+
+		// Use a different target than the toolbar
+		var $btnTarget = $(this.$table.attr(this.attributes.btnTarget));
+		$btnContain.appendTo($btnTarget.length ? $btnTarget : this.tablesaw.$toolbar);
+
+		function closePopup(event) {
+			// Click came from inside the popup, ignore.
+			if (event && $(event.target).closest("." + self.classes.popup).length) {
+				return;
+			}
+
+			$(document).off("click." + tableId);
+			$menuButton.removeClass("up").addClass("down");
+			$btnContain.removeClass("visible");
+		}
+
+		var closeTimeout;
+		function openPopup() {
+			$btnContain.addClass("visible");
+			$menuButton.removeClass("down").addClass("up");
+
+			$(document).off("click." + tableId, closePopup);
+
+			window.clearTimeout(closeTimeout);
+			closeTimeout = window.setTimeout(function() {
+				$(document).on("click." + tableId, closePopup);
+			}, 15);
+		}
+
+		$menuButton.on("click.tablesaw", function(event) {
+			event.preventDefault();
+
+			if (!$btnContain.is(".visible")) {
+				openPopup();
+			} else {
+				closePopup();
+			}
+		});
+
+		$popup.appendTo($btnContain);
+
+		this.$menu = $menu;
+
+		// Fix for iOS not rendering shadows correctly when using `-webkit-overflow-scrolling`
+		var $overflow = this.$table.closest(".tablesaw-overflow");
+		if ($overflow.css("-webkit-overflow-scrolling")) {
+			var timeout;
+			$overflow.on("scroll", function() {
+				var $div = $(this);
+				window.clearTimeout(timeout);
+				timeout = window.setTimeout(function() {
+					$div.css("-webkit-overflow-scrolling", "auto");
+					window.setTimeout(function() {
+						$div.css("-webkit-overflow-scrolling", "touch");
+					}, 0);
+				}, 100);
+			});
+		}
+
+		$(window).on(Tablesaw.events.resize + "." + tableId, function() {
+			self.refreshToggle();
+		});
+
+		this.initSet();
+		this.refreshToggle();
+	};
+
+	ColumnToggle.prototype.getHeaderFromCheckbox = function(checkbox) {
+		return $(checkbox).data("tablesaw-header");
+	};
+
+	ColumnToggle.prototype.refreshToggle = function() {
+		var self = this;
+		var invisibleColumns = 0;
+		this.$menu.find("input").each(function() {
+			var header = self.getHeaderFromCheckbox(this);
+			this.checked =
+				self.tablesaw
+					._$getCells(header)
+					.eq(0)
+					.css("display") === "table-cell";
+		});
+
+		this.updateColspanCells();
+	};
+
+	ColumnToggle.prototype.updateColspanCells = function(header, userAction) {
+		this.tablesaw.updateColspanCells("tablesaw-toggle-cellhidden", header, userAction);
+	};
+
+	ColumnToggle.prototype.destroy = function() {
+		this.$table.removeClass(this.classes.columnToggleTable);
+		this.$table.find("th, td").each(function() {
+			var $cell = $(this);
+			$cell.removeClass("tablesaw-toggle-cellhidden").removeClass("tablesaw-toggle-cellvisible");
+
+			this.className = this.className.replace(/\bui\-table\-priority\-\d\b/g, "");
+		});
+	};
+
+	// on tablecreate, init
+	$(document).on(Tablesaw.events.create, function(e, tablesaw) {
+		if (tablesaw.mode === "columntoggle") {
+			var table = new ColumnToggle(tablesaw.table);
+			table.init();
+		}
+	});
+
+	$(document).on(Tablesaw.events.destroy, function(e, tablesaw) {
+		if (tablesaw.mode === "columntoggle") {
+			$(tablesaw.table)
+				.data(data.key)
+				.destroy();
+		}
+	});
+
+	$(document).on(Tablesaw.events.refresh, function(e, tablesaw) {
+		if (tablesaw.mode === "columntoggle") {
+			$(tablesaw.table)
+				.data(data.key)
+				.refreshToggle();
+		}
+	});
+
+	Tablesaw.ColumnToggle = ColumnToggle;
+})();
+
+(function() {
+	function getSortValue(cell) {
+		var text = [];
+		$(cell.childNodes).each(function() {
+			var $el = $(this);
+			if ($el.is("input, select")) {
+				text.push($el.val());
+			} else if ($el.is(".tablesaw-cell-label")) {
+			} else {
+				text.push(($el.text() || "").replace(/^\s+|\s+$/g, ""));
+			}
+		});
+
+		return text.join("");
+	}
+
+	var pluginName = "tablesaw-sortable",
+		initSelector = "table[data-" + pluginName + "]",
+		sortableSwitchSelector = "[data-" + pluginName + "-switch]",
+		attrs = {
+			sortCol: "data-tablesaw-sortable-col",
+			defaultCol: "data-tablesaw-sortable-default-col",
+			numericCol: "data-tablesaw-sortable-numeric",
+			subRow: "data-tablesaw-subrow",
+			ignoreRow: "data-tablesaw-ignorerow"
+		},
+		classes = {
+			head: pluginName + "-head",
+			ascend: pluginName + "-ascending",
+			descend: pluginName + "-descending",
+			switcher: pluginName + "-switch",
+			tableToolbar: "tablesaw-bar-section",
+			sortButton: pluginName + "-btn"
+		},
+		methods = {
+			_create: function(o) {
+				return $(this).each(function() {
+					var init = $(this).data(pluginName + "-init");
+					if (init) {
+						return false;
+					}
+					$(this)
+						.data(pluginName + "-init", true)
+						.trigger("beforecreate." + pluginName)
+						[pluginName]("_init", o)
+						.trigger("create." + pluginName);
+				});
+			},
+			_init: function() {
+				var el = $(this);
+				var tblsaw = el.data("tablesaw");
+				var heads;
+				var $switcher;
+
+				function addClassToHeads(h) {
+					$.each(h, function(i, v) {
+						$(v).addClass(classes.head);
+					});
+				}
+
+				function makeHeadsActionable(h, fn) {
+					$.each(h, function(i, col) {
+						var b = $("<button class='" + classes.sortButton + "'/>");
+						b.on("click", { col: col }, fn);
+						$(col)
+							.wrapInner(b)
+							.find("button")
+							.append("<span class='tablesaw-sortable-arrow'>");
+					});
+				}
+
+				function clearOthers(headcells) {
+					$.each(headcells, function(i, v) {
+						var col = $(v);
+						col.removeAttr(attrs.defaultCol);
+						col.removeClass(classes.ascend);
+						col.removeClass(classes.descend);
+					});
+				}
+
+				function headsOnAction(e) {
+					if ($(e.target).is("a[href]")) {
+						return;
+					}
+
+					e.stopPropagation();
+					var headCell = $(e.target).closest("[" + attrs.sortCol + "]"),
+						v = e.data.col,
+						newSortValue = heads.index(headCell[0]);
+
+					clearOthers(
+						headCell
+							.closest("thead")
+							.find("th")
+							.filter(function() {
+								return this !== headCell[0];
+							})
+					);
+					if (headCell.is("." + classes.descend) || !headCell.is("." + classes.ascend)) {
+						el[pluginName]("sortBy", v, true);
+						newSortValue += "_asc";
+					} else {
+						el[pluginName]("sortBy", v);
+						newSortValue += "_desc";
+					}
+					if ($switcher) {
+						$switcher
+							.find("select")
+							.val(newSortValue)
+							.trigger("refresh");
+					}
+
+					e.preventDefault();
+				}
+
+				function handleDefault(heads) {
+					$.each(heads, function(idx, el) {
+						var $el = $(el);
+						if ($el.is("[" + attrs.defaultCol + "]")) {
+							if (!$el.is("." + classes.descend)) {
+								$el.addClass(classes.ascend);
+							}
+						}
+					});
+				}
+
+				function addSwitcher(heads) {
+					$switcher = $("<div>")
+						.addClass(classes.switcher)
+						.addClass(classes.tableToolbar);
+
+					var html = ["<label>" + Tablesaw.i18n.sort + ":"];
+
+					// TODO next major version: remove .btn
+					html.push('<span class="btn tablesaw-btn"><select>');
+					heads.each(function(j) {
+						var $t = $(this);
+						var isDefaultCol = $t.is("[" + attrs.defaultCol + "]");
+						var isDescending = $t.is("." + classes.descend);
+
+						var hasNumericAttribute = $t.is("[" + attrs.numericCol + "]");
+						var numericCount = 0;
+						// Check only the first four rows to see if the column is numbers.
+						var numericCountMax = 5;
+
+						$(this.cells.slice(0, numericCountMax)).each(function() {
+							if (!isNaN(parseInt(getSortValue(this), 10))) {
+								numericCount++;
+							}
+						});
+						var isNumeric = numericCount === numericCountMax;
+						if (!hasNumericAttribute) {
+							$t.attr(attrs.numericCol, isNumeric ? "" : "false");
+						}
+
+						html.push(
+							"<option" +
+								(isDefaultCol && !isDescending ? " selected" : "") +
+								' value="' +
+								j +
+								'_asc">' +
+								$t.text() +
+								" " +
+								(isNumeric ? "&#x2191;" : "(A-Z)") +
+								"</option>"
+						);
+						html.push(
+							"<option" +
+								(isDefaultCol && isDescending ? " selected" : "") +
+								' value="' +
+								j +
+								'_desc">' +
+								$t.text() +
+								" " +
+								(isNumeric ? "&#x2193;" : "(Z-A)") +
+								"</option>"
+						);
+					});
+					html.push("</select></span></label>");
+
+					$switcher.html(html.join(""));
+
+					var $firstChild = tblsaw.$toolbar.children().eq(0);
+					if ($firstChild.length) {
+						$switcher.insertBefore($firstChild);
+					} else {
+						$switcher.appendTo(tblsaw.$toolbar);
+					}
+					$switcher.find(".tablesaw-btn").tablesawbtn();
+					$switcher.find("select").on("change", function() {
+						var val = $(this)
+								.val()
+								.split("_"),
+							head = heads.eq(val[0]);
+
+						clearOthers(head.siblings());
+						el[pluginName]("sortBy", head.get(0), val[1] === "asc");
+					});
+				}
+
+				el.addClass(pluginName);
+
+				heads = el
+					.children()
+					.filter("thead")
+					.find("th[" + attrs.sortCol + "]");
+
+				addClassToHeads(heads);
+				makeHeadsActionable(heads, headsOnAction);
+				handleDefault(heads);
+
+				if (el.is(sortableSwitchSelector)) {
+					addSwitcher(heads);
+				}
+			},
+			sortRows: function(rows, colNum, ascending, col, tbody) {
+				function convertCells(cellArr, belongingToTbody) {
+					var cells = [];
+					$.each(cellArr, function(i, cell) {
+						var row = cell.parentNode;
+						var $row = $(row);
+						// next row is a subrow
+						var subrows = [];
+						var $next = $row.next();
+						while ($next.is("[" + attrs.subRow + "]")) {
+							subrows.push($next[0]);
+							$next = $next.next();
+						}
+
+						var tbody = row.parentNode;
+
+						// current row is a subrow
+						if ($row.is("[" + attrs.subRow + "]")) {
+						} else if (tbody === belongingToTbody) {
+							cells.push({
+								element: cell,
+								cell: getSortValue(cell),
+								row: row,
+								subrows: subrows.length ? subrows : null,
+								ignored: $row.is("[" + attrs.ignoreRow + "]")
+							});
+						}
+					});
+					return cells;
+				}
+
+				function getSortFxn(ascending, forceNumeric) {
+					var fn,
+						regex = /[^\-\+\d\.]/g;
+					if (ascending) {
+						fn = function(a, b) {
+							if (a.ignored || b.ignored) {
+								return 0;
+							}
+							if (forceNumeric) {
+								return (
+									parseFloat(a.cell.replace(regex, "")) - parseFloat(b.cell.replace(regex, ""))
+								);
+							} else {
+								return a.cell.toLowerCase() > b.cell.toLowerCase() ? 1 : -1;
+							}
+						};
+					} else {
+						fn = function(a, b) {
+							if (a.ignored || b.ignored) {
+								return 0;
+							}
+							if (forceNumeric) {
+								return (
+									parseFloat(b.cell.replace(regex, "")) - parseFloat(a.cell.replace(regex, ""))
+								);
+							} else {
+								return a.cell.toLowerCase() < b.cell.toLowerCase() ? 1 : -1;
+							}
+						};
+					}
+					return fn;
+				}
+
+				function convertToRows(sorted) {
+					var newRows = [],
+						i,
+						l;
+					for (i = 0, l = sorted.length; i < l; i++) {
+						newRows.push(sorted[i].row);
+						if (sorted[i].subrows) {
+							newRows.push(sorted[i].subrows);
+						}
+					}
+					return newRows;
+				}
+
+				var fn;
+				var sorted;
+				var cells = convertCells(col.cells, tbody);
+
+				var customFn = $(col).data("tablesaw-sort");
+
+				fn =
+					(customFn && typeof customFn === "function" ? customFn(ascending) : false) ||
+					getSortFxn(
+						ascending,
+						$(col).is("[" + attrs.numericCol + "]") &&
+							!$(col).is("[" + attrs.numericCol + '="false"]')
+					);
+
+				sorted = cells.sort(fn);
+
+				rows = convertToRows(sorted);
+
+				return rows;
+			},
+			makeColDefault: function(col, a) {
+				var c = $(col);
+				c.attr(attrs.defaultCol, "true");
+				if (a) {
+					c.removeClass(classes.descend);
+					c.addClass(classes.ascend);
+				} else {
+					c.removeClass(classes.ascend);
+					c.addClass(classes.descend);
+				}
+			},
+			sortBy: function(col, ascending) {
+				var el = $(this);
+				var colNum;
+				var tbl = el.data("tablesaw");
+				tbl.$tbody.each(function() {
+					var tbody = this;
+					var $tbody = $(this);
+					var rows = tbl.getBodyRows(tbody);
+					var sortedRows;
+					var map = tbl.headerMapping[0];
+					var j, k;
+
+					// find the column number that we’re sorting
+					for (j = 0, k = map.length; j < k; j++) {
+						if (map[j] === col) {
+							colNum = j;
+							break;
+						}
+					}
+
+					sortedRows = el[pluginName]("sortRows", rows, colNum, ascending, col, tbody);
+
+					// replace Table rows
+					for (j = 0, k = sortedRows.length; j < k; j++) {
+						$tbody.append(sortedRows[j]);
+					}
+				});
+
+				el[pluginName]("makeColDefault", col, ascending);
+
+				el.trigger("tablesaw-sorted");
+			}
+		};
+
+	// Collection method.
+	$.fn[pluginName] = function(arrg) {
+		var args = Array.prototype.slice.call(arguments, 1),
+			returnVal;
+
+		// if it's a method
+		if (arrg && typeof arrg === "string") {
+			returnVal = $.fn[pluginName].prototype[arrg].apply(this[0], args);
+			return typeof returnVal !== "undefined" ? returnVal : $(this);
+		}
+		// check init
+		if (!$(this).data(pluginName + "-active")) {
+			$(this).data(pluginName + "-active", true);
+			$.fn[pluginName].prototype._create.call(this, arrg);
+		}
+		return $(this);
+	};
+	// add methods
+	$.extend($.fn[pluginName].prototype, methods);
+
+	$(document).on(Tablesaw.events.create, function(e, Tablesaw) {
+		if (Tablesaw.$table.is(initSelector)) {
+			Tablesaw.$table[pluginName]();
+		}
+	});
+
+	// TODO OOP this and add to Tablesaw object
+})();
+
+(function() {
+	var classes = {
+		hideBtn: "disabled",
+		persistWidths: "tablesaw-fix-persist",
+		hiddenCol: "tablesaw-swipe-cellhidden",
+		persistCol: "tablesaw-swipe-cellpersist",
+		allColumnsVisible: "tablesaw-all-cols-visible"
+	};
+	var attrs = {
+		disableTouchEvents: "data-tablesaw-no-touch",
+		ignorerow: "data-tablesaw-ignorerow",
+		subrow: "data-tablesaw-subrow"
+	};
+
+	function createSwipeTable(tbl, $table) {
+		var tblsaw = $table.data("tablesaw");
+
+		var $btns = $("<div class='tablesaw-advance'></div>");
+		// TODO next major version: remove .btn
+		var $prevBtn = $(
+			"<a href='#' class='btn tablesaw-nav-btn tablesaw-btn btn-micro left'>" +
+				Tablesaw.i18n.swipePreviousColumn +
+				"</a>"
+		).appendTo($btns);
+		// TODO next major version: remove .btn
+		var $nextBtn = $(
+			"<a href='#' class='btn tablesaw-nav-btn tablesaw-btn btn-micro right'>" +
+				Tablesaw.i18n.swipeNextColumn +
+				"</a>"
+		).appendTo($btns);
+
+		var $headerCells = tbl._getPrimaryHeaderCells();
+		var $headerCellsNoPersist = $headerCells.not('[data-tablesaw-priority="persist"]');
+		var headerWidths = [];
+		var $head = $(document.head || "head");
+		var tableId = $table.attr("id");
+
+		if (!$headerCells.length) {
+			throw new Error("tablesaw swipe: no header cells found.");
+		}
+
+		$table.addClass("tablesaw-swipe");
+
+		function initMinHeaderWidths() {
+			$table.css({
+				width: "1px"
+			});
+
+			// remove any hidden columns
+			$table.find("." + classes.hiddenCol).removeClass(classes.hiddenCol);
+
+			headerWidths = [];
+			// Calculate initial widths
+			$headerCells.each(function() {
+				headerWidths.push(this.offsetWidth);
+			});
+
+			// reset props
+			$table.css({
+				width: ""
+			});
+		}
+
+		initMinHeaderWidths();
+
+		$btns.appendTo(tblsaw.$toolbar);
+
+		if (!tableId) {
+			tableId = "tableswipe-" + Math.round(Math.random() * 10000);
+			$table.attr("id", tableId);
+		}
+
+		function showColumn(headerCell) {
+			tblsaw._$getCells(headerCell).removeClass(classes.hiddenCol);
+		}
+
+		function hideColumn(headerCell) {
+			tblsaw._$getCells(headerCell).addClass(classes.hiddenCol);
+		}
+
+		function persistColumn(headerCell) {
+			tblsaw._$getCells(headerCell).addClass(classes.persistCol);
+		}
+
+		function isPersistent(headerCell) {
+			return $(headerCell).is('[data-tablesaw-priority="persist"]');
+		}
+
+		function unmaintainWidths() {
+			$table.removeClass(classes.persistWidths);
+			$("#" + tableId + "-persist").remove();
+		}
+
+		function maintainWidths() {
+			var prefix = "#" + tableId + ".tablesaw-swipe ",
+				styles = [],
+				tableWidth = $table.width(),
+				hash = [],
+				newHash;
+
+			// save persistent column widths (as long as they take up less than 75% of table width)
+			$headerCells.each(function(index) {
+				var width;
+				if (isPersistent(this)) {
+					width = this.offsetWidth;
+
+					if (width < tableWidth * 0.75) {
+						hash.push(index + "-" + width);
+						styles.push(
+							prefix +
+								" ." +
+								classes.persistCol +
+								":nth-child(" +
+								(index + 1) +
+								") { width: " +
+								width +
+								"px; }"
+						);
+					}
+				}
+			});
+			newHash = hash.join("_");
+
+			if (styles.length) {
+				$table.addClass(classes.persistWidths);
+				var $style = $("#" + tableId + "-persist");
+				// If style element not yet added OR if the widths have changed
+				if (!$style.length || $style.data("tablesaw-hash") !== newHash) {
+					// Remove existing
+					$style.remove();
+
+					$("<style>" + styles.join("\n") + "</style>")
+						.attr("id", tableId + "-persist")
+						.data("tablesaw-hash", newHash)
+						.appendTo($head);
+				}
+			}
+		}
+
+		function getNext() {
+			var next = [],
+				checkFound;
+
+			$headerCellsNoPersist.each(function(i) {
+				var $t = $(this),
+					isHidden = $t.css("display") === "none" || $t.is("." + classes.hiddenCol);
+
+				if (!isHidden && !checkFound) {
+					checkFound = true;
+					next[0] = i;
+				} else if (isHidden && checkFound) {
+					next[1] = i;
+
+					return false;
+				}
+			});
+
+			return next;
+		}
+
+		function getPrev() {
+			var next = getNext();
+			return [next[1] - 1, next[0] - 1];
+		}
+
+		function nextpair(fwd) {
+			return fwd ? getNext() : getPrev();
+		}
+
+		function canAdvance(pair) {
+			return pair[1] > -1 && pair[1] < $headerCellsNoPersist.length;
+		}
+
+		function matchesMedia() {
+			var matchMedia = $table.attr("data-tablesaw-swipe-media");
+			return !matchMedia || ("matchMedia" in window && window.matchMedia(matchMedia).matches);
+		}
+
+		function fakeBreakpoints() {
+			if (!matchesMedia()) {
+				return;
+			}
+
+			var containerWidth = $table.parent().width(),
+				persist = [],
+				sum = 0,
+				sums = [],
+				visibleNonPersistantCount = $headerCells.length;
+
+			$headerCells.each(function(index) {
+				var $t = $(this),
+					isPersist = $t.is('[data-tablesaw-priority="persist"]');
+
+				persist.push(isPersist);
+				sum += headerWidths[index];
+				sums.push(sum);
+
+				// is persistent or is hidden
+				if (isPersist || sum > containerWidth) {
+					visibleNonPersistantCount--;
+				}
+			});
+
+			// We need at least one column to swipe.
+			var needsNonPersistentColumn = visibleNonPersistantCount === 0;
+
+			$headerCells.each(function(index) {
+				if (sums[index] > containerWidth) {
+					hideColumn(this);
+				}
+			});
+
+			$headerCells.each(function(index) {
+				if (persist[index]) {
+					// for visual box-shadow
+					persistColumn(this);
+					return;
+				}
+
+				if (sums[index] <= containerWidth || needsNonPersistentColumn) {
+					needsNonPersistentColumn = false;
+					showColumn(this);
+					tblsaw.updateColspanCells(classes.hiddenCol, this, true);
+				}
+			});
+
+			unmaintainWidths();
+
+			$table.trigger("tablesawcolumns");
+		}
+
+		function advance(fwd) {
+			var pair = nextpair(fwd);
+			if (canAdvance(pair)) {
+				if (isNaN(pair[0])) {
+					if (fwd) {
+						pair[0] = 0;
+					} else {
+						pair[0] = $headerCellsNoPersist.length - 1;
+					}
+				}
+
+				// TODO just blindly hiding the previous column and showing the next column can result in
+				// column content overflow
+				maintainWidths();
+				hideColumn($headerCellsNoPersist.get(pair[0]));
+				tblsaw.updateColspanCells(classes.hiddenCol, $headerCellsNoPersist.get(pair[0]), false);
+
+				showColumn($headerCellsNoPersist.get(pair[1]));
+				tblsaw.updateColspanCells(classes.hiddenCol, $headerCellsNoPersist.get(pair[1]), true);
+
+				$table.trigger("tablesawcolumns");
+			}
+		}
+
+		$prevBtn.add($nextBtn).on("click", function(e) {
+			advance(!!$(e.target).closest($nextBtn).length);
+			e.preventDefault();
+		});
+
+		function getCoord(event, key) {
+			return (event.touches || event.originalEvent.touches)[0][key];
+		}
+
+		if (!$table.is("[" + attrs.disableTouchEvents + "]")) {
+			$table.on("touchstart.swipetoggle", function(e) {
+				var originX = getCoord(e, "pageX");
+				var originY = getCoord(e, "pageY");
+				var x;
+				var y;
+				var scrollTop = window.pageYOffset;
+
+				$(window).off(Tablesaw.events.resize, fakeBreakpoints);
+
+				$(this)
+					.on("touchmove.swipetoggle", function(e) {
+						x = getCoord(e, "pageX");
+						y = getCoord(e, "pageY");
+					})
+					.on("touchend.swipetoggle", function() {
+						var cfg = tbl.getConfig({
+							swipeHorizontalThreshold: 30,
+							swipeVerticalThreshold: 30
+						});
+
+						// This config code is a little awkward because shoestring doesn’t support deep $.extend
+						// Trying to work around when devs only override one of (not both) horizontalThreshold or
+						// verticalThreshold in their TablesawConfig.
+						// @TODO major version bump: remove cfg.swipe, move to just use the swipePrefix keys
+						var verticalThreshold = cfg.swipe
+							? cfg.swipe.verticalThreshold
+							: cfg.swipeVerticalThreshold;
+						var horizontalThreshold = cfg.swipe
+							? cfg.swipe.horizontalThreshold
+							: cfg.swipeHorizontalThreshold;
+
+						var isPageScrolled = Math.abs(window.pageYOffset - scrollTop) >= verticalThreshold;
+						var isVerticalSwipe = Math.abs(y - originY) >= verticalThreshold;
+
+						if (!isVerticalSwipe && !isPageScrolled) {
+							if (x - originX < -1 * horizontalThreshold) {
+								advance(true);
+							}
+							if (x - originX > horizontalThreshold) {
+								advance(false);
+							}
+						}
+
+						window.setTimeout(function() {
+							$(window).on(Tablesaw.events.resize, fakeBreakpoints);
+						}, 300);
+
+						$(this).off("touchmove.swipetoggle touchend.swipetoggle");
+					});
+			});
+		}
+
+		$table
+			.on("tablesawcolumns.swipetoggle", function() {
+				var canGoPrev = canAdvance(getPrev());
+				var canGoNext = canAdvance(getNext());
+				$prevBtn[canGoPrev ? "removeClass" : "addClass"](classes.hideBtn);
+				$nextBtn[canGoNext ? "removeClass" : "addClass"](classes.hideBtn);
+
+				tblsaw.$toolbar[!canGoPrev && !canGoNext ? "addClass" : "removeClass"](
+					classes.allColumnsVisible
+				);
+			})
+			.on("tablesawnext.swipetoggle", function() {
+				advance(true);
+			})
+			.on("tablesawprev.swipetoggle", function() {
+				advance(false);
+			})
+			.on(Tablesaw.events.destroy + ".swipetoggle", function() {
+				var $t = $(this);
+
+				$t.removeClass("tablesaw-swipe");
+				tblsaw.$toolbar.find(".tablesaw-advance").remove();
+				$(window).off(Tablesaw.events.resize, fakeBreakpoints);
+
+				$t.off(".swipetoggle");
+			})
+			.on(Tablesaw.events.refresh, function() {
+				unmaintainWidths();
+				initMinHeaderWidths();
+				fakeBreakpoints();
+			});
+
+		fakeBreakpoints();
+		$(window).on(Tablesaw.events.resize, fakeBreakpoints);
+	}
+
+	// on tablecreate, init
+	$(document).on(Tablesaw.events.create, function(e, tablesaw) {
+		if (tablesaw.mode === "swipe") {
+			createSwipeTable(tablesaw, tablesaw.$table);
+		}
+	});
+
+	// TODO OOP this and add to Tablesaw object
+})();
+
+(function() {
+	var MiniMap = {
+		attr: {
+			init: "data-tablesaw-minimap"
+		},
+		show: function(table) {
+			var mq = table.getAttribute(MiniMap.attr.init);
+
+			if (mq === "") {
+				// value-less but exists
+				return true;
+			} else if (mq && "matchMedia" in window) {
+				// has a mq value
+				return window.matchMedia(mq).matches;
+			}
+
+			return false;
+		}
+	};
+
+	function createMiniMap($table) {
+		var tblsaw = $table.data("tablesaw");
+		var $btns = $('<div class="tablesaw-advance minimap">');
+		var $dotNav = $('<ul class="tablesaw-advance-dots">').appendTo($btns);
+		var hideDot = "tablesaw-advance-dots-hide";
+		var $headerCells = $table.data("tablesaw")._getPrimaryHeaderCells();
+
+		// populate dots
+		$headerCells.each(function() {
+			$dotNav.append("<li><i></i></li>");
+		});
+
+		$btns.appendTo(tblsaw.$toolbar);
+
+		function showHideNav() {
+			if (!MiniMap.show($table[0])) {
+				$btns.css("display", "none");
+				return;
+			}
+			$btns.css("display", "block");
+
+			// show/hide dots
+			var dots = $dotNav.find("li").removeClass(hideDot);
+			$table.find("thead th").each(function(i) {
+				if ($(this).css("display") === "none") {
+					dots.eq(i).addClass(hideDot);
+				}
+			});
+		}
+
+		// run on init and resize
+		showHideNav();
+		$(window).on(Tablesaw.events.resize, showHideNav);
+
+		$table
+			.on("tablesawcolumns.minimap", function() {
+				showHideNav();
+			})
+			.on(Tablesaw.events.destroy + ".minimap", function() {
+				var $t = $(this);
+
+				tblsaw.$toolbar.find(".tablesaw-advance").remove();
+				$(window).off(Tablesaw.events.resize, showHideNav);
+
+				$t.off(".minimap");
+			});
+	}
+
+	// on tablecreate, init
+	$(document).on(Tablesaw.events.create, function(e, tablesaw) {
+		if (
+			(tablesaw.mode === "swipe" || tablesaw.mode === "columntoggle") &&
+			tablesaw.$table.is("[ " + MiniMap.attr.init + "]")
+		) {
+			createMiniMap(tablesaw.$table);
+		}
+	});
+
+	// TODO OOP this better
+	Tablesaw.MiniMap = MiniMap;
+})();
+
+(function() {
+	var S = {
+		selectors: {
+			init: "table[data-tablesaw-mode-switch]"
+		},
+		attributes: {
+			excludeMode: "data-tablesaw-mode-exclude"
+		},
+		classes: {
+			main: "tablesaw-modeswitch",
+			toolbar: "tablesaw-bar-section"
+		},
+		modes: ["stack", "swipe", "columntoggle"],
+		init: function(table) {
+			var $table = $(table);
+			var tblsaw = $table.data("tablesaw");
+			var ignoreMode = $table.attr(S.attributes.excludeMode);
+			var $toolbar = tblsaw.$toolbar;
+			var $switcher = $("<div>").addClass(S.classes.main + " " + S.classes.toolbar);
+
+			var html = [
+					'<label><span class="abbreviated">' +
+						Tablesaw.i18n.modeSwitchColumnsAbbreviated +
+						'</span><span class="longform">' +
+						Tablesaw.i18n.modeSwitchColumns +
+						"</span>:"
+				],
+				dataMode = $table.attr("data-tablesaw-mode"),
+				isSelected;
+
+			// TODO next major version: remove .btn
+			html.push('<span class="btn tablesaw-btn"><select>');
+			for (var j = 0, k = S.modes.length; j < k; j++) {
+				if (ignoreMode && ignoreMode.toLowerCase() === S.modes[j]) {
+					continue;
+				}
+
+				isSelected = dataMode === S.modes[j];
+
+				html.push(
+					"<option" +
+						(isSelected ? " selected" : "") +
+						' value="' +
+						S.modes[j] +
+						'">' +
+						Tablesaw.i18n.modes[j] +
+						"</option>"
+				);
+			}
+			html.push("</select></span></label>");
+
+			$switcher.html(html.join(""));
+
+			var $otherToolbarItems = $toolbar.find(".tablesaw-advance").eq(0);
+			if ($otherToolbarItems.length) {
+				$switcher.insertBefore($otherToolbarItems);
+			} else {
+				$switcher.appendTo($toolbar);
+			}
+
+			$switcher.find(".tablesaw-btn").tablesawbtn();
+			$switcher.find("select").on("change", function(event) {
+				return S.onModeChange.call(table, event, $(this).val());
+			});
+		},
+		onModeChange: function(event, val) {
+			var $table = $(this);
+			var tblsaw = $table.data("tablesaw");
+			var $switcher = tblsaw.$toolbar.find("." + S.classes.main);
+
+			$switcher.remove();
+			tblsaw.destroy();
+
+			$table.attr("data-tablesaw-mode", val);
+			$table.tablesaw();
+		}
+	};
+
+	$(document).on(Tablesaw.events.create, function(e, Tablesaw) {
+		if (Tablesaw.$table.is(S.selectors.init)) {
+			S.init(Tablesaw.table);
+		}
+	});
+
+	// TODO OOP this and add to Tablesaw object
+})();
+
+(function() {
+	var pluginName = "tablesawCheckAll";
+
+	function CheckAll(tablesaw) {
+		this.tablesaw = tablesaw;
+		this.$table = tablesaw.$table;
+
+		this.attr = "data-tablesaw-checkall";
+		this.checkAllSelector = "[" + this.attr + "]";
+		this.forceCheckedSelector = "[" + this.attr + "-checked]";
+		this.forceUncheckedSelector = "[" + this.attr + "-unchecked]";
+		this.checkboxSelector = 'input[type="checkbox"]';
+
+		this.$triggers = null;
+		this.$checkboxes = null;
+
+		if (this.$table.data(pluginName)) {
+			return;
+		}
+		this.$table.data(pluginName, this);
+		this.init();
+	}
+
+	CheckAll.prototype._filterCells = function($checkboxes) {
+		return $checkboxes
+			.filter(function() {
+				return !$(this)
+					.closest("tr")
+					.is("[data-tablesaw-subrow],[data-tablesaw-ignorerow]");
+			})
+			.find(this.checkboxSelector)
+			.not(this.checkAllSelector);
+	};
+
+	// With buttons you can use a scoping selector like: data-tablesaw-checkall="#my-scoped-id input[type='checkbox']"
+	CheckAll.prototype.getCheckboxesForButton = function(button) {
+		return this._filterCells($($(button).attr(this.attr)));
+	};
+
+	CheckAll.prototype.getCheckboxesForCheckbox = function(checkbox) {
+		return this._filterCells($($(checkbox).closest("th")[0].cells));
+	};
+
+	CheckAll.prototype.init = function() {
+		var self = this;
+		this.$table.find(this.checkAllSelector).each(function() {
+			var $trigger = $(this);
+			if ($trigger.is(self.checkboxSelector)) {
+				self.addCheckboxEvents(this);
+			} else {
+				self.addButtonEvents(this);
+			}
+		});
+	};
+
+	CheckAll.prototype.addButtonEvents = function(trigger) {
+		var self = this;
+
+		// Update body checkboxes when header checkbox is changed
+		$(trigger).on("click", function(event) {
+			event.preventDefault();
+
+			var $checkboxes = self.getCheckboxesForButton(this);
+
+			var allChecked = true;
+			$checkboxes.each(function() {
+				if (!this.checked) {
+					allChecked = false;
+				}
+			});
+
+			var setChecked;
+			if ($(this).is(self.forceCheckedSelector)) {
+				setChecked = true;
+			} else if ($(this).is(self.forceUncheckedSelector)) {
+				setChecked = false;
+			} else {
+				setChecked = allChecked ? false : true;
+			}
+
+			$checkboxes.each(function() {
+				this.checked = setChecked;
+
+				$(this).trigger("change." + pluginName);
+			});
+		});
+	};
+
+	CheckAll.prototype.addCheckboxEvents = function(trigger) {
+		var self = this;
+
+		// Update body checkboxes when header checkbox is changed
+		$(trigger).on("change", function() {
+			var setChecked = this.checked;
+
+			self.getCheckboxesForCheckbox(this).each(function() {
+				this.checked = setChecked;
+			});
+		});
+
+		var $checkboxes = self.getCheckboxesForCheckbox(trigger);
+
+		// Update header checkbox when body checkboxes are changed
+		$checkboxes.on("change." + pluginName, function() {
+			var checkedCount = 0;
+			$checkboxes.each(function() {
+				if (this.checked) {
+					checkedCount++;
+				}
+			});
+
+			var allSelected = checkedCount === $checkboxes.length;
+
+			trigger.checked = allSelected;
+
+			// only indeterminate if some are selected (not all and not none)
+			trigger.indeterminate = checkedCount !== 0 && !allSelected;
+		});
+	};
+
+	// on tablecreate, init
+	$(document).on(Tablesaw.events.create, function(e, tablesaw) {
+		new CheckAll(tablesaw);
+	});
+
+	Tablesaw.CheckAll = CheckAll;
+})();
+
+	return Tablesaw;
+}));
+
+/* jshint ignore:start */
+
+/*! Tablesaw - v3.1.0 - 2018-12-10
+* https://github.com/filamentgroup/tablesaw
+* Copyright (c) 2018 Filament Group; Licensed MIT */
+(function(win) {
+	"use strict";
+
+	// DOM-ready auto-init of plugins.
+	// Many plugins bind to an "enhance" event to init themselves on dom ready, or when new markup is inserted into the DOM
+	// Use raw DOMContentLoaded instead of shoestring (may have issues in Android 2.3, exhibited by stack table)
+	if (!("Tablesaw" in win)) {
+		throw new Error("Tablesaw library not found.");
+	}
+	if (!("init" in Tablesaw)) {
+		throw new Error("Your tablesaw-init.js is newer than the core Tablesaw version.");
+	}
+
+	Tablesaw.init();
+})(typeof window !== "undefined" ? window : this);
+
 //# sourceMappingURL=tablesaw.js.map

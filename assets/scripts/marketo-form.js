@@ -117,8 +117,8 @@
 function SetConsentVisibility() {
     var consentCheckbox = document.getElementById('Explicit_Consent__c');
 
-    console.log('Set Visibility', consentCheckbox);
-    console.log('Body Class', document.body.classList);
+    // console.log('Set Visibility', consentCheckbox);
+    // console.log('Body Class', document.body.classList);
 
     if (consentCheckbox) {
         var userExcluded = false;

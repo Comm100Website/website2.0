@@ -6,15 +6,16 @@ function setCookies(h, g, f) {
 }
 
 function getCookies(a) {
+    var c_start;
 	return document.cookie.length > 0 && (c_start = document.cookie.indexOf(a + "="), -1 != c_start) ? (c_start = c_start + a.length + 1, c_end = document.cookie.indexOf(";", c_start), -1 == c_end && (c_end = document.cookie.length), unescape(document.cookie.substring(c_start, c_end))) : "";
 }
 
 function getRequest() {
 	var e = location.search;
-	var f = new Object();
+    var f = new Object();
 	if (e.indexOf("?") != -1) {
 		var g = e.substr(1);
-		strs = g.split("&");
+		var strs = g.split("&");
 		for (var h = 0; h < strs.length; h++) {
 			f[strs[h].split("=")[0]] = unescape(strs[h].split("=")[1]);
 		}
@@ -304,7 +305,7 @@ var App = function() {
 }();
 var revealAnimate = function() {
 	var b = function() {
-		wow = new WOW({
+		var wow = new WOW({
 			animateClass: "animated",
 			offset: 100,
 			live: true,
@@ -1697,6 +1698,27 @@ window.onload = function() {
 
 };
 
+
+var scrolling = false;
+function disableMouseWheel () {
+    scrolling = true;
+}
+function enableMouseWheel() {
+    scrolling = false;
+}
+
+function tabIndexSlideUpOrDown(isUp) {
+    if (isUp) {
+        jQuery('.threeTab__Index--Wrap .threeTab__Index--desc').slideUp(400, function() {
+            enableMouseWheel();
+        });
+        return;
+    }
+    jQuery('.threeTab__Index--Wrap .threeTab__Index--desc').slideDown(400, function() {
+            enableMouseWheel();
+    });
+}
+
 jQuery(function() {
 	(function(){
 		var isMobile = window.mobilecheck();
@@ -1705,14 +1727,6 @@ jQuery(function() {
 			var tabIndexWrap = document.querySelector('.threeTab__Index--Wrap');
 			var isTabHasDataWheel = tabIndexWrap && tabIndexWrap.getAttribute('data-wheel') === 'true';
 			if (isTabHasDataWheel) {
-				var scrolling = false;
-				function disableMouseWheel () {
-					scrolling = true;
-				}
-				function enableMouseWheel() {
-					scrolling = false;
-				}
-
 				function handle(delta) {
 					var tabOffsetHeader = Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - headerHeight;
 					if (delta < 0) {
@@ -1750,18 +1764,6 @@ jQuery(function() {
 				if (isFirefox) {
 					window.addEventListener('DOMMouseScroll', wheelEvent, false);
 				}
-
-				function tabIndexSlideUpOrDown(isUp) {
-					if (isUp) {
-						jQuery('.threeTab__Index--Wrap .threeTab__Index--desc').slideUp(400, function() {
-							enableMouseWheel();
-						});
-						return;
-					}
-					jQuery('.threeTab__Index--Wrap .threeTab__Index--desc').slideDown(400, function() {
-							enableMouseWheel();
-					});
-				}
 			}
 
 			function selectTab(index) {
@@ -1785,7 +1787,7 @@ jQuery(function() {
 			var tabIndexItemsArray = Array.prototype.slice.call(tabIndexItems);
 			tabIndexItemsArray.forEach(function(item, index) {
 				item.addEventListener('click', function() {
-					isTabHasDataWheel && tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
+					isTabHasDataWheel && tabIndexSlideUpOrDown(true);
 					selectTab(index);
 					jQuery('html, body').animate({
 						scrollTop: Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - headerHeight
@@ -1804,7 +1806,7 @@ jQuery(function() {
 			if (tabIndexWrap && isTabHasDataWheel) {
 				setTimeout(function() {
 					if (Math.ceil(jQuery('.threeTab__Index--Wrap').offset().top) - jQuery(window).scrollTop() === jQuery('.c-layout-header').outerHeight()) {
-						tabIndexSlideUpOrDown && tabIndexSlideUpOrDown(true);
+						tabIndexSlideUpOrDown(true);
 					}
 				}, 100);
 			}
@@ -1835,6 +1837,148 @@ jQuery(function() {
 	}());
 });
 
+function calculate_roi($) {
+    var activeAgents = parseInt($('#active_agents').val().replace(regex, ''));
+    var callCenterHoursDay = parseInt($('#call_center_hours_day').val().replace(regex, ''));
+    var callCenterDaysWeek = parseInt($('#call_center_days_week').val().replace(regex, ''));
+    var agentCompensation = parseInt($('#agent_compensation').val().replace(regex, ''));
+    var callLength = parseInt($('#call_length').val().replace(regex, ''));
+    var callCost = parseFloat($('#call_cost').val().replace(regex, ''));
+    var chatLength = parseInt($('#chat_length').val().replace(regex, ''));
+    var concurrentChats = parseInt($('#concurrent_chats').val().replace(regex, ''));
+    var chatPackageRate = $("input[name='chatPackage']:checked").data('rate');
+    var totalDeflectedCalls = parseInt($('#percent_calls_to_chat').val().replace(regex, ''));
+    // var chatPackage = $("input[name='chatPackage']:checked").val();
+
+    var $callsYearBar = $('#calls_year_bar');
+    var $chatsYearBar = $('#chats_year_bar');
+    var $oneYearROI = $('#one_year_roi');
+    var $paybackPeriod = $('#payback_period');
+
+    var $percentRedirectionResult = $('#percent_redirection_result');
+    var $handleCallsResult = $('#handle_calls_result');
+    var $handleChatsResult = $('#handle_chats_result');
+    var $handleTotalResult = $('#handle_total_result');
+    var $agentsPhoneResult = $('#agents_phone_result');
+    var $agentsChatResult = $('#agents_chat_result');
+    var $agentsTotalResult = $('#agents_total_result');
+
+    var $labourCostPhoneBar = $('#labour_cost_phone_bar');
+    var $systemCostPhoneBar = $('#system_cost_phone_bar');
+    var $totalCostPhoneResult = $('#total_cost_phone_result');
+
+    var $deflectedLabourCostChatBar = $('#deflected_labour_cost_chat_bar');
+    var $deflectedSystemCostChatBar = $('#deflected_system_cost_chat_bar');
+    var $deflectedSystemCostPhoneBar = $('#deflected_system_cost_phone_bar');
+    var $deflectedLabourCostPhoneBar = $('#deflected_labour_cost_phone_bar');
+    var $deflectedChatPercentResult = $('#deflected_chat_percent_result');
+    var $deflectedPhonePercentResult = $('#deflected_phone_percent_result');
+    var $totalDeflectedCostResult = $('#total_deflected_cost_result');
+
+    var $deflectedChatPercentResultComparison = $('#deflected_chat_percent_result_comparison');
+    var $deflectedChatSavings = $('#deflected_chat_savings');
+
+    var regex = new RegExp(',', 'g');
+    accounting.settings.currency.format = "%v";
+
+    $percentRedirectionResult.html(accounting.formatNumber(totalDeflectedCalls, 0));
+
+    var callCenterDaysYear = callCenterDaysWeek * 52;
+    var callsHour = 60 / callLength;
+    var chatHour = (60 / chatLength) * concurrentChats;
+
+    var workCapacity = callCenterDaysYear * callCenterHoursDay;
+    var callsYear = workCapacity * activeAgents * callsHour;
+    var chatsYear = workCapacity * activeAgents * chatHour;
+
+    var deflectedCallsPercent = totalDeflectedCalls / 100;
+    var deflectedCallsYear = (1 - deflectedCallsPercent) * callsYear;
+    var deflectedChatsYear = deflectedCallsPercent * callsYear;
+
+    $handleCallsResult.html(accounting.formatNumber(deflectedCallsYear, 0));
+    $handleChatsResult.html(accounting.formatNumber(deflectedChatsYear, 0));
+    $handleTotalResult.html(accounting.formatNumber(callsYear, 0));
+
+    var phoneAgentsNeeded = Math.ceil(deflectedCallsYear / (callsHour * workCapacity));
+    var chatAgentsNeeded = Math.ceil(deflectedChatsYear / (chatHour * workCapacity));
+    var totalAgentsNeeded = phoneAgentsNeeded + chatAgentsNeeded;
+
+    $agentsPhoneResult.html(accounting.formatNumber(phoneAgentsNeeded, 0));
+    $agentsChatResult.html(accounting.formatNumber(chatAgentsNeeded, 0));
+    $agentsTotalResult.html(accounting.formatNumber(totalAgentsNeeded, 0));
+
+    $deflectedChatPercentResult.html(totalDeflectedCalls);
+    $deflectedChatPercentResultComparison.html(totalDeflectedCalls);
+    $deflectedPhonePercentResult.html(100-totalDeflectedCalls);
+
+    var barScaleMultiplier = 0.0001;
+
+    var callAgentCosts = agentCompensation * activeAgents;
+    var callSystemCosts = callsYear * callCost;
+    var totalCallCosts = callAgentCosts + callSystemCosts;
+
+    $labourCostPhoneBar.find('.segment_value').html(accounting.formatNumber(callAgentCosts, 0));
+    $labourCostPhoneBar.height(callAgentCosts * barScaleMultiplier);
+
+    $systemCostPhoneBar.find('.segment_value').html(accounting.formatNumber(callSystemCosts, 0));
+    $systemCostPhoneBar.height(callSystemCosts * barScaleMultiplier);
+
+    $totalCostPhoneResult.find('.value').html(accounting.formatNumber(totalCallCosts, 0));
+
+
+    var deflectedCallAgentCosts = agentCompensation * phoneAgentsNeeded;
+    var deflectedCallSystemCosts = deflectedCallsYear * callCost;
+    var deflectedChatAgentCosts = agentCompensation * chatAgentsNeeded;
+    var deflectedChatSystemCosts = chatAgentsNeeded * chatPackageRate;
+    var deflectedTotalCallCosts = deflectedCallAgentCosts + deflectedCallSystemCosts + deflectedChatAgentCosts + deflectedChatSystemCosts;
+
+    $deflectedLabourCostChatBar.find('.segment_value').html(accounting.formatNumber(deflectedChatAgentCosts, 0));
+    $deflectedLabourCostChatBar.height(deflectedChatAgentCosts * barScaleMultiplier);
+
+    $deflectedSystemCostChatBar.find('.segment_value').html(accounting.formatNumber(deflectedChatSystemCosts, 0));
+    $deflectedSystemCostChatBar.height(deflectedChatSystemCosts * barScaleMultiplier);
+
+    if (totalDeflectedCalls == 100) {
+        $deflectedSystemCostPhoneBar.hide();
+        $deflectedLabourCostPhoneBar.hide();
+    } else {
+        $deflectedSystemCostPhoneBar.show();
+        $deflectedLabourCostPhoneBar.show();
+    }
+
+    $deflectedSystemCostPhoneBar.find('.segment_value').html(accounting.formatNumber(deflectedCallSystemCosts, 0));
+    $deflectedSystemCostPhoneBar.height(deflectedCallSystemCosts * barScaleMultiplier);
+
+    $deflectedLabourCostPhoneBar.find('.segment_value').html(accounting.formatNumber(deflectedCallAgentCosts, 0));
+    $deflectedLabourCostPhoneBar.height(deflectedCallAgentCosts * barScaleMultiplier);
+
+    $totalDeflectedCostResult.find('.value').html(accounting.formatNumber(deflectedTotalCallCosts, 0));
+
+    var chatSavings = totalCallCosts - deflectedTotalCallCosts;
+    $deflectedChatSavings.html(accounting.formatNumber(chatSavings, 0));
+
+    // var teamCompensation = agentCompensation * activeAgents;
+    // var laborCostPerCall = teamCompensation / callsYear;
+    // var costPerCall = callCost + laborCostPerCall;
+    // var totalCallCost = costPerCall * callsYear;
+
+    // var laborCostPerChat = teamCompensation / chatsYear;
+    // var annualComm100Sub = activeAgents * chatPackageRate;
+    // var comm100RatePerChat = annualComm100Sub / chatsYear;
+    // var costPerChat =  comm100RatePerChat + laborCostPerChat;
+
+    // var totalChatCost = costPerChat * chatsYear;
+    // var callChatEquivalent = costPerCall * chatsYear;
+    // var chatSavings = callChatEquivalent - totalChatCost;
+    // var totalROI = ((chatSavings - totalChatCost) / totalChatCost) * 100;
+
+    $oneYearROI.find('.value').html(accounting.formatNumber(totalROI, 0));
+
+    var paybackPeriod = (totalChatCost / chatSavings) * 12;
+
+    $paybackPeriod.find('.value').html(accounting.formatNumber(paybackPeriod, 1));
+}
+
 /* ========================================================================
  * DOM-based Routing
  * Based on http://goo.gl/EUTi53 by Paul Irish
@@ -1856,6 +2000,12 @@ jQuery(function() {
         init: function() {
             App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
 
+            Comm100API.onReady = function () {
+                $('a[href="#chat"]').click(function(e) {
+                    e.preventDefault();
+                    Comm100API.do('livechat.button.click');
+                });
+            }
 
             $('a.scroll-to-anchor').click(function(e) {
                 e.preventDefault();
@@ -1884,21 +2034,150 @@ jQuery(function() {
             }
 
             $('body').on('change', '#Email_Opt_In_for_Marketing_Team__c, #Email_Opt_In_for_Product__c, #Email_Opt_In_for_Sales__c', function() {
-                console.log('Non-Unsubscribe Change');
-                console.log($(this));
-                console.log($(this).prop('checked'));
+                // console.log('Non-Unsubscribe Change');
+                // console.log($(this));
+                // console.log($(this).prop('checked'));
                 if ($(this).prop('checked')) {
                     $('#Unsubscribed').prop('checked', false);
                 }
             });
 
             $('body').on('change', '#Unsubscribed', function() {
-                console.log('Unsubscribe Change');
-                console.log($(this).prop('checked'));
+                // console.log('Unsubscribe Change');
+                // console.log($(this).prop('checked'));
                 if ($(this).prop('checked')) {
                     $('#Email_Opt_In_for_Marketing_Team__c, #Email_Opt_In_for_Product__c, #Email_Opt_In_for_Sales__c').prop('checked', false);
                 }
             });
+
+            if ($('.roi-input-col').length) {
+                $('input[type="text"], input[type="number"]').change(function() {
+                    calculate_roi($);
+                });
+
+                $('input[type="radio"]').click(function() {
+                    calculate_roi($);
+                });
+
+                calculate_roi($);
+            }
+
+            if ($('.section-live_chat_stats').length) {
+                var statsPDFLink = '';
+
+                $('#stats-form').submit(function(e) {
+                    var stats = [
+                        {
+                            "industry" : "banking",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "3.74", "avg_satisfaction" : "73.23", "chats_month" : 889, "mobile_chats" : "44.45", "avg_wait_time" : "1 min<br/>4 sec", "avg_chat_length" : "14 min<br/>51 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.60", "avg_satisfaction" : "92.44", "chats_month" : 585, "mobile_chats" : "43.70", "avg_wait_time" : "16 sec", "avg_chat_length" : "10 min<br/>27 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.18", "avg_satisfaction" : "82.99", "chats_month" : "8,316", "mobile_chats" : "33.63", "avg_wait_time" : "1 min<br/>13 sec", "avg_chat_length" : "13 min<br/>13 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.43", "avg_satisfaction" : "85.71", "chats_month" : "12,077", "mobile_chats" : "75.40", "avg_wait_time" : "59 sec", "avg_chat_length" : "9 min<br/>16 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "healthcare",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.61", "avg_satisfaction" : "94.28", "chats_month" : 47, "mobile_chats" : "49.51", "avg_wait_time" : "36 sec", "avg_chat_length" : "11 min<br/>20 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.47", "avg_satisfaction" : "90.51", "chats_month" : "1,029", "mobile_chats" : "60.29", "avg_wait_time" : "69 sec", "avg_chat_length" : "11 min<br/>3 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.34", "avg_satisfaction" : "85.46", "chats_month" : "257", "mobile_chats" : "31.02", "avg_wait_time" : "2 min<br/>54 sec", "avg_chat_length" : "12 min<br/>4 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.39", "avg_satisfaction" : "85.48", "chats_month" : "1,006", "mobile_chats" : "50.68", "avg_wait_time" : "19 sec", "avg_chat_length" : "8 min<br/>4 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "government",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.70", "avg_satisfaction" : "95.38", "chats_month" : 713, "mobile_chats" : "44.02", "avg_wait_time" : "48 sec", "avg_chat_length" : "15 min<br/>22 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.17", "avg_satisfaction" : "87.83", "chats_month" : 343, "mobile_chats" : "35.72", "avg_wait_time" : "17 sec", "avg_chat_length" : "12 min<br/>47 sec" },
+                                { "min" : 11, "max" : 99999999999999, "avg_rating" : "4.58", "avg_satisfaction" : "95.79", "chats_month" : 571, "mobile_chats" : "25.63", "avg_wait_time" : "13 sec", "avg_chat_length" : "12 min<br/>13 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "ecommerce",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.17", "avg_satisfaction" : "82.55", "chats_month" : 265, "mobile_chats" : "38.41", "avg_wait_time" : "1 min<br/>51 sec", "avg_chat_length" : "15 min<br/>20 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.46", "avg_satisfaction" : "90.75", "chats_month" : 690, "mobile_chats" : "33.97", "avg_wait_time" : "1 min<br/>6 sec", "avg_chat_length" : "12 min<br/>22 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.03", "avg_satisfaction" : "78.65", "chats_month" : "4,873", "mobile_chats" : "31.50", "avg_wait_time" : "2 min<br/>17 sec", "avg_chat_length" : "15 min<br/>46 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.27", "avg_satisfaction" : "85.14", "chats_month" : "36,225", "mobile_chats" : "50.24", "avg_wait_time" : "46 sec", "avg_chat_length" : "15 min<br/>46 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "manufacturing",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.55", "avg_satisfaction" : "91.03", "chats_month" : 51, "mobile_chats" : "26.16", "avg_wait_time" : "52 sec", "avg_chat_length" : "20 min<br/>42 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.52", "avg_satisfaction" : "89.95", "chats_month" : 287, "mobile_chats" : "22.11", "avg_wait_time" : "32 sec", "avg_chat_length" : "17 min<br/>5 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.32", "avg_satisfaction" : "87.04", "chats_month" : 449, "mobile_chats" : "49.42", "avg_wait_time" : "57 sec", "avg_chat_length" : "8 min<br/>39 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.56", "avg_satisfaction" : "92.99", "chats_month" : 262, "mobile_chats" : "0.35", "avg_wait_time" : "1 min", "avg_chat_length" : "8 min<br/>51 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "technology",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "3.59", "avg_satisfaction" : "72.06", "chats_month" : 483, "mobile_chats" : "28.35", "avg_wait_time" : "57 sec", "avg_chat_length" : "14 min<br/>59 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.31", "avg_satisfaction" : "86.82", "chats_month" : 401, "mobile_chats" : "13.30", "avg_wait_time" : "36 sec", "avg_chat_length" : "15 min<br/>21 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.58", "avg_satisfaction" : "92.54", "chats_month" : "5,325", "mobile_chats" : "19.07", "avg_wait_time" : "1 min<br/>42 sec", "avg_chat_length" : "16 min<br/>37 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.33", "avg_satisfaction" : "87.26", "chats_month" : "26,050", "mobile_chats" : "24.15", "avg_wait_time" : "36 sec", "avg_chat_length" : "19 min<br/>2 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "recreation",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.16", "avg_satisfaction" : "81.63", "chats_month" : "1,312", "mobile_chats" : "74.07", "avg_wait_time" : "16 sec", "avg_chat_length" : "8 min<br/>49 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.20", "avg_satisfaction" : "81.68", "chats_month" : "4,053", "mobile_chats" : "72.13", "avg_wait_time" : "14 sec", "avg_chat_length" : "7 min<br/>28 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.10", "avg_satisfaction" : "79.56", "chats_month" : "25,793", "mobile_chats" : "66.41", "avg_wait_time" : "17 sec", "avg_chat_length" : "6 min<br/>56 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.12", "avg_satisfaction" : "80.52", "chats_month" : "143,589", "mobile_chats" : "48.47", "avg_wait_time" : "30 sec", "avg_chat_length" : "7 min<br/>14 sec" }
+                            ]
+                        }
+                    ];
+
+                    for (var i = 0; i < stats.length; i++) {
+                        var industry = $('#industry').val();
+                        var numAgents = parseInt($('#num_agents').val());
+
+                        if (industry == stats[i].industry) {
+                                for (var x = 0; x < stats[i].ranges.length; x++) {
+
+                                if (numAgents >= stats[i].ranges[x].min, numAgents <= stats[i].ranges[x].max) {
+                                    // console.log(stats[i].ranges[x]);
+                                    $('#avg-rating .value').html(stats[i].ranges[x].avg_rating);
+                                    $('#avg-satisfaction .value').html(stats[i].ranges[x].avg_satisfaction);
+                                    $('#avg-chats-month .value').html(stats[i].ranges[x].chats_month);
+                                    $('#mobile-chats .value').html(stats[i].ranges[x].mobile_chats);
+                                    $('#avg-wait-time .value').html(stats[i].ranges[x].avg_wait_time);
+                                    $('#avg-chat-length .value').html(stats[i].ranges[x].avg_chat_length);
+
+                                    statsPDFLink = '/pdfgen/live-chat/?industry=' + industry + '&avg-rating=' + stats[i].ranges[x].avg_rating + '&avg-satisfaction=' + stats[i].ranges[x].avg_satisfaction + '&avg-chats-month=' + stats[i].ranges[x].chats_month + '&mobile-chats=' + stats[i].ranges[x].mobile_chats + '&avg-wait-time=' + stats[i].ranges[x].avg_wait_time + '&avg-chat-length=' + stats[i].ranges[x].avg_chat_length
+                                }
+                            }
+                        }
+                    }
+
+                    $('#stats-step1 .step-content').slideUp(350);
+                    $('#stats-step2, #stats-result-form').slideDown(350);
+                    e.preventDefault();
+                });
+
+                $('#stats-step1 .step-header').click(function(e) {
+                    $('#stats-step1 .step-content').slideDown(350);
+                    $('#stats-step2, #stats-result-form').slideUp(350);
+                });
+
+                MktoForms2.whenReady(function (form){
+                    form.onSuccess(function(values, followUpUrl) {
+                        // Get the form's jQuery element and hide it
+                        // statsPDFLink
+                        //open download link in new page
+                        window.open(statsPDFLink);
+                        window.focus();
+                        //redirect current page to success page
+                        return followUpUrl;
+                        // form.getFormElem().hide();
+                        // // Return false to prevent the submission handler from taking the lead to the follow up url
+                        // return false;
+                    });
+                });
+            }
         },
         finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

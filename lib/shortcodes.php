@@ -2,21 +2,51 @@
 namespace Roots\Sage\Shortcodes;
 
 use Roots\Sage\Extras;
+use DateTime;
+use DateTimeZone;
 
-// function register_highlight_shortcode($atts, $content) {
-//     //Extract the properties from the shortcodes attributes
-//     extract(
-//         shortcode_atts(
-//             [
-//                 'layout' => 'tiles'
-//             ],
-//             $atts
-//         )
-//     );
+function register_recurring_webinar_date_time_shortcode($atts, $content) {
+    global $post;
+    $recurringWebinars = get_field('webinar_schedules', 'options');
+    $output = '';
 
-//     return '<div class="hightContent"><dfn>'.$content.'</dfn></div>';
-// }
-// add_shortcode('highlight', __NAMESPACE__.'\\register_highlight_shortcode');
+    if ($post && $recurringWebinars) {
+        foreach ($recurringWebinars as $webinar) {
+            if ($webinar['webinar_post'] == $post->ID) {
+                $schedule = $webinar['schedule'];
+
+                //Sort the schedule in ascending order with the oldest dates last.
+                usort($schedule, function ($a, $b) { return (strtotime($a['date_time']) <=> strtotime($b['date_time'])); });
+                // $output = print_r($schedule);
+                // $currentDate = new DateTime("now", new DateTimeZone('America/Vancouver'));
+                $currentDate = new DateTime('now', new DateTimeZone('America/Vancouver'));
+
+                //Loop through the dates. If the current date is less than the current schedule date, then this is our next scheduled event.
+                foreach ($schedule as $date) {
+                    $scheduleDate = new DateTime($date['date_time'], new DateTimeZone('America/Vancouver'));
+
+                    if ($currentDate->format('U') < $scheduleDate->format('U')) {
+                        $dateFormat = 'F jS, gA';
+                        $estFormat = 'gA';
+
+                        if ($scheduleDate->format('i') > 0) {
+                            $dateFormat = 'F jS, g:iA';
+                            $estFormat = 'g:iA';
+                        }
+
+                        $output = $scheduleDate->format($dateFormat).' PST / ';
+                        $scheduleDate->setTimezone(new DateTimeZone('America/Toronto'));
+                        $output .= $scheduleDate->format($estFormat).' EST';
+
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return $output;
+}
+add_shortcode('recurring_webinar_date_time', __NAMESPACE__.'\\register_recurring_webinar_date_time_shortcode');
 
 function register_highlight_shortcode($atts, $content) {
     return '<div class="hightContent"><dfn>'.$content.'</dfn></div>';

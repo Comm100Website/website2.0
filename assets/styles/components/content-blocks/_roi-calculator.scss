@@ -1,0 +1,386 @@
+.content-section.section-roi_calculator {
+    .tooltip-trigger {
+        display: inline-block;
+    }
+
+    .tooltip {
+        opacity: 1;
+
+        &.bottom {
+            .tooltip-arrow {
+                border-bottom-color: #00567c !important;
+            }
+
+            .tooltip-inner {
+                opacity: 1;
+                background: #00567c !important;
+                font-size: 15px;
+            }
+        }
+    }
+
+    label .tooltip {
+        z-index: 9999;
+
+        .tooltip-inner {
+            max-width: 330px;
+        }
+    }
+
+    .roi-input-col {
+        background: #f4f8fc;
+
+        hr {
+            border-top-color: #606c78;
+            margin: 60px 0;
+        }
+
+        .input-small {
+            text-align: center;
+            padding-left: 18px;
+        }
+
+        .slider.slider-horizontal {
+            width: 100%;
+
+            .slider-track {
+                box-shadow: none;
+                background: #a6bbc9;
+                height: 14px;
+                border-radius: 8px;
+            }
+
+            .slider-selection {
+                background: $brand-primary;
+                box-shadow: none;
+            }
+        }
+
+        .slider.slider-horizontal {
+            margin-bottom: 40px;
+            margin-top: 9px;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: -2px;
+            width: 26px;
+            height: 26px;
+            background: $brand-primary-dark;
+            border: solid 6px #00567c;
+            box-shadow: 0 0 4px 3px rgba(0, 0, 0, 0.35);
+        }
+
+        .slider {
+            .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow, .tooltip.bottom .tooltip-arrow {
+                border-bottom-color: #0091d1 !important;
+            }
+
+            .tooltip.bottom {
+                margin-left: 3px;
+
+                .tooltip-inner {
+                    background-color: #0091d1 !important;
+                    font-size: 16px;
+                    line-height: 1;
+                    padding: 6px 15px;
+                }
+            }
+
+            &#active_agents_slider {
+                .slider-tick {
+                    display: none;
+                }
+            }
+
+            &#agent_compensation_slider .tooltip.bottom .tooltip-inner {
+                &::before { content: '$'; }
+                &::after { content: '/year'; }
+            }
+
+            &#call_length_slider  .tooltip.bottom .tooltip-inner {
+                &::after { content:  ' min'; }
+            }
+
+            &#call_cost_slider  {
+                .slider-tick { display: none; }
+                .tooltip.bottom .tooltip-inner {
+                    &::before { content: '$'; }
+                    &::after { content:  '/call'; }
+                }
+            }
+
+            &#chat_length_slider  .tooltip.bottom .tooltip-inner {
+                &::after { content:  ' min'; }
+            }
+
+            &#concurrent_chats_slider  .tooltip.bottom .tooltip-inner {
+                &::after { content:  ' chats'; }
+            }
+        }
+
+        .radio-inline {
+            margin-right: 20px;
+
+            input[type=radio] {
+                margin-right: 4px;
+                -webkit-appearance: none;
+                position: relative;
+                cursor: pointer;
+                top: 2px;
+                width: 18px;
+                height: 18px;
+                border: 1px solid #606c78;
+                border-radius: 50%;
+                outline: none;
+
+                &::before {
+                    content:'';
+                    display:block;
+                    width:100%;
+                    height:100%;
+                    /*margin: 20% auto;    */
+                    border-radius:50%;
+                }
+
+                &:checked::before {
+                    background:#00567c;
+                    border: solid 2px #FFF;
+                }
+            }
+            &:last-child { margin-right: 0; }
+        }
+    }
+
+    .roi-results-col {
+        background: #00567c;
+
+        .tooltip-trigger {
+            svg {
+                border: solid 1px #fff;
+                border-radius: 50%;
+            }
+        }
+
+        .tooltip {
+            &.bottom {
+                .tooltip-arrow {
+                    border-bottom-color: #fff !important;
+                }
+
+                .tooltip-inner {
+                    background: #fff !important;
+                    color: #00567c;
+                }
+            }
+        }
+
+        &, h2, h3, h4 { color: #fff; }
+
+        h2, h3, h4 { margin-top: 0; }
+
+        hr {
+            border-top-color: #f4f8fc;
+            margin: 60px 0;
+        }
+
+        p {
+            margin-bottom: 60px;
+        }
+
+        //     <div id="callCostBar" class="roi-bar-chart">
+    //     <div class="value-wrap">$<span class="value"></span><br/><small>/year</small></div>
+    //     <div class="bar"></div>
+    //     <div class="label">Cost with<br/>phone</div>
+    // </div>
+
+        .font-weight-heavy {
+            font-family: $font-family-bold; font-weight: 400; font-size: 1.6vw;
+        }
+
+        .bar-chart-totals {
+            max-width: 380px;
+            margin: 0 auto;
+
+            h4 {
+                color: #9fdd09;
+            }
+        }
+
+        .roi-results {
+            justify-content: space-between;
+
+            > .roi-result { align-items: flex-end; }
+            > .roi-result-comparison { align-items: center; }
+
+            .roi-bar-chart {
+                text-align: center;
+                margin-bottom: 40px;
+
+                .value-wrap {
+                    font-family: $font-family-bold; font-weight: 400; font-size: 2vw; line-height: 1; margin-bottom: 10px;
+
+                    small { font-family: $font-family-light; font-size: 65%; }
+                }
+
+                .bar { width: 80%; margin-left: auto; margin-right: auto; max-width: 68px; margin-top: 3px; display: flex; justify-content: flex-end; flex-direction: column; }
+                .bar-segment {
+                    position: relative;
+                    height: 5px;
+                    width: 100%;
+
+                    .segment_total {
+                        position: absolute;
+                        left: 100%;
+                        top: 50%;
+                        margin-top: -7px;
+                        font-size: 13px;
+                        line-height: 1;
+                        padding-left: 7px;
+                    }
+                }
+
+                .label { font-family: $font-family-regular; font-size: 1.5vw; }
+                small { font-size: 12px; }
+
+                @media (min-width: 1440px) {
+                    .value-wrap { font-size: 33px; }
+                    .label { font-size: 25px; }
+                }
+            }
+
+            #calls_year_bar.roi-bar-chart .bar-segment .segment_total { left: auto; right: 100%; padding-right: 7px; padding-left: 0; }
+
+            .roi-result-comparison {
+                font-family: $font-family-bold; font-weight: 400; font-size: 1.6vw; align-items: center;
+            }
+
+            .roi-difference {
+                color: #9fdd09;
+
+                .circle {
+                    border: solid 1px #f4f8fc;
+                    border-radius: 50%;
+                    padding: 15px;
+                    height: 157px;
+                    width: 157px;
+                    align-items: center;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+
+                .label {
+                    font-family: $font-family-light;
+                    font-size: 18px;
+                }
+
+                .value-wrap {
+                    font-family: $font-family-bold;
+                    font-size: 3vw;
+                    line-height: 1;
+
+                    @media (min-width: 1440px) {
+                        font-size: 52px;
+                    }
+                }
+            }
+
+            .roi-icon-result {
+                font-family: $font-family-bold;
+                font-size: 1.6vw;
+
+                .value-wrap {
+                    font-size: 2.4vw;
+                }
+
+                @media (min-width: 1440px) {
+                    font-size: 26px;
+
+                    .value-wrap {
+                        font-size: 42px;
+                    }
+                }
+            }
+        }
+    }
+
+    .estimate-costs-legend {
+        display: flex;
+        font-size: 12px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+
+        .item {
+            padding-left: 24px;
+            padding-right: 10px;
+            position: relative;
+
+            .legend-colour {
+                height: 16px;
+                width: 16px;
+                display: block;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                margin-top: -8px;
+            }
+        }
+    }
+
+    .capacity-results {
+        margin-top: 25px;
+        margin-bottom: 70px;
+        font-size: 1.1vw;
+
+        .item {
+            span {
+                font-size: 1.5vw;
+            }
+
+            @media (min-width: 1440px) {
+                font-size: 16px;
+
+                span { font-size: 26px; }
+            }
+        }
+    }
+
+    .col-inner {
+        padding: 40px 0;
+    }
+
+    @media (min-width: $screen-md-min) {
+        .blue-light-dark-gradient {
+            background: linear-gradient(270deg, #00567c 0%, #00567c 50%, #f4f8fc 50%);
+        }
+
+        .col-inner {
+            padding: 60px 36px;
+        }
+
+        .roi-results-col {
+            .col-inner {
+                padding-right: 0;
+            }
+        }
+
+        .roi-icon-result {
+            &:first-child {
+                border-right: solid 1px #fff;
+            }
+        }
+
+        .roi-input-col {
+            .col-inner {
+                padding-left: 0;
+            }
+        }
+
+        .section-footer {
+            .form-col {
+                padding-left: 100px;
+            }
+        }
+    }
+}

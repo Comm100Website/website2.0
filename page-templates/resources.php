@@ -1987,12 +1987,16 @@ Template Post Type: commresource, page
 
                     if( have_rows('speaker') ):
                         while ( have_rows('speaker') ) : the_row();
+                            $speakerTitle = '';
+
+                            if (get_sub_field('title')):
+                                $speakerTitle = '<h3>' . get_sub_field('title') . '</h3>';
+                            endif;
+
                             if (have_rows('speaker_details')):
                                 echo '<div class="speakers-container">';
 
-                                if (get_sub_field('title')):
-                                    echo '<h3>' . get_sub_field('title') . '</h3>';
-                                endif;
+                                echo $speakerTitle;
 
                                 while ( have_rows('speaker_details') ) : the_row();
                                     $avatar = get_sub_field('avatar');
@@ -2009,12 +2013,16 @@ Template Post Type: commresource, page
 
                     if( have_rows('host') ):
                         while ( have_rows('host') ) : the_row();
+                            $hostTitle = '';
+
+                            if (get_sub_field('title')):
+                                $hostTitle = '<h3>' . get_sub_field('title') . '</h3>';
+                            endif;
+
                             if( have_rows('host_details') ):
                                 echo '<div class="speakers-container">';
 
-                                if (get_sub_field('title')):
-                                    echo '<h3>' . get_sub_field('title') . '</h3>';
-                                endif;
+                                echo $hostTitle;
 
                                 while ( have_rows('host_details') ) : the_row();
                                     $avatar = get_sub_field('host_avatar');

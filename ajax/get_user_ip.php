@@ -1,7 +1,7 @@
 <?php
 //Getting a users IP is a simple request that shouldn't require Wordpress to fire up for an ajax call. This script will return the users
 //IP in the fraction of the time of a Wordpress ajax call.
-if (strpos($_SERVER['HTTP_REFERER'], 'comm100.com') !== false || strpos($_SERVER['HTTP_REFERER'], 'wpengine.com') !== false) {
+if (strpos($_SERVER['HTTP_REFERER'], 'comm100.com') !== false || strpos($_SERVER['HTTP_REFERER'], 'wpengine.com') !== false || strpos($_SERVER['HTTP_REFERER'], 'localhost') !== false) {
     $ipaddress = '';
 
     if($_SERVER['HTTP_CLIENT_IP']) {

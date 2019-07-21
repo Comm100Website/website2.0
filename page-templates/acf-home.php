@@ -102,7 +102,7 @@ use Roots\Sage\Assets;
                                     '</div>';
                         endif;
 
-                        echo    '<div class="threeTab__Index">' .
+                        echo    '<div class="threeTab__Index threeTab__Index__' . $color . '">' .
                                     '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                     '<h3>' . $headline . '</h3>' .
                                     '<div class="threeTab__Index--desc">' .
@@ -115,6 +115,7 @@ use Roots\Sage\Assets;
                                     '</div>' .
                                 '</div>';
 
+                                $color = get_sub_field('color');
                     endwhile;
 
                     echo '</div>';
@@ -123,9 +124,9 @@ use Roots\Sage\Assets;
                     // pricing live chat details
                     echo '<div class="threeTab__Detail clearfix">';
                     echo $tabMobileLC;
-                    echo '<div class="threeTab__Detail--col-wrap clearfix">';
+                    echo '<div class="threeTab__Detail--col-wrap clearfix d-flex">';
                     while ( have_rows('pricing_details_live_chat') ) : the_row();
-
+                        $color = get_sub_field('color');
                         $title = get_sub_field('title');
                         $if_show_price = get_sub_field('if_show_price');
                         $price = get_sub_field('price');
@@ -203,27 +204,31 @@ use Roots\Sage\Assets;
                         endif;
 
                         echo    '<div class="col-sm-4 threeTab__Detail--col">' .
-                                    '<div class="threeTab__Detail--title">' . $title . '</div>' .
-                                    '<div class="threeTab__Detail--price">' . $priceContent . '</div>' .
-                                    $feature_list_title_str .
+                                    '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
+
+                            if ($priceContent) {
+                                        echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
+                            }
+
+                            echo $feature_list_title_str .
                                     '<ul class="threeTab__Detail--contentList">' .
                                         $li_feature_list .
                                     '</ul>' .
                                     $linkcontent .
                                 '</div>';
+                            endwhile;
+                            echo '</div>';
+                            echo '</div>';
+                            // end pricing live chat details
 
-                    endwhile;
-                    echo '</div>';
-                    echo '</div>';
-                    // end pricing live chat details
-
-                    // pricing multichannel details
-                    echo '<div class="threeTab__Detail clearfix">';
+                            // pricing multichannel details
+                    $color = get_sub_field('color');
+                    echo '<div class="threeTab__Detail  threeTab__Detail__' . $color . ' clearfix">';
                     echo $tabMobileMC;
-                    echo '<div class="threeTab__Detail--col-wrap clearfix">';
+                    echo '<div class="threeTab__Detail--col-wrap clearfix d-flex">';
                     $pricing_details_multichannel_note = get_sub_field('pricing_details_multichannel_note');
                     while ( have_rows('pricing_details_multichannel') ) : the_row();
-
+                        $color = get_sub_field('color');
                         $title = get_sub_field('title');
                         $if_show_price = get_sub_field('if_show_price');
                         $price = get_sub_field('price');
@@ -233,8 +238,12 @@ use Roots\Sage\Assets;
                         // if (trim($feature_list_title, ' ') == ''):
                         //     $feature_list_title = '&nbsp;';
                         // endif;
+                        $priceContent = '';
 
-                        $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
+                        if ($request_quote) {
+                            $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
+                        }
+
                         if ($if_show_price):
                             while ( have_rows('price') ) : the_row();
                                 $price_number = get_sub_field('price_number');
@@ -305,9 +314,13 @@ use Roots\Sage\Assets;
                         endif;
 
                         echo    '<div class="col-sm-6 threeTab__Detail--col">' .
-                                    '<div class="threeTab__Detail--title">' . $title . '</div>' .
-                                    '<div class="threeTab__Detail--price">' . $priceContent . '</div>' .
-                                    $feature_list_title_str .
+                                    '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
+
+                                    if ($priceContent) {
+                                        echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
+                            }
+
+                                    echo $feature_list_title_str .
                                     '<ul class="threeTab__Detail--contentList">' .
                                         $li_feature_list .
                                     '</ul>' .
@@ -315,33 +328,58 @@ use Roots\Sage\Assets;
                                 '</div>';
 
                     endwhile;
-                    echo '<div class="clear"></div>'.
-                          '<div class="threeTab__Detail--note">' . $pricing_details_multichannel_note . '</div>';
+
+
                     echo '</div>';
+
+                    if ($pricing_details_multichannel_note) {
+                        echo '<div class="threeTab__Detail--note">' . $pricing_details_multichannel_note . '</div>';
+                    }
+
                     echo '</div>';
                     // end pricing multichannel details
 
 
-                    // pricing AI details
-                    while ( have_rows('pricing_details_ai') ) : the_row();
 
-                        $pricing_details_ai_title = get_sub_field('title');
-                        $ai_logo = get_sub_field('ai_logo');
-                        $feature_list_title = get_sub_field('feature_list_title');
 
-                        $feature_list_title_str = '';
-                        if ($feature_list_title):
-                            $feature_list_title_str = '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>';
-                        endif;
-
-                        $ai_logo_content = '';
-                        if ($ai_logo):
-                            $ai_logo_content = '<div class="ai-logo-wrap">'.Assets\get_acf_image($ai_logo, '', 209, 276).'</div>';
-                        endif;
-
-                        $columnFirst = '';
-                        while ( have_rows('column_first') ) : the_row();
+                    // pricing AI multi-column details
+                    if (get_sub_field('pricing_details_ai_repeater')) {
+                        $color = get_sub_field('color');
+                        echo '<div class="threeTab__Detail  threeTab__Detail__' . $color . ' clearfix">';
+                        echo $tabMobileMC;
+                        echo '<div class="threeTab__Detail--col-wrap clearfix d-flex">';
+                        while ( have_rows('pricing_details_ai_repeater') ) : the_row();
+                            $color = get_sub_field('color');
                             $title = get_sub_field('title');
+                            $if_show_price = get_sub_field('if_show_price');
+                            $price = get_sub_field('price');
+                            $request_quote = get_sub_field('request_quote');
+                            $feature_list_title = get_sub_field('feature_list_title');
+
+                            // if (trim($feature_list_title, ' ') == ''):
+                            //     $feature_list_title = '&nbsp;';
+                            // endif;
+                            $priceContent = '';
+
+                            if ($request_quote) {
+                                $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
+                            }
+
+                            if ($if_show_price):
+                                while ( have_rows('price') ) : the_row();
+                                    $price_number = get_sub_field('price_number');
+                                    $price_unit = get_sub_field('price_unit');
+                                    $priceContent = '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
+                                    '<span class="threeTab__Detail--priceUnit">' . $price_unit . '</span>';
+                                endwhile;
+
+                            endif;
+
+                            $feature_list_title_str = '';
+                            if ($feature_list_title):
+                                $feature_list_title_str = '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>';
+                            endif;
+
                             $li_feature_list = '';
                             while ( have_rows('feature_list') ) : the_row();
                                 $if_link = get_sub_field('if_link');
@@ -356,22 +394,11 @@ use Roots\Sage\Assets;
 
                                 $li_feature_list .= '<li>' . $feature_point . '</li>';
                             endwhile;
-                            $columnFirst = '<div class="col-sm-8 threeTab__Detail--col">' .
-                                            $feature_list_title_str .
-                                            '<ul class="threeTab__Detail--contentList">' .
-                                                $li_feature_list .
-                                            '</ul>' .
-                                        '</div>';
-                        endwhile;
 
-
-
-                        $columnSecond = '';
-                        while ( have_rows('column_second') ) : the_row();
-                            $price = get_sub_field('price');
 
                             $cta = get_sub_field('cta');
-                            $linkcontent='';
+                            $linkcontent = '';
+
                             if ($cta):
                                 while ( have_rows('cta') ) : the_row();
                                     $cta_link_type = get_sub_field('cta_link_type');
@@ -402,35 +429,166 @@ use Roots\Sage\Assets;
                                         }
                                     endif;
                                 endwhile;
+                                if ($linkcontent !== ''):
+                                    $linkcontent = '<div class="threeTab__Detail--action"> ' . $linkcontent . ' </div>';
+                                endif;
                             endif;
 
-                            $columnSecond = '<div class="col-sm-4 threeTab__Detail--col">' .
-                                                '<div class="threeTab__Detail--price">' .
-                                                    '<span class="threeTab__Detail--priceQuote"><strong>' . $price . '</strong></span>' .
-                                                '</div>' .
-                                                '<div class="threeTab__Detail--action">' .
-                                                    $linkcontent .
-                                                '</div>' .
-                                            '</div>';
+                            echo    '<div class="col-sm-6 threeTab__Detail--col">' .
+                                        '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
+
+                                        if ($priceContent) {
+                                            echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
+                                }
+
+                                        echo $feature_list_title_str .
+                                        '<ul class="threeTab__Detail--contentList">' .
+                                            $li_feature_list .
+                                        '</ul>' .
+                                        $linkcontent .
+                                    '</div>';
+
                         endwhile;
 
-                        echo    '<div class="threeTab__Detail clearfix">' .
-                                    $tabMobileAI .
-                                    '<div class="threeTab__Detail--col-wrap clearfix">' .
 
-                                        '<div class="threeTab__Detail--title">' .
-                                            $pricing_details_ai_title .
+                        echo '</div>';
+                        echo '</div>';
+                        // end pricing AI multi-column details
+                    } else {
+                        // pricing AI details
+                        while ( have_rows('pricing_details_ai') ) : the_row();
+                            $color = get_sub_field('color');
+                            $pricing_details_ai_title = get_sub_field('title');
+                            $ai_logo = get_sub_field('ai_logo');
+                            $feature_list_title = get_sub_field('feature_list_title');
+
+                            $feature_list_title_str = '';
+                            if ($feature_list_title):
+                                $feature_list_title_str = '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>';
+                            endif;
+
+                            $ai_logo_content = '';
+                            if ($ai_logo):
+                                $ai_logo_content = '<div class="ai-logo-wrap">'.Assets\get_acf_image($ai_logo, '', 209, 276).'</div>';
+                            endif;
+
+                            $columnFirst = '';
+                            while ( have_rows('column_first') ) : the_row();
+                                $title = get_sub_field('title');
+                                $li_feature_list = '';
+                                while ( have_rows('feature_list') ) : the_row();
+                                    $if_link = get_sub_field('if_link');
+                                    $feature_point = get_sub_field('feature_point');
+                                    $feature_point_link = get_sub_field('feature_point_link');
+
+                                    if ($if_link):
+                                        $feature_point = '<a class="" href="' . $feature_point_link['url'] . '" target="' . $feature_point_link['target'] . '">' .
+                                                            $feature_point_link['title'] .
+                                                        '</a>';
+                                    endif;
+
+                                    $li_feature_list .= '<li>' . $feature_point . '</li>';
+                                endwhile;
+                                $columnFirst = '<div class="col-sm-8 threeTab__Detail--col">' .
+                                                $feature_list_title_str .
+                                                '<ul class="threeTab__Detail--contentList">' .
+                                                    $li_feature_list .
+                                                '</ul>' .
+                                            '</div>';
+                            endwhile;
+
+
+
+                            $columnSecond = '';
+                            while ( have_rows('column_second') ) : the_row();
+                                $price = get_sub_field('price');
+
+                                $cta = get_sub_field('cta');
+                                $linkcontent='';
+                                if ($cta):
+                                    while ( have_rows('cta') ) : the_row();
+                                        $cta_link_type = get_sub_field('cta_link_type');
+                                        $cta_link = get_sub_field('cta_link');
+                                        if ($cta_link):
+                                            switch ($cta_link_type) {
+                                                case 'green' :
+                                                        $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                case 'blue' :
+                                                        $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                case 'white' :
+                                                        $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                case 'link' :
+                                                        $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                                                $cta_link['title'] .
+                                                            '</a>';
+                                                        break;
+                                                default: break;
+                                            }
+                                        endif;
+                                    endwhile;
+                                endif;
+
+                                $columnSecond = '<div class="col-sm-4 threeTab__Detail--col">' .
+                                                    '<div class="threeTab__Detail--price">' .
+                                                        '<span class="threeTab__Detail--priceQuote"><strong>' . $price . '</strong></span>' .
+                                                    '</div>' .
+                                                    '<div class="threeTab__Detail--action">' .
+                                                        $linkcontent .
+                                                    '</div>' .
+                                                '</div>';
+
+
+                                $if_show_price = get_sub_field('if_show_price');
+                                $price = get_sub_field('price');
+                                $request_quote = get_sub_field('request_quote');
+                                $color = get_sub_field('color');
+                                $priceContent = '';
+
+                                if ($request_quote || $if_show_price) {
+                                    $priceContent = '<div class="threeTab__Detail--price">';
+
+                                    $priceContent .= '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
+
+                                    if ($if_show_price):
+                                        while ( have_rows('price') ) : the_row();
+                                            $price_number = get_sub_field('price_number');
+                                            $price_unit = get_sub_field('price_unit');
+                                            $priceContent .= '<span class="threeTab__Detail--priceNum"><strong>$' . $price_number . '</strong></span>' .
+                                            '<span class="threeTab__Detail--priceUnit">' . $price_unit . '</span>';
+                                        endwhile;
+                                    endif;
+
+                                    $priceContent .= '</div>';
+                                }
+                                $color = get_sub_field('color');
+                            endwhile;
+
+                            echo    '<div class="threeTab__Detail  threeTab__Detail__' . $color . ' clearfix">' .
+                                        $tabMobileAI .
+                                        '<div class="threeTab__Detail--col-wrap clearfix">' .
+
+                                            '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' .
+                                                $pricing_details_ai_title .
+                                            '</div>' .
+                                            $priceContent .
+                                            $columnFirst .
+                                            $columnSecond .
                                         '</div>' .
+                                        $ai_logo_content .
+                                    '</div>';
 
-                                        $columnFirst .
-                                        $columnSecond .
-                                    '</div>' .
-                                    $ai_logo_content .
-                                '</div>';
-
-                    endwhile;
-                    // end pricing AI details
-
+                        endwhile;
+                        // end pricing AI details
+                    }
 
                     echo '</div>';
 
@@ -913,6 +1071,12 @@ use Roots\Sage\Assets;
                     $description = get_sub_field('description');
                     $promotion_cta = get_sub_field('cta');
                     $bg_image = get_sub_field('background_image');
+                    $content_align = get_sub_field('content_alignment');
+                    $containerClass = 'col-sm-6';
+
+                    if ($content_align == 'center') {
+                        $containerClass = 'col-xs-12 col-sm-8 col-sm-offset-2 text-center';
+                    }
 
                     $style_bg = '';
                     if ($bg_image):
@@ -922,7 +1086,7 @@ use Roots\Sage\Assets;
                     echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="col-sm-6">';
+                    echo '<div class="'.$containerClass.'">';
 
                     if ($headline):
                         echo '<div class="promotion_headline">' .
@@ -1377,18 +1541,38 @@ use Roots\Sage\Assets;
                     if ($btn_group):
                         while ( have_rows('btn_group') ) : the_row();
                             $type = get_sub_field('type');
+                            $buttonColor = get_sub_field('button_color');
+                            $groupClass = '';
+                            $btnClass = 'btn-link';
+
+                            if ($type == 'image') {
+                                $groupClass .= 'd-flex justify-content-space-between';
+                                $btnClass .= 'banner_cta_link btn btn-xlg btn-link--green w-100';
+                            }
+
                             // check if the nested repeater field has rows of data
                             if( have_rows('btn_repeater') ):
 
-                                echo '<div class="btn-link-group c-margin-t-60 btn-link-group--' . $type . '">';
+                                echo '<div class="'.$groupClass.' btn-link-group c-margin-t-60 btn-color-'.$buttonColor.' btn-link-group--' . $type . '">';
 
                                     // loop through the rows of data
                                 while ( have_rows('btn_repeater') ) : the_row();
 
                                     $btn_link = get_sub_field('button');
 
-                                    echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
+                                    if ($type == 'image') {
+                                        echo '<div class="item text-center">';
+                                    }
 
+                                    if (get_sub_field('button_image')) {
+                                        echo '<img src="'.get_sub_field('button_image')['url'].'" alt="'.get_sub_field('button_image')['alt'].'" style="max-width: 240px;" /><br/><br/><br/>';
+                                    }
+
+                                    echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="'.$btnClass.'">' . $btn_link['title'] . '</a>';
+
+                                    if ($type == 'image') {
+                                        echo '</div>';
+                                    }
                                 endwhile;
 
                                 echo '</div>';
@@ -1722,7 +1906,7 @@ use Roots\Sage\Assets;
                             $body = get_sub_field('body');
                             $link = get_sub_field('link');
 
-                            echo    '<div class="threeTab__Index">' .
+                            echo    '<div class="threeTab__Index threeTab__Index__' . $color . '">' .
                                         '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                         '<h3>' . $headline . '</h3>' .
                                         '<div class="threeTab__Index--desc">' .
@@ -1743,14 +1927,20 @@ use Roots\Sage\Assets;
                         // pricing live chat details
                         echo '<div class="threeTab__Detail clearfix">';
                         while ( have_rows('pricing_details_live_chat') ) : the_row();
-
+                            $color = get_sub_field('color');
                             $title = get_sub_field('title');
                             $if_show_price = get_sub_field('if_show_price');
                             $price = get_sub_field('price');
                             $request_quote = get_sub_field('request_quote');
                             $feature_list_title = get_sub_field('feature_list_title');
 
+                            $priceContent = '';
+
+                        if ($request_quote) {
                             $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
+                        }
+
+                        // $priceContent = '<span class="threeTab__Detail--priceQuote"><strong>' . $request_quote . '</strong></span>';
                             if ($if_show_price):
                                 while ( have_rows('price') ) : the_row();
                                     $price_number = get_sub_field('price_number');
@@ -1808,9 +1998,11 @@ use Roots\Sage\Assets;
                             endif;
 
                             echo    '<div class="col-sm-4 threeTab__Detail--col">' .
-                                        '<div class="threeTab__Detail--title">' . $title . '</div>' .
-                                        '<div class="threeTab__Detail--price">' . $priceContent . '</div>' .
-                                        '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>' .
+                                        '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
+                            if ($priceContent) {
+                                        echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
+                            }
+                            echo '<p class="threeTab__Detail--subTitle">' . $feature_list_title . '</p>' .
                                         '<ul class="threeTab__Detail--contentList">' .
                                             $li_feature_list .
                                         '</ul>' .
@@ -1824,7 +2016,7 @@ use Roots\Sage\Assets;
 
                         // pricing multichannel details
                         while ( have_rows('pricing_details_multichannel') ) : the_row();
-
+                            $color = get_sub_field('color');
                             $pricing_details_multichannel_title = get_sub_field('title');
 
                             $columnFirst = '';
@@ -1907,9 +2099,9 @@ use Roots\Sage\Assets;
                                                 '</div>';
                             endwhile;
 
-                            echo    '<div class="threeTab__Detail clearfix">' .
+                            echo    '<div class="threeTab__Detail three clearfix">' .
 
-                                        '<div class="threeTab__Detail--title">' .
+                                        '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' .
                                             $pricing_details_multichannel_title .
                                         '</div>' .
 
@@ -1924,7 +2116,7 @@ use Roots\Sage\Assets;
 
                         // pricing AI details
                         while ( have_rows('pricing_details_ai') ) : the_row();
-
+                            $color = get_sub_field('color');
                             $pricing_details_ai_title = get_sub_field('title');
 
                             $columnFirst = '';
@@ -2016,9 +2208,9 @@ use Roots\Sage\Assets;
                                                 '</div>';
                             endwhile;
 
-                            echo    '<div class="threeTab__Detail clearfix">' .
+                            echo    '<div class="threeTab__Detail three clearfix">' .
 
-                                        '<div class="threeTab__Detail--title">' .
+                                        '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' .
                                             $pricing_details_ai_title .
                                         '</div>' .
 
@@ -2167,7 +2359,7 @@ use Roots\Sage\Assets;
                             $selectedClass = $if_selected ? 'selected' : '';
 
 
-                            echo '<div class="threeTab__Index ' . $selectedClass . '">' .
+                            echo '<div class="threeTab__Index threeTab__Index__' . $color . ' ' . $selectedClass . '">' .
                                     '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                     '<h3>' . $tab_name . '</h3>' .
                                 '</div>';
@@ -2472,7 +2664,7 @@ use Roots\Sage\Assets;
                     echo '<div class="col-sm-12 comparelist">';
                     echo '<h3>' . $title . '</h3>';
                     echo '<div class="threeTab__Detail-wrap">';
-                    echo '<div class="threeTab__Detail clearfix">';
+                    echo '<div class="threeTab__Detail three clearfix">';
                     echo '<div class="threeTab__Detail--col-wrap clearfix">';
 
                     while ( have_rows('feature_list') ) : the_row();
@@ -3025,7 +3217,7 @@ use Roots\Sage\Assets;
                                     $body = get_sub_field('body');
                                     $link = get_sub_field('link');
 
-                                    echo    '<div class="threeTab__Index">' .
+                                    echo    '<div class="threeTab__Index threeTab__Index__' . $color . '">' .
                                                 '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                                 '<h3>' . $headline . '</h3>' .
                                             '</div>';
@@ -3100,11 +3292,11 @@ use Roots\Sage\Assets;
                                         endif;
                                     endif;
 
-                                    echo    '<div class="threeTab__Detail clearfix">' .
+                                    echo    '<div class="threeTab__Detail three clearfix">' .
                                                 $tabMobileAI .
                                                 '<div class="threeTab__Detail--col-wrap clearfix">' .
 
-                                                    '<div class="threeTab__Detail--title">' . $title . '</div>' .
+                                                    '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>' .
                                                     '<div class="threeTab__Detail--summary">' . $description . '</div>' .
                                                     $featurelist_wrap .
                                                 '</div>' .
@@ -3447,6 +3639,7 @@ use Roots\Sage\Assets;
                 endif;
             endwhile;
 
+            get_template_part('template-parts/content', 'blocks');
         else :
 
         // no layouts found

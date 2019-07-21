@@ -5,3 +5,5 @@ node_modules
 npm-debug.log
 vendor
 Thumbs.db
+bower_components
+dist
