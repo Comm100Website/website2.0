@@ -4315,17 +4315,40 @@ jQuery(function() {
 });
 
 function calculate_roi($) {
+    var roiPDFUrl = commGlobal.site_url + '/pdfgen/roi/?';
+
     var activeAgents = parseInt($('#active_agents').val().replace(regex, ''));
+    roiPDFUrl += 'num_agents=' + activeAgents + '&';
+
     var callCenterHoursDay = parseInt($('#call_center_hours_day').val().replace(regex, ''));
+    roiPDFUrl += 'hours=' + callCenterHoursDay + '&';
+
     var callCenterDaysWeek = parseInt($('#call_center_days_week').val().replace(regex, ''));
+    roiPDFUrl += 'days=' + callCenterDaysWeek + '&';
+
     var agentCompensation = parseInt($('#agent_compensation').val().replace(regex, ''));
+    roiPDFUrl += 'compensation=' + agentCompensation + '&';
+
     var callLength = parseInt($('#call_length').val().replace(regex, ''));
+    roiPDFUrl += 'call_length=' + callLength + '&';
+
     var callCost = parseFloat($('#call_cost').val().replace(regex, ''));
+    roiPDFUrl += 'call_cost=' + callCost + '&';
+
     var chatLength = parseInt($('#chat_length').val().replace(regex, ''));
+    roiPDFUrl += 'chat_length=' + chatLength + '&';
+
     var concurrentChats = parseInt($('#concurrent_chats').val().replace(regex, ''));
+    roiPDFUrl += 'chats_per_agent=' + concurrentChats + '&';
+
+    var chatPackage = $("input[name='chatPackage']:checked").val();
+    roiPDFUrl += 'package=' + chatPackage + '&';
+
     var chatPackageRate = $("input[name='chatPackage']:checked").data('rate');
+    roiPDFUrl += 'chat_rate=' + chatPackageRate + '&';
+
     var totalDeflectedCalls = parseInt($('#percent_calls_to_chat').val().replace(regex, ''));
-    // var chatPackage = $("input[name='chatPackage']:checked").val();
+    roiPDFUrl += 'deflected_calls=' + totalDeflectedCalls + '&';
 
     var $callsYearBar = $('#calls_year_bar');
     var $chatsYearBar = $('#chats_year_bar');
@@ -4366,11 +4389,17 @@ function calculate_roi($) {
 
     var workCapacity = callCenterDaysYear * callCenterHoursDay;
     var callsYear = workCapacity * activeAgents * callsHour;
+    roiPDFUrl += 'calls_year=' + accounting.formatNumber(callsYear, 0) + '&';
+
     var chatsYear = workCapacity * activeAgents * chatHour;
 
     var deflectedCallsPercent = totalDeflectedCalls / 100;
     var deflectedCallsYear = (1 - deflectedCallsPercent) * callsYear;
     var deflectedChatsYear = deflectedCallsPercent * callsYear;
+
+    roiPDFUrl += 'deflected_calls_year=' + accounting.formatNumber(deflectedCallsYear, 0) + '&';
+    roiPDFUrl += 'deflected_chats_year=' + accounting.formatNumber(deflectedChatsYear, 0) + '&';
+    roiPDFUrl += 'deflected_queries_year=' + accounting.formatNumber(deflectedCallsYear + deflectedChatsYear, 0) + '&';
 
     $handleCallsResult.html(accounting.formatNumber(deflectedCallsYear, 0));
     $handleChatsResult.html(accounting.formatNumber(deflectedChatsYear, 0));
@@ -4379,6 +4408,10 @@ function calculate_roi($) {
     var phoneAgentsNeeded = Math.ceil(deflectedCallsYear / (callsHour * workCapacity));
     var chatAgentsNeeded = Math.ceil(deflectedChatsYear / (chatHour * workCapacity));
     var totalAgentsNeeded = phoneAgentsNeeded + chatAgentsNeeded;
+
+    roiPDFUrl += 'deflected_chat_agents=' + chatAgentsNeeded + '&';
+    roiPDFUrl += 'deflected_call_agents=' + phoneAgentsNeeded + '&';
+    roiPDFUrl += 'deflected_num_agents=' + totalAgentsNeeded + '&';
 
     $agentsPhoneResult.html(accounting.formatNumber(phoneAgentsNeeded, 0));
     $agentsChatResult.html(accounting.formatNumber(chatAgentsNeeded, 0));
@@ -4391,8 +4424,15 @@ function calculate_roi($) {
     var barScaleMultiplier = 0.0001;
 
     var callAgentCosts = agentCompensation * activeAgents;
+    roiPDFUrl += 'annual_compensation=' + accounting.formatNumber(callAgentCosts, 2) + '&';
+
     var callSystemCosts = callsYear * callCost;
     var totalCallCosts = callAgentCosts + callSystemCosts;
+    var perCallAgentCost = callAgentCosts / callsYear;
+    var costPerCall = perCallAgentCost + callCost;
+
+    roiPDFUrl += 'call_labour_cost=' + accounting.formatNumber(perCallAgentCost, 2) + '&';
+    roiPDFUrl += 'cost_per_call=' + accounting.formatNumber(costPerCall, 2) + '&';
 
     $labourCostPhoneBar.find('.segment_value').html(accounting.formatNumber(callAgentCosts, 0));
     $labourCostPhoneBar.height(callAgentCosts * barScaleMultiplier);
@@ -4401,7 +4441,6 @@ function calculate_roi($) {
     $systemCostPhoneBar.height(callSystemCosts * barScaleMultiplier);
 
     $totalCostPhoneResult.find('.value').html(accounting.formatNumber(totalCallCosts, 0));
-
 
     var deflectedCallAgentCosts = agentCompensation * phoneAgentsNeeded;
     var deflectedCallSystemCosts = deflectedCallsYear * callCost;
@@ -4434,26 +4473,41 @@ function calculate_roi($) {
     var chatSavings = totalCallCosts - deflectedTotalCallCosts;
     $deflectedChatSavings.html(accounting.formatNumber(chatSavings, 0));
 
-    // var teamCompensation = agentCompensation * activeAgents;
-    // var laborCostPerCall = teamCompensation / callsYear;
-    // var costPerCall = callCost + laborCostPerCall;
-    // var totalCallCost = costPerCall * callsYear;
+    roiPDFUrl += 'chats_hour=' + accounting.formatNumber(chatHour, 0) + '&';
+    roiPDFUrl += 'chats_year=' + accounting.formatNumber(chatHour * workCapacity, 0) + '&';
 
-    // var laborCostPerChat = teamCompensation / chatsYear;
-    // var annualComm100Sub = activeAgents * chatPackageRate;
-    // var comm100RatePerChat = annualComm100Sub / chatsYear;
-    // var costPerChat =  comm100RatePerChat + laborCostPerChat;
+    roiPDFUrl += 'chat_savings=' + accounting.formatNumber(chatSavings, 0) + '&';
 
-    // var totalChatCost = costPerChat * chatsYear;
-    // var callChatEquivalent = costPerCall * chatsYear;
-    // var chatSavings = callChatEquivalent - totalChatCost;
-    // var totalROI = ((chatSavings - totalChatCost) / totalChatCost) * 100;
+    roiPDFUrl += 'deflected_call_labour_cost=' + accounting.formatNumber((deflectedCallAgentCosts / deflectedCallsYear), 2) + '&';
+    roiPDFUrl += 'deflected_call_total_cost=' + accounting.formatNumber(costPerCall, 2) + '&';
+    roiPDFUrl += 'deflected_chat_cost=' + accounting.formatNumber(deflectedChatSystemCosts / deflectedChatsYear, 2) + '&';
+    roiPDFUrl += 'deflected_chat_labour_cost=' + accounting.formatNumber(deflectedChatAgentCosts / deflectedChatsYear, 2) + '&';
+    roiPDFUrl += 'deflected_chat_total_cost=' + accounting.formatNumber(costPerCall, 2) + '&';
 
+    roiPDFUrl += 'annual_call_labour_cost=' + accounting.formatNumber(callAgentCosts, 2) + '&';
+    roiPDFUrl += 'annual_call_system_cost=' + accounting.formatNumber(callSystemCosts, 2) + '&';
+    roiPDFUrl += 'annual_call_total_cost=' + accounting.formatNumber(totalCallCosts, 2) + '&';
+
+    roiPDFUrl += 'annual_deflected_labour_cost=' + accounting.formatNumber(deflectedCallAgentCosts + deflectedChatAgentCosts, 2) + '&';
+    roiPDFUrl += 'annual_deflected_system_cost=' + accounting.formatNumber(deflectedCallSystemCosts + deflectedChatSystemCosts, 2) + '&';
+    roiPDFUrl += 'annual_deflected_total_cost=' + accounting.formatNumber(deflectedTotalCallCosts, 2) + '&';
+
+    var totalROI = ((chatSavings - deflectedChatSystemCosts) / deflectedChatSystemCosts) * 100;
+    var costRatio = ((deflectedChatAgentCosts + deflectedChatSystemCosts) / deflectedChatsYear) / ((deflectedCallAgentCosts + deflectedCallSystemCosts) / deflectedCallsYear) * 100;
+
+    // console.log(totalROI);
     $oneYearROI.find('.value').html(accounting.formatNumber(totalROI, 0));
 
-    var paybackPeriod = (totalChatCost / chatSavings) * 12;
+    var paybackPeriod = (deflectedChatSystemCosts / chatSavings) * 365;
 
     $paybackPeriod.find('.value').html(accounting.formatNumber(paybackPeriod, 1));
+
+    roiPDFUrl += 'cost_ratio=' + accounting.formatNumber(costRatio, 0) + '&';
+    roiPDFUrl += 'roi_year=' + accounting.formatNumber(totalROI, 1) + '&';
+    roiPDFUrl += 'payback=' + accounting.formatNumber(paybackPeriod, 1) + '&';
+
+    $("input[name='DynamicalURL']").val(roiPDFUrl);
+    console.log(roiPDFUrl);
 }
 
 /* ========================================================================
@@ -4537,6 +4591,15 @@ function calculate_roi($) {
                 });
 
                 calculate_roi($);
+
+                MktoForms2.whenReady(function (form){
+                    form.onSuccess(function(values, followUpUrl) {
+                        console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
+                        location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        // Return false to prevent the submission handler continuing with its own processing
+                        return false;
+                    });
+                });
             }
 
             if ($('.section-live_chat_stats').length) {
@@ -4545,7 +4608,7 @@ function calculate_roi($) {
                 $('#stats-form').submit(function(e) {
                     var stats = [
                         {
-                            "industry" : "banking",
+                            "industry" : "Banking and Financial Services",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "3.74", "avg_satisfaction" : "73.23", "chats_month" : 889, "mobile_chats" : "44.45", "avg_wait_time" : "1 min<br/>4 sec", "avg_chat_length" : "14 min<br/>51 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.60", "avg_satisfaction" : "92.44", "chats_month" : 585, "mobile_chats" : "43.70", "avg_wait_time" : "16 sec", "avg_chat_length" : "10 min<br/>27 sec" },
@@ -4554,7 +4617,7 @@ function calculate_roi($) {
                             ]
                         },
                         {
-                            "industry" : "healthcare",
+                            "industry" : "Healthcare",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "4.61", "avg_satisfaction" : "94.28", "chats_month" : 47, "mobile_chats" : "49.51", "avg_wait_time" : "36 sec", "avg_chat_length" : "11 min<br/>20 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.47", "avg_satisfaction" : "90.51", "chats_month" : "1,029", "mobile_chats" : "60.29", "avg_wait_time" : "69 sec", "avg_chat_length" : "11 min<br/>3 sec" },
@@ -4563,7 +4626,7 @@ function calculate_roi($) {
                             ]
                         },
                         {
-                            "industry" : "government",
+                            "industry" : "Government",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "4.70", "avg_satisfaction" : "95.38", "chats_month" : 713, "mobile_chats" : "44.02", "avg_wait_time" : "48 sec", "avg_chat_length" : "15 min<br/>22 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.17", "avg_satisfaction" : "87.83", "chats_month" : 343, "mobile_chats" : "35.72", "avg_wait_time" : "17 sec", "avg_chat_length" : "12 min<br/>47 sec" },
@@ -4571,7 +4634,7 @@ function calculate_roi($) {
                             ]
                         },
                         {
-                            "industry" : "ecommerce",
+                            "industry" : "eCommerce",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "4.17", "avg_satisfaction" : "82.55", "chats_month" : 265, "mobile_chats" : "38.41", "avg_wait_time" : "1 min<br/>51 sec", "avg_chat_length" : "15 min<br/>20 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.46", "avg_satisfaction" : "90.75", "chats_month" : 690, "mobile_chats" : "33.97", "avg_wait_time" : "1 min<br/>6 sec", "avg_chat_length" : "12 min<br/>22 sec" },
@@ -4580,7 +4643,7 @@ function calculate_roi($) {
                             ]
                         },
                         {
-                            "industry" : "manufacturing",
+                            "industry" : "Manufacturing",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "4.55", "avg_satisfaction" : "91.03", "chats_month" : 51, "mobile_chats" : "26.16", "avg_wait_time" : "52 sec", "avg_chat_length" : "20 min<br/>42 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.52", "avg_satisfaction" : "89.95", "chats_month" : 287, "mobile_chats" : "22.11", "avg_wait_time" : "32 sec", "avg_chat_length" : "17 min<br/>5 sec" },
@@ -4589,7 +4652,7 @@ function calculate_roi($) {
                             ]
                         },
                         {
-                            "industry" : "technology",
+                            "industry" : "Technology",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "3.59", "avg_satisfaction" : "72.06", "chats_month" : 483, "mobile_chats" : "28.35", "avg_wait_time" : "57 sec", "avg_chat_length" : "14 min<br/>59 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.31", "avg_satisfaction" : "86.82", "chats_month" : 401, "mobile_chats" : "13.30", "avg_wait_time" : "36 sec", "avg_chat_length" : "15 min<br/>21 sec" },
@@ -4598,7 +4661,7 @@ function calculate_roi($) {
                             ]
                         },
                         {
-                            "industry" : "recreation",
+                            "industry" : "Recreation",
                             "ranges" : [
                                 { "min" : 1, "max" : 3, "avg_rating" : "4.16", "avg_satisfaction" : "81.63", "chats_month" : "1,312", "mobile_chats" : "74.07", "avg_wait_time" : "16 sec", "avg_chat_length" : "8 min<br/>49 sec" },
                                 { "min" : 4, "max" : 10, "avg_rating" : "4.20", "avg_satisfaction" : "81.68", "chats_month" : "4,053", "mobile_chats" : "72.13", "avg_wait_time" : "14 sec", "avg_chat_length" : "7 min<br/>28 sec" },
@@ -4608,14 +4671,14 @@ function calculate_roi($) {
                         }
                     ];
 
+                    var industry = $('#industry').val();
+                    var numAgents = parseInt($('#num_agents').val());
+                    console.log(numAgents);
+
                     for (var i = 0; i < stats.length; i++) {
-                        var industry = $('#industry').val();
-                        var numAgents = parseInt($('#num_agents').val());
-
                         if (industry == stats[i].industry) {
-                                for (var x = 0; x < stats[i].ranges.length; x++) {
-
-                                if (numAgents >= stats[i].ranges[x].min, numAgents <= stats[i].ranges[x].max) {
+                            for (var x = 0; x < stats[i].ranges.length; x++) {
+                                if (numAgents >= stats[i].ranges[x].min && numAgents <= stats[i].ranges[x].max) {
                                     // console.log(stats[i].ranges[x]);
                                     $('#avg-rating .value').html(stats[i].ranges[x].avg_rating);
                                     $('#avg-satisfaction .value').html(stats[i].ranges[x].avg_satisfaction);
@@ -4623,15 +4686,14 @@ function calculate_roi($) {
                                     $('#mobile-chats .value').html(stats[i].ranges[x].mobile_chats);
                                     $('#avg-wait-time .value').html(stats[i].ranges[x].avg_wait_time);
                                     $('#avg-chat-length .value').html(stats[i].ranges[x].avg_chat_length);
-
-                                    statsPDFLink = '/pdfgen/live-chat/?industry=' + industry + '&avg-rating=' + stats[i].ranges[x].avg_rating + '&avg-satisfaction=' + stats[i].ranges[x].avg_satisfaction + '&avg-chats-month=' + stats[i].ranges[x].chats_month + '&mobile-chats=' + stats[i].ranges[x].mobile_chats + '&avg-wait-time=' + stats[i].ranges[x].avg_wait_time + '&avg-chat-length=' + stats[i].ranges[x].avg_chat_length
+                                    $("input[name='DynamicalURL']").val(commGlobal.site_url + '/pdfgen/live-chat/?industry=' + industry + '&avg-rating=' + stats[i].ranges[x].avg_rating + '&avg-satisfaction=' + stats[i].ranges[x].avg_satisfaction + '&avg-chats-month=' + stats[i].ranges[x].chats_month + '&mobile-chats=' + stats[i].ranges[x].mobile_chats + '&avg-wait-time=' + stats[i].ranges[x].avg_wait_time + '&avg-chat-length=' + stats[i].ranges[x].avg_chat_length);
                                 }
                             }
                         }
                     }
 
                     $('#stats-step1 .step-content').slideUp(350);
-                    $('#stats-step2, #stats-result-form').slideDown(350);
+                    $('#stats-step2, #stats-result-form').slideDown(350).removeClass('inactive');
                     e.preventDefault();
                 });
 
@@ -4642,16 +4704,9 @@ function calculate_roi($) {
 
                 MktoForms2.whenReady(function (form){
                     form.onSuccess(function(values, followUpUrl) {
-                        // Get the form's jQuery element and hide it
-                        // statsPDFLink
-                        //open download link in new page
-                        window.open(statsPDFLink);
-                        window.focus();
-                        //redirect current page to success page
-                        return followUpUrl;
-                        // form.getFormElem().hide();
-                        // // Return false to prevent the submission handler from taking the lead to the follow up url
-                        // return false;
+                        location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        // Return false to prevent the submission handler continuing with its own processing
+                        return false;
                     });
                 });
             }

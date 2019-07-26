@@ -1071,12 +1071,6 @@ use Roots\Sage\Assets;
                     $description = get_sub_field('description');
                     $promotion_cta = get_sub_field('cta');
                     $bg_image = get_sub_field('background_image');
-                    $content_align = get_sub_field('content_alignment');
-                    $containerClass = 'col-sm-6';
-
-                    if ($content_align == 'center') {
-                        $containerClass = 'col-xs-12 col-sm-8 col-sm-offset-2 text-center';
-                    }
 
                     $style_bg = '';
                     if ($bg_image):
@@ -1086,7 +1080,7 @@ use Roots\Sage\Assets;
                     echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="'.$containerClass.'">';
+                    echo '<div class="col-sm-6">';
 
                     if ($headline):
                         echo '<div class="promotion_headline">' .
@@ -1541,38 +1535,18 @@ use Roots\Sage\Assets;
                     if ($btn_group):
                         while ( have_rows('btn_group') ) : the_row();
                             $type = get_sub_field('type');
-                            $buttonColor = get_sub_field('button_color');
-                            $groupClass = '';
-                            $btnClass = 'btn-link';
-
-                            if ($type == 'image') {
-                                $groupClass .= 'd-flex justify-content-space-between';
-                                $btnClass .= 'banner_cta_link btn btn-xlg btn-link--green w-100';
-                            }
-
                             // check if the nested repeater field has rows of data
                             if( have_rows('btn_repeater') ):
 
-                                echo '<div class="'.$groupClass.' btn-link-group c-margin-t-60 btn-color-'.$buttonColor.' btn-link-group--' . $type . '">';
+                                echo '<div class="btn-link-group c-margin-t-60 btn-link-group--' . $type . '">';
 
                                     // loop through the rows of data
                                 while ( have_rows('btn_repeater') ) : the_row();
 
                                     $btn_link = get_sub_field('button');
 
-                                    if ($type == 'image') {
-                                        echo '<div class="item text-center">';
-                                    }
+                                    echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
 
-                                    if (get_sub_field('button_image')) {
-                                        echo '<img src="'.get_sub_field('button_image')['url'].'" alt="'.get_sub_field('button_image')['alt'].'" style="max-width: 240px;" /><br/><br/><br/>';
-                                    }
-
-                                    echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="'.$btnClass.'">' . $btn_link['title'] . '</a>';
-
-                                    if ($type == 'image') {
-                                        echo '</div>';
-                                    }
                                 endwhile;
 
                                 echo '</div>';
@@ -2882,8 +2856,7 @@ use Roots\Sage\Assets;
                                                 if (get_sub_field('link_type') == 'btn') {
                                                     echo '<a class="btn btn-xlg c-btn-border-2x c-theme-btn c-margin-l-60" href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' . $download_link['title'] . '</a>';
                                                 } else {
-
-                                                    echo '<a href="' . $download_link . '">' .
+                                                    echo '<a href="' . $download_link['url'] . '">' .
                                                             '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
                                                         '</a>';
                                                 }

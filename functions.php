@@ -16,6 +16,7 @@ $sage_includes = [
     'lib/navigation.php',    // Custom page navigation
     'lib/assets.php',    // Scripts and stylesheets
     'lib/extras.php',    // Custom functions
+    'lib/gdpr.php',    // Custom WebToffee GDPR functions
     'lib/setup.php',     // Theme setup
     'lib/shortcodes.php', // Custom Shortcodes
     'lib/titles.php',    // Page titles

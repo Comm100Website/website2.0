@@ -25,17 +25,17 @@ Template Post Type: commresource, page
 
                     if ($header_headline):
                         echo '<h1>' .
-                                $header_headline .
+                        do_shortcode($header_headline) .
                             '</h1>';
                     endif;
                     if ($header_slogan):
                         echo '<h2 class="c-margin-t-20">' .
-                                $header_slogan .
+                        do_shortcode($header_slogan) .
                             '</h2>';
                     endif;
                     if ($header_description):
                         echo '<div class="desc">' .
-                                $header_description .
+                        do_shortcode($header_description) .
                             '</div>';
                     endif;
 
@@ -1693,10 +1693,10 @@ Template Post Type: commresource, page
                         echo '<div class="col-sm-5 col-sm-push-7 landingPage-title--col"><img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" /></div>';
                         echo '<div class="col-sm-7 col-sm-pull-5 landingPage-title--col">';
                             echo '<div class="landingPage-title--text">';
-                            echo '<h2>' . $h2_title . '</h2>';
-                            echo '<h1>' . $h1_title . '</h1>';
+                            echo '<h2>' . do_shortcode($h2_title) . '</h2>';
+                            echo '<h1>' . do_shortcode($h1_title) . '</h1>';
                             if ($description):
-                                echo $description;
+                                echo do_shortcode($description);
                             endif;
                             if ($banner_cta):
                                 while ( have_rows('cta') ) : the_row();

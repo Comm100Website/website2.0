@@ -4,8 +4,30 @@
         padding: 32px 45px;
     }
 
-    #stats-step2, #stats-result-form {
-        display: none;
+    #stats-step2.inactive {
+        .row:first-child { opacity: 0.4; }
+
+        .statistic {
+            background: #92adbd;
+
+            .value-wrap { color: #606c78; }
+        }
+    }
+
+    #stats-result-form.inactive {
+        position: relative;
+
+        &::before {
+            position: absolute;
+            display: block;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 101%;
+            background: hsla(0,0%,100%,.6);
+            z-index: 9;
+        }
     }
 
     #stats-result-form {

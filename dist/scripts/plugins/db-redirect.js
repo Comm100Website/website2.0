@@ -1,4 +1,5 @@
 var DEMAND_BASE_COOKIE = 'db_userinfo';
+var dataLayer = [];
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -112,12 +113,17 @@ function redirect_to_db_audience(userinfo) {
 
     var currentPageURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
 
+    // console.log(window.location.pathname);
     if (audiencePageURL != currentPageURL) {
         if (isUserLoggedIn()) {
             // console.log('DB would have redirected to ' + audiencePageURL);
         } else {
             window.location.href = audiencePageURL;
         }
+    } else if (window.location.pathname == '/') {
+        //Activate Google Optimize if we're on the homepage.
+        // console.log('optimize.activate');
+        dataLayer.push({'event': 'optimize.activate'});
     }
 }
 

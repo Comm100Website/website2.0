@@ -15,13 +15,13 @@
                         <label for="industry">What is your industry?</label>
                         <select name="industry" id="industry" required>
                             <option value="">- Choose an industry -</option>
-                            <option value="banking">Banking and Financial Services</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="government">Government</option>
-                            <option value="ecommerce">eCommerce</option>
-                            <option value="manufacturing">Manufacturing</option>
-                            <option value="technology">Technology</option>
-                            <option value="recreation">Recreation</option>
+                            <option value="Banking and Financial Services">Banking and Financial Services</option>
+                            <option value="Healthcare">Healthcare</option>
+                            <option value="Government">Government</option>
+                            <option value="eCommerce">eCommerce</option>
+                            <option value="Manufacturing">Manufacturing</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Recreation">Recreation</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -34,7 +34,7 @@
         </div>
     </div>
 </div>
-<div id="stats-step2" class="step-container container">
+<div id="stats-step2" class="step-container container inactive">
     <div class="bg-light-grey">
         <div class="row step-header">
             <div class="col-xs-12 col-sm-2 col-md-1">
@@ -84,7 +84,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-wait-time" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">-</span>
+                        <span class="value">- min<br/>- sec</span>
                     </div>
                     <div class="title">Average wait time</div>
                     <div class="description">Average time a visitor is waiting before connecting to an agent</div>
@@ -93,7 +93,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-chat-length" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">-</span>
+                        <span class="value">- min<br/>- sec</span>
                     </div>
                     <div class="title">Average chat length</div>
                     <div class="description">Average duration from when a visitor connects to wrap-up</div>
@@ -102,7 +102,7 @@
         </div>
     </div>
 </div>
-<div id="stats-result-form" class="container section-footer">
+<div id="stats-result-form" class="container section-footer inactive">
     <div class="row">
         <div class="col-xs-12 col-md-4">
             <img src="<?= $block['report_form']['form_thumbnail']['url']; ?>" alt="<?= get_the_title(); ?>" />

@@ -5,14 +5,41 @@ use Roots\Sage\Extras;
 use DateTime;
 use DateTimeZone;
 
+function register_output_marketo_confirmation_link_shortcode($atts, $content) {
+    if (array_key_exists('confirmation_link', $_GET)) {
+        $output = '<a href="'.$_GET['confirmation_link'].'">'.$content.'</a>';
+    }
+
+    return $output;
+}
+add_shortcode('output_marketo_confirmation_link', __NAMESPACE__.'\\register_output_marketo_confirmation_link_shortcode');
+
 function register_recurring_webinar_date_time_shortcode($atts, $content) {
     global $post;
+
+    // var_dump($atts);
+
+    //Extract the properties from the shortcodes attributes
+    extract(
+        shortcode_atts(
+            [
+                'postid' => $post->ID
+            ],
+            $atts
+        )
+    );
+
+    // var_dump($postID);
+    // var_dump($postid);
+
     $recurringWebinars = get_field('webinar_schedules', 'options');
     $output = '';
 
     if ($post && $recurringWebinars) {
         foreach ($recurringWebinars as $webinar) {
-            if ($webinar['webinar_post'] == $post->ID) {
+            // var_dump($webinar['webinar_post'] . ' ' . $postid);
+
+            if ($webinar['webinar_post'] == $postid) {
                 $schedule = $webinar['schedule'];
 
                 //Sort the schedule in ascending order with the oldest dates last.
