@@ -316,6 +316,12 @@ a {
   text-decoration: none;
   color: #3dc4ff;
   outline: 0 !important;
+
+  &.text-light {
+    &:hover, &:focus {
+        color: #fff;
+    }
+  }
 }
 a:active,
 a:focus,

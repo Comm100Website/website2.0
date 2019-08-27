@@ -1,7 +1,139 @@
+.statistics {
+    .statistic {
+        background: #003e5e;
+        color: #fff;
+        box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.3);
+        font-family: $font-family-medium;
+        text-align: center;
+        padding: 45px 20px;
+        height: 100%;
+
+        .value-wrap {
+            color: #3dbfff;
+            font-size: 7.5vw;
+            line-height: 1;
+            margin-bottom: 10px;
+
+            .label {
+                font-size: 4vw;
+            }
+        }
+
+        .title { font-size: 3.8vw; }
+        .description { font-size: 2.6vw; }
+
+        .footer {
+            position: absolute; bottom: 0; left: 0; width: 100%; padding: 17px 8px; background: transparent; color: #fff; font-weight: 300; font-size: 11px; line-height: 1;
+        }
+
+        @media (min-width: $screen-sm-min) {
+            .value-wrap {
+                font-size: 3.7vw;
+
+                .label {
+                    font-size: 24px;
+                }
+            }
+
+            .title { font-size: 2vw; }
+            .description { font-size: 1.5vw; }
+        }
+
+        @media (min-width: $screen-md-min) {
+            .value-wrap { font-size: 4.5vw; }
+            .title { font-size: 1.6vw; }
+            .description { font-size: 1vw; }
+
+            &#mobile-chats, &#avg-wait-time, &#avg-chat-length {
+                .value-wrap {
+                    min-height: 122px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .value-wrap { font-size: 58px; }
+            .title { font-size: 20px; }
+            .description { font-size: 14px; }
+        }
+    }
+
+    .stat-wrap {
+        margin-bottom: 20px; margin-top: 20px;
+
+        &.with-footer {
+            .statistic {
+                padding-bottom: 50px;
+            }
+        }
+    }
+}
+
+.stats-panel-group.panel-group {
+    margin-bottom: 0;
+
+    .panel {
+        background: $blue-light;
+        padding: 20px 30px;
+        box-shadow: none;
+        margin-bottom: 40px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .panel-title {
+            font-size: 36px;
+            line-height: 1;
+            position: relative;
+
+            a {
+                img {
+                    margin-right: 20px;
+                }
+
+                .toggle-icon {
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -10px;
+                    right: 0;
+                    transform: rotate(0);
+                    transition: transform 0.2s ease-out;
+                }
+
+                &.collapsed {
+                    .toggle-icon {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+
+        .panel-body {
+            border-top: 0 !important;
+            padding-top: 40px;
+        }
+
+        @media (min-width: $screen-sm-min) {
+            padding: 36px 90px;
+        }
+    }
+}
+
 .content-section.section-live_chat_stats {
     .bg-light-grey {
         background: $blue-light;
         padding: 32px 45px;
+    }
+
+    .statistics {
+        @media (min-width: $screen-md-min) {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
     }
 
     #stats-step2.inactive {
@@ -63,60 +195,6 @@
             margin-bottom: 35px;
         }
     }
-
-    .statistics {
-
-        @media (min-width: $screen-md-min) {
-            padding-left: 60px;
-            padding-right: 60px;
-        }
-    }
-
-    .stat-wrap { margin-bottom: 20px; margin-top: 20px; }
-    .statistic {
-        background: #003e5e;
-        color: #fff;
-        box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.3);
-        font-family: $font-family-medium;
-        text-align: center;
-        padding: 45px 30px;
-        height: 100%;
-
-        .value-wrap {
-            color: #3dbfff;
-            font-size: 7.5vw;
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-
-        .title { font-size: 3.8vw; }
-        .description { font-size: 2.6vw; }
-
-        @media (min-width: $screen-sm-min) {
-            .value-wrap { font-size: 3.7vw; }
-            .title { font-size: 2vw; }
-            .description { font-size: 1.5vw; }
-        }
-
-        @media (min-width: $screen-md-min) {
-            .value-wrap { font-size: 4.5vw; }
-            .title { font-size: 1.6vw; }
-            .description { font-size: 1vw; }
-
-            &#mobile-chats, &#avg-wait-time, &#avg-chat-length {
-                .value-wrap {
-                    min-height: 122px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .value-wrap { font-size: 58px; }
-            .title { font-size: 20px; }
-            .description { font-size: 14px; }
-        }
-    }
 }
+
+

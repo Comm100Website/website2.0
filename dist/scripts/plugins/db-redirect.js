@@ -1,5 +1,8 @@
 var DEMAND_BASE_COOKIE = 'db_userinfo';
-var dataLayer = [];
+
+// if (typeof dataLayer !== 'undefined') {
+//     var dataLayer = [];
+// }
 
 function setCookie(name,value,days) {
     var expires = "";
@@ -16,9 +19,16 @@ function getCookie(name) {
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+
+        while (c.charAt(0)===' ') {
+            c = c.substring(1,c.length);
+        }
+
+        if (c.indexOf(nameEQ) === 0) {
+            return c.substring(nameEQ.length,c.length);
+        }
     }
+
     return null;
 }
 
@@ -27,12 +37,12 @@ function eraseCookie(name) {
 }
 
 function isUserLoggedIn() {
-    return (document.cookie.indexOf('wp-settings') != -1);
+    return (document.cookie.indexOf('wp-settings') !== -1);
 }
 
 function urlParam(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
+    if (results===null){
        return null;
     }
     else{
@@ -85,13 +95,13 @@ function redirect_to_db_audience(userinfo) {
             if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field)) {
                 // console.log('Audience field [' + dbGlobal.db_audiences[i].field + '] (' + userinfo[dbGlobal.db_audiences[i].field] +'=='+ dbGlobal.db_audiences[i].value + ')');
 
-                if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field) && userinfo[dbGlobal.db_audiences[i].field] == dbGlobal.db_audiences[i].value) {
+                if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].field) && userinfo[dbGlobal.db_audiences[i].field] === dbGlobal.db_audiences[i].value) {
                     var excluded = false;
 
                     //Now check to see if the user's audience is excluded from this rule. If it is we'll set the audience page to the current URL so we won't get redirected
                     if (dbGlobal.db_audiences[i].exclude.length > 0) {
                         for (var x = 0; x < dbGlobal.db_audiences[i].exclude.length; x++) {
-                            if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].exclude[x].field) && userinfo[dbGlobal.db_audiences[i].exclude[x].field] == dbGlobal.db_audiences[i].exclude[x].value) {
+                            if (userinfo.hasOwnProperty(dbGlobal.db_audiences[i].exclude[x].field) && userinfo[dbGlobal.db_audiences[i].exclude[x].field] === dbGlobal.db_audiences[i].exclude[x].value) {
                                 excluded = true;
                                 // console.log('User excluded based on ' + dbGlobal.db_audiences[i].exclude[x].field + ' matching ' + dbGlobal.db_audiences[i].exclude[x].value);
                             }
@@ -114,13 +124,13 @@ function redirect_to_db_audience(userinfo) {
     var currentPageURL = window.location.protocol + "//" + window.location.hostname + window.location.pathname;
 
     // console.log(window.location.pathname);
-    if (audiencePageURL != currentPageURL) {
+    if (audiencePageURL !== currentPageURL) {
         if (isUserLoggedIn()) {
             // console.log('DB would have redirected to ' + audiencePageURL);
         } else {
             window.location.href = audiencePageURL;
         }
-    } else if (window.location.pathname == '/') {
+    } else if (window.location.pathname === '/') {
         //Activate Google Optimize if we're on the homepage.
         // console.log('optimize.activate');
         dataLayer.push({'event': 'optimize.activate'});
@@ -137,7 +147,7 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     var requestURL = dbGlobal.theme_url + '/ajax/demandbase-api.php';
 
     if (location.search.indexOf('ip=')>=0) {
-        urlParam(name)
+        urlParam(name);
         requestURL += '?ip=' + urlParam('ip');
     } else {
         requestURL += '?cache=false';

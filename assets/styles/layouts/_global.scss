@@ -6789,7 +6789,7 @@ button.btn-video-close span {
     margin-right: 75px;
   }
 
-  .menu-item-24217, .menu-item-24212 {
+  .menu-item-29260,  .menu-item-24217, .menu-item-24212 {
     .dropdown-menu {
         min-width: 155px !important;
 
@@ -7322,6 +7322,13 @@ h3.highlight {
   }
   .banner {
     background-position: left center;
+    height: auto;
+    // padding-top: 0 !important;
+
+    .subtitle {
+        font-size: 34px;
+        line-height: 1.2;
+    }
   }
 }
 .banner--sm {
@@ -7540,7 +7547,14 @@ h3.highlight {
   .justify-content-space-between { justify-content: space-between; }
   .justify-content-end { justify-content: flex-end; }
   .w-100 { width: 100%; }
-  .flex-wrap { flex-wrap: wrap; }
+  .flex-wrap {
+    flex-wrap: wrap;
+
+    > [class*=col-] {
+        margin-left: -.3px;
+        margin-right: -.3px;
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -8174,7 +8188,6 @@ h5.feature-column__title {
 //   padding-right: 0;
 // }
 .resourceCard-item img {
-  border-radius: 20px;
   width: 100%;
 }
 .resourceCard-item-tag {
@@ -9884,6 +9897,7 @@ h2.video-title {
       padding-top: 14px;
       padding-bottom: 14px;
       border-bottom: 2px solid #e0e2e1;
+      display: block !important;
 
       img {
         float: left;

@@ -319,4 +319,10 @@
 .mktoForm .single-checkbox.mktoFormRow {
     .mktoFieldWrap { display: flex; }
     .mktoLabel { display: block !important; text-align: left !important; padding-left: 10px !important; font-size: 13px !important; line-height: 1.3 !important; order: 3; flex: 1 !important; width: auto !important; }
+
+    @media only screen and (max-width: 480px) {
+        .mktoCheckboxList {
+           width: auto;
+        }
+    }
 }

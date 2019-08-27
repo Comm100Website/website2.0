@@ -58,7 +58,7 @@
                 </div>
                 <div class="footer__links">
                     <h4 class="footer__heading">
-                        Resources
+                        Library
                     </h4>
                     <?php
                         $defaults = array(
@@ -158,7 +158,7 @@
                 <p class="c-copyright c-float-r">
                     <a href="/sitemap_index.xml" title="Live Chat Site Map">Site Map</a> |
                     <a href="/privacy/" title="Live Chat Privacy Policy">Privacy Policy</a> |
-                    <a href="/privacy/anti-spam-policy/">Anti-Spam Policy</a> |
+                    <a href="/privacy/cookie-policy/">Cookie Policy</a> |
                     <a href="/eula/">EULA</a>
                 </p>
             </div>
@@ -181,6 +181,12 @@
 <!-- END: LAYOUT/FOOTERS/GO2TOP -->
 <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
 <!-- BEGIN: CORE PLUGINS -->
+
+<?php
+if (get_field('override_the_default_site_chatbot')):
+    the_field('override_chatbox_code');
+else:
+?>
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-5000239"></div>
 <script type="text/javascript">
@@ -190,4 +196,5 @@
     }
 </script>
 <!--End Comm100 Live Chat Code-->
+<?php endif; ?>
 <!-- END: LAYOUT/BASE/BOTTOM -->

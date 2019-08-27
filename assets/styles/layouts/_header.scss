@@ -1,5 +1,6 @@
 body.page-template-resources, body.post-type-archive-commresource, body.single-commresource, body.tax-commresourcecat, body.page-blog, body.single-post {
-    .menu-item-object-commresource a { color: #0094d4!important; }
+    .navbar-nav > .menu-item-object-commresource > a { color: #0094d4!important; }
+    // .menu-item-9004111222085579 a { color: rgba(94,109,121,.7)!important; }
 }
 
 body.db-audience-mx {

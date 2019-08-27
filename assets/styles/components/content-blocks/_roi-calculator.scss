@@ -39,10 +39,16 @@
     .roi-input-col {
         background: #f4f8fc;
 
+        h2:first-child {
+            margin-top: 0;
+        }
+
         hr {
             border-top-color: #606c78;
             margin: 60px 0;
         }
+
+        label { font-size: 20px; }
 
         .input-small {
             text-align: center;
@@ -171,6 +177,14 @@
             }
         }
 
+        h5 { font-family: $font-family-bold; font-weight: 400; }
+
+        @media (min-width: 992px) {
+            hr:nth-child(3) {
+                margin-top: 88px;
+            }
+        }
+
         .tooltip {
             &.bottom {
                 .tooltip-arrow {
@@ -198,7 +212,7 @@
         }
 
         .font-weight-heavy {
-            font-family: $font-family-bold; font-weight: 400; font-size: 4.6vw;
+            font-family: $font-family-bold; font-weight: 400; font-size: 6vw;
         }
 
         .bar-chart-totals {
@@ -208,18 +222,48 @@
             h4 {
                 color: #9fdd09;
                 font-size: 30px;
+                margin-top: 10px;
             }
         }
 
         .roi-results {
+            position: relative;
+            flex-wrap: nowrap;
+            flex-direction: row;
+            display: flex;
             justify-content: space-between;
 
-            > .roi-result { align-items: flex-end; }
-            > .roi-result-comparison { align-items: center; }
+            @media (max-width: 991px) {
+                align-items: flex-end;
+            }
+
+            > .roi-result {
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+
+                @media (max-width: 991px) {
+                    flex-basis: 50%;
+                }
+            }
+
+            > .roi-result-comparison {
+                align-items: center;
+
+                @media (max-width: 991px) {
+                    position: absolute;
+                    left: 46%;
+                    top: 30%;
+                }
+
+                @media (max-width: 992px) {
+                    padding-bottom: 30%;
+                }
+            }
 
             .roi-bar-chart {
                 text-align: center;
-                margin-bottom: 40px;
+                // margin-bottom: 40px;
 
                 .value-wrap {
                     font-family: $font-family-bold; font-weight: 400; font-size: 2vw; line-height: 1; margin-bottom: 10px;
@@ -227,7 +271,26 @@
                     small { font-family: $font-family-light; font-size: 65%; }
                 }
 
-                .bar { width: 80%; margin-left: auto; margin-right: auto; max-width: 68px; margin-top: 3px; margin-bottom: 5px; display: flex; justify-content: flex-end; flex-direction: column; }
+                .bar {
+                    width: 20%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    max-width: 18px;
+                    margin-top: 3px;
+                    margin-bottom: 5px;
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-direction: column;
+
+                    @media (min-width: 370px) {
+                        max-width: 68px;
+                    }
+
+                    @media (min-width: 460px) {
+                        width: 80%;
+                    }
+                }
+
                 .bar-segment {
                     position: relative;
                     min-height: 3px;
@@ -242,33 +305,47 @@
                         line-height: 1;
                         padding-left: 7px;
                     }
+
+                    &#deflected_system_cost_chat_bar {
+                        .segment_total {
+                            top: auto;
+                            bottom: 0;
+                        }
+                    }
+
+                    &#deflected_system_cost_chat_bar {
+                        .segment_total {
+                            margin-top: -2px;
+                        }
+                    }
                 }
 
-                .label { font-family: $font-family-regular; font-size: 1.5vw; }
-                small { font-size: 2.5vw; }
 
-                @media (min-width: 992px) {
-                    small { font-size: 12px; }
-                    .font-weight-heavy { font-size: 1.6vw; }
+                .label { font-family: $font-family-regular; font-size: 1.38vw; }
+                small { font-size: 4vw; }
+
+                @media (min-width: 480px) {
+                    small { font-size: 20px; }
+                    .font-weight-heavy { font-size: 30px; }
                 }
 
                 @media (min-width: 1440px) {
-                    small { font-size: 20px; display: block; line-height: 1; margin-top: 8px; }
-                    .value-wrap { font-size: 33px; }
-                    .label { font-size: 25px; }
+                    small { display: block; line-height: 1; margin-top: 8px; }
+                    .value-wrap { font-size: 30px; }
+                    .label { font-size: 20px; }
                 }
             }
 
             #calls_year_bar.roi-bar-chart .bar-segment .segment_total { left: auto; right: 100%; padding-right: 7px; padding-left: 0; }
 
             .roi-result-comparison {
-                font-family: $font-family-bold; font-weight: 400; font-size: 4.6vw; align-items: center;
+                font-size: 4.6vw; align-items: center;
 
-                @media (min-width: 992px) {
-                    font-size: 1.6vw;
+                @media (min-width: 480px) {
+                    font-size: 20px;
                 }
 
-                @media (min-width: 1440px) {
+                @media (min-width: 992px) {
                     font-size: 30px;
                 }
             }
@@ -305,26 +382,26 @@
             }
 
             .roi-icon-result {
-                font-family: $font-family-bold;
                 font-size: 2.6vw;
 
                 .value-wrap {
-                    font-size: 4.4vw;
+                    font-family: $font-family-bold;
+                    font-size: 6vw;
                 }
 
                 @media (min-width: 992px) {
-                    font-size: 1.6vw;
+                    font-size: 1.38vw;
 
                     .value-wrap {
-                        font-size: 2.4vw;
+                        font-size: 30px;
                     }
                 }
 
                 @media (min-width: 1440px) {
-                    font-size: 26px;
+                    font-size: 20px;
 
                     .value-wrap {
-                        font-size: 42px;
+                        font-size: 30px;
                     }
                 }
             }
@@ -333,7 +410,7 @@
 
     .estimate-costs-legend {
         display: flex;
-        font-size: 2vw;
+        font-size: 3vw;
         margin-top: 20px;
         margin-bottom: 50px;
 
@@ -359,7 +436,7 @@
             .item { flex-basis: 50%; margin-bottom: 10px; }
         }
 
-        @media (min-width: 992px) {
+        @media (min-width: 480px) {
             font-size: 12px;
         }
     }
@@ -372,18 +449,22 @@
         .item {
             font-size: 3.1vw;
 
+            img {
+                margin-bottom: 10px;
+            }
+
             span {
                 font-size: 4.5vw;
             }
 
             @media (min-width: 992px) {
-                font-size: 1.1vw;
+                font-size: 1.38vw;
 
-                span { font-size: 1.5vw; }
+                span { font-size: 1.8vw; }
             }
 
             @media (min-width: 1440px) {
-                font-size: 16px;
+                font-size: 20px;
 
                 span { font-size: 26px; }
             }

@@ -820,7 +820,7 @@ function news_ajax_pagination() {
     if ($pressQuery->have_posts()):
         while ($pressQuery->have_posts()):
             $pressQuery->the_post();
-            get_template_part('template-parts/content', 'press');
+            get_template_part('template-parts/content', 'news');
         endwhile;
 
         wp_reset_postdata();

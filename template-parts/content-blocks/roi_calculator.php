@@ -25,7 +25,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                 <div class="col-inner">
                     <h2><?= $block['inputs']['title']; ?></h2>
                     <p><?= $block['inputs']['description']; ?></p>
-
+                    <hr/>
                     <h3>About your team</h3>
                     <div class="form-group">
                         <label for="active_agents" class="d-block strong">Number of active agents <?php output_roi_tooltip($block['inputs'], 'number_of_active_agents_tooltip'); ?></label>
@@ -37,12 +37,12 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group">
-                                <input id="call_center_hours_day" class="input-small" type="number" value="8" /> hours/day
+                                <input id="call_center_hours_day" class="input-small" type="number" value="8" min="1" max="24" /> hours/day
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
                             <div class="form-group">
-                                <input id="call_center_days_week" class="input-small" type="number" value="5" /> days/week
+                                <input id="call_center_days_week" class="input-small" type="number" value="5" min="1" max="7" /> days/week
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                     <h2><?= $block['results']['title']; ?></h2>
                     <p><?= $block['results']['description']; ?></p>
                     <hr/>
-                    <h4>If you deflect <span id="percent_redirection_result">25</span>% of queries from phone to chat, you will be able to handle: <?php output_roi_tooltip($block['results'], 'if_you_deflect_tooltip'); ?></h4>
+                    <h5 class="text-light">If you deflect <span id="percent_redirection_result">25</span>% of queries from phone to chat, you will be able to handle: <?php output_roi_tooltip($block['results'], 'if_you_deflect_tooltip'); ?></h5>
                     <div class="row capacity-results">
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/phone.svg" alt="Phone Icon" width="28" /><br/>
@@ -119,7 +119,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                         </div>
                     </div>
                     <br/>
-                    <h4>To handle that capacity, you will need: <?php output_roi_tooltip($block['results'], 'handle_capacity_tooltip'); ?></h4>
+                    <h5 class="text-light">To handle that capacity, you will need: <?php output_roi_tooltip($block['results'], 'handle_capacity_tooltip'); ?></h5>
                     <div class="row capacity-results">
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/phone.svg" alt="Phone Icon" width="28" /><br/>
@@ -140,7 +140,8 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                             total agents
                         </div>
                     </div>
-                    <h4>Your total estimated costs are:</h4>
+                    <hr/>
+                    <h5 class="text-light">Your total estimated costs are:</h5>
                     <div class="estimate-costs-legend">
                         <div class="item">
                             <span class="legend-colour" style="background: #0091d1;"></span>
@@ -159,8 +160,8 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                             Labor costs for chat
                         </div>
                     </div>
-                    <div class="roi-results d-flex">
-                        <div class="roi-result d-flex">
+                    <div class="roi-results">
+                        <div class="roi-result">
                             <div id="calls_year_bar" class="roi-bar-chart">
                                 <div class="bar">
                                     <div id="system_cost_phone_bar" class="bar-segment" style="background: #0091d1;">
@@ -171,15 +172,15 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                                     </div>
                                 </div>
                                 <div class="label">
-                                    <small>Total cost for 100% phone</small>
                                     <div id="total_cost_phone_result" class="font-weight-heavy">$<span class="value">XXXXX</span></div>
+                                    <small>(100% phone)</small>
                                 </div>
                             </div>
                         </div>
                         <div class="roi-result-comparison d-flex">
                             <div class="inner text-center">or</div>
                         </div>
-                        <div class="roi-result d-flex">
+                        <div class="roi-result">
                             <div id="chats_year_bar" class="roi-bar-chart">
                                 <div class="bar">
                                     <div id="deflected_system_cost_chat_bar" class="bar-segment" style="background: #EEFFAE;">
@@ -196,18 +197,19 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                                     </div>
                                 </div>
                                 <div class="label">
-                                    <small>Total cost for <span id="deflected_chat_percent_result">XX</span>% chat, <span id="deflected_phone_percent_result">XX</span>% phone</small>
                                     <div id="total_deflected_cost_result" class="font-weight-heavy">$<span class="value">XXXXX</span></div>
+                                    <small>(<span id="deflected_phone_percent_result">XX</span>% phone, <span id="deflected_chat_percent_result">XX</span>% chat)</small>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr/>
                     <div class="bar-chart-totals text-center">
                         By deflecting <span id="deflected_chat_percent_result_comparison"></span>% of queries to chat, you will realize a net savings of:<br/>
                         <h4>$<span id="deflected_chat_savings"></span> per year</h4>
                     </div>
                     <hr/>
-                    <div class="roi-results d-flex row text-center">
+                    <div class="roi-results row text-center">
                         <div class="col-xs-6 roi-icon-result">
                             <div id="one_year_roi">
                                 <div class="icon"><img src="<?= get_template_directory_uri(); ?>/dist/images/roi-icon.png" alt="ROI Icon" /></div>

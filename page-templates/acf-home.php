@@ -713,17 +713,17 @@ use Roots\Sage\Assets;
                     endif;
                     if ($header_headline):
                         echo '<h1>' .
-                                $header_headline .
+                                do_shortcode($header_headline) .
                             '</h1>';
                     endif;
                     if ($header_slogan):
                         echo '<p class="subtitle">' .
-                                $header_slogan .
+                                do_shortcode($header_slogan) .
                             '</p>';
                     endif;
                     if ($header_description):
                         echo '<div class="desc">' .
-                                $header_description .
+                            do_shortcode($header_description) .
                             '</div>';
                     endif;
 
@@ -1589,8 +1589,143 @@ use Roots\Sage\Assets;
                 endif;
 
                 // check current row layout
+                if( get_row_layout() == 'stats_accordion' ):
+                    $count = 0;
+
+                    echo '<div class="c-content-box c-size-md">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="stats-panel-group panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            ';
+
+
+                        while ( have_rows('stats_accordion') ) : the_row();
+                            $accordionTitle = get_sub_field('title');
+
+                            echo '<div class="panel">
+                                <div class="panel-heading" role="tab" id="heading'.$count.'">
+                                    <h4 class="panel-title">
+                                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$count.'" aria-expanded="'.($count == 0 ? 'true' : 'false').'" aria-controls="collapse'.$count.'" class="d-block '.($count == 0 ? '' : 'collapsed').'">
+                                            <img src="'.$accordionTitle['icon'].'" width="72" alt="'.$accordionTitle['title'].'" /> '.$accordionTitle['title'].'
+                                            <svg class="toggle-icon version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="32" height="21" viewBox="0 0 32 21" style="enable-background:new 0 0 32 21;" xml:space="preserve"><polygon fill="#56C0EE" points="4.1,20.5 0,16.5 16,0.5 32,16.5 27.9,20.5 16,8.6 "/></svg>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse'.$count.'" class="panel-collapse collapse '.($count == 0 ? 'in' : '').'" role="tabpanel" aria-labelledby="heading'.$count.'">
+                                    <div class="panel-body">';
+
+                            $sectionCount = 0;
+
+                            while ( have_rows('stat_sections') ) : the_row();
+                                $titleClass = '';
+
+                                if ($sectionCount > 0):
+                                    $titleClass = 'c-margin-t-60';
+                                endif;
+
+                                echo '<h4 class="'.$titleClass.'">'.get_sub_field('title').'</h4>';
+
+                                echo '<div class="row step-content d-flex flex-wrap statistics">';
+
+                                while ( have_rows('stats') ) : the_row();
+                                    $stat = get_sub_field('statistic');
+                                    $statClass = '';
+
+                                    $statistic = $stat['value'];
+
+                                    if (array_key_exists('label', $stat)):
+                                        $statistic .= ' <div class="label">'.$stat['label'].'</div>';
+                                    endif;
+
+                                    $source = '';
+
+                                    if (get_sub_field('source')):
+                                        $source = '<div class="footer"><small><a href="'.get_sub_field('source')['url'].'" class="text-light link-underline" target="_blank">'.get_sub_field('source')['title'].'</a></small></div>';
+
+                                        $statClass .= ' with-footer ';
+                                    endif;
+
+                                    echo '<div class="col-xs-12 col-sm-6 col-md-4 stat-wrap '.$statClass.'">
+                                        <div id="avg-rating" class="statistic">
+                                            <div class="value-wrap">
+                                                <span class="value">'.$statistic.'</span>
+                                            </div>
+                                            <div class="title">'.get_sub_field('description').'</div>
+                                            '.$source.'
+                                        </div>
+                                    </div>';
+                                endwhile;
+
+                                echo '</div>';
+                                $sectionCount++;
+                            endwhile;
+
+                            echo '</div>
+                                </div>
+                            </div>';
+
+                            $count++;
+                        endwhile;
+
+                    echo '          </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>';
+                endif;
+
+                /*
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+      </div>
+    </div>
+  </div>
+</div>
+*/
+                // check current row layout
                 if( get_row_layout() == '2-column' ):
                     $rows = get_sub_field('columns');
+                    $spacing = get_sub_field('column_spacing');
+                    $sectionTitle = get_sub_field('section_title');
                     $row_count = count($rows);
                     $row_index = 0;
                     // check if the nested repeater field has rows of data
@@ -1599,13 +1734,27 @@ use Roots\Sage\Assets;
                         echo '<div class="c-content-box c-size-md">';
                         echo '<div class="container">';
                         echo '<div class="row">';
-                            // loop through the rows of data
-                        $push = '';
+
+                        if ($sectionTitle):
+                            echo '<div class="col-sm-12 c-margin-b-60 text-center"><h4>'.$sectionTitle.'</h4></div>';
+                        endif;
+
+                        // loop through the rows of data
+                        $colClass = '';
+
                         while ( have_rows('columns') ) : the_row();
                             $row_index++;
-                            if ($row_index == $row_count):
-                                $push = 'col-sm-push-2';
+
+                            $colClass = 'col-sm-5';
+
+                            if ($spacing == 'narrow'):
+                                $colClass = 'col-sm-6';
                             endif;
+
+                            if ($spacing != 'narrow' && $row_index == $row_count):
+                                $colClass .= ' col-sm-push-2';
+                            endif;
+
                             $headline = get_sub_field('headline');
                             $body = get_sub_field('body');
                             $icon = get_sub_field('icon');
@@ -1652,12 +1801,20 @@ use Roots\Sage\Assets;
                                 endwhile;
                             endif;
 
-                            echo    '<div class="col-sm-5 ' . $push . '">' .
-                                        $headerIcon .
-                                        '<h3>' . $headline . '</h3>' .
-                                        $body .
-                                        '<div class="c-margin-t-30">' . $linkcontent . '</div>' .
-                                    '</div>';
+                            echo    '<div class="' . $colClass . '">' .
+                                        $headerIcon;
+
+                            if ($headline):
+                                '<h3>' . $headline . '</h3>';
+                            endif;
+
+                            echo    $body;
+
+                            if ($linkcontent):
+                                echo '<div class="c-margin-t-30">' . $linkcontent . '</div>';
+                            endif;
+
+                            echo '</div>';
                         endwhile;
 
                         echo '</div>';
@@ -2882,7 +3039,6 @@ use Roots\Sage\Assets;
                                                 if (get_sub_field('link_type') == 'btn') {
                                                     echo '<a class="btn btn-xlg c-btn-border-2x c-theme-btn c-margin-l-60" href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' . $download_link['title'] . '</a>';
                                                 } else {
-
                                                     echo '<a href="' . $download_link . '">' .
                                                             '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
                                                         '</a>';
@@ -3368,17 +3524,17 @@ use Roots\Sage\Assets;
 
                     if ($header_headline):
                         echo '<h1>' .
-                                $header_headline .
+                            do_shortcode($header_headline) .
                             '</h1>';
                     endif;
                     if ($header_slogan):
                         echo '<h2 class="c-margin-t-20">' .
-                                $header_slogan .
+                            do_shortcode($header_slogan) .
                             '</h2>';
                     endif;
                     if ($header_description):
                         echo '<div class="thankyou__desc">' .
-                                $header_description .
+                            do_shortcode($header_description) .
                             '</div>';
                     endif;
 
@@ -3630,7 +3786,7 @@ use Roots\Sage\Assets;
                                     echo '</tbody>';
                                 echo '</table>';
 
-                                echo '<script src="https://www.comm100.com/wp-content/themes/comm100/dist/scripts/tablesaw.js" type="text/javascript"></script>';
+                                echo '<script src="/wp-content/themes/comm100/dist/scripts/tablesaw.js" type="text/javascript"></script>';
                             endif;
                             echo '</div>';
                     echo '</div>';

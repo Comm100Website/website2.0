@@ -56,7 +56,7 @@ use Roots\Sage\Analytics;
                                     // $userdata = get_userdata( $coauthor->ID );
                                 ?>
                                     <div class="authorsure-author-box clearfix">
-                                        <div class="author-thumb"><?php echo get_avatar( $coauthor->user_email, 100 ); ?></div>
+                                        <div class="author-thumb"><?php echo get_avatar( $coauthor, 100 ); ?></div>
                                         <div class="author-details">
                                             <h4>
                                                 About <a href="<?php echo $archive_link; ?>">

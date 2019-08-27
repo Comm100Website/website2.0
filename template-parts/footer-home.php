@@ -142,7 +142,7 @@ use Roots\Sage\Assets;
                         <span class="c-font-regular">All Rights Reserved.
                             <a class="c-font-regular" href="/sitemap_index.xml"
                                 title="Live Chat Site Map">Site Map</a> | <a  class="c-font-regular" href="/privacy/"
-                                title="Live Chat Privacy Policy">Privacy Policy</a> | <a class="c-font-regular" href="/privacy/anti-spam-policy.aspx">Anti-Spam Policy</a> | <a class="c-font-regular" href="/eula/">EULA</a></span>
+                                title="Live Chat Privacy Policy">Privacy Policy</a> | <a class="c-font-regular" href="/privacy/cookie-policy/">Cookie Policy</a> | <a class="c-font-regular" href="/eula/">EULA</a></span>
                     </p>
                     <p class=" c-line-height-18 c-font-14 c-margin-t-15"> All Comm100 brand and product names are trademarks or registered trademarks of Comm100 Network Corporation in Canada and other countries.
                         <br /> All other trademarks or registered trademarks including Windows, Mac, Linux, iPhone, Blackberry, Symbian and others are property of their respective owners.</p>
@@ -158,12 +158,19 @@ use Roots\Sage\Assets;
 </div>
 <!-- END: LAYOUT/FOOTERS/GO2TOP -->
 <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
+
+<?php
+if (get_field('override_the_default_site_chatbot')):
+    the_field('override_chatbox_code');
+else:
+?>
 <!--Begin Comm100 Live Chat Code-->
 <div id="comm100-button-5000239"></div>
 <script type="text/javascript">
   var Comm100API=Comm100API||{};(function(t){function e(e){var a=document.createElement("script"),c=document.getElementsByTagName("script")[0];a.type="text/javascript",a.async=!0,a.src=e+t.site_id,c.parentNode.insertBefore(a,c)}t.chat_buttons=t.chat_buttons||[],t.chat_buttons.push({code_plan:5000239,div_id:"comm100-button-5000239"}),t.site_id=10000,t.main_code_plan=5000239,e("https://chatserver.comm100.com/livechat.ashx?siteId="),setTimeout(function(){t.loaded||e("https://hostedmax.comm100.com/chatserver/livechat.ashx?siteId=")},5e3)})(Comm100API||{})
 </script>
-
 <!--End Comm100 Live Chat Code-->
+<?php endif; ?>
+
 <div id="namespace-chatbutton"></div>
 <!-- END: LAYOUT/BASE/BOTTOM -->

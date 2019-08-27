@@ -7,7 +7,7 @@ if ($post):
 
     if ($contentBlocks):
         foreach ($contentBlocks as $block):
-            // if (file_exists('content-blocks/'.$block['acf_fc_layout'].'.php')):
+            if (file_exists(dirname(__FILE__).'/content-blocks/'.$block['acf_fc_layout'].'.php')):
                 $sectionStyles = '';
                 $sectionClass = 'section-'.$block['acf_fc_layout'].' block-'.$blockCount;
 
@@ -21,11 +21,13 @@ if ($post):
                 endif;
                 ?>
                 <section id="<?= $sectionID; ?>" class="content-section <?= $sectionClass; ?>" <?= $sectionStyles; ?>>
-                    <?php include('content-blocks/'.$block['acf_fc_layout'].'.php'); ?>
+                    <?php
+                        include('content-blocks/'.$block['acf_fc_layout'].'.php');
+                    ?>
                 </section>
                 <?php
                 $blockCount++;
-            // endif;
+            endif;
         endforeach;
     endif;
 endif;

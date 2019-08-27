@@ -5,7 +5,7 @@
 * Copyright (c) 2018 Filament Group; Licensed MIT */
 /*! Shoestring - v2.0.0 - 2017-02-14
 * http://github.com/filamentgroup/shoestring/
-* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */ 
+* Copyright (c) 2017 Scott Jehl, Filament Group, Inc; Licensed MIT & GPLv2 */
 (function( factory ) {
 	if( typeof define === 'function' && define.amd ) {
 			// AMD. Register as an anonymous module.
@@ -936,7 +936,7 @@
 	 * @this shoestring
 	 */
 	shoestring.fn.next = function(){
-		
+
 		var result = [];
 
 		// TODO need to implement map
@@ -1052,7 +1052,7 @@
 	 * @this shoestring
 	 */
 	shoestring.fn.prev = function(){
-		
+
 		var result = [];
 
 		// TODO need to implement map
@@ -1092,7 +1092,7 @@
 	 * @this shoestring
 	 */
 	shoestring.fn.prevAll = function(){
-		
+
 		var result = [];
 
 		this.each(function() {
@@ -1215,7 +1215,7 @@
 	 * @this shoestring
 	 */
 	shoestring.fn.siblings = function(){
-		
+
 		if( !this.length ) {
 			return shoestring( [] );
 		}
@@ -1273,7 +1273,7 @@
 	 * @this shoestring
 	 */
 	shoestring.fn.text = function() {
-		
+
 		return getText( this );
 	};
 
@@ -1531,7 +1531,7 @@
 
 	shoestring.fn.on = shoestring.fn.bind;
 
-	
+
 
 
 	/**
@@ -1544,7 +1544,7 @@
 	 */
 	shoestring.fn.unbind = function( event, callback ){
 
-		
+
 		var evts = event ? event.split( " " ) : [];
 
 		return this.each(function(){

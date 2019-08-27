@@ -1815,6 +1815,14 @@ jQuery(function() {
 			jQuery('.threeTab__Index--mobile').show();
 		}
 
+        jQuery('.panel-collapse').on('shown.bs.collapse', function (e) {
+            var panel = jQuery(this).closest('.panel');
+
+            jQuery('html,body').animate({
+                scrollTop: jQuery(panel).offset().top - 100
+            }, 400);
+        });
+
 		jQuery('.question-item__title').on('click', function() {
 			jQuery(this).parent().toggleClass('selected');
 			jQuery(this).siblings().slideToggle(200, function() {
@@ -1844,9 +1852,27 @@ function calculate_roi($) {
     roiPDFUrl += 'num_agents=' + activeAgents + '&';
 
     var callCenterHoursDay = parseInt($('#call_center_hours_day').val().replace(regex, ''));
+
+    if (callCenterHoursDay > 24) {
+        callCenterHoursDay = 24;
+        $('#call_center_hours_day').val(24);
+    } else if (callCenterHoursDay <= 0) {
+        callCenterHoursDay = 1;
+        $('#call_center_hours_day').val(1);
+    }
+
     roiPDFUrl += 'hours=' + callCenterHoursDay + '&';
 
     var callCenterDaysWeek = parseInt($('#call_center_days_week').val().replace(regex, ''));
+
+    if (callCenterDaysWeek > 7) {
+        callCenterDaysWeek = 7;
+        $('#call_center_days_week').val(7);
+    } else if (callCenterDaysWeek <= 0) {
+        callCenterDaysWeek = 1;
+        $('#call_center_days_week').val(1);
+    }
+
     roiPDFUrl += 'days=' + callCenterDaysWeek + '&';
 
     var agentCompensation = parseInt($('#agent_compensation').val().replace(regex, ''));
@@ -1944,8 +1970,6 @@ function calculate_roi($) {
     $deflectedChatPercentResultComparison.html(totalDeflectedCalls);
     $deflectedPhonePercentResult.html(100-totalDeflectedCalls);
 
-    var barScaleMultiplier = 0.0001;
-
     var callAgentCosts = agentCompensation * activeAgents;
     roiPDFUrl += 'annual_compensation=' + accounting.formatNumber(callAgentCosts, 2) + '&';
 
@@ -1953,6 +1977,27 @@ function calculate_roi($) {
     var totalCallCosts = callAgentCosts + callSystemCosts;
     var perCallAgentCost = callAgentCosts / callsYear;
     var costPerCall = perCallAgentCost + callCost;
+
+    var deflectedCallAgentCosts = agentCompensation * phoneAgentsNeeded;
+    var deflectedCallSystemCosts = deflectedCallsYear * callCost;
+    var deflectedCallTotalCosts = deflectedCallAgentCosts * deflectedCallSystemCosts;
+    var deflectedChatAgentCosts = agentCompensation * chatAgentsNeeded;
+    var deflectedChatSystemCosts = chatAgentsNeeded * chatPackageRate;
+    var deflectedTotalCallCosts = deflectedCallAgentCosts + deflectedCallSystemCosts + deflectedChatAgentCosts + deflectedChatSystemCosts;
+
+    var barScaleMultiplier = 0.0001;
+
+    if (deflectedTotalCallCosts < 150000) {
+        barScaleMultiplier = 0.0014;
+    } else if (deflectedTotalCallCosts < 250000) {
+        barScaleMultiplier = 0.0009;
+    } else if (deflectedTotalCallCosts < 450000) {
+        barScaleMultiplier = 0.0006;
+    } else if (deflectedTotalCallCosts < 650000) {
+        barScaleMultiplier = 0.0003;
+    } else if (deflectedTotalCallCosts < 1750000) {
+        barScaleMultiplier = 0.0002;
+    }
 
     roiPDFUrl += 'call_labour_cost=' + accounting.formatNumber(perCallAgentCost, 2) + '&';
     roiPDFUrl += 'cost_per_call=' + accounting.formatNumber(costPerCall, 2) + '&';
@@ -1964,12 +2009,6 @@ function calculate_roi($) {
     $systemCostPhoneBar.height(callSystemCosts * barScaleMultiplier);
 
     $totalCostPhoneResult.find('.value').html(accounting.formatNumber(totalCallCosts, 0));
-
-    var deflectedCallAgentCosts = agentCompensation * phoneAgentsNeeded;
-    var deflectedCallSystemCosts = deflectedCallsYear * callCost;
-    var deflectedChatAgentCosts = agentCompensation * chatAgentsNeeded;
-    var deflectedChatSystemCosts = chatAgentsNeeded * chatPackageRate;
-    var deflectedTotalCallCosts = deflectedCallAgentCosts + deflectedCallSystemCosts + deflectedChatAgentCosts + deflectedChatSystemCosts;
 
     $deflectedLabourCostChatBar.find('.segment_value').html(accounting.formatNumber(deflectedChatAgentCosts, 0));
     $deflectedLabourCostChatBar.height(deflectedChatAgentCosts * barScaleMultiplier);
@@ -2002,10 +2041,17 @@ function calculate_roi($) {
     roiPDFUrl += 'chat_savings=' + accounting.formatNumber(chatSavings, 0) + '&';
 
     roiPDFUrl += 'deflected_call_labour_cost=' + accounting.formatNumber((deflectedCallAgentCosts / deflectedCallsYear), 2) + '&';
-    roiPDFUrl += 'deflected_call_total_cost=' + accounting.formatNumber(costPerCall, 2) + '&';
-    roiPDFUrl += 'deflected_chat_cost=' + accounting.formatNumber(deflectedChatSystemCosts / deflectedChatsYear, 2) + '&';
-    roiPDFUrl += 'deflected_chat_labour_cost=' + accounting.formatNumber(deflectedChatAgentCosts / deflectedChatsYear, 2) + '&';
-    roiPDFUrl += 'deflected_chat_total_cost=' + accounting.formatNumber(costPerCall, 2) + '&';
+    roiPDFUrl += 'deflected_call_total_cost=' + accounting.formatNumber((deflectedCallAgentCosts / deflectedCallsYear) + callCost, 2) + '&';
+
+    var deflectedChatCost = deflectedChatSystemCosts / deflectedChatsYear;
+    roiPDFUrl += 'deflected_chat_cost=' + accounting.formatNumber(deflectedChatCost, 2) + '&';
+
+    var deflectedChatLabourCost = deflectedChatAgentCosts / deflectedChatsYear;
+    roiPDFUrl += 'deflected_chat_labour_cost=' + accounting.formatNumber(deflectedChatLabourCost, 2) + '&';
+
+    var costPerChat = parseFloat(accounting.formatNumber(deflectedChatCost, 2)) + parseFloat(accounting.formatNumber(deflectedChatLabourCost, 2));
+    // console.log('Cost Per Chat', costPerChat);
+    roiPDFUrl += 'deflected_chat_total_cost=' + accounting.formatNumber(costPerChat, 2) + '&';
 
     roiPDFUrl += 'annual_call_labour_cost=' + accounting.formatNumber(callAgentCosts, 2) + '&';
     roiPDFUrl += 'annual_call_system_cost=' + accounting.formatNumber(callSystemCosts, 2) + '&';
@@ -2029,8 +2075,11 @@ function calculate_roi($) {
     roiPDFUrl += 'roi_year=' + accounting.formatNumber(totalROI, 1) + '&';
     roiPDFUrl += 'payback=' + accounting.formatNumber(paybackPeriod, 1) + '&';
 
+    roiPDFUrl += 'c=' + encodeURIComponent($("input[name='Company']").val());
+
     $("input[name='DynamicalURL']").val(roiPDFUrl);
-    console.log(roiPDFUrl);
+
+    // console.log(roiPDFUrl);
 }
 
 /* ========================================================================
@@ -2116,6 +2165,9 @@ function calculate_roi($) {
                 calculate_roi($);
 
                 MktoForms2.whenReady(function (form){
+                    form.onSubmit(function(){
+                        calculate_roi($);
+                    }),
                     form.onSuccess(function(values, followUpUrl) {
                         console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
                         location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());

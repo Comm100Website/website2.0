@@ -863,7 +863,7 @@ use Roots\Sage\Assets;
                         $style_bg = 'style="background-image: url(' . $bg_image['url'] . ')"';
                     endif;
 
-                    echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion"' . $style_bg . '>';
+                    echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion" ' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-6">';

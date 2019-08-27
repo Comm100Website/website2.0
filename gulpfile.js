@@ -104,13 +104,7 @@ var cssTasks = function(filename) {
       }));
     })
     .pipe(concat, filename)
-    .pipe(autoprefixer, {
-      browsers: [
-        'last 2 versions',
-        'android 4',
-        'opera 12'
-      ]
-    })
+    .pipe(autoprefixer, {})
     .pipe(cssNano, {
       safe: true
     })
