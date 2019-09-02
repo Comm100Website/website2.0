@@ -28,5 +28,4 @@ function scripts_list() {
     );
     return $scripts;
 }
-
 add_filter('cli_extend_script_blocker', 'scripts_list', 10, 1);

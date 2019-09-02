@@ -1805,7 +1805,7 @@ use Roots\Sage\Assets;
                                         $headerIcon;
 
                             if ($headline):
-                                '<h3>' . $headline . '</h3>';
+                                echo '<h3>' . $headline . '</h3>';
                             endif;
 
                             echo    $body;
