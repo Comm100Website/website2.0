@@ -32,7 +32,7 @@ Template Name:Platform Live Chat
 </header>
 
 <div class="c-layout-page c-layout-page-fixed secondary-page">
-    
+
 
     <?php
         // check if the flexible content field has rows of data
@@ -62,7 +62,7 @@ Template Name:Platform Live Chat
 
                 if ($banner_icon):
                     echo '<div class="banner_icon">' .
-                            '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($banner_headline):
@@ -80,7 +80,7 @@ Template Name:Platform Live Chat
                             $banner_description .
                         '</div>';
                 endif;
-                
+
                 if ($banner_cta):
 
                     while ( have_rows('cta') ) : the_row();
@@ -112,8 +112,8 @@ Template Name:Platform Live Chat
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
                 echo '</div>';
                 echo '</div>';
@@ -122,7 +122,7 @@ Template Name:Platform Live Chat
             endif;
                 // check current row layout
             if( get_row_layout() == 'hero_head' ):
-                
+
                 $header_align = get_sub_field('align');
                 $header_icon = get_sub_field('icon');
                 // $page_tag = get_sub_field('page_tag');
@@ -138,7 +138,7 @@ Template Name:Platform Live Chat
 
                 if ($header_icon):
                     echo '<div class="header_icon">' .
-                            '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($header_headline):
@@ -156,7 +156,7 @@ Template Name:Platform Live Chat
                             $header_description .
                         '</div>';
                 endif;
-                
+
                 if ($header_cta):
 
                     while ( have_rows('cta') ) : the_row();
@@ -188,14 +188,130 @@ Template Name:Platform Live Chat
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;    
+            endif;
+
+            // check current row layout
+            if( get_row_layout() == 'feature_header' ):
+
+
+
+                echo '<div class="c-content-box c-size-md">';
+                echo '<div class="container">';
+                echo '<div class="row">';
+                echo '<div class="col-sm-12 feature__header">';
+
+                $feature_header = get_sub_field('feature_header');
+                if ($feature_header):
+                    while ( have_rows('feature_header') ) : the_row();
+                        $h1_tag = get_sub_field('h1_tag');
+                        $h1 = get_sub_field('h1');
+                        $description = get_sub_field('description');
+                        $download = get_sub_field('download');
+                        $image = get_sub_field('image');
+                        $video = get_sub_field('video');
+                            if ($h1_tag):
+                                echo '<div class="h1-tag">' .
+                                        $h1_tag .
+                                    '</div>';
+                            endif;
+                            if ($h1):
+                                echo '<h1>' .
+                                        $h1 .
+                                    '</h1>';
+                            endif;
+
+                            if ($description):
+                                echo $description;
+                            endif;
+                            if ($download):
+                                while ( have_rows('download') ) : the_row();
+                                    $installuninstall = get_sub_field('installuninstall');
+                                    if (have_rows('download_content')):
+                                        echo '<div class="download">';
+                                        while ( have_rows('download_content') ) : the_row();
+                                            $download_link = get_sub_field('download_link');
+                                            $download_img = get_sub_field('download_img');
+
+                                            if (!$download_img) {
+                                                echo '<a class="btn btn-xlg c-btn-border-2x c-theme-btn c-margin-l-60" href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' . $download_link['title'] . '</a>';
+                                            } else {
+                                                echo '<a href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' .
+                                                        '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
+                                                    '</a>';
+                                            }
+                                        endwhile;
+                                        echo '<div class="c-margin-t-10 c-font-14">' .
+                                                    '<a href="/eula/" target="_blank">EULA</a> | ' .
+                                                    '<a href="' . $installuninstall['url'] . '" target="' . $installuninstall['target'] . '">' .
+                                                            $installuninstall['title'] .
+                                                        '</a>' .
+                                                '</div>';
+                                        echo '</div>';
+                                    endif;
+                                endwhile;
+                            endif;
+                            if ($image):
+                                echo '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />';
+                            endif;
+                            if ($video):
+                                echo '<div class="row video-content">' .
+                                        '<div class="col-sm-10 col-sm-push-1">' .
+                                            $video .
+                                        '</div>' .
+                                    '</div>';
+                            endif;
+                    endwhile;
+                endif;
+
+                $normal_content = get_sub_field('normal_content');
+                if ($normal_content):
+                    while ( have_rows('normal_content') ) : the_row();
+                        $header_headline = get_sub_field('h1_title');
+                        $header_slogan = get_sub_field('subtitle');
+                        $header_description = get_sub_field('description');
+                        $call_to_action = get_sub_field('call_to_action');
+                        echo '<div id="notInServiceCountry" class="thankyou" style="display: none">';
+                            if ($header_headline):
+                                echo '<h1>' .
+                                        $header_headline .
+                                    '</h1>';
+                            endif;
+                            if ($header_slogan):
+                                echo '<h2>' .
+                                        $header_slogan .
+                                    '</h2>';
+                            endif;
+                            if ($header_description):
+                                echo '<div class="thankyou__desc">' .
+                                        $header_description .
+                                    '</div>';
+                            endif;
+
+                            if ($call_to_action):
+                                echo '<div class="thankyou__calltoaction">' .
+                                        '<a class="btn btn-xlg btn-link--green" href="' . $call_to_action['url'] . '" target="' . $call_to_action['target'] . '">' .
+                                            $call_to_action['title'] .
+                                        '</a>';
+                                    '</div>';
+                            endif;
+                        echo '</div>';
+                    endwhile;
+                endif;
+
+
+
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature_left_image' ):
@@ -209,7 +325,7 @@ Template Name:Platform Live Chat
                     $featureDescription = $row['feature_description'];
                     echo '<div class="col-sm-' . strval(12/$row_count) . '">' .
                         '<div class="c-content-feature-2 c-option-2 c-theme-bg-parent-hover">' .
-                            '<div class="c-icon-wrapper">' . 
+                            '<div class="c-icon-wrapper">' .
                                 '<span aria-hidden="true">' .
                                     '<img src="' . $featureImage['url'] . '" alt="' . $featureImage['alt'] . '" width="50" height="50">' .
                                 '</span>' .
@@ -221,7 +337,7 @@ Template Name:Platform Live Chat
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;   
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'card' ):
@@ -276,8 +392,8 @@ Template Name:Platform Live Chat
                                     }
                                 endif;
                             endwhile;
-                            
-                            
+
+
                         endif;
 
                         echo    '<div class="card-item card-item--' . $card_themecolor . '" data-link="' . $cta_link['url'] . '">' .
@@ -285,7 +401,7 @@ Template Name:Platform Live Chat
                                     '<h3 class="highlight highlight--' . $card_themecolor . '">' . $card_title . '</h3>' .
                                     '<div class="card-item__subtitle">' . $card_subtitle . '</div>' .
                                     $card_description .
-                                    '<div class="card-item__link">' . $linkcontent . '</div>' . 
+                                    '<div class="card-item__link">' . $linkcontent . '</div>' .
                                 '</div>';
                     endwhile;
 
@@ -303,7 +419,7 @@ Template Name:Platform Live Chat
             //     $paragraph_item = get_sub_field('paragraph_item');
             //     $paragraph_itemClass = get_sub_field('paragraph_item')['paragraph_class'];
             //     $paragraph_itemText = get_sub_field('paragraph_item')['paragraph_text'];
-                
+
             //     echo '<div class="col-sm-12"><p class="' . $paragraph_itemClass . '">' . $paragraph_itemText . '</p></div>';
 
             // endif;
@@ -321,7 +437,7 @@ Template Name:Platform Live Chat
                         // loop through the rows of data
                     while ( have_rows('btn_repeater') ) : the_row();
 
-                        
+
                         $btn_link = get_sub_field('button');
 
                         echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
@@ -339,7 +455,7 @@ Template Name:Platform Live Chat
 
             // check current row layout
             if( get_row_layout() == 'cta' ):
-                
+
                 $calltoaction_type = get_sub_field('type');
                 $calltoaction_title = get_sub_field('title');
                 $calltoaction_subtitle = get_sub_field('subtitle');
@@ -398,27 +514,27 @@ Template Name:Platform Live Chat
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;  
-            
+            endif;
+
             // check current row layout
             if( get_row_layout() == 'logo' ):
-                
+
                 $logo_repeater = get_sub_field('logo_repeater');
                 // check if the nested repeater field has rows of data
                 if( have_rows('logo_repeater') ):
-                    
+
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="6" data-desktop-items="6" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1" data-auto-play="5000">';
-                    echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';            
+                    echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';
                         // loop through the rows of data
                     while ( have_rows('logo_repeater') ) : the_row();
 
@@ -435,13 +551,13 @@ Template Name:Platform Live Chat
                     echo '</div>';
 
                 endif;
-                
-                
-            endif;  
+
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'resource' ):
-                
+
                 $headline = get_sub_field('title');
                 $slogan = get_sub_field('subtitle');
                 $description = get_sub_field('description');
@@ -504,26 +620,26 @@ Template Name:Platform Live Chat
                         endif;
                         echo '</div>';
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;    
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'image-text_card' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_card_repeater') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="col-sm-12">';         
+                    echo '<div class="col-sm-12">';
                         // loop through the rows of data
                     while ( have_rows('image_text_card_repeater') ) : the_row();
 
@@ -572,7 +688,7 @@ Template Name:Platform Live Chat
                                     '</div>' .
                                     '<div class="img-text-card__text">' .
                                         '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
-                                        '<p>' . $body . '</p>' . 
+                                        '<p>' . $body . '</p>' .
                                         '<div class="img-text-card__link">' . $linkcontent . '</div>' .
                                     '</div>' .
                                 '</div>';
@@ -585,8 +701,8 @@ Template Name:Platform Live Chat
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
@@ -596,7 +712,7 @@ Template Name:Platform Live Chat
                 $image_text_description = get_sub_field('image_text_description');
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
-                    
+
                     echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -609,8 +725,8 @@ Template Name:Platform Live Chat
                             endif;
                         echo '</div>';
                     endif;
-                        
-                    
+
+
                     echo '<div class="clear"></div>';
                         // loop through the rows of data
                     while ( have_rows('image_text_column_repeater') ) : the_row();
@@ -622,7 +738,7 @@ Template Name:Platform Live Chat
                         $image = get_sub_field('image');
                         $image_position = get_sub_field('image_position');
                         $cta = get_sub_field('cta');
-                        
+
                         $anchor_id_content = '';
                         if ($anchor_id):
                             $anchor_id_content = 'id="' . $anchor_id . '"';
@@ -633,7 +749,7 @@ Template Name:Platform Live Chat
                             $title_color_class = 'highlight highlight--' . $title_color;
                         endif;
 
-                        
+
                         $pull6 = '';
                         $push6 = '';
                         if ($image_position == 'right') :
@@ -672,7 +788,7 @@ Template Name:Platform Live Chat
                                     }
                                 endif;
                             endwhile;
-                            
+
                             if ($linkcontent !== ''):
                                 $linkcontent = '<div class="img-text-column__link"> ' . $linkcontent . ' </div>';
                             endif;
@@ -696,18 +812,18 @@ Template Name:Platform Live Chat
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '1-column' ):
-                
+
                 $headimage = get_sub_field('image');
                 $headicon = get_sub_field('icon');
                 $headline = get_sub_field('title');
                 $body = get_sub_field('description');
                 $cta = get_sub_field('cta');
-                
+
 
                 echo '<div class="c-content-box c-size-md">';
                 echo '<div class="container">';
@@ -720,7 +836,7 @@ Template Name:Platform Live Chat
 
                 if ($headicon):
                     echo '<div class="header_icon">' .
-                            '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($headline):
@@ -735,7 +851,7 @@ Template Name:Platform Live Chat
                     while ( have_rows('cta') ) : the_row();
                         $cta_link_type = get_sub_field('cta_link_type');
                         $cta_link = get_sub_field('cta_link');
-                        
+
                         if ($cta_link):
                             switch ($cta_link_type) {
                                 case 'green' :
@@ -762,15 +878,15 @@ Template Name:Platform Live Chat
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;   
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column' ):
@@ -779,7 +895,7 @@ Template Name:Platform Live Chat
                 $row_index = 0;
                 // check if the nested repeater field has rows of data
                 if( have_rows('columns') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -794,7 +910,7 @@ Template Name:Platform Live Chat
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
                         $cta = get_sub_field('cta');
-                        
+
                         $linkcontent = '';
 
                         if ($cta):
@@ -834,7 +950,7 @@ Template Name:Platform Live Chat
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="64" height="64" />' .
                                     '</div>' .
                                     '<h3>' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     '<div class="c-margin-t-30">' . $linkcontent . '</div>' .
                                 '</div>';
                     endwhile;
@@ -845,17 +961,17 @@ Template Name:Platform Live Chat
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'testimonial' ):
-                
+
                 $quote = get_sub_field('quote');
                 $signature = get_sub_field('signature');
                 $story_link = get_sub_field('story_link');
                 $background_color = get_sub_field('background_color');
-                
+
 
                 echo '<div class="c-content-box c-size-xlg c-content-box--' . $background_color . ' ">';
                 echo '<div class="container">';
@@ -864,7 +980,7 @@ Template Name:Platform Live Chat
 
                 if ($quote):
                     echo '<div class="c-quote__content">' .
-                            $quote . 
+                            $quote .
                         '</div>';
                 endif;
                 if ($signature):
@@ -879,29 +995,29 @@ Template Name:Platform Live Chat
                             '</a>' .
                         '</div>';
                 endif;
-                
-                
+
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '3-column' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('columns') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 three-column">';
                         // loop through the rows of data
-                    
+
                     while ( have_rows('columns') ) : the_row();
-                        
+
                         $headline = get_sub_field('headline');
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
@@ -947,7 +1063,7 @@ Template Name:Platform Live Chat
                         echo    '<div class="three-column__item">' .
                                     '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
                                     '<h5 class="three-column__title">' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     $linkcontent .
                                 '</div>';
                     endwhile;
@@ -959,28 +1075,28 @@ Template Name:Platform Live Chat
 
                 endif;
 
-               
-            endif;  
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature' ):
-                $background_color = get_sub_field('background_color');                                
-                $color = get_sub_field('color');                                
+                $background_color = get_sub_field('background_color');
+                $color = get_sub_field('color');
                 // check if the nested repeater field has rows of data
                 if( have_rows('column') ):
-                    
+
                     echo '<div class="c-content-box c-content-box--' . $background_color . ' c-size-sm">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 feature-column">';
                         // loop through the rows of data
-                    
+
                     while ( have_rows('column') ) : the_row();
-                        
+
                         $headline = get_sub_field('headline');
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
-                        
+
 
                         // if ($linkcontent !== ''):
                         //     $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
@@ -989,10 +1105,10 @@ Template Name:Platform Live Chat
                         echo    '<div class="feature-column__item">' .
                                     '<div><img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" /></div>' .
                                     '<h5 class="feature-column__title highlight highlight--' . $color . '">' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     // $linkcontent .
                                 '</div>';
-                                
+
                     endwhile;
 
                     $cta = get_sub_field('cta');
@@ -1040,15 +1156,15 @@ Template Name:Platform Live Chat
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'line' ):
-                
+
                 $height = get_sub_field('height');
                 $color = get_sub_field('color');
-                
+
 
                 echo '<div class="c-content-box">';
                 echo '<div class="container">';
@@ -1058,15 +1174,15 @@ Template Name:Platform Live Chat
                 if ($height):
                     echo '<hr style="border-top-color: ' . $color . '; border-top-width: ' . $height . 'px " />';
                 endif;
-                
-                
-                
+
+
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-               
-            endif;   
+
+            endif;
         endwhile;
 
         else :
@@ -1075,7 +1191,7 @@ Template Name:Platform Live Chat
 
         endif;
     ?>
-                
+
 </div>
 
 <?php get_template_part('template-parts/footer'); ?>

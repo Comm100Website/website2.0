@@ -92,28 +92,28 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                     </div>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6 text-light roi-results-col">
+            <div class="col-xs-12 col-md-6 text-light roi-results-col  bg-blue-dark">
                 <div class="col-inner">
-                    <h2><?= $block['results']['title']; ?></h2>
+                    <h2 class="text-light"><?= $block['results']['title']; ?></h2>
                     <p><?= $block['results']['description']; ?></p>
                     <hr/>
                     <h5 class="text-light">If you deflect <span id="percent_redirection_result">25</span>% of queries from phone to chat, you will be able to handle: <?php output_roi_tooltip($block['results'], 'if_you_deflect_tooltip'); ?></h5>
                     <div class="row capacity-results">
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/phone.svg" alt="Phone Icon" width="28" /><br/>
-                            <span id="handle_calls_result" class="font-weight-heavy">XXXX</span>
+                            <span id="handle_calls_result" class="value font-weight-heavy">XXXX</span>
                             <br/>
                             calls
                         </div>
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/chat.svg" alt="Chat Icon" width="33" /><br/>
-                            <span id="handle_chats_result" class="font-weight-heavy">XXXX</span>
+                            <span id="handle_chats_result" class="value font-weight-heavy">XXXX</span>
                             <br/>
                             chats
                         </div>
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/phone.svg" alt="Phone Icon" width="28" /> <img src="<?= get_template_directory_uri(); ?>/dist/images/chat.svg" alt="Chat Icon" width="33" /><br/>
-                            <span id="handle_total_result" class="font-weight-heavy">XXXX</span>
+                            <span id="handle_total_result" class="value font-weight-heavy">XXXX</span>
                             <br/>
                             total queries
                         </div>
@@ -123,19 +123,19 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                     <div class="row capacity-results">
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/phone.svg" alt="Phone Icon" width="28" /><br/>
-                            <span id="agents_phone_result" class="font-weight-heavy">XXXX</span>
+                            <span id="agents_phone_result" class="value font-weight-heavy">XXXX</span>
                             <br/>
                             agents for phone
                         </div>
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/chat.svg" alt="Chat Icon" width="33" /><br/>
-                            <span id="agents_chat_result" class="font-weight-heavy">XXXX</span>
+                            <span id="agents_chat_result" class="value font-weight-heavy">XXXX</span>
                             <br/>
                             agents for chat
                         </div>
                         <div class="col-xs-4 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/phone.svg" alt="Phone Icon" width="28" /> <img src="<?= get_template_directory_uri(); ?>/dist/images/chat.svg" alt="Chat Icon" width="33" /><br/>
-                            <span id="agents_total_result" class="font-weight-heavy">XXXX</span>
+                            <span id="agents_total_result" class="value font-weight-heavy">XXXX</span>
                             <br/>
                             total agents
                         </div>

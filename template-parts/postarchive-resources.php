@@ -29,9 +29,11 @@ use Roots\Sage\Assets;
                             $navItems['Blog'] = get_site_url().'/blog/';
 
                             echo '<ul class="post-nav">';
+                            global $wp;
+                            $currentPageURL = home_url($wp->request).'/';
 
                             foreach ($navItems as $label => $url):
-                                $is_active = ((is_post_type_archive('commresource') && $label == 'All') || $url == get_site_url().$_SERVER['REQUEST_URI']);
+                                $is_active = ((is_post_type_archive('commresource') && $label == 'All') || $url == $currentPageURL);
                                 echo '<li class="'.($is_active ? 'active' : '').' hidden-xs"><a href="'.$url.'">'.$label.'</a></li>';
                             endforeach;
 

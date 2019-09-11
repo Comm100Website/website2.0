@@ -123,15 +123,16 @@ add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
  * Theme assets
  */
 function db_assets() {
-	$dbData = array(
-		'theme_url' => get_template_directory_uri(),
+    $dbData = array(
+        'theme_url' => get_template_directory_uri(),
         'db_active' => (!empty(get_field('activate_demandbase')) ? get_field('activate_demandbase') : false)
-	);
+    );
 
-	//If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
+    //If the page the user is currently on is set up for DemandBase we'll look up all of the matching industry pages so we can output those to the
     //screen and let the JS pick where the user should be redirected to.
     //If we're on a DemandBase activated page we'll also get the DB settings.
     if (get_field('activate_demandbase')) {
+
         $demandBaseParentPage = (get_field('demandbase_page_type') == 'audience' ? get_field('default_audience_page')->ID : get_the_ID());
 
         $args = [
@@ -206,10 +207,8 @@ function db_assets() {
         }
     }
 
-    // wp_enqueue_script('sage/demandbase', Assets\asset_path('scripts/plugins/db-redirect.js'), null, '20190415.9', false);
-    // wp_localize_script('sage/demandbase', 'dbGlobal', $dbData);
     echo "<script type='text/javascript'>/* <![CDATA[ */ var dbGlobal = ".json_encode($dbData)."; /* ]]> */</script>";
-    echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=20190812.1').'"></script>';
+    echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=20190812.2').'"></script>';
 }
 add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
 

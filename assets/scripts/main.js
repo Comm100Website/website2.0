@@ -1845,6 +1845,216 @@ jQuery(function() {
 	}());
 });
 
+function calculate_chatbot_roi($) {
+    var roiPDFUrl = commGlobal.site_url + '/pdfgen/chatbot-roi/?';
+
+    var activeAgents = parseInt($('#active_agents').val().replace(regex, ''));
+    roiPDFUrl += 'num_agents=' + activeAgents + '&';
+
+    var callCenterHoursDay = parseInt($('#call_center_hours_day').val().replace(regex, ''));
+
+    if (callCenterHoursDay > 24) {
+        callCenterHoursDay = 24;
+        $('#call_center_hours_day').val(24);
+    } else if (callCenterHoursDay <= 0) {
+        callCenterHoursDay = 1;
+        $('#call_center_hours_day').val(1);
+    }
+
+    roiPDFUrl += 'hours=' + callCenterHoursDay + '&';
+
+    var callCenterDaysWeek = parseInt($('#call_center_days_week').val().replace(regex, ''));
+
+    if (callCenterDaysWeek > 7) {
+        callCenterDaysWeek = 7;
+        $('#call_center_days_week').val(7);
+    } else if (callCenterDaysWeek <= 0) {
+        callCenterDaysWeek = 1;
+        $('#call_center_days_week').val(1);
+    }
+
+    roiPDFUrl += 'days=' + callCenterDaysWeek + '&';
+
+    var callCenterWeeksYear = parseInt($('#call_center_weeks_year').val().replace(regex, ''));
+
+    if (callCenterWeeksYear > 52) {
+        callCenterWeeksYear = 52;
+        $('#call_center_weeks_year').val(52);
+    } else if (callCenterWeeksYear <= 0) {
+        callCenterWeeksYear = 1;
+        $('#call_center_weeks_year').val(1);
+    }
+
+    roiPDFUrl += 'weeks=' + callCenterWeeksYear + '&';
+
+    var agentCompensation = parseInt($('#agent_compensation').val().replace(regex, ''));
+    roiPDFUrl += 'compensation=' + accounting.formatNumber(agentCompensation, 0) + '&';
+    roiPDFUrl += 'total_compensation=' + accounting.formatNumber(activeAgents * agentCompensation, 0) + '&';
+
+    var chatLength = parseInt($('#chat_length').val().replace(regex, ''));
+    roiPDFUrl += 'chat_length=' + chatLength + '&';
+
+    var concurrentChats = parseInt($('#concurrent_chats').val().replace(regex, ''));
+    roiPDFUrl += 'chats_per_agent=' + concurrentChats + '&';
+
+    var chatVolumeGrowth = parseInt($('#chat_volume_growth').val().replace(regex, ''));
+    roiPDFUrl += 'chat_volume_growth=' + chatVolumeGrowth + '&';
+
+    var regex = new RegExp(',', 'g');
+    accounting.settings.currency.format = "%v";
+
+    // $percentRedirectionResult.html(accounting.formatNumber(totalDeflectedCalls, 0));
+
+    var callCenterDaysYear = callCenterDaysWeek * callCenterWeeksYear;
+    var chatHour = (60 / chatLength) * concurrentChats;
+
+    var workCapacity = callCenterDaysYear * callCenterHoursDay;
+    var chatsYear = workCapacity * activeAgents * chatHour;
+
+    $('#current_chat_capacity').html(accounting.formatNumber(chatsYear, 0));
+    roiPDFUrl += 'current_chat_capacity=' + accounting.formatNumber(chatsYear, 0) + '&';
+
+    var futureChatsYear = chatsYear;
+    var chatVolumeGrowthMultiplier = 0;
+    var chatVolumeGrowthPercent = 0;
+
+    if (chatVolumeGrowth > 0) {
+        chatVolumeGrowthPercent = (chatVolumeGrowth / 100);
+        chatVolumeGrowthMultiplier = chatVolumeGrowthPercent + 1;
+        // console.log(chatVolumeGrowthPercet + 1);
+        futureChatsYear = futureChatsYear * chatVolumeGrowthMultiplier;
+    }
+
+    $('#future_chat_capacity').html(accounting.formatNumber(futureChatsYear, 0));
+    roiPDFUrl += 'future_chat_capacity=' + accounting.formatNumber(futureChatsYear, 0) + '&';
+
+    var additionalChats = futureChatsYear - chatsYear;
+    roiPDFUrl += 'additional_chat_capacity=' + accounting.formatNumber(additionalChats, 0) + '&';
+
+
+    var futureTeamAdditions = 0;
+    var futureTeamTotal = activeAgents;
+    var futureTeamBots = 0;
+
+    if (additionalChats > 0) {
+        var additionalHours = workCapacity * chatVolumeGrowthPercent;
+        futureTeamAdditions = Math.ceil(chatVolumeGrowthPercent * activeAgents);
+        futureTeamTotal += futureTeamAdditions;
+
+        futureTeamBots = Math.ceil(additionalChats / 4680000);
+    }
+
+    $('#future_agent_total').html(accounting.formatNumber(futureTeamTotal, 0));
+    roiPDFUrl += 'future_agent_total=' + futureTeamTotal + '&';
+
+    $('.future_additional_agents').html(accounting.formatNumber(futureTeamAdditions, 0));
+    roiPDFUrl += 'future_additional_agents=' + futureTeamAdditions + '&';
+
+    $('#future_team_bots').html(accounting.formatNumber(futureTeamBots, 0));
+    roiPDFUrl += 'future_team_bots=' + futureTeamBots + '&';
+
+    var barScaleMultiplier = 0.00005;
+
+    var currentTotalCosts = (activeAgents * agentCompensation) + (activeAgents * 1308);
+    roiPDFUrl += 'current_total_costs=' + accounting.formatNumber(currentTotalCosts, 0) + '&';
+
+    var liveChatLabourCostBar = futureTeamTotal * agentCompensation;
+    var liveChatSystemCostBar = futureTeamTotal * 1308;
+    var totalLivechatCosts = liveChatLabourCostBar + liveChatSystemCostBar;
+    additionalChats = additionalChats * 15;
+
+    var chatbotRate = 0.014;
+
+    if (additionalChats >= 5000000) {
+        chatbotRate = 0.006;
+    } else if (additionalChats >= 2000000) {
+        chatbotRate = 0.007;
+    } else if (additionalChats >= 1000000) {
+        chatbotRate = 0.008;
+    } else if (additionalChats >= 500000) {
+        chatbotRate = 0.009;
+    } else if (additionalChats >= 200000) {
+        chatbotRate = 0.01;
+    } else if (additionalChats >= 100000) {
+        chatbotRate = 0.011;
+    } else if (additionalChats >= 50000) {
+        chatbotRate = 0.012;
+    }
+
+    var aiChatbotCost = 50000;
+    var chatbotCostBar = aiChatbotCost + (additionalChats * chatbotRate);
+    var chatbotLivechatLabourCostBar = activeAgents * agentCompensation;
+    var chatbotLivechatSystemCostBar = activeAgents * 1308;
+
+    var totalLiveChatbotCosts = chatbotCostBar + chatbotLivechatLabourCostBar + chatbotLivechatSystemCostBar;
+
+    if (totalLivechatCosts < 30000) {
+        barScaleMultiplier = 0.003;
+    } else if (totalLivechatCosts < 150000) {
+        barScaleMultiplier = 0.0014;
+    } else if (totalLivechatCosts < 250000) {
+        barScaleMultiplier = 0.0009;
+    } else if (totalLivechatCosts < 450000) {
+        barScaleMultiplier = 0.0006;
+    } else if (totalLivechatCosts < 650000) {
+        barScaleMultiplier = 0.0005;
+    } else if (totalLivechatCosts < 80000) {
+        barScaleMultiplier = 0.0004;
+    } else if (totalLivechatCosts < 1750000) {
+        barScaleMultiplier = 0.0002;
+    } else if (totalLivechatCosts < 7000000) {
+        barScaleMultiplier = 0.0001;
+    }
+
+    $('#live_chat_labour_cost_bar').find('.segment_value').html(accounting.formatNumber(liveChatLabourCostBar, 0));
+    $('#live_chat_labour_cost_bar').height(liveChatLabourCostBar * barScaleMultiplier);
+    roiPDFUrl += 'live_chat_labour_cost=' + accounting.formatNumber(liveChatLabourCostBar, 0) + '&';
+
+
+    $('#live_chat_system_cost_bar').find('.segment_value').html(accounting.formatNumber(liveChatSystemCostBar, 0));
+    $('#live_chat_system_cost_bar').height(liveChatSystemCostBar * barScaleMultiplier);
+    roiPDFUrl += 'live_chat_system_cost=' + accounting.formatNumber(liveChatSystemCostBar, 0) + '&';
+
+
+    $('#total_livechat_costs .value').html(accounting.formatNumber(totalLivechatCosts, 0));
+    roiPDFUrl += 'total_livechat_costs=' + accounting.formatNumber(totalLivechatCosts, 0) + '&';
+
+
+    $('#chatbot_cost_bar').find('.segment_value').html(accounting.formatNumber(chatbotCostBar, 0));
+    $('#chatbot_cost_bar').height(chatbotCostBar * barScaleMultiplier);
+    roiPDFUrl += 'chatbot_cost=' + accounting.formatNumber(chatbotCostBar, 0) + '&';
+
+    $('#chatbot_livechat_labour_cost_bar').find('.segment_value').html(accounting.formatNumber(chatbotLivechatLabourCostBar, 0));
+    $('#chatbot_livechat_labour_cost_bar').height(chatbotLivechatLabourCostBar * barScaleMultiplier);
+    roiPDFUrl += 'chatbot_livechat_labour_cost=' + accounting.formatNumber(chatbotLivechatLabourCostBar, 0) + '&';
+
+    $('#chatbot_livechat_system_cost_bar').find('.segment_value').html(accounting.formatNumber(chatbotLivechatSystemCostBar, 0));
+    $('#chatbot_livechat_system_cost_bar').height(chatbotLivechatSystemCostBar * barScaleMultiplier);
+    roiPDFUrl += 'chatbot_livechat_system_cost=' + accounting.formatNumber(chatbotLivechatSystemCostBar, 0) + '&';
+
+    $('#total_live_chatbot_costs .value').html(accounting.formatNumber(totalLiveChatbotCosts, 0));
+    roiPDFUrl += 'total_live_chatbot_costs=' + accounting.formatNumber(totalLiveChatbotCosts, 0) + '&';
+
+    var aiSavings = (totalLivechatCosts - totalLiveChatbotCosts);
+    $('#adding_ai_savings').html(accounting.formatNumber(aiSavings, 0));
+    roiPDFUrl += 'adding_ai_savings=' + accounting.formatNumber(aiSavings, 0) + '&';
+
+    var totalROI = ((aiSavings - chatbotCostBar) / chatbotCostBar) * 100;
+
+    $('#one_year_roi .value').html(accounting.formatNumber(totalROI, 1));
+    roiPDFUrl += 'roi_year=' + accounting.formatNumber(totalROI, 1) + '&';
+
+    var paybackPeriod = (chatbotCostBar / aiSavings) * 365;
+    $('#payback_period .value').html(accounting.formatNumber(paybackPeriod, 1));
+    roiPDFUrl += 'payback=' + accounting.formatNumber(paybackPeriod, 1) + '&';
+
+    roiPDFUrl += 'c=' + encodeURIComponent($("input[name='Company']").val());
+
+    $("input[name='DynamicalURL']").val(roiPDFUrl);
+
+    console.log(roiPDFUrl);
+}
+
 function calculate_roi($) {
     var roiPDFUrl = commGlobal.site_url + '/pdfgen/roi/?';
 
@@ -2153,7 +2363,31 @@ function calculate_roi($) {
                 }
             });
 
-            if ($('.roi-input-col').length) {
+            if ($('.section-chatbot_roi_calculator').length) {
+                $('input[type="text"], input[type="number"]').change(function() {
+                    calculate_chatbot_roi($);
+                });
+
+                $('input[type="radio"]').click(function() {
+                    calculate_chatbot_roi($);
+                });
+
+                calculate_chatbot_roi($);
+
+                MktoForms2.whenReady(function (form){
+                    form.onSubmit(function(){
+                        calculate_chatbot_roi($);
+                    }),
+                    form.onSuccess(function(values, followUpUrl) {
+                        console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
+                        location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        // Return false to prevent the submission handler continuing with its own processing
+                        return false;
+                    });
+                });
+            }
+
+            if ($('.section-roi_calculator').length) {
                 $('input[type="text"], input[type="number"]').change(function() {
                     calculate_roi($);
                 });

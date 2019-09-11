@@ -1,4 +1,4 @@
-.content-section.section-roi_calculator {
+.content-section.section-roi_calculator, .content-section.section-chatbot_roi_calculator {
     .tooltip-trigger {
         display: inline-block;
     }
@@ -33,6 +33,17 @@
 
         .tooltip-inner {
             max-width: 330px;
+        }
+    }
+
+    small {
+        font-size: 80%;
+
+        &.x-small {
+            font-size: 12px;
+            margin-top: 15px;
+            display: inline-block;
+            line-height: 1.4;
         }
     }
 
@@ -108,6 +119,10 @@
                 }
             }
 
+            &#chat_volume_growth_slider .tooltip.bottom .tooltip-inner {
+                &::after { content: '%'; }
+            }
+
             &#agent_compensation_slider .tooltip.bottom .tooltip-inner {
                 &::before { content: '$'; }
                 &::after { content: '/year'; }
@@ -170,45 +185,28 @@
     .roi-results-col {
         background: #00567c;
 
+        &.bg-blue-medium {
+            background: #dbe6ed;
+        }
+
         .tooltip-trigger {
             svg {
-                border: solid 1px #fff;
                 border-radius: 50%;
             }
         }
 
+        &.bg-blue-dark .tooltip-trigger svg { border: solid 1px #fff; }
         h5 { font-family: $font-family-bold; font-weight: 400; }
 
-        @media (min-width: 992px) {
-            hr:nth-child(3) {
-                margin-top: 88px;
-            }
+        hr {
+            border-top-color: #606c78;
+            margin: 30px 0;
         }
-
-        .tooltip {
-            &.bottom {
-                .tooltip-arrow {
-                    border-bottom-color: #fff !important;
-                }
-
-                .tooltip-inner {
-                    background: #fff !important;
-                    color: #00567c;
-                }
-            }
-        }
-
-        &, h2, h3, h4 { color: #fff; }
 
         h2, h3, h4 { margin-top: 0; }
 
-        hr {
-            border-top-color: #f4f8fc;
-            margin: 60px 0;
-        }
-
         p {
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }
 
         .font-weight-heavy {
@@ -220,9 +218,51 @@
             margin: 0 auto;
 
             h4 {
-                color: #9fdd09;
+                color: #00567c;
                 font-size: 30px;
                 margin-top: 10px;
+            }
+        }
+
+        &.bg-blue-medium {
+            .font-weight-heavy {
+                color: #00567c;
+            }
+        }
+
+        &.bg-blue-dark {
+            &, h2, h3, h4 { color: #fff; }
+
+            @media (min-width: 992px) {
+                hr:nth-child(3) {
+                    margin-top: 88px;
+                }
+            }
+
+            .tooltip.bottom {
+                .tooltip-arrow {
+                    border-bottom-color: #fff !important;
+                }
+
+                .tooltip-inner {
+                    background: #fff !important;
+                    color: #00567c;
+                }
+            }
+
+            p {
+                margin-bottom: 60px;
+            }
+
+            hr {
+                border-top-color: #f4f8fc;
+                margin: 60px 0;
+            }
+
+            .bar-chart-totals {
+                h4 {
+                    color: #9fdd09;
+                }
             }
         }
 
@@ -276,8 +316,7 @@
                     margin-left: auto;
                     margin-right: auto;
                     max-width: 18px;
-                    margin-top: 3px;
-                    margin-bottom: 5px;
+                    margin: 3px auto 15px;
                     display: flex;
                     justify-content: flex-end;
                     flex-direction: column;
@@ -295,6 +334,7 @@
                     position: relative;
                     min-height: 3px;
                     width: 100%;
+                    transition: height 0.3s ease-out;
 
                     .segment_total {
                         position: absolute;
@@ -318,6 +358,20 @@
                             margin-top: -2px;
                         }
                     }
+
+                    &#chatbot_livechat_system_cost_bar {
+                        .segment_total {
+                            bottom: -5px;
+                            top: auto;
+                        }
+                    }
+
+                    &#chatbot_cost_bar {
+                        .segment_total {
+                            bottom: 40%;
+                            top: auto;
+                        }
+                    }
                 }
 
 
@@ -336,7 +390,10 @@
                 }
             }
 
-            #calls_year_bar.roi-bar-chart .bar-segment .segment_total { left: auto; right: 100%; padding-right: 7px; padding-left: 0; }
+            #live_chat_cost_bar.roi-bar-chart .bar-segment .segment_total,
+            #calls_year_bar.roi-bar-chart .bar-segment .segment_total {
+                left: auto; right: 100%; padding-right: 7px; padding-left: 0;
+            }
 
             .roi-result-comparison {
                 font-size: 4.6vw; align-items: center;
@@ -443,7 +500,7 @@
 
     .capacity-results {
         margin-top: 25px;
-        margin-bottom: 70px;
+        margin-bottom: 30px;
         line-height: 1.3;
 
         .item {
@@ -453,21 +510,74 @@
                 margin-bottom: 10px;
             }
 
-            span {
+            .value  {
                 font-size: 4.5vw;
             }
 
             @media (min-width: 992px) {
                 font-size: 1.38vw;
 
-                span { font-size: 1.8vw; }
+                .value { font-size: 1.8vw; }
             }
 
             @media (min-width: 1440px) {
                 font-size: 20px;
 
-                span { font-size: 26px; }
+                .value { font-size: 26px; }
             }
+        }
+
+        .comparison {
+            font-size: 4.6vw; align-items: center;
+
+            @media (min-width: 480px) {
+                font-size: 20px;
+            }
+
+            @media (min-width: 992px) {
+                font-size: 30px;
+            }
+        }
+    }
+
+    .bg-blue-dark .capacity-results {
+        margin-bottom: 70px;
+    }
+
+    .bg-blue-medium {
+        .capacity-results {
+            .item {
+                flex: 1;
+
+                @media (min-width: 992px) {
+                    font-size: 1.2vw;
+                }
+
+                &.comparison {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex: 0;
+                }
+
+                span.font-weight-heavy {
+                    @media (min-width: 992px) {
+                        font-size: 30px;
+                    }
+
+                    @media (min-width: 1440px) {
+                        font-size: 30px;
+                    }
+                }
+            }
+        }
+
+        .roi-result-comparison.font-weight-heavy, .comparison .font-weight-heavy {
+            color: #606c78;
+        }
+
+        .roi-result-comparison {
+            padding-bottom: 16%;
         }
     }
 
@@ -478,6 +588,22 @@
     @media (min-width: $screen-md-min) {
         .blue-light-dark-gradient {
             background: linear-gradient(270deg, #00567c 0%, #00567c 50%, #f4f8fc 50%);
+
+            .roi-icon-result {
+                &:first-child {
+                    border-right: solid 1px #fff;
+                }
+            }
+        }
+
+        .blue-light-medium-gradient {
+            background: linear-gradient(270deg, #dce6ed 0%, #dce6ed 50%, #f4f7fc 50%);
+
+            .roi-icon-result {
+                &:first-child {
+                    border-right: solid 1px #606c78;
+                }
+            }
         }
 
         .col-inner {
@@ -487,12 +613,6 @@
         .roi-results-col {
             .col-inner {
                 padding-right: 0;
-            }
-        }
-
-        .roi-icon-result {
-            &:first-child {
-                border-right: solid 1px #fff;
             }
         }
 
@@ -507,5 +627,11 @@
                 padding-left: 100px;
             }
         }
+    }
+}
+
+.content-section.section-chatbot_roi_calculator {
+    .form-group {
+        margin-bottom: 25px;
     }
 }

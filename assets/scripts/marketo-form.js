@@ -51,7 +51,13 @@
     MktoForms2.whenReady(function (form){
         //map your results from REST call to the corresponding field name on the form
         GetFieldsAndValuesToPrefill(form);
+
         SetConsentVisibility();
+
+        setTimeout(function() {
+            SetConsentVisibility();
+        }, 1500);
+
         document.body.addEventListener('db-audiences-set', SetConsentVisibility());
 
         form.onValidate(function(isValid){
@@ -134,6 +140,7 @@ function SetConsentVisibility() {
         if (userExcluded) {
             document.getElementById('implied_consent_notice').style.display = 'none';
             consentCheckbox.parentNode.parentNode.parentNode.parentNode.classList.add('single-checkbox');
+            consentCheckbox.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
         } else {
             consentCheckbox.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
         }

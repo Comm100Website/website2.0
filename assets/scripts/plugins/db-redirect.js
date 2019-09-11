@@ -63,6 +63,8 @@ function setBodyClass(userInfo) {
                 'audience_segment',
             ];
 
+            // console.log('Setting DB Body Classes');
+
             for (var i = 0; i < dbFields.length; i++) {
                 if (userInfo.hasOwnProperty(dbFields[i])) {
                     document.body.classList.add("db-audience-" + encodeURI(userInfo[dbFields[i]].replace(' ', '-').toLowerCase()));
@@ -71,8 +73,19 @@ function setBodyClass(userInfo) {
 
             // console.log('Set Body Class', document.body.classList);
 
-            var event = new Event('db-audiences-set', { bubbles: true });
-            document.body.dispatchEvent(event);
+            //In MS Edge, something the event handler was called before the body class was set.
+            // setTimeout(function() {
+            var dbEvent;
+
+            if(typeof(Event) === 'function') {
+                dbEvent = new Event('db-audiences-set', { bubbles: true });
+            }else{
+                dbEvent = document.createEvent('Event');
+                dbEvent.initEvent('db-audiences-set', true, true);
+            }
+
+            // var event = new Event('db-audiences-set', { bubbles: true });
+            document.body.dispatchEvent(dbEvent);
         }
     } else {
         document.addEventListener('DOMContentLoaded', function () {
@@ -109,8 +122,6 @@ function redirect_to_db_audience(userinfo) {
                     }
 
                     if (!excluded) {
-                        // console.log('User matched based on ' + dbGlobal.db_audiences[i].field + ' matching ' + dbGlobal.db_audiences[i].value);
-
                         audiencePageURL = dbGlobal.db_audiences[i].url;
                         break;
                     }
@@ -125,10 +136,11 @@ function redirect_to_db_audience(userinfo) {
 
     // console.log(window.location.pathname);
     if (audiencePageURL !== currentPageURL) {
-        if (isUserLoggedIn()) {
-            // console.log('DB would have redirected to ' + audiencePageURL);
-        } else {
-            window.location.href = audiencePageURL;
+        if (!isUserLoggedIn()) {
+            console.log(audiencePageURL);
+            console.log(audiencePageURL + location.search);
+
+            window.location.href = audiencePageURL + location.search;
         }
     } else if (window.location.pathname === '/') {
         //Activate Google Optimize if we're on the homepage.
@@ -136,11 +148,6 @@ function redirect_to_db_audience(userinfo) {
         dataLayer.push({'event': 'optimize.activate'});
     }
 }
-
-// if (location.search.indexOf('reset=')>=0) {
-//     console.log('Erasing Cookies');
-//     eraseCookie(DEMAND_BASE_COOKIE);
-// }
 
 if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
     //This script will call the DemandBase API, which we'll pass through our local theme in order to hide the API key. Then we can check the DemandBase audience assigned to the user and if it's different than the current page, then we'll redirect them to the appropriate DB page.
@@ -162,9 +169,9 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 			//We got a DB API response.
         	if (xhr.status === 200) {
 				//Grab the responses JSON, save the users audience_segment and then redirect the user to the DB audience page if we need to.
-                if (document.body.classList.contains('logged-in')) {
+                // if (document.body.classList.contains('logged-in')) {
                     // console.log(xhr.responseText);
-                }
+                // }
 
                 var responseJSON = JSON.parse(xhr.responseText);
 
@@ -183,11 +190,8 @@ if (!getCookie(DEMAND_BASE_COOKIE) || location.search.indexOf('reset=')>=0) {
 } else {
     var userInfo = JSON.parse(getCookie(DEMAND_BASE_COOKIE));
 
+    // console.log(userInfo);
 	setBodyClass(userInfo);
-
-    if (isUserLoggedIn()) {
-        // console.log(userInfo);
-    }
 
     if (dbGlobal.db_active && dbGlobal.db_audiences) {
 		//The user already had their DB audience defined in a cookie, so we'll just redirect them if needed.

@@ -1931,12 +1931,14 @@ Template Post Type: commresource, page
                             endif;
                         endwhile;
                         echo '</div>';
-                        echo '<div class="col-sm-4 landingPage-download">';
-                            echo '<h3 class="highlight highlight--blue">' . get_sub_field('download_title') . '</h3>';
-                            echo get_sub_field('download_form');
-                            echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js?v=20190531.2"></script>';
-                            echo '<div class="form-note">' . get_sub_field('download_form_note') . '</div>';
-                        echo '</div>';
+                        if (trim(get_sub_field('download_form'))):
+                            echo '<div class="col-sm-4 landingPage-download">';
+                                echo '<h3 class="highlight highlight--blue">' . get_sub_field('download_title') . '</h3>';
+                                echo get_sub_field('download_form');
+                                echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js?v=20190531.2"></script>';
+                                echo '<div class="form-note">' . get_sub_field('download_form_note') . '</div>';
+                            echo '</div>';
+                        endif;
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -1976,11 +1978,20 @@ Template Post Type: commresource, page
                     echo '<div class="container">';
                     echo '<div class="row landingPage">';
 
-                    echo '<div class="col-sm-8 landingPage-content">';
+                    $contentClass = '';
+
+                    if (!get_sub_field('title') && !get_sub_field('summary')):
+                        $contentClass = 'no-intro';
+                    endif;
+
+                    echo '<div class="col-sm-8 landingPage-content '. $contentClass. '">';
 
                     // loop through the rows of data
-                    echo '<h3>' . get_sub_field('title') . '</h3>';
-                    if( get_sub_field('summary') ):
+                    if (get_sub_field('title')):
+                        echo '<h3>' . get_sub_field('title') . '</h3>';
+                    endif;
+
+                    if( get_sub_field('summary')):
                         echo '<div class="landingPage-summary">' . get_sub_field('summary') . '</div>';
                     endif;
                     echo get_sub_field('paragraph');
@@ -2041,21 +2052,26 @@ Template Post Type: commresource, page
                     while ( have_rows('share_this') ) : the_row();
                         $title = get_sub_field('title');
                         $sharecode = get_sub_field('share_this_code');
-                        echo    '<div class="social-share">' .
+
+                        if ($sharecode):
+                            echo    '<div class="social-share">' .
                                     '<h3>' . $title . '</h3>' .
                                     $sharecode .
                                 '</div>';
+                        endif;
                     endwhile;
                     echo '</div>';
 
                     if ( have_rows('webinar_form') ):
                         while ( have_rows('webinar_form') ) : the_row();
-                        echo '<div class="col-sm-4 landingPage-download">';
-                            echo '<h3 class="highlight highlight--blue">' . get_sub_field('title') . '</h3>';
-                            echo get_sub_field('form_code');
-                            echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js"></script>';
-                            echo '<div class="form-note">' . get_sub_field('form_note') . '</div>';
-                        echo '</div>';
+                            if (trim(get_sub_field('form_code'))):
+                                echo '<div class="col-sm-4 landingPage-download">';
+                                    echo '<h3 class="highlight highlight--blue">' . get_sub_field('title') . '</h3>';
+                                    echo get_sub_field('form_code');
+                                    echo '<script src="/wp-content/themes/comm100/dist/scripts/marketo-form.js"></script>';
+                                    echo '<div class="form-note">' . get_sub_field('form_note') . '</div>';
+                                echo '</div>';
+                            endif;
                         endwhile;
                     endif;
 
@@ -2149,13 +2165,15 @@ Template Post Type: commresource, page
 
                     if ( have_rows('webinar_form') ):
                         while ( have_rows('webinar_form') ) : the_row();
-                        echo '<div class="col-sm-4 landingPage-download">';
-                            echo '<h3 class="highlight highlight--blue">' . get_sub_field('title') . '</h3>';
-                            echo '<link rel="stylesheet" href="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.css" type="text/css" media="screen, projection" />';
-                            echo get_sub_field('form_code');
-                            echo '<script src="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.js"></script>';
-                            echo '<div class="form-note">' . get_sub_field('form_note') . '</div>';
-                        echo '</div>';
+                            if (trim(get_sub_field('form_code'))):
+                                echo '<div class="col-sm-4 landingPage-download">';
+                                    echo '<h3 class="highlight highlight--blue">' . get_sub_field('title') . '</h3>';
+                                    echo '<link rel="stylesheet" href="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.css" type="text/css" media="screen, projection" />';
+                                    echo get_sub_field('form_code');
+                                    echo '<script src="https://www.comm100.com/wp-content/themes/comm100/assets/base/js/marketo-form.js"></script>';
+                                    echo '<div class="form-note">' . get_sub_field('form_note') . '</div>';
+                                echo '</div>';
+                            endif;
                         endwhile;
                     endif;
 
@@ -2204,13 +2222,16 @@ Template Post Type: commresource, page
                             '</div>';
                     endif;
 
-                    while ( have_rows('share_this') ) : the_row();
+                    while (have_rows('share_this')) : the_row();
                         $title = get_sub_field('title');
                         $sharecode = get_sub_field('share_this_code');
-                        echo    '<div class="col-sm-12 social-share">' .
+
+                        if (trim($sharecode)):
+                            echo '<div class="col-sm-12 social-share">' .
                                     '<h3>' . $title . '</h3>' .
                                     $sharecode .
                                 '</div>';
+                        endif;
                     endwhile;
 
                     echo '</div>';

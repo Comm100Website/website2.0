@@ -158,11 +158,15 @@ use Roots\Sage\Assets;
                             $header_slogan .
                         '</h2>';
                 endif;
-                if ($header_form_code):
+                if (!empty(trim($header_form_code))):
                     echo '<div class="col-sm-6 col-sm-push-3">' .
-                            $header_form_code .
-                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                            '<div class="form-note">' . $form_note . '</div>'.
+                            $header_form_code;
+
+                    if (strpos($header_form_code, 'marketo-form.js') === false) {
+                        echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                    }
+
+                    echo    '<div class="form-note">' . $form_note . '</div>'.
                         '</div>';
 
                 endif;
@@ -982,10 +986,18 @@ use Roots\Sage\Assets;
                                 '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
                                 '<div class="col-sm-7">' .
                                     '<div class="contact-form">' .
-                                        '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
-                                        $contact_form .
-                                        '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                                        '<div class="form-note">' . $form_note . '</div>'.
+                                        '<h3 class="highlight highlight--blue">' . $title . '</h3>';
+
+                if (!empty(trim($contact_form))) {
+                    echo $contact_form;
+
+                    if (strpos($contact_form, 'marketo-form.js') === false) {
+                        echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                    }
+
+                }
+
+                echo                        '<div class="form-note">' . $form_note . '</div>'.
                                     '</div>' .
                                 '</div>' .
 

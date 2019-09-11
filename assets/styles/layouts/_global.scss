@@ -7543,6 +7543,7 @@ h3.highlight {
 
   .d-flex { display: flex; }
   .align-items-center { align-items: center; }
+  .align-items-start { align-items: flex-start; }
   .align-items-end { align-items: flex-end; }
   .justify-content-space-between { justify-content: space-between; }
   .justify-content-end { justify-content: flex-end; }
@@ -9270,6 +9271,10 @@ h5.resource-item--title {
 }
 .speakers-container {
   margin-top: 60px;
+
+  .no-intro & {
+      margin-top: 0;
+  }
 }
 .speaker {
   margin-top: 40px;
@@ -9367,6 +9372,10 @@ h2.video-title {
   line-height: 42px;
   font-size: 26px;
   margin-bottom: 60px;
+
+  body.postid-9004111222086631 & {
+      margin-bottom: 0;
+  }
 }
 @media screen and (min-width: 768px) {
   .video-content iframe {

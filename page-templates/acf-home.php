@@ -797,12 +797,16 @@ use Roots\Sage\Assets;
                                 $header_slogan .
                             '</h2>';
                     endif;
-                    if ($header_form_code):
+                    if (!empty(trim($header_form_code))):
                         echo '<div class="row">' .
                                 '<div class="col-sm-5">' .
-                                    $header_form_code .
-                                    '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                                    '<div class="form-note">' . $form_note . '</div>'.
+                                    $header_form_code;
+
+                        if (strpos($header_form_code, 'marketo-form.js') === false) {
+                            echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                        }
+
+                        echo        '<div class="form-note">' . $form_note . '</div>'.
                                 '</div>'.
                             '</div>';
 
@@ -2727,7 +2731,7 @@ use Roots\Sage\Assets;
                 endif;
 
                 // check current row layout
-                if( get_row_layout() == 'leads_form' ):
+                if( get_row_layout() == 'leads_form' && !empty(trim(get_sub_field('form')))):
                     $title = get_sub_field('title');
                     $form = get_sub_field('form');
                     $form_note = get_sub_field('form_note');
@@ -2738,9 +2742,13 @@ use Roots\Sage\Assets;
                                     '<div class="col-sm-6 col-sm-push-3">' .
                                         '<div class="leads-form">' .
                                             '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
-                                            $form .
-                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                                            '<div class="form-note">' . $form_note . '</div>'.
+                                            $form;
+
+                    if (strpos($form, 'marketo-form.js') === false) {
+                        echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                    }
+
+                    echo                    '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
                                 '</div>' .
@@ -2763,10 +2771,17 @@ use Roots\Sage\Assets;
                                     '<div class="col-sm-5">'.Assets\get_acf_image($image, '', 380, 380).'</div>' .
                                     '<div class="col-sm-7">' .
                                         '<div class="contact-form">' .
-                                            '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
-                                            $contact_form .
-                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                                            '<div class="form-note">' . $form_note . '</div>'.
+                                            '<h3 class="highlight highlight--blue">' . $title . '</h3>';
+
+                    if (!empty(trim($contact_form))) {
+                        echo $contact_form;
+
+                        if (strpos($contact_form, 'marketo-form.js') === false) {
+                            echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                        }
+                    }
+
+                    echo                    '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
 
@@ -2800,10 +2815,17 @@ use Roots\Sage\Assets;
                                     '<div class="col-sm-10 col-sm-push-1">' .
                                         '<div class="two-columns-form">' .
                                             $desc_container .
-                                            $title_container .
-                                            $form .
-                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                                            '<div class="form-note">' . $form_note . '</div>'.
+                                            $title_container;
+
+                    if (!empty(trim($form))) {
+                        echo $form;
+
+                        if (strpos($form, 'marketo-form.js') === false) {
+                            echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                        }
+                    }
+
+                    echo                    '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
                                 '</div>' .
@@ -3036,10 +3058,10 @@ use Roots\Sage\Assets;
                                                 $download_link = get_sub_field('download_link');
                                                 $download_img = get_sub_field('download_img');
 
-                                                if (get_sub_field('link_type') == 'btn') {
+                                                if (!$download_img) {
                                                     echo '<a class="btn btn-xlg c-btn-border-2x c-theme-btn c-margin-l-60" href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' . $download_link['title'] . '</a>';
                                                 } else {
-                                                    echo '<a href="' . $download_link . '">' .
+                                                    echo '<a href="' . $download_link['url'] . '" target="' . $download_link['target'] . '">' .
                                                             '<img src="' . $download_img['url'] . '" alt="' . $download_img['alt'] . '" width="160" height="56">' .
                                                         '</a>';
                                                 }
@@ -3495,10 +3517,17 @@ use Roots\Sage\Assets;
                                     '<div class="col-sm-5"><img class="avatar" src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="380" height="380" /></div>' .
                                     '<div class="col-sm-7">' .
                                         '<div class="contact-form">' .
-                                            '<h3 class="highlight highlight--blue">' . $title . '</h3>' .
-                                            $contact_form .
-                                            '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>' .
-                                            '<div class="form-note">' . $form_note . '</div>'.
+                                            '<h3 class="highlight highlight--blue">' . $title . '</h3>';
+
+                    if (!empty(trim($contact_form))) {
+                        echo $contact_form;
+
+                        if (strpos($contact_form, 'marketo-form.js') === false) {
+                            echo '<script src="'.Assets\asset_path('scripts/marketo-form.js').'"></script>';
+                        }
+                    }
+
+                    echo                    '<div class="form-note">' . $form_note . '</div>'.
                                         '</div>' .
                                     '</div>' .
 
