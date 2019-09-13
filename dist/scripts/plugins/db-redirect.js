@@ -71,8 +71,6 @@ function setBodyClass(userInfo) {
                 }
             }
 
-            // console.log('Set Body Class', document.body.classList);
-
             //In MS Edge, something the event handler was called before the body class was set.
             // setTimeout(function() {
             var dbEvent;
@@ -83,6 +81,9 @@ function setBodyClass(userInfo) {
                 dbEvent = document.createEvent('Event');
                 dbEvent.initEvent('db-audiences-set', true, true);
             }
+
+            // console.log('Set Body Class', document.body.classList);
+            // console.log('Dispatch db-audiences-set');
 
             // var event = new Event('db-audiences-set', { bubbles: true });
             document.body.dispatchEvent(dbEvent);

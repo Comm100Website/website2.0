@@ -54,11 +54,15 @@
 
         SetConsentVisibility();
 
-        setTimeout(function() {
+        document.body.addEventListener('db-audiences-set', function() {
             SetConsentVisibility();
-        }, 1500);
+        });
 
-        document.body.addEventListener('db-audiences-set', SetConsentVisibility());
+        document.onreadystatechange = function () {
+            if (document.readyState == "complete") {
+                SetConsentVisibility();
+            }
+        }
 
         form.onValidate(function(isValid){
             if (!isValid) {

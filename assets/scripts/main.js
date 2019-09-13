@@ -2313,6 +2313,9 @@ function calculate_roi($) {
         init: function() {
             App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
 
+            console.log('Enable lightbox');
+            $("[data-lightbox='fancybox']").fancybox();
+
             Comm100API.onReady = function () {
                 $('a[href="#chat"]').click(function(e) {
                     e.preventDefault();

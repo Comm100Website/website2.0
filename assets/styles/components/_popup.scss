@@ -1,0 +1,84 @@
+.pum-close {
+    padding: 14px 18px !important;
+}
+
+.pum-content {
+    h2, h3, h4, h5, h6 {
+        margin: 0 0 14px;
+    }
+
+    h4 {
+        font-size: 28px;
+    }
+
+    .wp-block-button {
+        margin-top: 28px;
+        margin-bottom: 0;
+
+        .wp-block-button__link {
+            border-radius: 10px;
+            font-family: $font-family-bold;
+            font-size: 18px;
+            line-height: 1;
+            padding: 18px 24px;
+
+            &.has-white-color {
+                color: #fff;
+            }
+
+            &.has-lightblue-color {
+                color: #2cbdff;
+            }
+
+            &.has-blue-color {
+                color: #008ad8;
+            }
+
+            &.has-greenbright-background-color {
+                background: #81f100;
+
+                &:hover {
+                    background: darken(#81f100, 5%);
+                }
+            }
+
+            &.has-green-background-color {
+                background: #aedd09;
+
+                &:hover {
+                    background: darken(#aedd09, 5%);
+                }
+            }
+
+            &.has-lightblue-background-color {
+                background: #2cbdff;
+
+                &:hover {
+                    background: darken(#2cbdff, 5%);
+                }
+            }
+
+            &.has-blue-background-color {
+                background: #008ad8;
+
+                &:hover {
+                    background: darken(#008ad8, 5%);
+                }
+            }
+        }
+    }
+}
+
+.pum-container.theme-9004111222086694 {
+    .pum-content {
+        max-width: 220px;
+    }
+
+    @media (min-width: 560px) {
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+
+        p { font-size: 20px; }
+    }
+}

@@ -6056,7 +6056,7 @@ fieldset[disabled] .c-theme-btn.btn:not(.btn-no-focus):focus {
   text-shadow: none;
 }
 .fancybox-opened {
-  z-index: 8030;
+  z-index: 99999;
 }
 .fancybox-opened .fancybox-skin {
   -webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
@@ -7706,6 +7706,8 @@ h3.highlight {
 .three-column__item img {
   // width: 80px;
   height: 80px;
+  width: auto;
+  max-width: 90%;
   margin-bottom: 30px;
 }
 .three-column__item:last-child {

@@ -14,8 +14,10 @@
     url(../fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular)
       format("svg");
 }
+.pum-close, //Popup maker close icon
 .fa {
   font: normal normal normal 14px/1 FontAwesome;
+  font-family: FontAwesome !important;
   font-size: inherit;
   display: inline-block;
   transform: translate(0, 0);
@@ -193,4 +195,8 @@
 }
 .fa-play:before {
   content: "\f04b";
+}
+.pum-close:before,
+.fa-times:before {
+  content: "\f00d";
 }
