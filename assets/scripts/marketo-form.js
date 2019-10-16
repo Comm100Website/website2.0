@@ -125,30 +125,36 @@
 })();
 
 function SetConsentVisibility() {
-    var consentCheckbox = document.getElementById('Explicit_Consent__c');
+    var userExcluded = false;
+    var excludedCountries = ['at', 'be', 'bg', 'hr', 'ca', 'cy', 'cz', 'dk', 'ee', 'fi', 'fr', 'de', 'gr', 'hu', 'ie', 'it', 'lv', 'lt', 'lu', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'si', 'es', 'se', 'gb'];
 
-    // console.log('Set Visibility', consentCheckbox);
-    // console.log('Body Class', document.body.classList);
-
-    if (consentCheckbox) {
-        var userExcluded = false;
-        var excludedCountries = ['at', 'be', 'bg', 'hr', 'ca', 'cy', 'cz', 'dk', 'ee', 'fi', 'fr', 'de', 'gr', 'hu', 'ie', 'it', 'lv', 'lt', 'lu', 'mt', 'nl', 'pl', 'pt', 'ro', 'sk', 'si', 'es', 'se', 'gb'];
-
-        for (var i = 0; i < excludedCountries.length; i++) {
-            if (document.body.classList.contains('db-audience-' + excludedCountries[i])) {
-                userExcluded = true;
-                break;
-            }
+    for (var i = 0; i < excludedCountries.length; i++) {
+        if (document.body.classList.contains('db-audience-' + excludedCountries[i])) {
+            userExcluded = true;
+            break;
         }
+    }
 
+    if (userExcluded) {
+        var consentNotices = document.querySelectorAll('#implied_consent_notice, .implied_consent_notice');
+
+        if (consentNotices.length) {
+            // console.log(consentNotices);
+            consentNotices.forEach(function(consentNotice, index) {
+                consentNotice.style.display = 'none';
+            });
+        }
+    }
+
+    var consentCheckboxes = document.querySelectorAll('#Explicit_Consent__c');
+    consentCheckboxes.forEach(function(consentCheckbox, index) {
         if (userExcluded) {
-            document.getElementById('implied_consent_notice').style.display = 'none';
             consentCheckbox.parentNode.parentNode.parentNode.parentNode.classList.add('single-checkbox');
             consentCheckbox.parentNode.parentNode.parentNode.parentNode.style.display = 'block';
         } else {
             consentCheckbox.parentNode.parentNode.parentNode.parentNode.style.display = 'none';
         }
-    }
+    });
 }
 
 function AddFieldsAndVaulesStringToCookie(form) {

@@ -2504,14 +2504,7 @@ function calculate_roi($) {
                         }
                     }
 
-                    $('#stats-step1 .step-content').slideUp(350);
-                    $('#stats-step2, #stats-result-form').slideDown(350).removeClass('inactive');
                     e.preventDefault();
-                });
-
-                $('#stats-step1 .step-header').click(function(e) {
-                    $('#stats-step1 .step-content').slideDown(350);
-                    $('#stats-step2, #stats-result-form').slideUp(350);
                 });
 
                 MktoForms2.whenReady(function (form){

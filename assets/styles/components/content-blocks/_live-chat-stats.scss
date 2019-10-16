@@ -1,73 +1,72 @@
-.statistics {
-    .statistic {
-        background: #003e5e;
-        color: #fff;
-        box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.3);
-        font-family: $font-family-medium;
-        text-align: center;
-        padding: 45px 20px;
-        height: 100%;
 
-        .value-wrap {
-            color: #3dbfff;
-            font-size: 7.5vw;
-            line-height: 1;
-            margin-bottom: 10px;
+.statistic {
+    background: #003e5e;
+    color: #fff;
+    box-shadow: 0 0 11px 0 rgba(0, 0, 0, 0.3);
+    font-family: $font-family-medium;
+    text-align: center;
+    padding: 45px 20px;
+    height: 100%;
 
-            .label {
-                font-size: 4vw;
-            }
-        }
+    .value-wrap {
+        color: #3dbfff;
+        font-size: 7.5vw;
+        line-height: 1;
+        margin-bottom: 10px;
 
-        .title { font-size: 3.8vw; }
-        .description { font-size: 2.6vw; }
-
-        .footer {
-            position: absolute; bottom: 0; left: 0; width: 100%; padding: 17px 8px; background: transparent; color: #fff; font-weight: 300; font-size: 11px; line-height: 1;
-        }
-
-        @media (min-width: $screen-sm-min) {
-            .value-wrap {
-                font-size: 3.7vw;
-
-                .label {
-                    font-size: 24px;
-                }
-            }
-
-            .title { font-size: 2vw; }
-            .description { font-size: 1.5vw; }
-        }
-
-        @media (min-width: $screen-md-min) {
-            .value-wrap { font-size: 4.5vw; }
-            .title { font-size: 1.6vw; }
-            .description { font-size: 1vw; }
-
-            &#mobile-chats, &#avg-wait-time, &#avg-chat-length {
-                .value-wrap {
-                    min-height: 122px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .value-wrap { font-size: 58px; }
-            .title { font-size: 20px; }
-            .description { font-size: 14px; }
+        .label {
+            font-size: 4vw;
         }
     }
 
-    .stat-wrap {
-        margin-bottom: 20px; margin-top: 20px;
+    .title { font-size: 3.8vw; }
+    .description { font-size: 2.6vw; }
 
-        &.with-footer {
-            .statistic {
-                padding-bottom: 50px;
+    .footer {
+        position: absolute; bottom: 0; left: 0; width: 100%; padding: 17px 8px; background: transparent; color: #fff; font-weight: 300; font-size: 11px; line-height: 1;
+    }
+
+    @media (min-width: $screen-sm-min) {
+        .value-wrap {
+            font-size: 3.7vw;
+
+            .label {
+                font-size: 24px;
             }
+        }
+
+        .title { font-size: 2vw; }
+        .description { font-size: 1.5vw; }
+    }
+
+    @media (min-width: $screen-md-min) {
+        .value-wrap { font-size: 4.5vw; }
+        .title { font-size: 1.6vw; }
+        .description { font-size: 1vw; }
+
+        &#mobile-chats, &#avg-wait-time, &#avg-chat-length {
+            .value-wrap {
+                min-height: 122px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+
+    @media (min-width: 1280px) {
+        .value-wrap { font-size: 58px; }
+        .title { font-size: 20px; }
+        .description { font-size: 14px; }
+    }
+}
+
+.stat-wrap {
+    margin-bottom: 20px; margin-top: 20px;
+
+    &.with-footer {
+        .statistic {
+            padding-bottom: 50px;
         }
     }
 }
@@ -126,7 +125,7 @@
 .content-section.section-live_chat_stats {
     .bg-light-grey {
         background: $blue-light;
-        padding: 32px 45px;
+        padding: 45px 45px;
     }
 
     .statistics {
@@ -136,31 +135,31 @@
         }
     }
 
-    #stats-step2.inactive {
-        .row:first-child { opacity: 0.4; }
+    // #stats-step2.inactive {
+    //     .row:first-child { opacity: 0.4; }
 
-        .statistic {
-            background: #92adbd;
+    //     .statistic {
+    //         background: #92adbd;
 
-            .value-wrap { color: #606c78; }
-        }
-    }
+    //         .value-wrap { color: #606c78; }
+    //     }
+    // }
 
-    #stats-result-form.inactive {
-        position: relative;
+    // #stats-result-form.inactive {
+    //     position: relative;
 
-        &::before {
-            position: absolute;
-            display: block;
-            content: '';
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 101%;
-            background: hsla(0,0%,100%,.6);
-            z-index: 9;
-        }
-    }
+    //     &::before {
+    //         position: absolute;
+    //         display: block;
+    //         content: '';
+    //         top: 0;
+    //         left: 0;
+    //         width: 100%;
+    //         height: 101%;
+    //         background: hsla(0,0%,100%,.6);
+    //         z-index: 9;
+    //     }
+    // }
 
     #stats-result-form {
         padding-bottom: 0;
@@ -179,11 +178,13 @@
     }
 
     .form-inline {
+        margin-bottom: 35px;
+
         select, input {
             background: #fff;
             border-radius: 5px;
             padding: 8px 10px;
-            margin-left: 15px;
+            // margin-left: 15px;
             border: solid 1px #606c78;
             box-shadow: none;
             height: 40px;
@@ -191,8 +192,22 @@
             font-size: 15px;
         }
 
-        .form-group {
-            margin-bottom: 35px;
+        label { display: block; }
+
+        @media (max-width: $screen-sm-min - 1) {
+            .step-content > div { margin-top: 20px !important; }
+        }
+
+        @media (min-width: $screen-sm-min) {
+            margin-top: 35px;
+
+            button { margin-top: 25px; }
+        }
+
+        @media (min-width: $screen-md-min) {
+            label { min-height: 50px; }
+            button { margin-top: 45px; }
+            select { min-width: 80%; }
         }
     }
 }

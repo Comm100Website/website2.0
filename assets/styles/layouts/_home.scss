@@ -1,0 +1,35 @@
+.btn-link-group.btn-link-group--image {
+    // @media (max-width: )
+    .item {
+        flex-basis: 33.333%;
+        padding: 0 3px;
+        margin-bottom: 20px;
+
+        img { width: 80%; height: auto; }
+
+        .btn {
+            white-space: pre-wrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 15px 10px!important;
+        }
+    }
+
+    @media (max-width: $screen-sm-min - 1) {
+        margin-left: -20px;
+        width: calc(100vw);
+
+        .item {
+            .btn {
+                border-radius: 0;
+                font-size: 16px;
+                line-height: 1;
+                height: 58px;
+                margin-top: -40px;
+                padding: 10px 10px!important;
+            }
+        }
+    }
+}
