@@ -18,9 +18,22 @@
     }
 
     @media (min-width: 1200px) {
-        &.flex-wrap {
-            flex-wrap: nowrap;
+        .flex-wrap {
             padding-bottom: 30px;
+        }
+
+        &.single-line.flex-wrap {
+            flex-wrap: nowrap;
+        }
+
+        &.multi-line.flex-wrap .item {
+            flex-basis: 15%;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        &.d-flex > div:last-child {
+            margin-bottom: 40px;
         }
     }
 }

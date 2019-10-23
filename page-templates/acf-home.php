@@ -615,6 +615,7 @@ use Roots\Sage\Assets;
             // loop through the rows of data
             while ( have_rows('modules') ) : the_row();
                 if( get_row_layout() == 'hero_banner' ):
+                    $banner_type = get_sub_field('type');
                     $banner_size = get_sub_field('size');
                     $banner_align = get_sub_field('align');
                     $banner_icon = get_sub_field('icon');
@@ -623,16 +624,23 @@ use Roots\Sage\Assets;
                     $banner_slogan = get_sub_field('subtitle');
                     $banner_description = get_sub_field('description');
                     $banner_background_image = get_sub_field('background_image');
+                    $banner_feature_image = get_sub_field('feature_image');
+
                     $style_bg = '';
-                    if ($banner_background_image):
+                    if ($banner_type == 'responsive_feature'):
+                        $style_bg = 'style="background: '.get_sub_field('background_colour').'"';
+                    elseif ($banner_background_image):
                         $style_bg = 'style="background-image: url(' . $banner_background_image['url'] . ')"';
                     endif;
                     $banner_cta = get_sub_field('cta');
 
-                    echo '<div class="c-content-box c-size-lg c-margin-b-30 banner banner--' . $banner_size . ' banner--' . $banner_align . '" '  . $style_bg . '>';
+                    $banner_content_class = ($banner_type == 'responsive_feature' ? 'col-md-5' : 'col-sm-7');
+                    $row_class = ($banner_type == 'responsive_feature' ? 'd-flex flex-wrap' : '');
+
+                    echo '<div class="c-content-box c-size-lg c-margin-b-20 banner banner--'.$banner_type.' banner--' . $banner_size . ' banner--' . $banner_align . '" '  . $style_bg . '>';
                     echo '<div class="container">';
-                    echo '<div class="row">';
-                    echo '<div class="col-sm-7">';
+                    echo '<div class="row '. $row_class. '">';
+                    echo '<div class="col content-col '.$banner_content_class.'">';
 
                     if ($banner_icon):
                         echo '<div class="banner_icon">'.Assets\get_acf_image($banner_icon, '', 64, 64).'</div>';
@@ -688,6 +696,14 @@ use Roots\Sage\Assets;
 
                     endif;
                     echo '</div>';
+
+                    if ($banner_type == 'responsive_feature'):
+                        echo '<div class="col image-col col-md-7">';
+                        $featureImage = get_sub_field('feature_image');
+                        echo '<img src="'.$featureImage['url'].'" alt="'.$featureImage['alt'].'" />';
+                        echo '</div>';
+                    endif;
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
@@ -1045,10 +1061,16 @@ use Roots\Sage\Assets;
                     // check if the nested repeater field has rows of data
                     if( have_rows('logo_repeater') ):
 
+                        $pondClass = 'single-line';
+
+                        if (count($logo_repeater) >= 6) {
+                            $pondClass = 'multi-line';
+                        }
+
                         echo '<div class="container">';
                         echo '<div class="row">';
-                        echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="6" data-desktop-items="6" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1" data-auto-play="5000">';
-                        echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';
+                        echo '<div class="c-content-client-logos-slider-1  c-bordered">';
+                        echo '<div class="logo-pond d-flex flex-wrap align-items-center justify-content-center '. $pondClass .'">';
                             // loop through the rows of data
                         while ( have_rows('logo_repeater') ) : the_row();
 
@@ -1076,10 +1098,11 @@ use Roots\Sage\Assets;
                     $promotion_cta = get_sub_field('cta');
                     $bg_image = get_sub_field('background_image');
                     $content_align = get_sub_field('content_alignment');
-                    $containerClass = 'col-sm-6';
+                    $feature_image = get_sub_field('feature_image');
+                    $contentClass = 'col-sm-6';
 
                     if ($content_align == 'center') {
-                        $containerClass = 'col-xs-12 col-sm-8 col-sm-offset-2 text-center';
+                        $contentClass = 'col-xs-12 col-sm-8 col-sm-offset-2 text-center';
                     }
 
                     $style_bg = '';
@@ -1089,8 +1112,8 @@ use Roots\Sage\Assets;
 
                     echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion"' . $style_bg . '>';
                     echo '<div class="container">';
-                    echo '<div class="row">';
-                    echo '<div class="'.$containerClass.'">';
+                    echo '<div class="row d-flex flex-wrap align-items-center">';
+                    echo '<div class="col content-col '.$contentClass.'">';
 
                     if ($headline):
                         echo '<div class="promotion_headline">' .
@@ -1143,6 +1166,15 @@ use Roots\Sage\Assets;
                     endif;
 
                     echo '</div>';
+
+                    $featureImage = get_sub_field('feature_image');
+
+                    if ($featureImage):
+                        echo '<div class="col image-col col-sm-6">';
+                        echo '<img src="'.$featureImage['url'].'" alt="'.$featureImage['alt'].'" />';
+                        echo '</div>';
+                    endif;
+
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
