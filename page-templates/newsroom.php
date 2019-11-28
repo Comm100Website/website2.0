@@ -245,7 +245,7 @@ use Roots\Sage\Assets;
                             </script>
                             <?php endif; ?>
                         </section>
-*/ ?>
+
                         <section id="awards">
                             <?php if(get_field('awards_section_title')): ?>
                                 <h2><?= get_field('awards_section_title'); ?></h2>
@@ -264,7 +264,9 @@ use Roots\Sage\Assets;
                                 </div>
                             <?php endforeach; ?>
                         </section>
-                        <section id="media" class="bg-blue">
+*/
+                        ?>
+                        <section id="media">
                             <?php if(get_field('media_section_title')): ?>
                                 <h2><?= get_field('media_section_title'); ?></h2>
                             <?php endif; ?>
@@ -275,7 +277,7 @@ use Roots\Sage\Assets;
                 <section id="mediacontact" class="col-xs-12 text-center">
                     <p>For all media inquiries please contact</p>
                     <a href="mailto:<?= get_field('media_contact_email'); ?>"><?= get_field('media_contact_email'); ?></a><br/>
-                    <a href="tel:6174262222">617-426-2222</a>
+                    <a href="tel:<?= str_replace(')', '', str_replace('(', '', str_replace('-', '', get_field('media_contact_phone')))); ?>"><?= get_field('media_contact_phone'); ?></a>
                 </section>
             </div>
         </div>

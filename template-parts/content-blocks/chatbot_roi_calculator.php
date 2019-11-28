@@ -61,7 +61,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                     <h3>Your chats</h3>
                     <div class="form-group">
                         <label for="chat_length" class="d-block strong">Average length of chat <?php output_roi_tooltip($block['inputs'], 'avarage_length_of_chat_tooltip'); ?></label>
-                        <input id="chat_length" data-provide="slider" data-slider-id='chat_length_slider' type="text" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="6" data-slider-tooltip-position="bottom" data-slider-tooltip="always" />
+                        <input id="chat_length" data-provide="slider" data-slider-id='chat_length_slider' type="text" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="12" data-slider-tooltip-position="bottom" data-slider-tooltip="always" />
                     </div>
                     <div class="form-group">
                         <label for="concurrent_chats" class="d-block strong">Number of concurrent chats per agent <?php output_roi_tooltip($block['inputs'], 'number_of_concurrent_chats_per_agent_tooltip'); ?></label>
@@ -84,7 +84,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                     <h2><?= $block['results']['title']; ?></h2>
                     <p><?= $block['results']['description']; ?></p>
                     <hr/>
-                    <h5 class="">Your team's chat capacity: <?php output_roi_tooltip($block['results'], 'your_teams_chat_capacity_tooltip'); ?></h5>
+                    <h5 class="">Your team's annual chat capacity: <?php output_roi_tooltip($block['results'], 'your_teams_chat_capacity_tooltip'); ?></h5>
                     <div class="row capacity-results d-flex">
                         <div class="col-xs-6 text-center item">
                             <img src="<?= get_template_directory_uri(); ?>/dist/images/live-chat-agent.png" alt="Live Chat Agent Icon" width="40" /><br/>
@@ -120,7 +120,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                         <img src="<?= get_template_directory_uri(); ?>/dist/images/live-chat-bot.png" alt="Live Chat Bot Icon" width="40" /><br/>
                             <span id="future_team_bots" class="value  font-weight-heavy">XXXX</span>
                             <br/>
-                            Comm100 Chatbot with virtually unlimited capacity
+                            Comm100 Chatbot with unlimited capacity
                         </div>
                     </div>
                     <hr/>
@@ -151,7 +151,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                                     </div>
                                 </div>
                                 <div class="label">
-                                    <small>Anticipated cost with <span class="future_additional_agents">XX</span> new agents</small>
+                                    <small>Anticipated cost with current team plus <span class="future_additional_agents">XX</span> new agents</small>
                                     <div id="total_livechat_costs" class="font-weight-heavy">$<span class="value">XXXXX</span></div>
                                 </div>
                             </div>
@@ -173,7 +173,7 @@ function output_roi_tooltip($acf_group, $acf_field_name) {
                                     </div>
                                 </div>
                                 <div class="label">
-                                    <small>Anticipated cost current team size plus Chatbot</small>
+                                    <small>Anticipated cost with current team plus 1 new Comm100 Chatbot</small>
                                     <div id="total_live_chatbot_costs" class="font-weight-heavy">$<span class="value">XXXXX</span></div>
                                 </div>
                             </div>

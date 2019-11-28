@@ -1326,6 +1326,7 @@ use Roots\Sage\Assets;
 
                 endif;
 
+
                 // check current row layout
                 if( get_row_layout() == '3-column' ):
 

@@ -32,7 +32,7 @@ Template Name:Platform Multichannel Click Through
 </header>
 
 <div class="c-layout-page c-layout-page-fixed primary-page">
-    
+
 
     <?php
         $cardindex = 0;
@@ -62,7 +62,7 @@ Template Name:Platform Multichannel Click Through
 
                 if ($banner_icon):
                     echo '<div class="banner_icon">' .
-                            '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $banner_icon['url'] . '" alt="' . $banner_icon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($banner_headline):
@@ -80,7 +80,7 @@ Template Name:Platform Multichannel Click Through
                             $banner_description .
                         '</div>';
                 endif;
-                
+
                 if ($banner_cta):
 
                     while ( have_rows('cta') ) : the_row();
@@ -112,8 +112,8 @@ Template Name:Platform Multichannel Click Through
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
                 echo '</div>';
                 echo '</div>';
@@ -122,7 +122,7 @@ Template Name:Platform Multichannel Click Through
             endif;
                 // check current row layout
             if( get_row_layout() == 'hero_head' ):
-                
+
                 $header_align = get_sub_field('align');
                 $header_icon = get_sub_field('icon');
                 // $page_tag = get_sub_field('page_tag');
@@ -138,7 +138,7 @@ Template Name:Platform Multichannel Click Through
 
                 if ($header_icon):
                     echo '<div class="header_icon">' .
-                            '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $header_icon['url'] . '" alt="' . $header_icon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($header_headline):
@@ -156,7 +156,7 @@ Template Name:Platform Multichannel Click Through
                             $header_description .
                         '</div>';
                 endif;
-                
+
                 if ($header_cta):
 
                     while ( have_rows('cta') ) : the_row();
@@ -188,8 +188,8 @@ Template Name:Platform Multichannel Click Through
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
 
                 $rows = get_sub_field('repeater_feature');
@@ -200,7 +200,7 @@ Template Name:Platform Multichannel Click Through
                     $featureDescription = $row['feature_description'];
                     echo '<div class="col-sm-' . strval(12/$row_count) . '">' .
                         '<div class="c-content-feature-2 c-option-2 c-theme-bg-parent-hover">' .
-                            '<div class="c-icon-wrapper">' . 
+                            '<div class="c-icon-wrapper">' .
                                 '<span aria-hidden="true">' .
                                     '<img src="' . $featureImage['url'] . '" alt="' . $featureImage['alt'] . '" width="50" height="50">' .
                                 '</span>' .
@@ -215,7 +215,7 @@ Template Name:Platform Multichannel Click Through
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;    
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature_left_image' ):
@@ -229,7 +229,7 @@ Template Name:Platform Multichannel Click Through
                     $featureDescription = $row['feature_description'];
                     echo '<div class="col-sm-' . strval(12/$row_count) . '">' .
                         '<div class="c-content-feature-2 c-option-2 c-theme-bg-parent-hover">' .
-                            '<div class="c-icon-wrapper">' . 
+                            '<div class="c-icon-wrapper">' .
                                 '<span aria-hidden="true">' .
                                     '<img src="' . $featureImage['url'] . '" alt="' . $featureImage['alt'] . '" width="50" height="50">' .
                                 '</span>' .
@@ -241,7 +241,7 @@ Template Name:Platform Multichannel Click Through
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;   
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'card' ):
@@ -297,8 +297,8 @@ Template Name:Platform Multichannel Click Through
                                     }
                                 endif;
                             endwhile;
-                            
-                            
+
+
                         endif;
 
                         $cardindex ++;
@@ -327,7 +327,7 @@ Template Name:Platform Multichannel Click Through
                                     '<h3 class="highlight highlight--' . $card_themecolor . '">' . $card_title . '</h3>' .
                                     '<div class="card-item__subtitle">' . $card_subtitle . '</div>' .
                                     $card_description .
-                                    '<div class="card-item__link">' . $linkcontent . '</div>' . 
+                                    '<div class="card-item__link">' . $linkcontent . '</div>' .
                                 '</div>';
                     endwhile;
 
@@ -345,7 +345,7 @@ Template Name:Platform Multichannel Click Through
             //     $paragraph_item = get_sub_field('paragraph_item');
             //     $paragraph_itemClass = get_sub_field('paragraph_item')['paragraph_class'];
             //     $paragraph_itemText = get_sub_field('paragraph_item')['paragraph_text'];
-                
+
             //     echo '<div class="col-sm-12"><p class="' . $paragraph_itemClass . '">' . $paragraph_itemText . '</p></div>';
 
             // endif;
@@ -363,7 +363,7 @@ Template Name:Platform Multichannel Click Through
                         // loop through the rows of data
                     while ( have_rows('btn_repeater') ) : the_row();
 
-                        
+
                         $btn_link = get_sub_field('button');
 
                         echo  '<a href="' . $btn_link['url'] . '" target="' . $btn_link['target'] . '" class="btn-link">' . $btn_link['title'] . '</a>';
@@ -381,7 +381,7 @@ Template Name:Platform Multichannel Click Through
 
             // check current row layout
             if( get_row_layout() == 'cta' ):
-                
+
                 $calltoaction_type = get_sub_field('type');
                 $calltoaction_title = get_sub_field('title');
                 $calltoaction_subtitle = get_sub_field('subtitle');
@@ -440,27 +440,27 @@ Template Name:Platform Multichannel Click Through
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;  
-            
+            endif;
+
             // check current row layout
             if( get_row_layout() == 'logo' ):
-                
+
                 $logo_repeater = get_sub_field('logo_repeater');
                 // check if the nested repeater field has rows of data
                 if( have_rows('logo_repeater') ):
-                    
+
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="c-content-client-logos-slider-1  c-bordered" data-slider="owl" data-items="6" data-desktop-items="6" data-desktop-small-items="3" data-tablet-items="3" data-mobile-small-items="1" data-auto-play="5000">';
-                    echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';            
+                    echo '<div class="owl-carousel owl-theme c-theme owl-bordered1">';
                         // loop through the rows of data
                     while ( have_rows('logo_repeater') ) : the_row();
 
@@ -477,13 +477,13 @@ Template Name:Platform Multichannel Click Through
                     echo '</div>';
 
                 endif;
-                
-                
-            endif;  
+
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'resource' ):
-                
+
                 $headline = get_sub_field('title');
                 $slogan = get_sub_field('subtitle');
                 $description = get_sub_field('description');
@@ -546,26 +546,26 @@ Template Name:Platform Multichannel Click Through
                         endif;
                         echo '</div>';
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;    
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'image-text_card' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_card_repeater') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
-                    echo '<div class="col-sm-12">';         
+                    echo '<div class="col-sm-12">';
                         // loop through the rows of data
                     while ( have_rows('image_text_card_repeater') ) : the_row();
 
@@ -614,7 +614,7 @@ Template Name:Platform Multichannel Click Through
                                     '</div>' .
                                     '<div class="img-text-card__text">' .
                                         '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
-                                        '<p>' . $body . '</p>' . 
+                                        '<p>' . $body . '</p>' .
                                         '<div class="img-text-card__link">' . $linkcontent . '</div>' .
                                     '</div>' .
                                 '</div>';
@@ -627,15 +627,15 @@ Template Name:Platform Multichannel Click Through
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'image-text' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('image_text_column_repeater') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -708,18 +708,18 @@ Template Name:Platform Multichannel Click Through
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '1-column' ):
-                
+
                 $headimage = get_sub_field('image');
                 $headicon = get_sub_field('icon');
                 $headline = get_sub_field('title');
                 $body = get_sub_field('description');
                 $cta = get_sub_field('cta');
-                
+
 
                 echo '<div class="c-content-box c-size-md">';
                 echo '<div class="container">';
@@ -732,7 +732,7 @@ Template Name:Platform Multichannel Click Through
 
                 if ($headicon):
                     echo '<div class="header_icon">' .
-                            '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' . 
+                            '<img src="' . $headicon['url'] . '" alt="' . $headicon['alt'] . '" width="64" height="64" />' .
                         '</div>';
                 endif;
                 if ($headline):
@@ -747,7 +747,7 @@ Template Name:Platform Multichannel Click Through
                     while ( have_rows('cta') ) : the_row();
                         $cta_link_type = get_sub_field('cta_link_type');
                         $cta_link = get_sub_field('cta_link');
-                        
+
                         if ($cta_link):
                             switch ($cta_link_type) {
                                 case 'green' :
@@ -774,15 +774,15 @@ Template Name:Platform Multichannel Click Through
                             }
                         endif;
                     endwhile;
-                    
-                    
+
+
                 endif;
-                
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            endif;   
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column' ):
@@ -791,7 +791,7 @@ Template Name:Platform Multichannel Click Through
                 $row_index = 0;
                 // check if the nested repeater field has rows of data
                 if( have_rows('columns') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
@@ -806,7 +806,7 @@ Template Name:Platform Multichannel Click Through
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
                         $cta = get_sub_field('cta');
-                        
+
                         $linkcontent = '';
 
                         if ($cta):
@@ -846,7 +846,7 @@ Template Name:Platform Multichannel Click Through
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="64" height="64" />' .
                                     '</div>' .
                                     '<h3>' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     '<div class="c-margin-t-30">' . $linkcontent . '</div>' .
                                 '</div>';
                     endwhile;
@@ -857,63 +857,85 @@ Template Name:Platform Multichannel Click Through
 
                 endif;
 
-               
-            endif;    
 
-            // check current row layout
-            if( get_row_layout() == 'testimonial' ):
-                
-                $quote = get_sub_field('quote');
-                $signature = get_sub_field('signature');
-                $story_link = get_sub_field('story_link');
-                $background_color = get_sub_field('background_color');
-                
+            endif;
 
-                echo '<div class="c-content-box c-size-xlg c-content-box--' . $background_color . ' ">';
-                echo '<div class="container">';
-                echo '<div class="row">';
-                echo '<div class="col-sm-10 col-sm-push-1 c-quote">';
+                // check current row layout
+                if( get_row_layout() == 'testimonial' ):
 
-                if ($quote):
-                    echo '<div class="c-quote__content">' .
-                            $quote . 
-                        '</div>';
+                    $alignment = get_sub_field('alignment');
+                    $background_image = get_sub_field('background_image');
+                    $quote = get_sub_field('quote');
+                    $signature = get_sub_field('signature');
+                    $signature_image = get_sub_field('signature_image');
+                    $story_link = get_sub_field('story_link');
+                    $background_color = get_sub_field('background_color');
+
+                    $colsType = '';
+                    if ($alignment == 'left'):
+                        $colsType = 'col-sm-7';
+                    elseif ($alignment == 'center'):
+                        $colsType = 'col-sm-10 col-sm-push-1';
+                    endif;
+
+                    $style_bg = '';
+                    if ($background_image):
+                        $style_bg = 'style="background-image: url(' . $background_image['url'] . ')"';
+                    endif;
+
+                    echo '<div class="c-content-box c-content-box__quote c-size-xlg c-content-box--' . $background_color . ' " ' . $style_bg . '>';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="' . $colsType . ' c-quote">';
+
+                    if ($quote):
+                        echo '<div class="c-quote__content">' .
+                                $quote .
+                            '</div>';
+                    endif;
+
+                    $signatureImage = '';
+                    if ($signature_image):
+                        $signatureImage = '<img src="' . $signature_image['url'] . '" alt="' . $signature_image['alt'] . '" width="80" height="80" />';
+                    endif;
+
+                    if ($signature):
+                        echo '<div class="c-quote__signature">' .
+                                $signatureImage .
+                                $signature .
+                            '</div>';
+                    endif;
+                    if ($story_link):
+                        echo '<div class="c-quote__link">' .
+                                '<a class="c-redirectLink" href="' . $story_link['url'] . '" target="' . $story_link['target'] . '">' .
+                                    $story_link['title'] .
+                                '</a>' .
+                            '</div>';
+                    endif;
+
+
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+
                 endif;
-                if ($signature):
-                    echo '<div class="c-quote__signature">' .
-                            $signature .
-                        '</div>';
-                endif;
-                if ($story_link):
-                    echo '<div class="c-quote__link">' .
-                            '<a class="c-redirectLink" href="' . $story_link['url'] . '" target="' . $story_link['target'] . '">' .
-                                $story_link['title'] .
-                            '</a>' .
-                        '</div>';
-                endif;
-                
-                
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-               
-            endif;    
+
 
             // check current row layout
             if( get_row_layout() == '3-column' ):
-                
+
                 // check if the nested repeater field has rows of data
                 if( have_rows('columns') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 three-column">';
                         // loop through the rows of data
-                    
+
                     while ( have_rows('columns') ) : the_row();
-                        
+
                         $headline = get_sub_field('headline');
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
@@ -959,7 +981,7 @@ Template Name:Platform Multichannel Click Through
                         echo    '<div class="three-column__item">' .
                                     '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
                                     '<h5 class="three-column__title">' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     $linkcontent .
                                 '</div>';
                     endwhile;
@@ -971,27 +993,27 @@ Template Name:Platform Multichannel Click Through
 
                 endif;
 
-               
-            endif;  
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature' ):
-                $color = get_sub_field('color');                                
+                $color = get_sub_field('color');
                 // check if the nested repeater field has rows of data
                 if( have_rows('column') ):
-                    
+
                     echo '<div class="c-content-box c-size-md">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12 feature-column">';
                         // loop through the rows of data
-                    
+
                     while ( have_rows('column') ) : the_row();
-                        
+
                         $headline = get_sub_field('headline');
                         $body = get_sub_field('body');
                         $icon = get_sub_field('icon');
-                        
+
 
                         // if ($linkcontent !== ''):
                         //     $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
@@ -1000,10 +1022,10 @@ Template Name:Platform Multichannel Click Through
                         echo    '<div class="feature-column__item">' .
                                     '<div><img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" /></div>' .
                                     '<h5 class="feature-column__title highlight highlight--' . $color . '">' . $headline . '</h3>' .
-                                    $body . 
+                                    $body .
                                     // $linkcontent .
                                 '</div>';
-                                
+
                     endwhile;
 
                     $cta = get_sub_field('cta');
@@ -1051,15 +1073,15 @@ Template Name:Platform Multichannel Click Through
 
                 endif;
 
-               
-            endif;    
+
+            endif;
 
             // check current row layout
             if( get_row_layout() == 'line' ):
-                
+
                 $height = get_sub_field('height');
                 $color = get_sub_field('color');
-                
+
 
                 echo '<div class="c-content-box">';
                 echo '<div class="container">';
@@ -1069,15 +1091,15 @@ Template Name:Platform Multichannel Click Through
                 if ($height):
                     echo '<hr style="border-top-color: ' . $color . '; border-top-width: ' . $height . 'px " />';
                 endif;
-                
-                
-                
+
+
+
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-               
-            endif;    
+
+            endif;
         endwhile;
 
         else :
@@ -1086,7 +1108,7 @@ Template Name:Platform Multichannel Click Through
 
         endif;
     ?>
-                
+
 </div>
 
 <?php get_template_part('template-parts/footer'); ?>

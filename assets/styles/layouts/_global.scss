@@ -10088,3 +10088,9 @@ h2.video-title {
     padding: 10px 12px!important;
   }
 }
+
+body.page-template-page-noheaderandfooter {
+    .wt-cli-cookie-bar-container {
+        display: none !important;
+    }
+}

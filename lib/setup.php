@@ -61,34 +61,6 @@ function setup() {
     add_theme_support( 'post-thumbnails' );
     set_post_thumbnail_size(387, 200); // 680 pixels wide by 200 pixels tall, resize mode
 
-    add_theme_support( 'editor-color-palette', array(
-        array(
-            'name'  => __( 'Blue', 'comm100' ),
-            'slug'  => 'blue',
-            'color' => '#008ad8',
-        ),
-        array(
-            'name'  => __( 'Blue (Light)', 'comm100' ),
-            'slug'  => 'lightblue',
-            'color' => '#2cbdff',
-        ),
-        array(
-            'name'  => __( 'Green', 'comm100' ),
-            'slug'  => 'green',
-            'color'	=> '#aedd09',
-        ),
-        array(
-            'name'  => __( 'Green (Bright)', 'comm100' ),
-            'slug'  => 'greenbright',
-            'color'	=> '#81f100',
-        ),
-        array(
-            'name'	=> __( 'White', 'comm100' ),
-            'slug'	=> 'white',
-            'color'	=> '#ffffff',
-        ),
-    ) );
-
     // Enable HTML5 markup support
     // http://codex.wordpress.org/Function_Reference/add_theme_support#HTML5
     add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
@@ -236,7 +208,7 @@ function db_assets() {
     }
 
     echo "<script type='text/javascript'>/* <![CDATA[ */ var dbGlobal = ".json_encode($dbData)."; /* ]]> */</script>";
-    echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=20190812.2').'"></script>';
+    echo '<script type="text/javascript" async="false" src="'.Assets\asset_path('scripts/plugins/db-redirect.js?v=20190911.5').'"></script>';
 }
 add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
 

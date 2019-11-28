@@ -842,45 +842,67 @@ Template Name:Solution Industries Click Through
 
             endif;
 
-            // check current row layout
-            if( get_row_layout() == 'testimonial' ):
+                // check current row layout
+                if( get_row_layout() == 'testimonial' ):
 
-                $quote = get_sub_field('quote');
-                $signature = get_sub_field('signature');
-                $story_link = get_sub_field('story_link');
-                $background_color = get_sub_field('background_color');
+                    $alignment = get_sub_field('alignment');
+                    $background_image = get_sub_field('background_image');
+                    $quote = get_sub_field('quote');
+                    $signature = get_sub_field('signature');
+                    $signature_image = get_sub_field('signature_image');
+                    $story_link = get_sub_field('story_link');
+                    $background_color = get_sub_field('background_color');
+
+                    $colsType = '';
+                    if ($alignment == 'left'):
+                        $colsType = 'col-sm-7';
+                    elseif ($alignment == 'center'):
+                        $colsType = 'col-sm-10 col-sm-push-1';
+                    endif;
+
+                    $style_bg = '';
+                    if ($background_image):
+                        $style_bg = 'style="background-image: url(' . $background_image['url'] . ')"';
+                    endif;
+
+                    echo '<div class="c-content-box c-content-box__quote c-size-xlg c-content-box--' . $background_color . ' " ' . $style_bg . '>';
+                    echo '<div class="container">';
+                    echo '<div class="row">';
+                    echo '<div class="' . $colsType . ' c-quote">';
+
+                    if ($quote):
+                        echo '<div class="c-quote__content">' .
+                                $quote .
+                            '</div>';
+                    endif;
+
+                    $signatureImage = '';
+                    if ($signature_image):
+                        $signatureImage = '<img src="' . $signature_image['url'] . '" alt="' . $signature_image['alt'] . '" width="80" height="80" />';
+                    endif;
+
+                    if ($signature):
+                        echo '<div class="c-quote__signature">' .
+                                $signatureImage .
+                                $signature .
+                            '</div>';
+                    endif;
+                    if ($story_link):
+                        echo '<div class="c-quote__link">' .
+                                '<a class="c-redirectLink" href="' . $story_link['url'] . '" target="' . $story_link['target'] . '">' .
+                                    $story_link['title'] .
+                                '</a>' .
+                            '</div>';
+                    endif;
 
 
-                echo '<div class="c-content-box c-size-xlg c-content-box--' . $background_color . ' ">';
-                echo '<div class="container">';
-                echo '<div class="row">';
-                echo '<div class="col-sm-10 col-sm-push-1 c-quote">';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
 
-                if ($quote):
-                    echo '<div class="c-quote__content">' .
-                            $quote .
-                        '</div>';
                 endif;
-                if ($signature):
-                    echo '<div class="c-quote__signature">' .
-                            $signature .
-                        '</div>';
-                endif;
-                if ($story_link):
-                    echo '<div class="c-quote__link">' .
-                            '<a class="c-redirectLink" href="' . $story_link['url'] . '" target="' . $story_link['target'] . '">' .
-                                $story_link['title'] .
-                            '</a>' .
-                        '</div>';
-                endif;
 
-
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-
-            endif;
 
             // check current row layout
             if( get_row_layout() == '3-column' ):

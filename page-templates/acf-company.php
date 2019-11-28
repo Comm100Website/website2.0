@@ -640,7 +640,6 @@ use Roots\Sage\Assets;
                                         '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="60" height="60" />' .
                                     '</div>' .
                                     '<div class="icon-text-item__title">' . $title . '</div>' .
-                                    $body .
                                 '</div>';
                     endwhile;
                 endif;
