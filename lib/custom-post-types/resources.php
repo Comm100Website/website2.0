@@ -96,7 +96,7 @@ function register_resource_tag_taxonomy() {
         'hierarchical'      => false,
         'labels'            => $labels,
         'show_ui'           => true,
-        'public'            => false,
+       
         'publicly_queryable' => false,
         'show_admin_column' => true,
         'query_var'         => true,
@@ -173,6 +173,18 @@ function exclude_resources($query) {
                 ]
             ];
         endif;
+        
+        //如果URL带标签参数，则需要在筛选变量中添加标签参数，不然排除会有问题
+        if ($_GET["topic"] && $_GET["topic"] != 'All'){
+            $args['tax_query'][] = [
+                'relation' => 'AND',
+                [
+                    'taxonomy' => 'commresourcetag',
+                    'field'    => 'slug',
+                    'terms'    => array($_GET["topic"]),         
+                ]
+            ];
+        }        
 
         $featuredResourcePosts = get_posts( $args );
 
@@ -184,6 +196,19 @@ function exclude_resources($query) {
             $excludedPostIDs = wp_list_pluck($excludedPosts, 'ID');
             $query->set('post__not_in', $excludedPostIDs);
         }
+
+        //如果URL带标签参数，则需要在主查询query变量中添加标签参数
+     	if ($_GET["topic"] && $_GET["topic"] != 'All'){
+            $query->set('tax_query', [
+        		'relation' => 'AND',
+        			[
+			            'taxonomy' => 'commresourcetag',
+			            'field'    => 'slug',
+			            'terms'    => $_GET["topic"],
+        			]
+            ]);
+        }
+        
     }
 }
 add_action('pre_get_posts', __NAMESPACE__.'\\exclude_resources');
