@@ -2382,8 +2382,8 @@ function calculate_roi($) {
                         calculate_chatbot_roi($);
                     }),
                     form.onSuccess(function(values, followUpUrl) {
-                        console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
-                        location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        // console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
+                        location.href = followUpUrl.replace('?confirmation_link=', '') + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
                         // Return false to prevent the submission handler continuing with its own processing
                         return false;
                     });
@@ -2406,8 +2406,8 @@ function calculate_roi($) {
                         calculate_roi($);
                     }),
                     form.onSuccess(function(values, followUpUrl) {
-                        console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
-                        location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        // console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
+                        location.href = followUpUrl.replace('?confirmation_link=', '') + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
                         // Return false to prevent the submission handler continuing with its own processing
                         return false;
                     });
@@ -2508,8 +2508,10 @@ function calculate_roi($) {
                 });
 
                 MktoForms2.whenReady(function (form){
+                    $("input[name='DynamicalURL']").val(commGlobal.site_url + '/pdfgen/live-chat/?industry=All Industries&avg-rating=' + $('#avg-rating .value').html() + '&avg-satisfaction=' + $('#avg-satisfaction .value').html() + '&avg-chats-month=' + $('#avg-chats-month .value').html() + '&mobile-chats=' + $('#mobile-chats .value').html() + '&avg-wait-time=' + $('#avg-wait-time .value').html() + '&avg-chat-length=' + $('#avg-chat-length .value').html());
+
                     form.onSuccess(function(values, followUpUrl) {
-                        location.href = followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        location.href = followUpUrl.replace('?confirmation_link=', '') + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
                         // Return false to prevent the submission handler continuing with its own processing
                         return false;
                     });
