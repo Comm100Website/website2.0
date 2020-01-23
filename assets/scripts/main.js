@@ -2370,7 +2370,7 @@ function calculate_agent_assist_roi($) {
 
     var percentTimeSpentSearching = timeSpentLooking / 60 / chatLength * 100;
     $('#percent_time_spent_searching').html(accounting.formatNumber(percentTimeSpentSearching, 1));
-    roiPDFUrl += 'percent_time_spent_searching=' + accounting.formatNumber(percentTimeSpentSearching, 1) + '&';
+    roiPDFUrl += 'percent_time_spent_searching=' + accounting.formatNumber(percentTimeSpentSearching, 0) + '&';
 
     var newChatLength = chatLength - (timeSpentLooking / 60);
     $('#new_chat_length').html(accounting.formatNumber(newChatLength, 0));
@@ -2418,7 +2418,7 @@ function calculate_agent_assist_roi($) {
     roiPDFUrl += 'new_cost_per_chat=' + accounting.formatNumber(newCostPerChat, 2) + '&';
 
     var costPerChatDifference = accounting.toFixed(costPerChat, 2) - accounting.toFixed(newCostPerChat, 2);
-    console.log(costPerChatDifference);
+    // console.log(costPerChatDifference);
     var costReductionPercent = costPerChatDifference / accounting.toFixed(costPerChat, 2);
 
     roiPDFUrl += 'cost_per_chat_decrease=' + accounting.toFixed(Math.abs(costReductionPercent * 100), 1) + '&';
@@ -2500,7 +2500,7 @@ function calculate_agent_assist_roi($) {
 
     $("input[name='DynamicalURL']").val(roiPDFUrl);
 
-    console.log(roiPDFUrl);
+    // console.log(roiPDFUrl);
 }
 
 /* ========================================================================
