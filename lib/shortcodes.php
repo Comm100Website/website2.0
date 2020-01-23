@@ -7,7 +7,7 @@ use DateTimeZone;
 
 function register_output_marketo_confirmation_link_shortcode($atts, $content) {
     if (array_key_exists('confirmation_link', $_GET)) {
-        $output = '<a href="'.$_GET['confirmation_link'].'">'.$content.'</a>';
+        $output = '<a href="'.$_GET['confirmation_link'].'" target="_blank">'.$content.'</a>';
     }
 
     return $output;

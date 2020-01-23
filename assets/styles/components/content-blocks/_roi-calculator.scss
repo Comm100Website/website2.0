@@ -1,4 +1,4 @@
-.content-section.section-roi_calculator, .content-section.section-chatbot_roi_calculator {
+.content-section.section-agent_assist_roi_calculator, .content-section.section-roi_calculator, .content-section.section-chatbot_roi_calculator {
     .tooltip-trigger {
         display: inline-block;
     }
@@ -119,6 +119,7 @@
                 }
             }
 
+            &#percent_of_day_spent_chatting_slider .tooltip.bottom .tooltip-inner,
             &#chat_volume_growth_slider .tooltip.bottom .tooltip-inner {
                 &::after { content: '%'; }
             }
@@ -184,6 +185,42 @@
 
     .roi-results-col {
         background: #00567c;
+        position: relative;
+        z-index: 1;
+
+        &.bg-gray-dark {
+            background: #48515A;
+        }
+
+        .bg-gray-medium {
+            position: relative;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+
+            &:before {
+                content: '';
+                display: block;
+                left: -15px;
+                top: -40px;
+                background: #606C78;
+                width: calc(100% + 30px);
+                height: calc(100% + 40px);
+                position: absolute;
+                z-index: -1;
+            }
+
+            @media (min-width: $screen-md-min) {
+                padding-bottom: 60px;
+                margin-bottom: 60px;
+
+                &:before {
+                    left: -51px;
+                    top: -60px;
+                    height: calc(100% + 60px);
+                    width: 50vw;
+                }
+            }
+        }
 
         &.bg-blue-medium {
             background: #dbe6ed;
@@ -195,7 +232,9 @@
             }
         }
 
-        &.bg-blue-dark .tooltip-trigger svg { border: solid 1px #fff; }
+        &.bg-blue-dark .tooltip-trigger svg,
+        &.bg-gray-dark .tooltip-trigger svg { border: solid 1px #fff; }
+
         h5 { font-family: $font-family-bold; font-weight: 400; }
 
         hr {
@@ -230,8 +269,9 @@
             }
         }
 
+        &.bg-gray-dark,
         &.bg-blue-dark {
-            &, h2, h3, h4 { color: #fff; }
+            &, h2, h3, h4, h5 { color: #fff; }
 
             @media (min-width: 992px) {
                 hr:nth-child(3) {
@@ -263,6 +303,12 @@
                 h4 {
                     color: #9fdd09;
                 }
+            }
+        }
+
+        &.bg-gray-dark {
+            .tooltip-trigger svg {
+                border: 0;
             }
         }
 
@@ -606,6 +652,16 @@
             }
         }
 
+        .blue-light-dark-gray-gradient {
+            background: linear-gradient(270deg, #48515a 0%, #48515a 50%, #f4f8fc 50%);
+
+            .roi-icon-result {
+                &:first-child {
+                    border-right: solid 1px #fff;
+                }
+            }
+        }
+
         .col-inner {
             padding: 60px 36px;
         }
@@ -633,5 +689,11 @@
 .content-section.section-chatbot_roi_calculator {
     .form-group {
         margin-bottom: 25px;
+    }
+}
+
+.content-section.section-agent_assist_roi_calculator {
+    .form-group {
+        margin-bottom: 35px;
     }
 }

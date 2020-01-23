@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-      "seiyria-bootstrap-slider": "10.6.x",
-      "accounting.js": "0.4.x"
+      "seiyria-bootstrap-slider": "10.6.2",
+      "accounting.js": "0.4.2"
   },
   "overrides": {
   }

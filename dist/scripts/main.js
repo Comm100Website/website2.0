@@ -4324,6 +4324,7 @@ jQuery(function() {
 
 function calculate_chatbot_roi($) {
     var roiPDFUrl = commGlobal.site_url + '/pdfgen/chatbot-roi/?';
+    var regex = new RegExp(',', 'g');
 
     var activeAgents = parseInt($('#active_agents').val().replace(regex, ''));
     roiPDFUrl += 'num_agents=' + activeAgents + '&';
@@ -4377,7 +4378,6 @@ function calculate_chatbot_roi($) {
     var chatVolumeGrowth = parseInt($('#chat_volume_growth').val().replace(regex, ''));
     roiPDFUrl += 'chat_volume_growth=' + chatVolumeGrowth + '&';
 
-    var regex = new RegExp(',', 'g');
     accounting.settings.currency.format = "%v";
 
     // $percentRedirectionResult.html(accounting.formatNumber(totalDeflectedCalls, 0));
@@ -4534,6 +4534,7 @@ function calculate_chatbot_roi($) {
 
 function calculate_roi($) {
     var roiPDFUrl = commGlobal.site_url + '/pdfgen/roi/?';
+    var regex = new RegExp(',', 'g');
 
     var activeAgents = parseInt($('#active_agents').val().replace(regex, ''));
     roiPDFUrl += 'num_agents=' + activeAgents + '&';
@@ -4614,7 +4615,6 @@ function calculate_roi($) {
     var $deflectedChatPercentResultComparison = $('#deflected_chat_percent_result_comparison');
     var $deflectedChatSavings = $('#deflected_chat_savings');
 
-    var regex = new RegExp(',', 'g');
     accounting.settings.currency.format = "%v";
 
     $percentRedirectionResult.html(accounting.formatNumber(totalDeflectedCalls, 0));
@@ -4769,6 +4769,217 @@ function calculate_roi($) {
     // console.log(roiPDFUrl);
 }
 
+function calculate_agent_assist_roi($) {
+    var roiPDFUrl = commGlobal.site_url + '/pdfgen/agent-assist-roi/?';
+    var regex = new RegExp(',', 'g');
+
+    var activeAgents = parseInt($('#active_agents').val().replace(regex, ''));
+    roiPDFUrl += 'num_agents=' + activeAgents + '&';
+
+    var callCenterHoursDay = parseInt($('#call_center_hours_day').val().replace(regex, ''));
+
+    if (callCenterHoursDay > 24) {
+        callCenterHoursDay = 24;
+        $('#call_center_hours_day').val(24);
+    } else if (callCenterHoursDay <= 0) {
+        callCenterHoursDay = 1;
+        $('#call_center_hours_day').val(1);
+    }
+
+    roiPDFUrl += 'hours=' + callCenterHoursDay + '&';
+
+    var callCenterDaysWeek = parseInt($('#call_center_days_week').val().replace(regex, ''));
+
+    if (callCenterDaysWeek > 7) {
+        callCenterDaysWeek = 7;
+        $('#call_center_days_week').val(7);
+    } else if (callCenterDaysWeek <= 0) {
+        callCenterDaysWeek = 1;
+        $('#call_center_days_week').val(1);
+    }
+
+    roiPDFUrl += 'days=' + callCenterDaysWeek + '&';
+
+    var callCenterWeeksYear = parseInt($('#call_center_weeks_year').val().replace(regex, ''));
+
+    if (callCenterWeeksYear > 52) {
+        callCenterWeeksYear = 52;
+        $('#call_center_weeks_year').val(52);
+    } else if (callCenterWeeksYear <= 0) {
+        callCenterWeeksYear = 1;
+        $('#call_center_weeks_year').val(1);
+    }
+
+    roiPDFUrl += 'weeks=' + callCenterWeeksYear + '&';
+
+    var agentCompensation = parseInt($('#agent_compensation').val().replace(regex, ''));
+    roiPDFUrl += 'compensation=' + accounting.formatNumber(agentCompensation) + '&';
+    roiPDFUrl += 'annual_compensation=' + accounting.formatNumber(agentCompensation * activeAgents) + '&';
+
+    var percentDaySpentChatting = parseInt($('#percent_of_day_spent_chatting').val().replace(regex, ''));
+    roiPDFUrl += 'percent_of_day_spent_chatting=' + percentDaySpentChatting + '&';
+
+    var chatLength = parseInt($('#chat_length').val().replace(regex, ''));
+    roiPDFUrl += 'chat_length=' + chatLength + '&';
+
+    var concurrentChats = parseInt($('#concurrent_chats').val().replace(regex, ''));
+    roiPDFUrl += 'chats_per_agent=' + concurrentChats + '&';
+
+    var timeSpentLooking = parseInt($('#time_spent_looking_for_answers').val().replace(regex, ''));
+    roiPDFUrl += 'time_spent_looking_for_answers=' + timeSpentLooking + '&';
+
+    var chatPackage = $("input[name='chatPackage']:checked").val();
+    roiPDFUrl += 'package=' + chatPackage + '&';
+
+    var chatPackageRate = $("input[name='chatPackage']:checked").data('rate');
+    roiPDFUrl += 'chat_rate=' + chatPackageRate + '&';
+
+    var agentAssistOption = $("input[name='agentAssistOption']:checked").val();
+    var agentAssistRate = $("input[name='agentAssistOption']:checked").data('rate');
+    roiPDFUrl += 'agent_assist_option=' + agentAssistOption + '&';
+    roiPDFUrl += 'agent_assist_rate=' + agentAssistRate + '&';
+
+    accounting.settings.currency.format = "%v";
+
+    var callCenterDaysYear = callCenterDaysWeek * callCenterWeeksYear;
+    var chatHour = (60 / chatLength) * concurrentChats;
+    roiPDFUrl += 'chats_hour=' + accounting.formatNumber(chatHour) + '&';
+
+    var percentTimeSpentSearching = timeSpentLooking / 60 / chatLength * 100;
+    $('#percent_time_spent_searching').html(accounting.formatNumber(percentTimeSpentSearching, 1));
+    roiPDFUrl += 'percent_time_spent_searching=' + accounting.formatNumber(percentTimeSpentSearching, 1) + '&';
+
+    var newChatLength = chatLength - (timeSpentLooking / 60);
+    $('#new_chat_length').html(accounting.formatNumber(newChatLength, 0));
+    roiPDFUrl += 'new_chat_length=' + accounting.formatNumber(newChatLength, 0) + '&';
+
+    var agentAvailableHoursDay = callCenterHoursDay * (percentDaySpentChatting / 100);
+    roiPDFUrl += 'agent_available_hours_day=' + accounting.formatNumber(agentAvailableHoursDay, 1) + '&';
+    var agentDailyChatCapacity = Math.ceil(agentAvailableHoursDay * ((60/chatLength) * concurrentChats));
+    var chatsYear = agentDailyChatCapacity * callCenterDaysYear * activeAgents;
+    $('#current_chat_capacity').html(accounting.formatNumber(chatsYear, 0));
+    roiPDFUrl += 'current_chat_capacity=' + accounting.formatNumber(chatsYear, 0) + '&';
+    roiPDFUrl += 'agent_daily_chat_capacity=' + accounting.formatNumber(agentDailyChatCapacity, 0) + '&';
+    roiPDFUrl += 'agent_annual_chat_capacity=' + accounting.formatNumber(agentDailyChatCapacity * callCenterDaysYear, 0) + '&';
+
+    roiPDFUrl += 'minutes_spent_looking_day=' + accounting.formatNumber((timeSpentLooking / 60) * agentDailyChatCapacity, 0) + '&';
+    roiPDFUrl += 'minutes_spent_chatting_day=' + accounting.formatNumber((chatLength - (timeSpentLooking / 60)) * agentDailyChatCapacity, 0) + '&';
+
+    var dailyCostPerAgent = agentCompensation / callCenterDaysYear;
+    var searchTimeCostAgentDay = dailyCostPerAgent * (percentTimeSpentSearching / 100);
+    var chatCostAgentDay = dailyCostPerAgent * (1 - (percentTimeSpentSearching / 100));
+    roiPDFUrl += 'cost_looking_day=' + accounting.formatNumber(searchTimeCostAgentDay * callCenterDaysYear * activeAgents, 0) + '&';
+    roiPDFUrl += 'cost_chatting_day=' + accounting.formatNumber(chatCostAgentDay * callCenterDaysYear * activeAgents, 0) + '&';
+
+    var newChatHour = (60 / newChatLength) * concurrentChats;
+    var newChatsDay = Math.ceil(agentAvailableHoursDay * newChatHour);
+    var newChatsYear = newChatsDay * callCenterDaysYear * activeAgents;
+    $('.new_chat_capacity').html(accounting.formatNumber(newChatsYear, 0));
+    roiPDFUrl += 'new_chat_capacity=' + accounting.formatNumber(newChatsYear, 0) + '&';
+    roiPDFUrl += 'new_chat_capacity_per_agent=' + accounting.formatNumber(newChatsYear / activeAgents, 0) + '&';
+
+    roiPDFUrl += 'new_chat_capacity_day=' + accounting.formatNumber(newChatsDay, 0) + '&';
+    roiPDFUrl += 'new_chat_capacity_agent_day=' + accounting.formatNumber(newChatsDay / activeAgents, 0) + '&';
+
+    roiPDFUrl += 'new_chats_per_hour_per_agent=' + accounting.formatNumber(newChatHour, 0) + '&';
+
+    roiPDFUrl += 'chat_capacity_increase=' + accounting.formatNumber((newChatsYear / chatsYear * 100) - 100, 1) + '&';
+
+    // var costPerChat = parseFloat(accounting.formatNumber(deflectedChatCost, 2)) + parseFloat(accounting.formatNumber(deflectedChatLabourCost, 2));
+    var costPerDay = agentCompensation / callCenterDaysYear;
+    var costPerChat = costPerDay / agentDailyChatCapacity;
+    var newCostPerChat = costPerDay / newChatsDay;
+    var reducedLaborCostPercent = (newCostPerChat - costPerChat) / costPerChat * 100 * -1;
+    $('#reduced_labor_cost_percent').html(accounting.formatNumber(reducedLaborCostPercent, 0));
+    roiPDFUrl += 'cost_per_chat=' + accounting.formatNumber(costPerChat, 2) + '&';
+    roiPDFUrl += 'new_cost_per_chat=' + accounting.formatNumber(newCostPerChat, 2) + '&';
+
+    var costPerChatDifference = accounting.toFixed(costPerChat, 2) - accounting.toFixed(newCostPerChat, 2);
+    console.log(costPerChatDifference);
+    var costReductionPercent = costPerChatDifference / accounting.toFixed(costPerChat, 2);
+
+    roiPDFUrl += 'cost_per_chat_decrease=' + accounting.toFixed(Math.abs(costReductionPercent * 100), 1) + '&';
+    roiPDFUrl += 'reduced_labor_cost_percent=' + accounting.formatNumber(newChatsYear, 0) + '&';
+
+    var extendChatCapacityPercent = (newChatsYear/chatsYear*100) - 100;
+    $('#extend_chat_capacity_percent').html(accounting.formatNumber(extendChatCapacityPercent, 1));
+    roiPDFUrl += 'extend_chat_capacity_percent=' + accounting.formatNumber(extendChatCapacityPercent, 1) + '&';
+
+    var extendChatCapacity = newChatsYear - chatsYear;
+    $('#extend_chat_capacity').html(accounting.formatNumber(extendChatCapacity, 0));
+    roiPDFUrl += 'extend_chat_capacity=' + accounting.formatNumber(extendChatCapacity, 0) + '&';
+
+    var agentsNewCapacity = Math.ceil(extendChatCapacity / (newChatsDay * callCenterDaysYear));
+    roiPDFUrl += 'agent_assist_agents_equivalent=' + accounting.formatNumber(agentsNewCapacity, 0) + '&';
+    $('#agents_new_capacity').html(accounting.formatNumber(agentsNewCapacity + activeAgents, 0));
+    var agentsNewCapacityWithAssist = Math.floor(chatsYear / (newChatsDay * callCenterDaysYear));
+    $('.agents_new_capacity_with_assist').html(accounting.formatNumber(agentsNewCapacityWithAssist, 0));
+    roiPDFUrl += 'agents_new_capacity_with_assist=' + accounting.formatNumber(agentsNewCapacityWithAssist, 0) + '&';
+
+    var barScaleMultiplier = 0.0001;
+
+    var currentTeamCompensation = activeAgents * agentCompensation;
+    var currentTeamSubscription = activeAgents * chatPackageRate;
+    var currentTeamCosts = currentTeamSubscription + currentTeamCompensation;
+
+    if (currentTeamCosts < 150000) {
+        barScaleMultiplier = 0.0014;
+    } else if (currentTeamCosts < 250000) {
+        barScaleMultiplier = 0.0009;
+    } else if (currentTeamCosts < 450000) {
+        barScaleMultiplier = 0.0006;
+    } else if (currentTeamCosts < 650000) {
+        barScaleMultiplier = 0.0003;
+    } else if (currentTeamCosts < 1750000) {
+        barScaleMultiplier = 0.0002;
+    }
+
+    var $currentTeamSubscriptionBar = $('#current_team_subscription_cost_bar');
+    $currentTeamSubscriptionBar.find('.segment_value').html(accounting.formatNumber(currentTeamSubscription, 0));
+    $currentTeamSubscriptionBar.height(currentTeamSubscription * barScaleMultiplier);
+
+    var $currentTeamCompensationBar = $('#current_team_compensation_cost_bar');
+    $currentTeamCompensationBar.find('.segment_value').html(accounting.formatNumber(currentTeamCompensation, 0));
+    $currentTeamCompensationBar.height(currentTeamCompensation * barScaleMultiplier);
+
+    $('#current_team_cost .value').html(accounting.formatNumber(currentTeamCosts, 0));
+
+    var newTeamAgentAssistCost = agentAssistRate * 12 * agentsNewCapacityWithAssist;
+    var newTeamCompensation = agentsNewCapacityWithAssist * agentCompensation;
+    var newTeamSubscription = (agentsNewCapacityWithAssist * chatPackageRate) + newTeamAgentAssistCost;
+    var newTeamCosts = newTeamSubscription + newTeamCompensation;
+
+    roiPDFUrl += 'incremental_new_chat_capacity=' + accounting.formatNumber(agentAssistRate * 12 * activeAgents, 0) + '&';
+
+    var $newTeamSubscriptionBar = $('#new_team_subscription_cost_bar');
+    $newTeamSubscriptionBar.find('.segment_value').html(accounting.formatNumber(newTeamSubscription, 0));
+    $newTeamSubscriptionBar.height(newTeamSubscription * barScaleMultiplier);
+
+    var $newTeamCompensationBar = $('#new_team_compensation_cost_bar');
+    $newTeamCompensationBar.find('.segment_value').html(accounting.formatNumber(newTeamCompensation, 0));
+    $newTeamCompensationBar.height(newTeamCompensation * barScaleMultiplier);
+
+    $('#new_team_cost .value').html(accounting.formatNumber(newTeamCosts, 0));
+
+    var assistSavings = currentTeamCosts - newTeamCosts;
+    $('#adding_assist_savings').html(accounting.formatNumber(assistSavings, 0));
+    roiPDFUrl += 'agent_assist_savings=' + accounting.formatNumber(assistSavings, 0) + '&';
+
+    var totalROI = ((assistSavings - newTeamAgentAssistCost) / newTeamAgentAssistCost) * 100;
+    roiPDFUrl += 'roi_year=' + accounting.formatNumber(totalROI, 1) + '&';
+    $('#one_year_roi .value').html(accounting.formatNumber(totalROI, 1));
+
+    var paybackPeriod = (newTeamAgentAssistCost / assistSavings) * 365;
+    $('#payback_period .value').html(Math.ceil(paybackPeriod));
+    roiPDFUrl += 'payback=' + Math.ceil(paybackPeriod) + '&';
+
+    roiPDFUrl += 'c=' + encodeURIComponent($("input[name='Company']").val());
+
+    $("input[name='DynamicalURL']").val(roiPDFUrl);
+
+    console.log(roiPDFUrl);
+}
+
 /* ========================================================================
  * DOM-based Routing
  * Based on http://goo.gl/EUTi53 by Paul Irish
@@ -4790,7 +5001,6 @@ function calculate_roi($) {
         init: function() {
             App.init(); //Now that jQuery is loaded we can initialize the app above on all pages.
 
-            console.log('Enable lightbox');
             $("[data-lightbox='fancybox']").fancybox();
 
             Comm100API.onReady = function () {
@@ -4857,6 +5067,40 @@ function calculate_roi($) {
                 MktoForms2.whenReady(function (form){
                     form.onSubmit(function(){
                         calculate_chatbot_roi($);
+                    }),
+                    form.onSuccess(function(values, followUpUrl) {
+                        // console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));
+                        location.href = followUpUrl.replace('?confirmation_link=', '') + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val());
+                        // Return false to prevent the submission handler continuing with its own processing
+                        return false;
+                    });
+                });
+            }
+
+            if ($('.section-agent_assist_roi_calculator').length) {
+                $('#time_spent_looking_for_answers').slider({
+                    formatter: function(value) {
+                        if (value == 30) {
+                            return value + ' sec';
+                        }
+
+                        return (value / 60) + ' min';
+                    }
+                });
+
+                $('input[type="text"], input[type="number"]').change(function() {
+                    calculate_agent_assist_roi($);
+                });
+
+                $('input[type="radio"]').click(function() {
+                    calculate_agent_assist_roi($);
+                });
+
+                calculate_agent_assist_roi($);
+
+                MktoForms2.whenReady(function (form){
+                    form.onSubmit(function(){
+                        calculate_agent_assist_roi($);
                     }),
                     form.onSuccess(function(values, followUpUrl) {
                         // console.log(followUpUrl + '?confirmation_link=' + encodeURIComponent($("input[name='DynamicalURL']").val()));

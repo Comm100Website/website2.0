@@ -41,6 +41,20 @@ a {
   }
 }
 
+.my-1 {
+    margin: 30px 0 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0!important;
+}
+
+.mb-1 {
+    margin-bottom: 30px!important;
+}
+
+.d-inline-block { display: inline-block; }
+
 h1,
 h2,
 h3,
@@ -311,6 +325,12 @@ textarea {
 }
 .text-light {
     color: #fff;
+}
+.text-success {
+    color: $brand-success !important;
+}
+.text-primary {
+    color: $brand-primary !important;
 }
 a {
   text-decoration: none;
