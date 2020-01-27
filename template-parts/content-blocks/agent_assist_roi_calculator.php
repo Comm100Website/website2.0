@@ -69,7 +69,7 @@ function output_roi_tooltip($acf_group, $acf_field_name, $dark = false) {
                     <h3>Your chats</h3>
                     <div class="form-group">
                         <label for="chat_length" class="d-block strong">Average length of chat <?php output_roi_tooltip($block['inputs'], 'avarage_length_of_chat_tooltip'); ?></label>
-                        <input id="chat_length" data-provide="slider" data-slider-id='chat_length_slider' type="text" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="10" data-slider-tooltip-position="bottom" data-slider-tooltip="always" />
+                        <input id="chat_length" data-provide="slider" data-slider-id='chat_length_slider' type="text" data-slider-min="1" data-slider-max="30" data-slider-step="1" data-slider-value="15" data-slider-tooltip-position="bottom" data-slider-tooltip="always" />
                     </div>
                     <div class="form-group">
                         <label for="concurrent_chats" class="d-block strong">Number of concurrent chats per agent <?php output_roi_tooltip($block['inputs'], 'number_of_concurrent_chats_per_agent_tooltip'); ?></label>
@@ -110,10 +110,10 @@ function output_roi_tooltip($acf_group, $acf_field_name, $dark = false) {
                         <hr class="my-1" />
                         <p class="mb-0">Your team spends <span class="text-primary"><span id="percent_time_spent_searching">XX</span>%</span> of their time searching for answers. If you could eliminate search time completely: <?php output_roi_tooltip($block['results'], 'your_teams_chat_capacity_tooltip'); ?></p>
                         <br/>
-                        <p class="mb-0">New average chat length: <?php output_roi_tooltip($block['results'], 'roi_tooltip', true); ?></p>
+                        <p class="mb-0">New average chat length: <?php output_roi_tooltip($block['results'], 'new_average_chat_length_tooltip', true); ?></p>
                         <h3 class="text-success mb-0"><strong><span id="new_chat_length">XX</span> minutes</strong></h3>
                         <br/>
-                        <p class="mb-0"><strong>Number of chats per year that your team can handle: <?php output_roi_tooltip($block['results'], 'roi_tooltip', true); ?></strong></p>
+                        <p class="mb-0"><strong>Number of chats per year that your team can handle: <?php output_roi_tooltip($block['results'], 'chats_per_year_team_can_handle_tooltip', true); ?></strong></p>
                         <div class="row capacity-results d-flex">
                             <div class="col-xs-5 text-center item">
                                 <img src="<?= get_template_directory_uri(); ?>/dist/images/chat-agents-icons.svg" alt="Live Chat Agent Icon" width="120" /><br/>
@@ -136,7 +136,7 @@ function output_roi_tooltip($acf_group, $acf_field_name, $dark = false) {
                         <h3 class="text-success"><strong><span id="reduced_labor_cost_percent">XX.XX</span>%</strong></h3>
                         <p class="mb-0">And extend your total chat capacity by</p>
                         <div class="mb-0"><h3 class="text-success d-inline-block"><strong><span id="extend_chat_capacity_percent">XX.X</span>%</strong></h3> or <h3 class="text-success d-inline-block strong"><strong><span id="extend_chat_capacity">XXX,XXX</span></strong></h3> chats per year.</div>
-                        <h5 class="">To handle the new capacity of <span class="new_chat_capacity text-success">XXXX</span> per year you will need:</h5>
+                        <h5 class="">To handle the new capacity of <span class="new_chat_capacity text-success">XXXX</span> per year you will need: <?php output_roi_tooltip($block['results'], 'new_capacity_of_chats_per_year_tooltip', true); ?></h5>
                         <div class="row capacity-results d-flex mb-0">
                             <div class="col-xs-5 text-center item">
                                 <img src="<?= get_template_directory_uri(); ?>/dist/images/chat-agents-icons.svg" alt="Live Chat Agent Icon" width="120" /><br/>
@@ -162,11 +162,11 @@ function output_roi_tooltip($acf_group, $acf_field_name, $dark = false) {
                     <div class="mb-0"><h3 class="text-primary d-inline-block mb-0"><strong><span class="agents_new_capacity_with_assist">XX</span></strong></h3></div>
                     <p class="mb-1">agents to handle your current volume.</p>
                     */ ?>
-                    <h5 class="">Your total costs would be: <?php output_roi_tooltip($block['results'], 'roi_tooltip', true); ?></h5>
+                    <h5 class="">Your total costs would be: <?php output_roi_tooltip($block['results'], 'total_costs_tooltip', true); ?></h5>
                     <div class="estimate-costs-legend">
                         <div class="item">
                             <span class="legend-colour" style="background: #0091D1;"></span>
-                            Average team annual compensation
+                            Annual team compensation
                         </div>
                         <div class="item">
                             <span class="legend-colour" style="background: #9FDD09;"></span>
