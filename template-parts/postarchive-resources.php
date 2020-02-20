@@ -1,52 +1,30 @@
 <?php
 use Roots\Sage\Assets;
-?>
+// /resources/前端页面
+
+//从cookie获取访问者的audience信息
+$db_userinfo_str = str_replace('\"','"',$_COOKIE["db_userinfo"]);
+$db_userinfo_arr = json_decode($db_userinfo_str,true);
 
 
-<?php
-	
-
-
-//获取访问者IP
-function get_visitor_ip() {
-    $ip = '0.0.0.0';
-	if (array_key_exists('ip', $_GET)) {
-        $ip = $_GET['ip'];
-    } elseif (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-        //check ip from share internet
-        $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (!empty( $_SERVER['HTTP_X_FORWARDED_FOR'])) {
-        //to check ip is pass from proxy
-        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } elseif (!empty( $_SERVER['REMOTE_ADDR'])) {
-        $ip = $_SERVER['REMOTE_ADDR'];
-    } else {
-        $ip = $_SERVER['REMOTE_HOST'];
-    }
-
-    return $ip;
-}
-//echo get_visitor_ip();
-$demandbaseInfo = 'https://api.company-target.com/api/v2/ip.json?key=6cfe49696fbfb1ad98d42d29b19556c8&query=' . get_visitor_ip();
-$demandbaseInfoJson = (array)json_decode(file_get_contents($demandbaseInfo),true);
-//echo $demandbaseInfoJson[audience_segment];
-//print_r($demandbaseInfoJson);
     
 //获取访问者的audience信息
-if($demandbaseInfoJson["sub_industry"] == "Insurance"){
-	$demandbaseInfo_txt=$demandbaseInfoJson["sub_industry"];
-}
-else {
-	$demandbaseInfo_txt=$demandbaseInfoJson["industry"];
-}
-//echo $demandbaseInfo_txt;
-//echo $demandbaseInfoJson["sub_industry"];
+$demandbaseInfoJson = (array)json_decode(str_replace('\"','"',$_COOKIE["db_userinfo"]),true);
+    //获取访问者的audience信息
+    if($demandbaseInfoJson["sub_industry"] == "Insurance"){
+        $demandbaseInfo_txt=$demandbaseInfoJson["sub_industry"];
+    }
+    else {
+        $demandbaseInfo_txt=$demandbaseInfoJson["industry"];
+    }
+echo $demandbaseInfo_txt;
+echo $db_userinfo_arr["sub_industry"];
 ?>
 <?php
 //找到当前页面不能显示的TAGs，返回数组
 function get_demandbase_resources_tags() {
-	$demandbaseInfo = 'https://api.company-target.com/api/v2/ip.json?key=6cfe49696fbfb1ad98d42d29b19556c8&query=' . get_visitor_ip();
-	$demandbaseInfoJson = (array)json_decode(file_get_contents($demandbaseInfo),true);
+	
+	$demandbaseInfoJson = (array)json_decode(str_replace('\"','"',$_COOKIE["db_userinfo"]),true);
 	//获取访问者的audience信息
 	if($demandbaseInfoJson["sub_industry"] == "Insurance"){
 		$demandbaseInfo_txt=$demandbaseInfoJson["sub_industry"];

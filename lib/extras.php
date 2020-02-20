@@ -89,6 +89,14 @@ function get_post_taxonomy($taxonomy, $postID) {
 
 //Get multiple tags 获取多个tag
 function get_post_taxonomy_more($taxonomy, $postID) {
+	$demandbaseInfoJson = (array)json_decode(str_replace('\"','"',$_COOKIE["db_userinfo"]),true);
+	//Get audience info 获取访问者的audience信息
+	if($demandbaseInfoJson["sub_industry"] == "Insurance"){
+		$demandbaseInfo_txt=$demandbaseInfoJson["sub_industry"];
+	}
+	else {
+		$demandbaseInfo_txt=$demandbaseInfoJson["industry"];
+	}
 
     if (!$postID) {
         global $post;
@@ -100,7 +108,22 @@ function get_post_taxonomy_more($taxonomy, $postID) {
 
 	if (count($post_terms) > 0){
         foreach( $post_terms as $post_term){
-        $terms[] = $post_term->name;
+        	if(get_field('activate_demandbase',$post_term)){
+	    		$demandbase_audiences = get_field('demandbase_audience',$post_term);
+	    		$demandbase_titles=array();
+	    		foreach ( $demandbase_audiences  as $demandbase_audience){
+					$demandbase_titles[]=trim($demandbase_audience->post_title);
+				}
+				if( in_array(trim($demandbaseInfo_txt),$demandbase_titles)){
+					$terms[] = $post_term->name;
+				}else{
+					//When there is an ADB setting but it does not match, the foreground does not display this tag 
+					//有ADB设置，却不相符的时候，前台不显示这个TAG	
+				}
+			}else{
+				$terms[] = $post_term->name;
+			}
+        	
         }
 	}
     
