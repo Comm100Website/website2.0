@@ -9,10 +9,3 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
-echo llms_get_author(
-	array(
-		'avatar_size' => 28,
-	)
-);
-

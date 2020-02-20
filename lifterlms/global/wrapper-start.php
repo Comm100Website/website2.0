@@ -43,7 +43,7 @@ switch ( $template ) {
 		break;
 
 	default:
-		echo '<div id="container"><div id="content" role="main">';
+		echo '<div class="c-layout-page c-layout-page-fixed"><div class="c-content-box c-size-md"><div class="container"><div class="row">';
 		break;
 
 }

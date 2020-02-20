@@ -1,5 +1,10 @@
 <?php get_template_part('template-parts/header'); ?>
 </header>
+<div class="c-layout-page c-layout-page-fixed">
+    <div class="c-content-box c-size-md">
+        <div class="container">
+            <div class="row">
+
    <?php if (have_posts()) : ?>
    <?php while (have_posts()) : the_post(); ?>
 	      <?php the_content(__('<br/>Continue reading...')); ?>
@@ -13,4 +18,8 @@
    </div>
 
    <?php endif; ?>
+</div>
+</div>
+</div>
+</div>
 <?php get_template_part('template-parts/footer'); ?>

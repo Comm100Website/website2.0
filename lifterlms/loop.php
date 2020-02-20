@@ -12,7 +12,11 @@
 
 defined( 'ABSPATH' ) || exit;
 ?>
+
 <?php get_header( 'llms_loop' ); ?>
+<div class="c-layout-page c-layout-page-fixed primary-page">
+<div class="c-content-box">
+<div class="container header">
 
 <?php do_action( 'lifterlms_before_main_content' ); ?>
 
@@ -35,6 +39,8 @@ defined( 'ABSPATH' ) || exit;
 
 <?php do_action( 'lifterlms_after_main_content' ); ?>
 
-<?php do_action( 'lifterlms_sidebar' ); ?>
-
+<?php //do_action( 'lifterlms_sidebar' ); ?>
+</div>
+</div>
+</div>
 <?php get_footer(); ?>

@@ -72,3 +72,16 @@
             </div>
         </div>
     </div>
+    <?php if ($post && in_array($post->post_type, ['course', 'lesson'])): ?>
+    <div class="c-sectionbar visible-md">
+        <div class="container">
+            <nav class="clearfix">
+                <ul class="nav navbar-nav c-theme-nav" style="float: right;">
+                    <li class="page_item page-item-4"><a href="/courses/">Course Catalog</a></li>
+                    <li class="page_item page-item-5"><a href="/memberships/">Membership Catalog</a></li>
+                    <li class="page_item page-item-7"><a href="/dashboard/my-courses/">My Courses</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <?php endif; ?>

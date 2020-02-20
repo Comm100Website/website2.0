@@ -304,13 +304,6 @@ function custom_mime_types($mime_types){
 }
 add_filter('upload_mimes', __NAMESPACE__.'\\custom_mime_types', 1, 1);
 
-/**
- * Display LifterLMS Course and Lesson sidebars
- * on courses and lessons in place of the sidebar returned by
- * this function
- * @param    string     $id    default sidebar id (an empty string)
- * @return   string
- */
 function my_llms_sidebar_function( $id ) {
 
 	$my_sidebar_id = 'single-sidebar';
@@ -318,9 +311,9 @@ function my_llms_sidebar_function( $id ) {
 	return $my_sidebar_id;
 
 }
-add_filter( 'llms_get_theme_default_sidebar', 'my_llms_sidebar_function' );
+add_filter( 'llms_get_theme_default_sidebar', __NAMESPACE__.'\\my_llms_sidebar_function' );
 
 function my_llms_theme_support(){
 	add_theme_support( 'lifterlms-sidebars' );
 }
-add_action( 'after_setup_theme', 'my_llms_theme_support' );
+add_action( 'after_setup_theme', __NAMESPACE__.'\\my_llms_theme_support' );
