@@ -3,8 +3,8 @@
         <div class="row step-header">
             <div class="col-xs-12">
                 <h3>How does your live chat data stack up?</h3>
-                <p>In total, we analysed data from over 45 million chats to bring you the most update-to-date live chat statistics and help inform your customer engagement strategy.</p>
-                <p>Below are the overall live chat data benchmarks from our annual Live Chat Benchmark 2019 report. Input your industry and team size to get a personalized look into how you compare to companies of a similar size and space.</p>
+                <p>In total, we analyzed data from over 56 million chats to bring you the most update-to-date live chat statistics and help inform your customer engagement strategy.</p>
+                <p>Below are the overall live chat data benchmarks from our annual Live Chat Benchmark 2020 report. Input your industry and team size to get a personalized look into how you compare to companies of a similar size and space.</p>
             </div>
         </div>
         <form id="stats-form" class="form-inline">
@@ -18,8 +18,11 @@
                             <option value="Healthcare">Healthcare</option>
                             <option value="Government">Government</option>
                             <option value="eCommerce">eCommerce</option>
-                            <option value="Manufacturing">Manufacturing</option>
                             <option value="Technology">Technology</option>
+                            <option value="Education">Education</option>
+                            <option value="Business Services">Business Services</option>
+                            <option value="Consumer Services">Consumer Services</option>
+                            <option value="Manufacturing">Manufacturing</option>                           
                             <option value="Recreation">Recreation</option>
                         </select>
                     </div>
@@ -39,7 +42,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-rating" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">4.20</span>
+                        <span class="value">4.17</span>
                     </div>
                     <div class="title">Average rating</div>
                     <div class="description">Ratings on a scale of 1 to 5</div>
@@ -48,16 +51,16 @@
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-satisfaction" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">83.10</span>%
+                        <span class="value">82.34</span>%
                     </div>
                     <div class="title">Average<br/>customer satisfaction</div>
-                    <div class="description">Percentage of ratings that are above 3.00/5.00</div>
+                    <div class="description">Percentage of ratings that are above 3.00/5.00</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-chats-month" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">3,290</span>
+                        <span class="value">9,114</span>
                     </div>
                     <div class="title">Average number of chats per month</div>
                     <div class="description">Does not include offline messages</div>
@@ -66,16 +69,16 @@
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="mobile-chats" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">51.68</span>%
+                        <span class="value">60.61</span>%
                     </div>
                     <div class="title">Mobile chats</div>
-                    <div class="description">Percentage of total number of chats</div>
+                    <div class="description">Percentage of total number of chats</div>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-wait-time" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">48 sec</span>
+                        <span class="value">44 sec</span>
                     </div>
                     <div class="title">Average wait time</div>
                     <div class="description">Average time a visitor is waiting before connecting to an agent</div>
@@ -84,7 +87,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4 stat-wrap">
                 <div id="avg-chat-length" class="statistic">
                     <div class="value-wrap">
-                        <span class="value">11 min<br/>53 sec</span>
+                        <span class="value">11 min<br/>33 sec</span>
                     </div>
                     <div class="title">Average chat length</div>
                     <div class="description">Average duration from when a visitor connects to wrap-up</div>
