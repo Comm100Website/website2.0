@@ -124,7 +124,7 @@ use Roots\Sage\Assets;
                     // pricing live chat details
                     echo '<div class="threeTab__Detail clearfix">';
                     echo $tabMobileLC;
-                    echo '<div class="threeTab__Detail--col-wrap clearfix d-flex">';
+                    echo '<div class="threeTab__Detail--col-wrap clearfix">';
                     while ( have_rows('pricing_details_live_chat') ) : the_row();
                         $color = get_sub_field('color');
                         $title = get_sub_field('title');
@@ -203,7 +203,7 @@ use Roots\Sage\Assets;
                             endif;
                         endif;
 
-                        echo    '<div class="col-sm-4 threeTab__Detail--col">' .
+                        echo    '<div class="col-sm-4 col-xs-12 threeTab__Detail--col">' .
                                     '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
 
                             if ($priceContent) {
@@ -225,7 +225,7 @@ use Roots\Sage\Assets;
                     $color = get_sub_field('color');
                     echo '<div class="threeTab__Detail  threeTab__Detail__' . $color . ' clearfix">';
                     echo $tabMobileMC;
-                    echo '<div class="threeTab__Detail--col-wrap clearfix d-flex">';
+                    echo '<div class="threeTab__Detail--col-wrap clearfix">';
                     $pricing_details_multichannel_note = get_sub_field('pricing_details_multichannel_note');
                     while ( have_rows('pricing_details_multichannel') ) : the_row();
                         $color = get_sub_field('color');
@@ -346,8 +346,8 @@ use Roots\Sage\Assets;
                     if (get_sub_field('pricing_details_ai_repeater')) {
                         $color = get_sub_field('color');
                         echo '<div class="threeTab__Detail  threeTab__Detail__' . $color . ' clearfix">';
-                        echo $tabMobileMC;
-                        echo '<div class="threeTab__Detail--col-wrap clearfix d-flex">';
+                        echo $tabMobileAI;
+                        echo '<div class="threeTab__Detail--col-wrap clearfix">';
                         while ( have_rows('pricing_details_ai_repeater') ) : the_row();
                             $color = get_sub_field('color');
                             $title = get_sub_field('title');
@@ -2712,7 +2712,7 @@ use Roots\Sage\Assets;
 
 
                             echo    '<div class="question-item">' .
-                                        '<div class="question-item__title">' . $question_title . '</div>' .
+                                        '<div class="question-item__title"><div style="width:90%">' . $question_title . '</div></div>' .
                                         '<div class="question-item__content">' . $question_content . '</div>' .
                                     '</div>';
                         endwhile;
