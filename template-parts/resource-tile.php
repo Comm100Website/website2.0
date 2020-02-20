@@ -17,7 +17,7 @@ use Roots\Sage\Assets;
         ?>
 
         <div class="resource-item--tag"><?= Extras\get_post_taxonomy('commresourcecat', $post->ID)->name; ?></div>
-        <div class="resource-item--category"><?= Extras\get_post_taxonomy('commresourcetag', $post->ID)->name; ?></div>
+        <div class="resource-item--category"><?= Extras\get_post_taxonomy_more('commresourcetag', $post->ID)?></div>
         <h5 class="resource-item--title"><?= $title; ?></h5>
 
         <?php

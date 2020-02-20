@@ -86,3 +86,24 @@ function get_post_taxonomy($taxonomy, $postID) {
 
 	return $term;
 }
+
+//Get multiple tags 获取多个tag
+function get_post_taxonomy_more($taxonomy, $postID) {
+
+    if (!$postID) {
+        global $post;
+        $postID = $post->ID;
+    }
+
+    $post_terms = wp_get_post_terms($postID, $taxonomy);
+    $terms = array();
+
+	if (count($post_terms) > 0){
+        foreach( $post_terms as $post_term){
+        $terms[] = $post_term->name;
+        }
+	}
+    
+    $term = implode(", ", $terms);
+	return $term;
+}
