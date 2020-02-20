@@ -34,3 +34,12 @@ foreach ($sage_includes as $file) {
     require_once $filepath;
 }
 unset($file, $filepath);
+function disable_admin_page_rich_editing( $settings, $post ) {
+    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+    $post_type = get_post_type($post_id);
+    if( $_GET['post_type'] == 'page' || $post_type == 'page' ){
+        $settings['richEditingEnabled'] = FALSE;
+        return $settings;
+    }
+}
+add_filter( 'block_editor_settings', 'disable_admin_page_rich_editing', 10, 2 );
