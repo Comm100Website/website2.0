@@ -97,7 +97,7 @@ function register_resource_tag_taxonomy() {
         'hierarchical'      => false,
         'labels'            => $labels,
         'show_ui'           => true,
-       
+
         'publicly_queryable' => false,
         'show_admin_column' => true,
         'query_var'         => true,
@@ -114,8 +114,10 @@ function commresource_post_link($post_link, $id = 0){
     if (is_object($post)){
         $terms = wp_get_object_terms($post->ID, 'commresourcecat');
 
-        if( $terms ){
-            return str_replace('%commresourcecat%' , $terms[0]->slug , $post_link);
+        if (!empty($terms)) {
+            if (!is_wp_error($terms)) {
+                return str_replace('%commresourcecat%' , $terms[0]->slug , $post_link);
+            }
         }
     }
 
@@ -158,12 +160,12 @@ function get_demandbase_resources_tags() {
 	else {
 		$demandbaseInfo_txt=$demandbaseInfoJson["industry"];
 	}
-	
+
 	// WP_Term_Query arguments
 	$args = array(
 	    'taxonomy' => array( 'commresourcetag' ),
 	);
-	
+
 	// The Term Query
 	//$term_query = new WP_Term_Query( $args );
 	$term_query=get_terms('commresourcetag');
@@ -171,37 +173,37 @@ function get_demandbase_resources_tags() {
 	//wp_reset_postdata();
 	$demandbase_tags_slug=array();
 	if ( ! empty( $term_query ) ) {
-		
+
 	    foreach ( $term_query  as $term ) {
-	    	
+
 		    if(get_field('activate_demandbase',$term)){
 		    	//如果此TAG有demandbase设置
-		    	
+
 		    	//取出所有的设置，数组
 		    	$demandbase_audiences = get_field('demandbase_audience',$term);
 		    	//取出标题，数组
 		    	$demandbase_titles=array();
 		    	foreach ( $demandbase_audiences  as $demandbase_audience){
-		    		$demandbase_titles[]=trim($demandbase_audience->post_title);	    		
+		    		$demandbase_titles[]=trim($demandbase_audience->post_title);
 		    	}
-		    	
+
 		    	if( in_array(trim($demandbaseInfo_txt),$demandbase_titles)){
 		    		//访客属性属于字段设置，则记录此TAG
 		    		$demandbase_tags_slug[] = $term->slug;
 		    	} else {
 		    		//TAG有设置，并且当前访客不属于设置范围类，不记录此TAG
-		    		
+
 		    	}
 			}else{
 				//tag没有设置,则记录此TAG
                 $demandbase_tags_slug[] = $term->slug;
-				 	
+
 	    	}
 	    }
 	}
-	
+
 	return $demandbase_tags_slug;
-	
+
 }
 
 
@@ -212,7 +214,7 @@ function exclude_resources($query) {
     if(!is_admin() && $query->is_main_query() && (is_post_type_archive('commresource') || is_tax('commresourcecat'))) {
         //We previously tried to set these up as meta_query parameters, but the DB is too big to handle those sorts of joines,
         //so we'll do two smaller queries to grab the excluded posts and then just add them to the post__not_in parameter
-        
+
         //所有的exclude文章不显示
         $args = array(
             'post_type' => 'commresource',
@@ -239,9 +241,9 @@ function exclude_resources($query) {
                 ]
             ];
         endif;
-        
 
-        
+
+
         //如果URL带标签参数，则需要在当前TAG中排除
         if ($_GET["topic"] && $_GET["topic"] != 'All'){
             $args['tax_query'][] = [
@@ -249,41 +251,41 @@ function exclude_resources($query) {
                 [
                     'taxonomy' => 'commresourcetag',
                     'field'    => 'slug',
-                    'terms'    => array($_GET["topic"]),         
+                    'terms'    => array($_GET["topic"]),
                 ],
                 [
                     'taxonomy' => 'commresourcetag',
                     'field'    => 'slug',
                     'terms'    => get_demandbase_resources_tags(),
-                    'operator' => 'IN',  
-                   
+                    'operator' => 'IN',
+
                 ],
             ];
-        }else {        	
+        }else {
         	$args['tax_query'][] = [
-                'relation' => 'AND',              
+                'relation' => 'AND',
                 [
                     'taxonomy' => 'commresourcetag',
                     'field'    => 'slug',
                     'terms'    => get_demandbase_resources_tags(),
-                    'operator' => 'IN',  
-                   
+                    'operator' => 'IN',
+
                 ],
             ];
-        	
+
         }
         $featuredResourcePosts = get_posts( $args );
-        
 
-		
-		
+
+
+
 
         if ($featuredResourcePosts) {
             $excludedPosts = array_merge($excludedPosts, $featuredResourcePosts);
         }
 
-        
-        
+
+
 
 
 
@@ -292,10 +294,10 @@ function exclude_resources($query) {
             $excludedPostIDs = wp_list_pluck($excludedPosts, 'ID');
             $query->set('post__not_in', $excludedPostIDs);
         }
-        
-         
-        
-        
+
+
+
+
         //如果URL带标签参数，则需要在主查询query变量中添加标签参数
      	if ($_GET["topic"] && $_GET["topic"] != 'All'){
             $query->set('tax_query', [
@@ -307,26 +309,26 @@ function exclude_resources($query) {
 			            'operator' => 'IN',
         			],
         			[
-        				'taxonomy' => 'commresourcetag',               
-				        'field' => 'slug',                    
-				        'terms' => get_demandbase_resources_tags(),    
-				        'operator' => 'IN',  
-        			
+        				'taxonomy' => 'commresourcetag',
+				        'field' => 'slug',
+				        'terms' => get_demandbase_resources_tags(),
+				        'operator' => 'IN',
+
         			]
             ]);
         }else{
       	$query->set('tax_query', [
         			'relation' => 'AND',
-        			
+
         			[
-        				'taxonomy' => 'commresourcetag',               
-				        'field' => 'slug',                    
-				        'terms' => get_demandbase_resources_tags(),    
-				        'operator' => 'IN',  
-        			
+        				'taxonomy' => 'commresourcetag',
+				        'field' => 'slug',
+				        'terms' => get_demandbase_resources_tags(),
+				        'operator' => 'IN',
+
         			],
             ]);
-      	
+
         }
       	//当前分类下
         if (is_tax('commresourcecat') || ($_GET["topic"] && $_GET["topic"] != 'All')){
