@@ -5139,99 +5139,70 @@ function calculate_agent_assist_roi($) {
                 var statsPDFLink = '';
 
                 $('#stats-form').submit(function(e) {
-					var stats = [
-					    {
-					        "industry" : "Banking and Financial Services",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "3.84", "avg_satisfaction" : "74.94", "chats_month" : "2052", "mobile_chats" : "39.3", "avg_wait_time" : "52 sec", "avg_chat_length" : "24 min<br/>59 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.52", "avg_satisfaction" : "90.6", "chats_month" : "2165", "mobile_chats" : "46.75", "avg_wait_time" : "23 sec", "avg_chat_length" : "11 min<br/>4 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.57", "avg_satisfaction" : "92.79", "chats_month" : "2604", "mobile_chats" : "25.32", "avg_wait_time" : "26 sec", "avg_chat_length" : "14 min<br/>38 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.09", "avg_satisfaction" : "83.4", "chats_month" : "7193", "mobile_chats" : "31.4", "avg_wait_time" : "1 min<br/>11 sec", "avg_chat_length" : "12 min<br/>11 sec" },
-					        ]
-					    },
-					    {
-					        "industry" : "Healthcare",
-					        "ranges" : [
-					        	{ "min" : 1, "max" : 3, "avg_rating" : "4.3", "avg_satisfaction" : "84.81", "chats_month" : "852", "mobile_chats" : "52.33", "avg_wait_time" : "26 sec", "avg_chat_length" : "12 min<br/>20 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.18", "avg_satisfaction" : "82.68", "chats_month" : "442", "mobile_chats" : "48.24", "avg_wait_time" : "42 sec", "avg_chat_length" : "11 min<br/>11 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.6", "avg_satisfaction" : "93.22", "chats_month" : "1862", "mobile_chats" : "34.9", "avg_wait_time" : "50 sec", "avg_chat_length" : "8 min<br/>52 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.52", "avg_satisfaction" : "91.11", "chats_month" : "8943", "mobile_chats" : "27.35", "avg_wait_time" : "16 min<br/>17 sec", "avg_chat_length" : "13 min<br/>5 sec" },
-					        ]
-					    },
-					    {
-					        "industry" : "Government",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.52", "avg_satisfaction" : "93.05", "chats_month" : "842", "mobile_chats" : "39.67", "avg_wait_time" : "44 sec", "avg_chat_length" : "10 min<br/>22 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "3.98", "avg_satisfaction" : "84.02", "chats_month" : "901", "mobile_chats" : "33.93", "avg_wait_time" : "1 min<br/>21 sec", "avg_chat_length" : "13 min<br/>58 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.4", "avg_satisfaction" : "88.79", "chats_month" : "3985", "mobile_chats" : "46.93", "avg_wait_time" : "54 sec", "avg_chat_length" : "11 min<br/>20 sec" },
-					        ]
-					    },   
-					    {
-					        "industry" : "eCommerce",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.15", "avg_satisfaction" : "83.38", "chats_month" : "440", "mobile_chats" : "39.33", "avg_wait_time" : "2 min<br/>20 sec", "avg_chat_length" : "14 min<br/>28 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.56", "avg_satisfaction" : "91.58", "chats_month" : "1483", "mobile_chats" : "41.26", "avg_wait_time" : "43 sec", "avg_chat_length" : "17 min<br/>19 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.5", "avg_satisfaction" : "90.72", "chats_month" : "5792", "mobile_chats" : "13.39", "avg_wait_time" : "3 min<br/>15 sec", "avg_chat_length" : "24 min<br/>4 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.03", "avg_satisfaction" : "77.81", "chats_month" : "35006", "mobile_chats" : "52.66", "avg_wait_time" : "19 sec", "avg_chat_length" : "11 min<br/>8 sec" },
-					        ]
-					    },
-					    {
-					        "industry" : "Technology",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.59", "avg_satisfaction" : "93.04", "chats_month" : "666", "mobile_chats" : "27.24", "avg_wait_time" : "1 min<br/>54 sec", "avg_chat_length" : "18 min<br/>8 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.36", "avg_satisfaction" : "86.28", "chats_month" : "2093", "mobile_chats" : "10.82", "avg_wait_time" : "43 sec", "avg_chat_length" : "17 min<br/>15 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.51", "avg_satisfaction" : "90.53", "chats_month" : "8197", "mobile_chats" : "16.18", "avg_wait_time" : "58 sec", "avg_chat_length" : "17 min<br/>30 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.45", "avg_satisfaction" : "90.13", "chats_month" : "7380", "mobile_chats" : "14.6", "avg_wait_time" : "1 min<br/>46 sec", "avg_chat_length" : "20 min<br/>59 sec" },
-					        ]
-					    },
-					    {
-					        "industry" : "Education",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.33", "avg_satisfaction" : "86.7", "chats_month" : "165", "mobile_chats" : "40.91", "avg_wait_time" : "39 sec", "avg_chat_length" : "12 min<br/>44 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.37", "avg_satisfaction" : "87.7", "chats_month" : "658", "mobile_chats" : "26.61", "avg_wait_time" : "21 sec", "avg_chat_length" : "14 min" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.67", "avg_satisfaction" : "94.5", "chats_month" : "2859", "mobile_chats" : "20.75", "avg_wait_time" : "29 sec", "avg_chat_length" : "10 min<br/>31 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "3.98", "avg_satisfaction" : "90.07", "chats_month" : "74492", "mobile_chats" : "43.1", "avg_wait_time" : "30 sec", "avg_chat_length" : "14 min<br/>17 sec" },
-					       ]
-					    },
-					    {
-					        "industry" : "Business Services",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.4", "avg_satisfaction" : "91.72", "chats_month" : "549", "mobile_chats" : "31.02", "avg_wait_time" : "1 min<br/>27 sec", "avg_chat_length" : "26 min<br/>2 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.4", "avg_satisfaction" : "86.85", "chats_month" : "2975", "mobile_chats" : "24.97", "avg_wait_time" : "1 min<br/>34 sec", "avg_chat_length" : "14 min<br/>59 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.66", "avg_satisfaction" : "93.65", "chats_month" : "2163", "mobile_chats" : "12.1", "avg_wait_time" : "8 sec", "avg_chat_length" : "11 min<br/>55 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.46", "avg_satisfaction" : "90.56", "chats_month" : "1512", "mobile_chats" : "34.16", "avg_wait_time" : "12 sec", "avg_chat_length" : "18 min<br/>53 sec" },
-					        ]
-					    },
-					    {
-					        "industry" : "Consumer Services",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.33", "avg_satisfaction" : "85.69", "chats_month" : "200", "mobile_chats" : "73.4", "avg_wait_time" : "38 sec", "avg_chat_length" : "8 min<br/>41 sec " },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.55", "avg_satisfaction" : "91.42", "chats_month" : "212", "mobile_chats" : "33.49", "avg_wait_time" : "25 sec", "avg_chat_length" : "14 min<br/>12 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.09", "avg_satisfaction" : "80.83", "chats_month" : "17009", "mobile_chats" : "49.36", "avg_wait_time" : "5 sec", "avg_chat_length" : "10 min<br/>41 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.65", "avg_satisfaction" : "93.62", "chats_month" : "2248", "mobile_chats" : "16.98", "avg_wait_time" : "1 min<br/>40 sec", "avg_chat_length" : "11 min<br/>31 sec" },
-					       ]
-					    },
-
-					    {
-					        "industry" : "Manufacturing",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.23", "avg_satisfaction" : "87.63", "chats_month" : "151", "mobile_chats" : "32.08", "avg_wait_time" : "1 min<br/>10 sec", "avg_chat_length" : "23 min<br/>5 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.36", "avg_satisfaction" : "85.3", "chats_month" : "644", "mobile_chats" : "19.02", "avg_wait_time" : "59 sec", "avg_chat_length" : "18 min<br/>22 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.55", "avg_satisfaction" : "92.42", "chats_month" : "926", "mobile_chats" : "6.88", "avg_wait_time" : "28 sec", "avg_chat_length" : "13 min<br/>49 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4.64", "avg_satisfaction" : "93.54", "chats_month" : "1359", "mobile_chats" : "0.41", "avg_wait_time" : "0.24 sec", "avg_chat_length" : "9 min<br/>29 sec" },
-					        ]
-					    },
-					    
-					    {
-					        "industry" : "Recreation",
-					        "ranges" : [
-					            { "min" : 1, "max" : 3, "avg_rating" : "4.06", "avg_satisfaction" : "80.34", "chats_month" : "2488", "mobile_chats" : "73.46", "avg_wait_time" : "28 sec", "avg_chat_length" : "9 min<br/>23 sec" },
-								{ "min" : 4, "max" : 10, "avg_rating" : "4.15", "avg_satisfaction" : "80.87", "chats_month" : "10917", "mobile_chats" : "77.4", "avg_wait_time" : "14 sec", "avg_chat_length" : "6 min<br/>28 sec" },
-								{ "min" : 11, "max" : 25, "avg_rating" : "4.14", "avg_satisfaction" : "80.2", "chats_month" : "56059", "mobile_chats" : "78.25", "avg_wait_time" : "6 sec", "avg_chat_length" : "5 min<br/>58 sec" },
-								{ "min" : 26, "max" : 99999999999999, "avg_rating" : "4", "avg_satisfaction" : "77.56", "chats_month" : "114834", "mobile_chats" : "69.85", "avg_wait_time" : "20 sec", "avg_chat_length" : "7 min<br/>20 sec" }        
-							]
-					    }
-					];
+                    var stats = [
+                        {
+                            "industry" : "Banking and Financial Services",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "3.74", "avg_satisfaction" : "73.23", "chats_month" : 889, "mobile_chats" : "44.45", "avg_wait_time" : "1 min<br/>4 sec", "avg_chat_length" : "14 min<br/>51 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.60", "avg_satisfaction" : "92.44", "chats_month" : 585, "mobile_chats" : "43.70", "avg_wait_time" : "16 sec", "avg_chat_length" : "10 min<br/>27 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.18", "avg_satisfaction" : "82.99", "chats_month" : "8,316", "mobile_chats" : "33.63", "avg_wait_time" : "1 min<br/>13 sec", "avg_chat_length" : "13 min<br/>13 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.43", "avg_satisfaction" : "85.71", "chats_month" : "12,077", "mobile_chats" : "75.40", "avg_wait_time" : "59 sec", "avg_chat_length" : "9 min<br/>16 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "Healthcare",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.61", "avg_satisfaction" : "94.28", "chats_month" : 47, "mobile_chats" : "49.51", "avg_wait_time" : "36 sec", "avg_chat_length" : "11 min<br/>20 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.47", "avg_satisfaction" : "90.51", "chats_month" : "1,029", "mobile_chats" : "60.29", "avg_wait_time" : "69 sec", "avg_chat_length" : "11 min<br/>3 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.34", "avg_satisfaction" : "85.46", "chats_month" : "257", "mobile_chats" : "31.02", "avg_wait_time" : "2 min<br/>54 sec", "avg_chat_length" : "12 min<br/>4 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.39", "avg_satisfaction" : "85.48", "chats_month" : "1,006", "mobile_chats" : "50.68", "avg_wait_time" : "19 sec", "avg_chat_length" : "8 min<br/>4 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "Government",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.70", "avg_satisfaction" : "95.38", "chats_month" : 713, "mobile_chats" : "44.02", "avg_wait_time" : "48 sec", "avg_chat_length" : "15 min<br/>22 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.17", "avg_satisfaction" : "87.83", "chats_month" : 343, "mobile_chats" : "35.72", "avg_wait_time" : "17 sec", "avg_chat_length" : "12 min<br/>47 sec" },
+                                { "min" : 11, "max" : 99999999999999, "avg_rating" : "4.58", "avg_satisfaction" : "95.79", "chats_month" : 571, "mobile_chats" : "25.63", "avg_wait_time" : "13 sec", "avg_chat_length" : "12 min<br/>13 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "eCommerce",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.17", "avg_satisfaction" : "82.55", "chats_month" : 265, "mobile_chats" : "38.41", "avg_wait_time" : "1 min<br/>51 sec", "avg_chat_length" : "15 min<br/>20 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.46", "avg_satisfaction" : "90.75", "chats_month" : 690, "mobile_chats" : "33.97", "avg_wait_time" : "1 min<br/>6 sec", "avg_chat_length" : "12 min<br/>22 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.03", "avg_satisfaction" : "78.65", "chats_month" : "4,873", "mobile_chats" : "31.50", "avg_wait_time" : "2 min<br/>17 sec", "avg_chat_length" : "15 min<br/>46 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.27", "avg_satisfaction" : "85.14", "chats_month" : "36,225", "mobile_chats" : "50.24", "avg_wait_time" : "46 sec", "avg_chat_length" : "15 min<br/>46 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "Manufacturing",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.55", "avg_satisfaction" : "91.03", "chats_month" : 51, "mobile_chats" : "26.16", "avg_wait_time" : "52 sec", "avg_chat_length" : "20 min<br/>42 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.52", "avg_satisfaction" : "89.95", "chats_month" : 287, "mobile_chats" : "22.11", "avg_wait_time" : "32 sec", "avg_chat_length" : "17 min<br/>5 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.32", "avg_satisfaction" : "87.04", "chats_month" : 449, "mobile_chats" : "49.42", "avg_wait_time" : "57 sec", "avg_chat_length" : "8 min<br/>39 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.56", "avg_satisfaction" : "92.99", "chats_month" : 262, "mobile_chats" : "0.35", "avg_wait_time" : "1 min", "avg_chat_length" : "8 min<br/>51 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "Technology",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "3.59", "avg_satisfaction" : "72.06", "chats_month" : 483, "mobile_chats" : "28.35", "avg_wait_time" : "57 sec", "avg_chat_length" : "14 min<br/>59 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.31", "avg_satisfaction" : "86.82", "chats_month" : 401, "mobile_chats" : "13.30", "avg_wait_time" : "36 sec", "avg_chat_length" : "15 min<br/>21 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.58", "avg_satisfaction" : "92.54", "chats_month" : "5,325", "mobile_chats" : "19.07", "avg_wait_time" : "1 min<br/>42 sec", "avg_chat_length" : "16 min<br/>37 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.33", "avg_satisfaction" : "87.26", "chats_month" : "26,050", "mobile_chats" : "24.15", "avg_wait_time" : "36 sec", "avg_chat_length" : "19 min<br/>2 sec" }
+                            ]
+                        },
+                        {
+                            "industry" : "Recreation",
+                            "ranges" : [
+                                { "min" : 1, "max" : 3, "avg_rating" : "4.16", "avg_satisfaction" : "81.63", "chats_month" : "1,312", "mobile_chats" : "74.07", "avg_wait_time" : "16 sec", "avg_chat_length" : "8 min<br/>49 sec" },
+                                { "min" : 4, "max" : 10, "avg_rating" : "4.20", "avg_satisfaction" : "81.68", "chats_month" : "4,053", "mobile_chats" : "72.13", "avg_wait_time" : "14 sec", "avg_chat_length" : "7 min<br/>28 sec" },
+                                { "min" : 11, "max" : 50, "avg_rating" : "4.10", "avg_satisfaction" : "79.56", "chats_month" : "25,793", "mobile_chats" : "66.41", "avg_wait_time" : "17 sec", "avg_chat_length" : "6 min<br/>56 sec" },
+                                { "min" : 51, "max" : 99999999999999, "avg_rating" : "4.12", "avg_satisfaction" : "80.52", "chats_month" : "143,589", "mobile_chats" : "48.47", "avg_wait_time" : "30 sec", "avg_chat_length" : "7 min<br/>14 sec" }
+                            ]
+                        }
+                    ];
 
                     var industry = $('#industry').val();
                     var numAgents = parseInt($('#num_agents').val());
