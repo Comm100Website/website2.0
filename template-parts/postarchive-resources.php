@@ -17,8 +17,8 @@ $demandbaseInfoJson = (array)json_decode(str_replace('\"','"',$_COOKIE["db_useri
     else {
         $demandbaseInfo_txt=$demandbaseInfoJson["industry"];
     }
-echo $demandbaseInfo_txt;
-echo $db_userinfo_arr["sub_industry"];
+//echo $demandbaseInfo_txt;
+//echo $db_userinfo_arr["sub_industry"];
 ?>
 <?php
 //找到当前页面不能显示的TAGs，返回数组
