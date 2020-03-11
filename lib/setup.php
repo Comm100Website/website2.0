@@ -253,8 +253,13 @@ function assets() {
     wp_localize_script('sage/js', 'commGlobal', $localizeData);
 //   wp_enqueue_script('sage/optimizely', 'https://cdn.optimizely.com/js/9295172620.js', null, null, false);
 }
-add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 0);
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 9999);
 
+function clean_up_plugin_assets() {
+    wp_dequeue_script('webui-popover');
+    wp_deregister_script('webui-popover');
+}
+add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\clean_up_plugin_assets', 9999);
 
 //Disable the custom permalinks plugin on Knowledge Base category pages otherwise it won't load the custom template.
 add_filter('custom_permalinks_request_ignore', __NAMESPACE__ . '\\ignore_custom_permalinks_on_kb_category', 0, 1 );
