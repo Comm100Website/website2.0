@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">	
+    <url>
+		<loc>https://www.comm100.com/resources/?topic=All</loc>
+		<lastmod>2020-02-27T19:43:31+00:00</lastmod>
+		<changefreq>always</changefreq>
+		<priority>1.0</priority>
+	</url>
+
+
+		
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/product-tours/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/product-tours/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/roi-calculator/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/roi-calculator/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/report/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/report/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/webinar/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/webinar/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/solution-sheet/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/solution-sheet/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/whitepaper/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/whitepaper/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/ebook/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/ebook/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/infographic/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/infographic/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/slideshare/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/slideshare/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  								
+
+  		<url>
+      		<loc>https://www.comm100.com/resources/video/?topic=All</loc>
+      		<changefreq>weekly</changefreq>
+      		<priority>0.8</priority>
+  		</url>
+  		  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=financial</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=healthcare</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=live-chat</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=bot</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=omnichannel</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=customer-experience</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  				  					<url>
+      					<loc>https://www.comm100.com/resources/video/?topic=security</loc>
+      					<changefreq>monthly</changefreq>
+      					<priority>0.6</priority>
+  					</url>
+
+  						</urlset>
