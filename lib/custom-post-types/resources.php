@@ -114,12 +114,11 @@ function commresource_post_link($post_link, $id = 0){
     if (is_object($post)){
         $terms = wp_get_object_terms($post->ID, 'commresourcecat');
 
-        if (!empty($terms)) {
-            if (!is_wp_error($terms)) {
-                return str_replace('%commresourcecat%' , $terms[0]->slug , $post_link);
-            }
+        if (!empty($terms) && !is_wp_error($terms)) {
+            return str_replace('%commresourcecat%' , $terms[0]->slug , $post_link);
         }
     }
+
 
     return $post_link;
 }
