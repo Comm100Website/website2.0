@@ -172,6 +172,7 @@ use Roots\Sage\Assets;
                             while ( have_rows('cta') ) : the_row();
                                 $cta_link_type = get_sub_field('cta_link_type');
                                 $cta_link = get_sub_field('cta_link');
+                                $cta_link_description = get_sub_field('cta_link_description');
                                 if ($cta_link):
                                     switch ($cta_link_type) {
                                         case 'green' :
@@ -199,6 +200,9 @@ use Roots\Sage\Assets;
                                 endif;
                             endwhile;
                             if ($linkcontent !== ''):
+                                if($cta_link_description) {
+                                    $linkcontent = $linkcontent . '<div class="cta_link_description">'.$cta_link_description.'</div>';
+                                }
                                 $linkcontent = '<div class="threeTab__Detail--action"> ' . $linkcontent . ' </div>';
                             endif;
                         endif;
@@ -208,6 +212,10 @@ use Roots\Sage\Assets;
 
                             if ($priceContent) {
                                         echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
+                            }
+                            $promotion_badge = get_sub_field('promotion_badge');
+                            if($promotion_badge) {
+                                echo '<figure class="promotion_badge"><img src="'.$promotion_badge.'" class="promotion_badge-img img-fluid"></figure>';
                             }
 
                             echo $feature_list_title_str .
