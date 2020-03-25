@@ -37,6 +37,7 @@ function setup() {
     register_nav_menus(array(
         'primary' => 'utility',
         'livechat' => 'top-menu',
+        'promotion_20200322' => 'promotion-menu',
         'platformLiveChat' => 'live-chat-menu',
         'platformMultichannel' => 'multichannel-menu',
         'platformAI' => 'ai-menu',
