@@ -4,7 +4,7 @@ use Roots\Sage\Analytics;
 $args = [
     'post_type' => 'post',
     'post_status' => 'publish',
-    'posts_per_page' => 5,
+    'posts_per_page' => 3,
     'order' => 'desc',
     'orderby' => 'date',
     'meta_query' => [
