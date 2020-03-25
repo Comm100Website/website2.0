@@ -4248,9 +4248,9 @@ jQuery(function() {
 				jQuery('.threeTab__Detail').hide();
 				jQuery('.threeTab__Detail').eq(index).show();
 				switch (index) {
-					case 0: jQuery('.threeTab__Detail--bottomLink a').attr('href', 'https://www.comm100.com/platform/livechat-featurelist/#lc'); break;
-					case 1: jQuery('.threeTab__Detail--bottomLink a').attr('href', 'https://www.comm100.com/platform/livechat-featurelist/#mc'); break;
-					case 2: jQuery('.threeTab__Detail--bottomLink a').attr('href', 'https://www.comm100.com/platform/livechat-featurelist/#ai'); break;
+					case 0:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #0094d4 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','https://www.comm100.com/platform/livechat-featurelist/#lc');break;
+                    case 1:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #3dc4ff 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','https://www.comm100.com/platform/livechat-featurelist/#mc');break;
+                    case 2:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #9fdd09 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','https://www.comm100.com/platform/livechat-featurelist/#ai');break;
 					default: break;
 				}
 
