@@ -13,6 +13,11 @@
                 padding-bottom:14px;
                 text-align: center;
             }
+            @media screen and (max-width: 767px) {
+                .header_tips {
+                    line-height: 20px;
+                }
+            }
         </style>
         <div class="container-fluid" style="background:rgba(244,248,252,1);">
             <div class="container">
