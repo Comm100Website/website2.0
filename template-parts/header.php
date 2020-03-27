@@ -1,4 +1,28 @@
 <header class="c-layout-header c-layout-header-2 c-header-transparent-dark c-layout-header-dark-mobile" data-minimize-offset="130">
+    <?php 
+        if (is_home() || is_front_page()) { 
+    ?>
+        <style>
+            .header_tips {
+                font-family: "Ubuntu Regular", sans-serif;
+                margin-bottom: 0px;
+                color:rgba(148,159,169,1);
+                font-size: 16px;
+                line-height: 16px;
+                padding-top:20px;
+                padding-bottom:14px;
+                text-align: center;
+            }
+        </style>
+        <div class="container-fluid" style="background:rgba(244,248,252,1);">
+            <div class="container">
+        
+                <p class="header_tips">Read a <a class="" href="https://www.comm100.com/response-to-covid-19/">letter from our CEO</a> about how we’re responding to COVID-19, and what we can do to help you help your customers.</p>
+            </div>
+        </div>
+    <?php 
+        }
+    ?>
     <div class="c-topbar c-navbar">
         <div class="container">
             <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
