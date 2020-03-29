@@ -18,6 +18,11 @@
                     line-height: 20px;
                 }
             }
+            @media (max-width: 991px) {
+                .c-layout-header-fixed .c-layout-page{
+                    margin-top: 202px;
+				}
+            }
         </style>
         <div class="container-fluid" style="background:rgba(244,248,252,1);">
             <div class="container">
