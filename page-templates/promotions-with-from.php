@@ -222,12 +222,11 @@ use Roots\Sage\Assets;
              <div class="col content-col col-sm-6 ">
                     <h2 >Offer Details</h2>
                     <ul class="gray_checked">
-                        <li>Offer valid for Comm100 Live Chat Business edition, our most popular package </li>
-                        <li>Up to 3 licenses free, then $49/license/month after that </li>
-                        <li>If you purchase more than 3 licenses, Comm100 will donate the first month’s fees from additional licenses to the World Health Organization to help combat the COVID-19 pandemic. </li>
-                        <li>If you purchase more than 3 licenses, Comm100 will donate the first month’s fees from additional licenses </li>
-                        <li>Offer <b>valid until April 15, 2020</b> (your free licenses will be free for as long as you use them). 
-                        For new Comm100 customers only </li>
+                                <li>Offer valid for Comm100 Live Chat Business edition, our most popular package </li>
+                                <li>Up to 3 licenses free, then $49/license/month after that </li>
+                                <li>If you purchase more than 3 licenses, Comm100 will donate the first month’s fees from additional licenses to the World Health Organization to help combat the COVID-19 pandemic. </li>                               
+                                <li>Offer <b>valid until April 15, 2020</b> (your free licenses will be free for as long as you use them).</li>
+                                <li>For new Comm100 customers only</li>                                
                     </ul>
                    
                     <div class="share_this">Share this:
