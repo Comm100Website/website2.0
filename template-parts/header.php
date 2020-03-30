@@ -6,27 +6,29 @@
             .header_tips {
                 font-family: "Ubuntu Regular", sans-serif;
                 margin-bottom: 0px;
-                color:rgba(148,159,169,1);
+                color:rgb(255, 255, 255);
                 font-size: 16px;
                 line-height: 16px;
-                padding-top:20px;
-                padding-bottom:14px;
+                padding-top:15px;
+                padding-bottom:15px;
                 text-align: center;
             }
+            .header_tips a:active, .header_tips a:focus, .header_tips a:hover {
+    			color: #3dc4ff;
+			}
             @media screen and (max-width: 767px) {
                 .header_tips {
                     line-height: 20px;
                 }
             }
             @media (max-width: 991px) {
-                .c-layout-header-fixed .c-layout-page{
-                    margin-top: 202px;
+				.c-layout-header-fixed .c-layout-page{
+    				margin-top: 202px;
 				}
             }
         </style>
-        <div class="container-fluid" style="background:rgba(244,248,252,1);">
-            <div class="container">
-        
+        <div class="container-fluid" style="background:rgba(44, 51, 55, 0.8);">
+            <div class="container">        
                 <p class="header_tips">Read a <a class="" href="https://www.comm100.com/response-to-covid-19/">letter from our CEO</a> about how we’re responding to COVID-19, and what we can do to help you help your customers.</p>
             </div>
         </div>
