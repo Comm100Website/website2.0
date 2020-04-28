@@ -480,13 +480,14 @@ use Roots\Sage\Assets;
                     $title = get_sub_field('title');
                     $share_this_code = get_sub_field('share_this_code');
 
-                    echo '<div class="container">';
+                    echo '<div class="c-content-box faq"><div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12">';
                         echo '<div class="social-share">';
                         echo '<h3 style="line-height: 1.285714em;">' . $title . '</h3>';
                         echo $share_this_code;
                         echo '</div>';
+                    echo '</div>';
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';

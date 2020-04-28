@@ -83,7 +83,7 @@ use Roots\Sage\Assets;
                                         '</div>' .
                                     '</div>';
                         endif;
-                        if ( $tag == 'MC' ):
+                        if ( $tag == 'OC' ):
                             $tabMobileMC = '<div class="threeTab__Index--mobile">' .
                                         '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                         '<h3>' . $headline . '</h3>' .
@@ -207,12 +207,13 @@ use Roots\Sage\Assets;
                             endif;
                         endif;
 
-                        echo    '<div class="col-sm-4 col-xs-12 threeTab__Detail--col">' .
-                                    '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
+                        echo    '<div class="col-sm-4 col-xs-12 threeTab__Detail--col LC">' .
+                                    '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>' ;
 
                             if ($priceContent) {
                                         echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
                             }
+                            echo $linkcontent;
                             $promotion_badge = get_sub_field('promotion_badge');
                             if($promotion_badge) {
                                 echo '<figure class="promotion_badge"><img src="'.$promotion_badge.'" class="promotion_badge-img img-fluid"></figure>';
@@ -222,7 +223,7 @@ use Roots\Sage\Assets;
                                     '<ul class="threeTab__Detail--contentList">' .
                                         $li_feature_list .
                                     '</ul>' .
-                                    $linkcontent .
+                                    
                                 '</div>';
                             endwhile;
                             echo '</div>';
@@ -321,18 +322,18 @@ use Roots\Sage\Assets;
                             endif;
                         endif;
 
-                        echo    '<div class="col-sm-6 threeTab__Detail--col">' .
+                        echo    '<div class="col-sm-4 col-xs-12 threeTab__Detail--col OC">' .
                                     '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
 
                                     if ($priceContent) {
                                         echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
                             }
-
+			echo $linkcontent;
                                     echo $feature_list_title_str .
                                     '<ul class="threeTab__Detail--contentList">' .
                                         $li_feature_list .
                                     '</ul>' .
-                                    $linkcontent .
+                                   
                                 '</div>';
 
                     endwhile;
@@ -442,18 +443,18 @@ use Roots\Sage\Assets;
                                 endif;
                             endif;
 
-                            echo    '<div class="col-sm-6 threeTab__Detail--col">' .
+                            echo    '<div class="col-sm-6 threeTab__Detail--col AI">' .
                                         '<div class="threeTab__Detail--title threeTab__Detail--title--'.$color.'">' . $title . '</div>';
 
                                         if ($priceContent) {
                                             echo '<div class="threeTab__Detail--price">' . $priceContent . '</div>';
                                 }
-
+ echo $linkcontent;
                                         echo $feature_list_title_str .
                                         '<ul class="threeTab__Detail--contentList">' .
                                             $li_feature_list .
                                         '</ul>' .
-                                        $linkcontent .
+                                       
                                     '</div>';
 
                         endwhile;
@@ -622,6 +623,7 @@ use Roots\Sage\Assets;
 
             // loop through the rows of data
             while ( have_rows('modules') ) : the_row();
+            	
                 if( get_row_layout() == 'hero_banner' ):
                     $banner_type = get_sub_field('type');
                     $banner_size = get_sub_field('size');
@@ -716,166 +718,9 @@ use Roots\Sage\Assets;
                     echo '</div>';
                     echo '</div>';
                 endif;
-
-
-
-                if( get_row_layout() == 'hero_banner_slider' ){                
-                    wp_register_style('swiper', get_template_directory_uri() . '/dist/styles/plugins/swiper.min.css', '', '4.5.1');
-                    wp_enqueue_style('swiper');
-                    wp_register_script('swiper', get_template_directory_uri() . '/dist/scripts/plugins/swiper.min.js', '', '4.5.1',true);
-                    wp_enqueue_script('swiper');
-
-                    echo '<div class="swiper-container"><div class="swiper-wrapper">';
-                    // check if the repeater field has rows of data
-                    if( have_rows('slider') ):
-                        // loop through the rows of data
-                        while ( have_rows('slider') ) : the_row();
-                            echo '<div class="swiper-slide">';
-     
-                                $banner_type = get_sub_field('type');
-                                $banner_size = get_sub_field('size');
-                                $banner_align = get_sub_field('align');
-                                $banner_icon = get_sub_field('icon');
-                                // $page_tag = get_sub_field('page_tag');
-                                $banner_headline = get_sub_field('h1_title');
-                                $banner_slogan = get_sub_field('subtitle');
-                                $banner_description = get_sub_field('description');
-                                $banner_background_image = get_sub_field('background_image');
-                                $banner_feature_image = get_sub_field('feature_image');
-
-                                $style_bg = '';
-                                if ($banner_type == 'responsive_feature'):
-                                    $style_bg = 'style="background: '.get_sub_field('background_colour').'"';
-                                elseif ($banner_background_image):
-                                    $style_bg = 'style="background-image: url(' . $banner_background_image['url'] . ')"';
-                                endif;
-                                $banner_cta = get_sub_field('cta');
-
-                                $banner_content_class = ($banner_type == 'responsive_feature' ? 'col-md-5' : 'col-sm-7');
-                                $row_class = ($banner_type == 'responsive_feature' ? 'd-flex flex-wrap' : '');
-
-                                echo '<div class="c-content-box c-size-lg c-margin-b-20 banner banner--'.$banner_type.' banner--' . $banner_size . ' banner--' . $banner_align . '" '  . $style_bg . '>';
-                                echo '<div class="container">';
-                                echo '<div class="row '. $row_class. '">';
-                                echo '<div class="col content-col '.$banner_content_class.'">';
-
-                                if ($banner_icon):
-                                    echo '<div class="banner_icon">'.Assets\get_acf_image($banner_icon, '', 64, 64).'</div>';
-                                endif;
-                                if ($banner_headline):
-                                    echo '<h1>' .
-                                            $banner_headline .
-                                        '</h1>';
-                                endif;
-                                if ($banner_slogan):
-                                    echo '<p class="subtitle">' .
-                                            $banner_slogan .
-                                        '</p>';
-                                endif;
-                                if ($banner_description):
-                                    echo '<div class="desc">' .
-                                            $banner_description .
-                                        '</div>';
-                                endif;
-
-                                if ($banner_cta):
-
-                                    while ( have_rows('cta') ) : the_row();
-                                        $cta_link_type = get_sub_field('cta_link_type');
-                                        $cta_link = get_sub_field('cta_link');
-                                        if ($cta_link):
-                                            switch ($cta_link_type) {
-                                                case 'green' :
-                                                        echo '<a class="banner_cta_link btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                                $cta_link['title'] .
-                                                            '</a>';
-                                                        break;
-                                                case 'blue' :
-                                                        echo '<a class="banner_cta_link btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                                $cta_link['title'] .
-                                                            '</a>';
-                                                        break;
-                                                case 'white' :
-                                                        echo '<a class="banner_cta_link btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                                $cta_link['title'] .
-                                                            '</a>';
-                                                        break;
-                                                case 'link' :
-                                                        echo '<a class="banner_cta_link" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                                $cta_link['title'] .
-                                                            '</a>';
-                                                        break;
-                                                default: break;
-                                            }
-                                        endif;
-                                    endwhile;
-
-
-                                endif;
-                            echo '</div>';
-
-                        if ($banner_type == 'responsive_feature'):
-                            echo '<div class="col image-col col-md-7">';
-                            $featureImage = get_sub_field('feature_image');
-                            echo '<img src="'.$featureImage['url'].'" alt="'.$featureImage['alt'].'" />';
-                            echo '</div>';
-                        endif;
-                            echo '</div>';
-                            echo '</div>';
-                            echo '</div>';
-                            echo '</div>';
-                        endwhile;
-
-                    else :
-                    // no rows found
-                    endif;
-                    echo '</div>';
-                    echo '<div class="swiper-pagination"></div>';
-                echo '</div>';
-            
-                echo "<style>
-
-                    .swiper-container-horizontal>.swiper-pagination-bullets {
-                        bottom: 30px !important;   
-                    }
-
-                    .swiper-pagination-bullets .swiper-pagination-bullet{  
-                      background: #ffffff; 
-                    } 
-                    .swiper-pagination-bullets .swiper-pagination-bullet-active{
-                      background: #ffffff; 
-                    }
-                    .swiper-slide,.banner.banner--responsive_feature.c-size-lg,.swiper-slide-active{height:520px !important;} 
-                    @media screen and (max-width: 768px){
-                    .swiper-slide,.banner.banner--responsive_feature.c-size-lg,.swiper-slide-active{height:700px !important;} 
-
-                    }
-                </style>
-                <script>
-                jQuery.noConflict();
-                jQuery(document).ready(function($){
-                    
-                    var mySwiper = new Swiper ('.swiper-container', {
-                        direction: 'horizontal', 
-                        autoHeight: false,
-                        loop: true, 
-                        speed:3000,
-                        height: 550,
-                        freeMode: true,
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable :true,
-                        }, 
-                    }) 
-                    function slider(){
-                        mySwiper.slideNext(1000,false);
-                        var t2 = window.setTimeout(slider,8000); 
-                    }  
-                    var t1 = window.setTimeout(slider,7000); 
-                });    
-                </script>";  
-                }
-                    // check current row layout
+                
+                
+                 // check current row layout
                 if( get_row_layout() == 'hero_head' ):
 
                     $header_align = get_sub_field('align');
@@ -1277,7 +1122,7 @@ use Roots\Sage\Assets;
                         $style_bg = 'style="background-image: url(' . $bg_image['url'] . ')"';
                     endif;
 
-                    echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion"' . $style_bg . '>';
+                    echo '<div class="c-content-box c-content-box--bg c-size-md promotion"' . $style_bg . '>';
                     echo '<div class="container">';
                     echo '<div class="row d-flex flex-wrap align-items-center">';
                     echo '<div class="col content-col '.$contentClass.'">';
@@ -2029,66 +1874,7 @@ use Roots\Sage\Assets;
 
                 endif;
 
-                // check current row layout
-                if( get_row_layout() == 'testimonial' ):
-
-                    $alignment = get_sub_field('alignment');
-                    $background_image = get_sub_field('background_image');
-                    $quote = get_sub_field('quote');
-                    $signature = get_sub_field('signature');
-                    $signature_image = get_sub_field('signature_image');
-                    $story_link = get_sub_field('story_link');
-                    $background_color = get_sub_field('background_color');
-
-                    $colsType = '';
-                    if ($alignment == 'left'):
-                        $colsType = 'col-sm-7';
-                    elseif ($alignment == 'center'):
-                        $colsType = 'col-sm-10 col-sm-push-1';
-                    endif;
-
-                    $style_bg = '';
-                    if ($background_image):
-                        $style_bg = 'style="background-image: url(' . $background_image['url'] . ')"';
-                    endif;
-
-                    echo '<div class="c-content-box c-content-box__quote c-size-xlg c-content-box--' . $background_color . ' " ' . $style_bg . '>';
-                    echo '<div class="container">';
-                    echo '<div class="row">';
-                    echo '<div class="' . $colsType . ' c-quote">';
-
-                    if ($quote):
-                        echo '<div class="c-quote__content">' .
-                                $quote .
-                            '</div>';
-                    endif;
-
-                    $signatureImage = '';
-                    if ($signature_image):
-                        $signatureImage = '<img src="' . $signature_image['url'] . '" alt="' . $signature_image['alt'] . '" width="80" height="80" />';
-                    endif;
-
-                    if ($signature):
-                        echo '<div class="c-quote__signature">' .
-                                $signatureImage .
-                                $signature .
-                            '</div>';
-                    endif;
-                    if ($story_link):
-                        echo '<div class="c-quote__link">' .
-                                '<a class="c-redirectLink" href="' . $story_link['url'] . '" target="' . $story_link['target'] . '">' .
-                                    $story_link['title'] .
-                                '</a>' .
-                            '</div>';
-                    endif;
-
-
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-
-                endif;
+                
 
                 // check current row layout
                 if( get_row_layout() == '3-column' ):
@@ -4043,6 +3829,23 @@ use Roots\Sage\Assets;
                     echo '</div>';
                     echo '</div>';
                 endif;
+                
+                get_template_part('template-parts/acf-parts/Common/hero_banner_slider');
+                
+                get_template_part('template-parts/acf-parts/Common/hero_banner_video');
+                get_template_part('template-parts/acf-parts/Common/logo_v2');
+                get_template_part('template-parts/acf-parts/Common/card_v2');
+                get_template_part('template-parts/acf-parts/Common/testimonial_old');
+                get_template_part('template-parts/acf-parts/Common/testimonial_v2');
+                get_template_part('template-parts/acf-parts/Common/image-text_v2');
+                get_template_part('template-parts/acf-parts/Common/slider_honor');
+                
+                get_template_part('template-parts/acf-parts/Common/hero_head_v2');
+                
+                get_template_part('template-parts/acf-parts/Common/3-Column_v2');
+                get_template_part('template-parts/acf-parts/Common/cta_v2');
+                get_template_part('template-parts/acf-parts/Common/true_false');
+                
             endwhile;
 
             get_template_part('template-parts/content', 'blocks');

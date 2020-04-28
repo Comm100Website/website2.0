@@ -4243,21 +4243,19 @@ jQuery(function() {
 				}
 			}
 
-			function selectTab(index) {
+			function selectTab(index){
 				jQuery('.threeTab__Index').removeClass('selected').eq(index).addClass('selected');
 				jQuery('.threeTab__Detail').hide();
 				jQuery('.threeTab__Detail').eq(index).show();
-				switch (index) {
-					case 0:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #0094d4 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','https://www.comm100.com/platform/livechat-featurelist/#lc');break;
-                    case 1:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #3dc4ff 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','https://www.comm100.com/platform/livechat-featurelist/#mc');break;
-                    case 2:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #9fdd09 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','https://www.comm100.com/platform/livechat-featurelist/#ai');break;
-					default: break;
+				switch(index){
+					case 0:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #0094d4 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','/platform/featurelist/#lc');break;
+					case 1:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #3dc4ff 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','/platform/featurelist/#oc');break;
+					case 2:jQuery('head').append("<style>.pricing .threeTab__Index--Wrap:after{ border-bottom: solid  #9fdd09 6px; }</style>");jQuery('.threeTab__Detail--bottomLink a').attr('href','/platform/featurelist/#ai');break;
+					default:break
 				}
-
 				// feature list
 				jQuery('.featurelist-wrap').hide();
-				jQuery('.featurelist-wrap').eq(index).show();
-
+				jQuery('.featurelist-wrap').eq(index).show()
 			}
 
 			var tabIndexItems = document.querySelectorAll('.threeTab__Index');
@@ -4275,7 +4273,7 @@ jQuery(function() {
 			if (window.location.hash) {
 				switch (window.location.hash) {
 					case '#lc': selectTab(0); break;
-					case '#mc': selectTab(1); break;
+					case '#oc': selectTab(1); break;
 					case '#ai': selectTab(2); break;
 					default: selectTab(0); break;
 				}
@@ -5078,7 +5076,7 @@ function calculate_agent_assist_roi($) {
             }
 
             if ($('.section-agent_assist_roi_calculator').length) {
-                $('#time_spent_looking_for_answers').slider({
+                $('#time_spent_looking_for_answers').bootstrapSlider({
                     formatter: function(value) {
                         if (value == 30) {
                             return value + ' sec';

@@ -148,7 +148,7 @@ use Roots\Sage\Assets;
                         <p class="subtitle">These are challenging times. We’re here to help.</p>
                         <h1>Live Chat Free for Up to 3 Agents</h1>
                         <ul class="green_checked">
-                            <li>Save $1,750 a year! </li>
+                            
                             <li>Includes 100+ language auto-translation, audio/video chat, file sharing, intelligent routing, and much more.</li>
                             <li>Need more than 3 licenses? We’ll donate proceeds to the World Health Organization.</li>
                             <li>Offer vaild until April 15, 2020</li>
@@ -485,13 +485,13 @@ use Roots\Sage\Assets;
                     }
                 </style>
 
-                <div class="c-center col-sm-12 show_price hidden-xs">
+                <div class="c-center col-sm-12 show_price" style="display: none;">
                     <span class=""  style="font-size: 48px;"><sup>$</sup>49</span> per agent per month
                     <figure class="promotion_badge"><img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p3_logo.png" class="promotion_badge-img img-fluid">
                     </div>
 
 
-                    <div class="c-center col-sm-12 show_price visible-xs">
+                    <div class="c-center col-sm-12 show_price" style="display: none;">
                         <span class=""  style="font-size: 48px;">$49</span><br>per agent<br>per month
                         <figure class="promotion_badge"><img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p3_logo.png" class="promotion_badge-img img-fluid">
                         </div>
@@ -514,10 +514,17 @@ use Roots\Sage\Assets;
                                     margin-left: unset;
                                 }
                             }
+                            
+                            @media screen and (min-width: 768px) {
+                                 .promotion_20200322 .included .price_description {
+                                 	text-align: center;
+                                 }
+                                
+                                }
 
                         </style>
 
-                        <div class=" col-sm-12 price_description">
+                        <div class=" col-sm-12 price_description" style="padding-top: 29px;">
                             <div class="Team_feature">
                                 <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/small_green_check.png">Team & Business editions feature
                             </div>

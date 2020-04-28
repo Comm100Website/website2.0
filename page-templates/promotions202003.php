@@ -140,21 +140,21 @@ use Roots\Sage\Assets;
                 }
             }
 
-        </style>
-        <div class="container-fluid Free" style="padding-top: 94px;padding-bottom: 60px;background:rgba(244,248,252,1);" >
-            <div class="container">
-                <div class="row  d-flex flex-wrap align-items-center ">
-                    <div class="col content-col col-sm-6">
-                        <p class="subtitle">These are challenging times. We’re here to help.</p>
-                        <h1>Live Chat Free for Up to 3 Agents</h1>
-                        <ul class="green_checked">
-                            <li>Save $1,750 a year! </li>
-                            <li>Includes 100+ language auto-translation, audio/video chat, file sharing, intelligent routing, and much more.</li>
-                            <li>Need more than 3 licenses? We’ll donate proceeds to the World Health Organization.</li>
-
-                        </ul>
-                        <a class="btn btn-xlg btn-link--green" href="https://secure.comm100.com/siteregister.aspx?language=0&planId=74&code=841791C5"  target="">Get Live Chat Free</a>
-                    </div>
+                </style>
+                <div class="container-fluid Free" style="padding-top: 94px;padding-bottom: 60px;background:rgba(244,248,252,1);" >
+                    <div class="container">
+                        <div class="row  d-flex flex-wrap align-items-center ">
+                            <div class="col content-col col-sm-6">
+                                <p class="subtitle">These are challenging times. We’re here to help.</p>
+                                <h1>Live Chat Free for Up to 3 Agents</h1>
+                                <ul class="green_checked">
+                                   
+                                    <li>Includes 100+ language auto-translation, audio/video chat, file sharing, intelligent routing, and much more.</li>
+                                    <li>Need more than 3 licenses? We’ll donate proceeds to the World Health Organization.</li>
+								<li>Offer vaild until April 15, 2020</li>
+                                </ul>
+                                <a class="btn btn-xlg btn-link--green" href="https://secure.comm100.com/siteregister.aspx?language=0&planId=74&code=841791C5"  target="">Get Live Chat Free</a>
+                            </div>
 
                     <div class="col image-col col-sm-6 text-right">
                         <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p1_right.png">
@@ -207,10 +207,10 @@ use Roots\Sage\Assets;
 
 
 
-            <div class="row  d-flex flex-wrap align-items-center visible-md-block">
+                    <div class="row   align-items-center visible-md-block">
 
 
-                <div class="col image-col col-sm-6 text-left">
+                        <div class="col image-col col-sm-6 text-left hidden-xs">
                     <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p2_left.png">
                 </div>
 
@@ -387,16 +387,16 @@ use Roots\Sage\Assets;
                     }
                 </style>
 
-                <div class="c-center col-sm-12 show_price hidden-xs">
-                    <span class=""  style="font-size: 48px;"><sup>$</sup>49</span> per agent per month
-                    <figure class="promotion_badge"><img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p3_logo.png" class="promotion_badge-img img-fluid">
-                    </div>
+                            <div class="c-center col-sm-12 show_price" style="display: none;">
+                                <span class=""  style="font-size: 48px;"><sup>$</sup>49</span> per agent per month
+                                <figure class="promotion_badge"><img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p3_logo.png" class="promotion_badge-img img-fluid">
+                            </div>
 
 
-                    <div class="c-center col-sm-12 show_price visible-xs">
-                        <span class=""  style="font-size: 48px;">$49</span><br>per agent<br>per month
-                        <figure class="promotion_badge"><img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p3_logo.png" class="promotion_badge-img img-fluid">
-                        </div>
+                            <div class="c-center col-sm-12 show_price " style="display: none;">
+                                <span class=""  style="font-size: 48px;">$49</span><br>per agent<br>per month
+                                <figure class="promotion_badge"><img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/p3_logo.png" class="promotion_badge-img img-fluid">
+                            </div>
 
 
 
@@ -415,19 +415,26 @@ use Roots\Sage\Assets;
                                 .promotion_20200322 .included .Business_feature {
                                     margin-left: unset;
                                 }
-                            }
+                                }
+                                
+                                @media screen and (min-width: 768px) {
+                                 .promotion_20200322 .included .price_description {
+                                 	text-align: center;
+                                 }
+                                
+                                }
 
                         </style>
 
-                        <div class=" col-sm-12 price_description">
-                            <div class="Team_feature">
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/small_green_check.png">Team & Business editions feature
-                            </div>
-                            <div class="Business_feature">   
-                                <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/small_green_star.png" >Business edition feature
+                            <div class="col-sm-12 price_description" style="padding-top: 29px;" >
+                                <div class="Team_feature">
+                                    <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/small_green_check.png">Team & Business editions feature
+                                </div>
+                                <div class="Business_feature">   
+                                    <img src="<?php echo get_stylesheet_directory_uri();?>/dist/images/2020.03_promotions/small_green_star.png" >Business edition feature
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                 </div>
             </div>

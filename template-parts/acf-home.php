@@ -84,7 +84,7 @@ use Roots\Sage\Assets;
                                         '</div>' .
                                     '</div>';
                         endif;
-                        if ( $tag == 'MC' ):
+                        if ( $tag == 'OC' ):
                             $tabMobileMC = '<div class="threeTab__Index--mobile">' .
                                         '<div class="product-item__tag product-item__tag--large product-item__tag' . $color . '">' . $tag . '</div>' .
                                         '<h3>' . $headline . '</h3>' .

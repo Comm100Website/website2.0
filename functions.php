@@ -43,3 +43,37 @@ function disable_admin_page_rich_editing( $settings, $post ) {
     }
 }
 add_filter( 'block_editor_settings', 'disable_admin_page_rich_editing', 10, 2 );
+
+//Mega menu display
+function prefix_nav_description( $item_output, $item, $depth, $args ) {
+    $menu_type = get_field('menu_type', $item);    
+    if( $menu_type == "intro" ) {
+       $menu_intro = get_field('intro', $item);
+       if($menu_intro ){
+          $item_output .= "<h3>" .$menu_intro['title']. "</h3>";
+          $item_output .= "<div class='subtitle'>" .$menu_intro['subtitle']. "</div>";
+          $item_output .= "<a href=".$menu_intro['btn']['url']."><button class='btn  c-btn-border-2x c-btn-white'  >" . $menu_intro['btn']['title'] ."</button></a>";
+      }
+    }		
+
+
+    if( $menu_type == "sublink" ) {
+        if( have_rows('sub_links', $item) ){
+            while ( have_rows('sub_links', $item) ) : the_row();
+                $item_output .="<div class='col-xs-6'><a href='".get_sub_field('url')['url']."'><h4>".get_sub_field('url')['title']."</h4></a><p style='
+                line-height: initial;
+                word-wrap: break-word;
+                '>".get_sub_field('description')."</p></div>";
+            endwhile;
+            if(have_rows('other_links', $item)){
+                $item_output .="<div class='other_links col-xs-12'><hr>";
+                while ( have_rows('other_links', $item) ) : the_row();
+                    $item_output .="<div class='col-xs-3'><span class='other_links_item'><a href='".get_sub_field('link')['url']."'>".get_sub_field('link')['title']."</a></span></div>";
+                endwhile;
+                $item_output .= '</div>';
+            }
+        }
+    }
+return $item_output;
+}
+add_filter( 'walker_nav_menu_start_el', 'prefix_nav_description', 10, 4 );

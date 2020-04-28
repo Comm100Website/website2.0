@@ -630,86 +630,7 @@ Template Name:Platform Multichannel Click Through
 
             endif;
 
-            // check current row layout
-            if( get_row_layout() == 'image-text' ):
-
-                // check if the nested repeater field has rows of data
-                if( have_rows('image_text_column_repeater') ):
-
-                    echo '<div class="c-content-box c-size-md">';
-                    echo '<div class="container">';
-                    echo '<div class="row">';
-                        // loop through the rows of data
-                    while ( have_rows('image_text_column_repeater') ) : the_row();
-
-                        $headline = get_sub_field('title');
-                        $body = get_sub_field('description');
-                        $image = get_sub_field('image');
-                        $image_position = get_sub_field('image_position');
-                        $cta = get_sub_field('cta');
-                        $pull6 = '';
-                        $push6 = '';
-                        if ($image_position == 'right') :
-                            $pull6 = 'col-sm-pull-6';
-                            $push6 = 'col-sm-push-6';
-                        endif;
-                        $linkcontent = '';
-
-                        if ($cta):
-                            while ( have_rows('cta') ) : the_row();
-                                $cta_link_type = get_sub_field('cta_link_type');
-                                $cta_link = get_sub_field('cta_link');
-                                if ($cta_link):
-                                    switch ($cta_link_type) {
-                                        case 'green' :
-                                                $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        case 'blue' :
-                                                $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        case 'white' :
-                                                $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        case 'link' :
-                                                $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        default: break;
-                                    }
-                                endif;
-                            endwhile;
-                            if ($linkcontent !== ''):
-                                $linkcontent = '<div class="img-text-column__link"> ' . $linkcontent . ' </div>';
-                            endif;
-                        endif;
-
-                        echo    '<div class="img-text-column img-text-column--' . $image_position . ' clearfix">' .
-                                    '<div class="col-sm-6 ' . $push6 . ' img-text-column__img">' .
-                                        '<img src="' . $image['url'] . '" alt="' . $image['alt'] . '" width="" height="" />' .
-                                    '</div>' .
-                                    '<div class="col-sm-6 ' . $pull6 . ' img-text-column__text">' .
-                                        '<h3 class="highlight highlight--lightBlue">' . $headline . '</h3>' .
-                                        $body .
-                                        $linkcontent .
-                                    '</div>' .
-                                '</div>';
-                    endwhile;
-
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-
-                endif;
-
-
-            endif;
+             get_template_part('template-parts/acf-parts/Common/image-text_old');
 
             // check current row layout
             if( get_row_layout() == '1-column' ):
@@ -1100,6 +1021,21 @@ Template Name:Platform Multichannel Click Through
                 echo '</div>';
 
             endif;
+            
+                get_template_part('template-parts/acf-parts/Common/hero_banner_slider');
+                
+                get_template_part('template-parts/acf-parts/Common/hero_banner_video');
+                get_template_part('template-parts/acf-parts/Common/logo_v2');
+                get_template_part('template-parts/acf-parts/Common/card_v2');
+                get_template_part('template-parts/acf-parts/Common/testimonial_v2');
+                get_template_part('template-parts/acf-parts/Common/image-text_v2');
+                get_template_part('template-parts/acf-parts/Common/slider_honor');
+                
+                get_template_part('template-parts/acf-parts/Common/hero_head_v2');
+                
+                get_template_part('template-parts/acf-parts/Common/3-Column_v2');
+                get_template_part('template-parts/acf-parts/Common/cta_v2');
+                get_template_part('template-parts/acf-parts/Common/true_false');
         endwhile;
 
         else :
