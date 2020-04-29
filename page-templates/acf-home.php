@@ -3845,6 +3845,7 @@ use Roots\Sage\Assets;
                 get_template_part('template-parts/acf-parts/Common/3-Column_v2');
                 get_template_part('template-parts/acf-parts/Common/cta_v2');
                 get_template_part('template-parts/acf-parts/Common/true_false');
+                get_template_part('template-parts/acf-parts/Common/hero_banner_with_video_background');
                 
             endwhile;
 
