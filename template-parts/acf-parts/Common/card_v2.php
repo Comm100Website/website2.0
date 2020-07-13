@@ -1,18 +1,81 @@
 <?php
+use Roots\Sage\Assets;
+    if (get_row_layout() == 'card_v2') {
 
-if (get_row_layout() == 'card_v2') {
-    $rows = get_sub_field('cards');
-    $row_count = count($rows);
-    $headline = get_sub_field('headline');
-    $subtitle = get_sub_field('subtitle');
+        $background_color = get_sub_field('background_color');
+        if( $background_color == "grey" ){ $background_color_class = "promotion";}
+
+        $rows = get_sub_field('cards');
+        $row_count = count($rows);
+
+        $headline = get_sub_field('headline');
+        $subtitle = get_sub_field('subtitle');
+        $hover_bg_color_array = array();
+        while ( have_rows('cards') ) {the_row();
+        
+            $hover_bg_color_array[] = get_sub_field('color');;
+        } 
+        
+       
+        ?>
+        <style>
+
+.card-col-4 .card-item {
+    width: calc(50% - 15px);
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 767px) {
+    .card-col-4 .card-item {
+    width: calc(100%);
+}
+}
+.card-col-4 .card-item:nth-child(3):hover{
+    background-color:<?php echo $hover_bg_color_array[0];?> !important;
+} 
+   
+.card-col-4 .card-item:nth-child(4):hover{
+    background-color:<?php echo $hover_bg_color_array[1];?> !important;
+} 
+
+.card-col-4 .card-item:nth-child(5):hover{
+    background-color:<?php echo $hover_bg_color_array[2];?> !important;
+} 
+
+.card-col-4 .card-item:nth-child(6):hover{
+    background-color:<?php echo $hover_bg_color_array[3];?> !important;
+} 
+
+
+.card-col-4 .card-item__link{
+    position:initial;
+}
+
+.card-item h3{
+    padding-bottom:0px;
+}
+
+.card-item__link {
+    margin-top:30px;
+}
+.card-item--platform {
+    padding:40px;
+}
+.card-item__subtitle {
+    font-family: Ubuntu Light,sans-serif;
+}
+   </style>
+
+        <?php
+  
     
-    
-    
-    
-    
+        
+        
+        
+        
         // check if the nested repeater field has rows of data
-    if (have_rows('cards')):
-        echo '<div class="c-content-box c-content-box__quote c-size-md promotion card_v2">';
+        if (have_rows('cards')):
+        echo '<div class="c-content-box c-content-box__quote c-size-md '.$background_color_class.' card_v2">';
         echo '<div class="container">';
         echo '<div class="row">';
         echo '<div class="col-sm-12 card card--block card-col-' . $row_count . '">';
@@ -21,241 +84,75 @@ if (get_row_layout() == 'card_v2') {
         echo '<h3>' . $headline . '</h3>';
         echo '<p class="text-center" style="margin-bottom:40px;">' . $subtitle . '</p>';
         // loop through the rows of data
+        $no = 0;    
+        while ( have_rows('cards') ) : the_row();
+
+            $card_themecolor = get_sub_field('color');
+            $card_img = get_sub_field('icon');
+            $card_title = get_sub_field('title');
+            $card_subtitle = get_sub_field('subtitle');
+            $card_description = get_sub_field('description');
+
+            $card_subtitle_wrap = '';
+            if ($card_subtitle):
+                $card_subtitle_wrap = '<div class="card-item__subtitle">' . $card_subtitle . '</div>';
+            endif;
+
+
+            $cta = get_sub_field('cta');
+            $linkcontent='';
+            if ($cta):
+                
+                while ( have_rows('cta') ) : the_row();
+                    $cta_link_type = get_sub_field('cta_link_type');
+                    $cta_link = get_sub_field('cta_link');
+                    if ($cta_link):
+                        switch ($cta_link_type) {
+                            case 'green' :
+                                    $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                            $cta_link['title'] .
+                                        '</a>';
+                                    break;
+                            case 'blue' :
+                                    $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                            $cta_link['title'] .
+                                        '</a>';
+                                    break;
+                            case 'white' :
+                                    $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                            $cta_link['title'] .
+                                        '</a>';
+                                    break;
+                            case 'link' :
+                                    $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
+                                            $cta_link['title'] .
+                                        '</a>';
+                                    break;
+                            default: break;
+                        }
+                    endif;
+                endwhile;
+
+
+            endif;
+       
+            echo    '<div class="card-item card-item--platform " data-link="' . $cta_link['url'] . '" >' .
+                        '<div class="card__icon-wrap">'.Assets\get_acf_image($card_img, 'card__icon--small', 70, 70).'</div>' .
+                        '<h3>' . $card_title . '</h3>' .
+                        $card_subtitle_wrap .
+                        $card_description .
+                        '<div class="card-item__link">' . $linkcontent . '</div>' .
+                    '</div>';
+                    // $no = $no +1;
+        endwhile;
         
-        
-        echo "<style>
-        
-        
-        .card_v2 .nav-tab .media-body {
-            padding-left: 20px;
-        }
-        .card_v2 .nav-tab .media-body .c-redirectLink {
-            padding-bottom: 2px;
-            margin-top: 12px;
-        }
-        .card_v2 .nav-tab li{
-            margin: 25px 0px;
-        }
-        .card_v2 .nav-tab .media-body h4 {
-            line-height: 64px;
-        }
-        .card_v2 .nav-tab  .media-body p {
-            display: none;
-        }
-        .card_v2 .nav-tab .media-heading {
-            color:#5E6D79;
-            font-size: 18px;
-            font-family:'Ubuntu Medium', sans-serif;
-        }
-        .card_v2 .nav-tab li:hover,.nav-tab .active {
-            
-            color:#5E6D79;
-            display: inherit;
-            background-color: #fff;
-        }
-        .card_v2 .nav-tab .active .c-redirectLink{
-            display: none;
-        }
-        .card_v2 .nav-tab .active .c-redirectLink{
-            display: inline-block;
-            margin-bottom: 27px;
-        }
-        .card_v2 .nav-tab  li {
-            border-radius:5px;
-        }
 
-        .card_v2 .nav-tab .active h4 {
-            line-height: 26px;
-        }
-        .card_v2 .nav-tab .active .media-object {
-            margin-top: 40px;
-        }
-        .card_v2 .nav-tab .active .media-body p {
-            display: block;
-        }
-        .card_v2 .nav-tab #tab1:hover, .card_v2 .nav-tab  #tab1.active {
-            border-left:solid 5px #00567C; 
-        }
-        .card_v2 .nav-tab #tab2:hover, .card_v2 .nav-tab  #tab2.active {
-            border-left:solid 5px #0090D0; 
-        }
-        .card_v2 .nav-tab #tab3:hover, .card_v2 .nav-tab  #tab3.active {
-            border-left:solid 5px #3DC0FF; 
-        }
-        .card_v2 .nav-tab #tab4:hover, .card_v2 .nav-tab  #tab4.active {
-            border-left:solid 5px #9BD909; 
-        }
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
 
-        .card_v2 .panel1{
-            border-top:solid 5px #00567C; 
-        }
-        .card_v2 .panel2{
-            border-top:solid 5px #0090D0; 
-        }
-        .card_v2 .panel3{
-            border-top:solid 5px #3DC0FF; 
-        }
-        .card_v2 .panel4{
-            border-top:solid 5px #9BD909; 
-        }
+                    endif;
 
-
-        .card_v2 .media-left,.card_v2 .media-body{
-            display:table-cell;
-        }
-        .card_v2 .media-left  {
-            width: 94px;
-            padding-left: 30px;
-            }
-
-        .card_v2 .nav>li a {
-
-            display: inline-block; 
-            display: none;
-        }
-
-        </style>";
-
-    echo '<div class="tab-content vertical-tab-content col-xs-6 hidden-xs">';
-
-    $no = 1;
-    while ( have_rows('cards') ) { the_row();
-        $image_content = get_sub_field('image_content');
-        if( $no == 1) {
-            $active = "active";
-        } else {
-            $active = "";
-        }
-
-        echo '<div role="tabpanel" class="tab-pane '.$active.'" id="tab' . $no . '">';
-        echo '<img src="' . $image_content['url'] .'" class="img-responsive">';
-        echo '</div>';  
-        $no = $no + 1;
+                
     }
-
-
-
-
-
-echo '</div>';
-
-echo '<div class="col-xs-12 text-left visible-xs">';
-
-$no = 1;
-while ( have_rows('cards') ) { the_row();
-    $icon = get_sub_field('icon');
-    $title = get_sub_field('title');
-    $subtitle = get_sub_field('subtitle'); 
-
-    echo '<div class="panel panel-default panel'.$no.'">
-    <div class="panel-body" style="text-align:center">
-    <img class="" data-src="/wp-content/themes/comm100/dist/images/2020.04_new/holder.js/64x64" alt="64x64" src="' . $icon['url'].'"
-    data-holder-rendered="true" style="width: 64px; height: 64px;margin-bottom:15px;">
-    
-    <h4 class="media-heading">'.$title.'</h4>
-    <p style="text-align:left">'.$subtitle.'</p>';
-
-
-    $cta = get_sub_field('cta');
-    if ($cta) {
-       while ( have_rows('cta') ) : the_row();
-        $cta_link = get_sub_field('cta_link');
-        echo ' <a class="c-redirectLink" href=" '.$cta_link['url'].'" target="_self" onclick=jumpurl("'.$cta_link['url'].'")>' .$cta_link['title'].'</a>'; 
-    endwhile;
-    
-}
-
-
-
-
-
-echo '</div></div>';
-
-
-
-
-$no = $no + 1;
-}
-
-
-echo '</div>';
-
-
-
-
-echo '<div class="col-xs-6 text-left hidden-xs">';
-echo '<ul class="nav nav-tab vertical-tab" role="tablist" id="vtab">';
-
-
-
-$no = 1;
-while ( have_rows('cards') ) { the_row();
-    $icon = get_sub_field('icon');
-    $title = get_sub_field('title');
-    $subtitle = get_sub_field('subtitle');  
-
-    if( $no == 1) {
-        $active = "active";
-    } else {
-        $active = "";
-    }
-
-
-    echo '<li href="#tab' . $no .'" id="tab' . $no .'" role="presentation" class=" ' .$active . '" data-toggle="tab">';
-    
-    echo '<div class="media-left">
-    <img class="media-object" data-src="/wp-content/themes/comm100/dist/images/2020.04_new/holder.js/64x64" alt="64x64" src="' . $icon['url'].'" data-holder-rendered="true" style="width: 64px; height: 64px;"></div>
-    <div class="media-body">
-    <h4 class="media-heading">' . $title .'</h4>
-    <script>
-    function jumpurl(url) {
-     
-     window.location.href=url;
- }
- 
- 
- </script>
- <p>' .$subtitle.'</p>';
- 
- $cta = get_sub_field('cta');
- if ($cta) {
-   while ( have_rows('cta') ) : the_row();
-    $cta_link = get_sub_field('cta_link');
-    echo ' <a class="c-redirectLink" href=" '.$cta_link['url'].'" target="_self" onclick=jumpurl("'.$cta_link['url'].'")>' .$cta_link['title'].'</a>'; 
-endwhile;
-
-}
-
-echo '</div>';
-
-echo '</li>';  
-$no = $no + 1;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-echo '</ul>';
-echo  '</div>';
-
-
-echo '</div>';
-echo '</div>';
-echo '</div>';
-echo '</div>';
-
-endif;
-
-
-}

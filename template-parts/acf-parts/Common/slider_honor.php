@@ -1,41 +1,47 @@
 <?php
 if( get_row_layout() == 'slider_honor' ) {
+
+$background_color = get_sub_field('background_color');
+if( $background_color == "grey" ){ $background_color_class = "promotion";}
+
 wp_enqueue_style('swiper');
 wp_enqueue_script('swiper');
 	
-    echo '<div class="c-content-box c-content-box--bg c-size-xlg promotion rocket-lazyload" style="" data-was-processed="true"><div class="container">';
-		echo '<div class="c-center">';
-			echo '<h3>'.get_sub_field('title').'</h3><p>'.get_sub_field('subtitle').'</p>';
- 		echo '</div>';
+    echo '<div class="c-content-box c-content-box--bg c-size-xlg '.$background_color_class.' rocket-lazyload" style="" data-was-processed="true"><div class="container">';
                     
-        if( have_rows('honor_images') ) {
+                    echo '<div class="c-center">';
+                            echo '<h3>'.get_sub_field('title').'</h3>
+    <p>'.get_sub_field('subtitle').'</p>';
+ echo '</div>';
+                    
+         if( have_rows('honor_images') ) {
              
-            echo '<div id="certify">';
+             echo '<div id="certify">';
              
              
-                echo '<div class="swiper-container slider_honor hidden-xs"><div class="swiper-wrapper">';
+              echo '<div class="swiper-container slider_honor hidden-xs"><div class="swiper-wrapper">';
               
               
-                while ( have_rows('honor_images') ) { the_row();
-                     echo '<div class="swiper-slide"><img class="img-responsive center-block" style="width:300px;" src="' . get_sub_field('image')['url'] . '" /></div>';
-                }
+              while ( have_rows('honor_images') ) { the_row();
+                                echo '<div class="swiper-slide"><img class="img-responsive center-block" style="width:300px;" src="' . get_sub_field('image')['url'] . '" /></div>';
+                            }
                             
                             
-                echo '</div></div>';
+               echo '</div></div>';
 
                 echo '<div class="swiper-container slider_honor visible-xs"><div class="swiper-wrapper">';
               
               
-                while ( have_rows('honor_images') ) { the_row();
-                    echo '<div class="swiper-slide"><img class="img-responsive center-block" style="width:300px;" src="' . get_sub_field('image')['url'] . '" /></div>';
-                }
+              while ( have_rows('honor_images') ) { the_row();
+                                echo '<div class="swiper-slide"><img class="img-responsive center-block" style="width:300px;" src="' . get_sub_field('image')['url'] . '" /></div>';
+                            }
                             
                             
                echo '</div></div>';
 
                echo '<div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>';
                echo '<div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>';
-               echo '</div>';
+             echo '</div>';
          }           
                     
                     
@@ -239,50 +245,75 @@ jQuery(document).ready(function($){
 	
 	
 
-	jQuery('#certify .swiper-slide').on('click','',function(){
-	    var index = $(this).index();
-	    jQuery('.swiper-button-next').click()
-	})	
+jQuery('#certify .swiper-slide').on('click','',function(){
+    var index = $(this).index();
+    jQuery('.swiper-button-next').click()
+})
+	
+	
+	
 });
 
 
 
 </script>
-<script>
-
-jQuery.noConflict();
-jQuery(document).ready(function($){	
-	certifySwiper_phone = new Swiper('#certify1 .visible-xs1', {
-    	slidesPerView: 1,
-      	spaceBetween: 30,
-     	loop: true,     
-		navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev',
-		},
-	})
-});
-</script>
- 
-<!-- Initialize Swiper -->
 <script>
 
 jQuery.noConflict();
 jQuery(document).ready(function($){
-	var swiper = new Swiper('#certify .visible-xs', {
-		slidesPerView: 1,
-		spaceBetween: 30,
-		loop: true,
+	
+	
+	
+	
+	certifySwiper_phone = new Swiper('#certify1 .visible-xs1', {
+		
+   
+
+    	slidesPerView: 1,
+      	spaceBetween: 30,
+     	loop: true,
+     
 		navigation: {
-		nextEl: '.swiper-button-next',
-		prevEl: '.swiper-button-prev',
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
 		},
-	});
+
+	
+
+	})	
+	
 });
+
+
+
 </script>
+
+
+
+
+ 
+  <!-- Initialize Swiper -->
+  <script>
+
+  	jQuery.noConflict();
+	jQuery(document).ready(function($){
+    var swiper = new Swiper('#certify .visible-xs', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    
+     
+    });
+
+    });
+  </script>
 
 
 <?php
 
                     
-}
+                }
