@@ -1,0 +1,31 @@
+.column-1 .c-theme-btn.c-btn-border-1x, .column-1 .c-theme-btn.c-btn-border-2x {
+      
+    padding: 15px 40px!important;
+}
+
+.column-1 .btn-repeater-image-type {
+    text-align: left;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.column-1 .btn-repeater-image-type img{
+    max-width: 240px;
+}
+
+.column-1 .btn-repeater-image-type a{
+    margin-left:50px;
+}
+
+@media screen and (max-width: 767px) {
+    .column-1 .btn-repeater-image-type {
+        text-align: center;
+    }
+    .column-1 .btn-repeater-image-type a{
+        margin-left:0px;
+        display: table;
+        margin: auto;
+        
+        margin-top: 10px;
+    }
+}
