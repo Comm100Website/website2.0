@@ -5,6 +5,35 @@ Template Name:Platform Others
 use Roots\Sage\Assets;
 ?>
 <?php get_template_part('template-parts/header'); ?>
+
+    <?php if( $_GET['fromurl'] == "oc"){
+        $defaults = array(
+            // 'theme_location'  => 'solutionUseCase',
+            'menu'            => 'Omnichannel',//244 or Solution - Use Case Menu
+            'container'       => 'nav',
+            'container_class' => '',
+            'container_id'    => '',
+            'menu_class'      => 'clearfix',
+            'menu_id'         => '',
+            'echo'            => true,
+            'fallback_cb'     => 'wp_page_menu',
+            'before'          => '',
+            'after'           => '',
+            'link_before'     => '',
+            'link_after'      => '',
+            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            'depth'           => 0,
+            'walker'          => ''
+            );
+    ?>
+        <div class="c-navbar--secondary visible-md">
+            <div class="container">
+                <?php
+                    wp_nav_menu( $defaults );
+                ?>
+            </div>
+        </div>
+    <?php } ?>
 </header>
 
 <div class="c-layout-page c-layout-page-fixed secondary-page secondary-page--others">
@@ -1004,6 +1033,8 @@ use Roots\Sage\Assets;
 
             endif;
             get_template_part('template-parts/acf-parts/Common/testimonial_old');
+            get_template_part('template-parts/acf-parts/Common/cta_with_2_button');
+            get_template_part('template-parts/acf-parts/Common/1-column-with-two-button');
         endwhile;
 
         else :

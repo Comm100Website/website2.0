@@ -25,6 +25,27 @@ Template Name:Platform Live Chat Click Through
                 'depth'           => 0,
                 'walker'          => ''
                 );
+                if($_GET['fromurl'] == "oc"){
+                    $defaults = array(
+                        // 'theme_location'  => 'solutionUseCase',
+                        'menu'            => 'Omnichannel',//244 or Solution - Use Case Menu
+                        'container'       => 'nav',
+                        'container_class' => '',
+                        'container_id'    => '',
+                        'menu_class'      => 'clearfix',
+                        'menu_id'         => '',
+                        'echo'            => true,
+                        'fallback_cb'     => 'wp_page_menu',
+                        'before'          => '',
+                        'after'           => '',
+                        'link_before'     => '',
+                        'link_after'      => '',
+                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                        'depth'           => 0,
+                        'walker'          => ''
+                        );
+
+                }
                 wp_nav_menu( $defaults );
             ?>
         </div>
@@ -875,79 +896,8 @@ Template Name:Platform Live Chat Click Through
                
 
 
-            // check current row layout
-            if( get_row_layout() == '3-column' ):
-
-                // check if the nested repeater field has rows of data
-                if( have_rows('columns') ):
-
-                    echo '<div class="c-content-box c-size-md">';
-                    echo '<div class="container">';
-                    echo '<div class="row">';
-                    echo '<div class="col-sm-12 three-column">';
-                        // loop through the rows of data
-
-                    while ( have_rows('columns') ) : the_row();
-
-                        $headline = get_sub_field('headline');
-                        $body = get_sub_field('body');
-                        $icon = get_sub_field('icon');
-                        $cta = get_sub_field('cta');
-                        $linkcontent = '';
-
-                        if ($cta):
-                            while ( have_rows('cta') ) : the_row();
-                                $cta_link_type = get_sub_field('cta_link_type');
-                                $cta_link = get_sub_field('cta_link');
-                                if ($cta_link):
-                                    switch ($cta_link_type) {
-                                        case 'green' :
-                                                $linkcontent = '<a class="btn btn-xlg btn-link--green" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        case 'blue' :
-                                                $linkcontent = '<a class="btn btn-xlg c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        case 'white' :
-                                                $linkcontent = '<a class="btn btn-xlg c-btn-border-2x c-theme-btn" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        case 'link' :
-                                                $linkcontent = '<a class="c-redirectLink" href="' . $cta_link['url'] . '" target="' . $cta_link['target'] . '">' .
-                                                        $cta_link['title'] .
-                                                    '</a>';
-                                                break;
-                                        default: break;
-                                    }
-                                endif;
-                            endwhile;
-                        endif;
-
-                        if ($linkcontent !== ''):
-                            $linkcontent = '<div class="c-margin-t-30">' . $linkcontent . '</div>';
-                        endif;
-
-                        echo    '<div class="three-column__item">' .
-                                    '<img src="' . $icon['url'] . '" alt="' . $icon['alt'] . '" width="80" height="80" />' .
-                                    '<h5 class="three-column__title">' . $headline . '</h3>' .
-                                    $body .
-                                    $linkcontent .
-                                '</div>';
-                    endwhile;
-
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-                    echo '</div>';
-
-                endif;
-
-
-            endif;
+            get_template_part('template-parts/acf-parts/Common/3-column');
+            get_template_part('template-parts/acf-parts/Common/cta_with_2_button');
 
             // check current row layout
             if( get_row_layout() == '2-column_for_feature' ):

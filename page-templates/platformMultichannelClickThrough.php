@@ -25,6 +25,27 @@ Template Name:Platform Multichannel Click Through
                 'depth'           => 0,
                 'walker'          => ''
                 );
+                if($_GET['fromurl'] == "oc"){
+                    $defaults = array(
+                        // 'theme_location'  => 'solutionUseCase',
+                        'menu'            => 'Omnichannel',//244 or Solution - Use Case Menu
+                        'container'       => 'nav',
+                        'container_class' => '',
+                        'container_id'    => '',
+                        'menu_class'      => 'clearfix',
+                        'menu_id'         => '',
+                        'echo'            => true,
+                        'fallback_cb'     => 'wp_page_menu',
+                        'before'          => '',
+                        'after'           => '',
+                        'link_before'     => '',
+                        'link_after'      => '',
+                        'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                        'depth'           => 0,
+                        'walker'          => ''
+                        );
+
+                }
                 wp_nav_menu( $defaults );
             ?>
         </div>
@@ -1022,7 +1043,7 @@ Template Name:Platform Multichannel Click Through
 
             endif;
             
-                get_template_part('template-parts/acf-parts/Common/hero_banner_slider');
+            get_template_part('template-parts/acf-parts/Common/hero_banner_slider');
                 
                 get_template_part('template-parts/acf-parts/Common/hero_banner_video');
                 get_template_part('template-parts/acf-parts/Common/logo_v2');
@@ -1035,7 +1056,9 @@ Template Name:Platform Multichannel Click Through
                 
                 get_template_part('template-parts/acf-parts/Common/3-Column_v2');
                 get_template_part('template-parts/acf-parts/Common/cta_v2');
-                get_template_part('template-parts/acf-parts/Common/true_false');
+                 get_template_part('template-parts/acf-parts/Common/true_false');
+
+                 get_template_part('template-parts/acf-parts/Common/cta_with_2_button');
         endwhile;
 
         else :

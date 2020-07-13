@@ -1164,7 +1164,7 @@ use Roots\Sage\Assets;
                 echo '</div>';
                 echo '</div>';
             endif;
-
+            get_template_part('template-parts/acf-parts/Common/cta_with_2_button');
         endwhile;
 
         else :

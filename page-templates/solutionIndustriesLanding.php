@@ -1004,10 +1004,12 @@ Template Name:Solution Industries Landing
             // check current row layout
             if( get_row_layout() == 'resource_card_group' ):
                 $title = get_sub_field('title');
+                $background_color = get_sub_field('background_color');
+                if( $background_color == "grey" ){ $background_color_class = "promotion";}
                 // check if the nested repeater field has rows of data
                 if( have_rows('resource_repeater') ):
 
-                    echo '<div class="c-content-box c-size-md c-content-box--grey">';
+                    echo '<div class="c-content-box c-size-md '.$background_color_class.'">';
                     echo '<div class="container">';
                     echo '<div class="row">';
                     echo '<div class="col-sm-12">';
@@ -1050,6 +1052,8 @@ Template Name:Solution Industries Landing
 
 
             endif;
+            get_template_part('template-parts/acf-parts/Common/cta_with_2_button');
+            get_template_part('template-parts/acf-parts/Common/hero_head_with_two_button');
         endwhile;
 
         else :

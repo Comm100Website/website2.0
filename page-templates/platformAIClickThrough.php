@@ -1021,6 +1021,8 @@ Template Name:Platform AI Click Through
                 echo '</div>';
 
             endif;
+            get_template_part('template-parts/acf-parts/Common/testimonial_v2');
+            get_template_part('template-parts/acf-parts/Common/cta_with_2_button');
         endwhile;
 
         else :

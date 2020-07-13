@@ -6,6 +6,36 @@
 use Roots\Sage\Assets;
 ?>
 <?php get_template_part('template-parts/header'); ?>
+
+<?php if( get_field('other_menu_name')){
+        $defaults = array(
+            // 'theme_location'  => 'solutionUseCase',
+            'menu'            => trim(get_field('other_menu_name')),//244 or Solution - Use Case Menu
+            'container'       => 'nav',
+            'container_class' => '',
+            'container_id'    => '',
+            'menu_class'      => 'clearfix',
+            'menu_id'         => '',
+            'echo'            => true,
+            'fallback_cb'     => 'wp_page_menu',
+            'before'          => '',
+            'after'           => '',
+            'link_before'     => '',
+            'link_after'      => '',
+            'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            'depth'           => 0,
+            'walker'          => ''
+            );
+    ?>
+        <div class="c-navbar--secondary visible-md">
+            <div class="container">
+                <?php
+                    wp_nav_menu( $defaults );
+                ?>
+            </div>
+        </div>
+    <?php } ?>
+    
 </header>
 
 <div class="c-layout-page c-layout-page-fixed">
