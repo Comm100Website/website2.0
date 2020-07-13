@@ -39,7 +39,7 @@ function setup() {
         'livechat' => 'top-menu',
         'promotion_20200322' => 'promotion-menu',
         'platformLiveChat' => 'live-chat-menu',
-        'platformMultichannel' => 'multichannel-menu',
+        'platformMultichannel' => 'ticketing-messaging-menu',
         'platformAI' => 'ai-menu',
         'solutionUseCase' => 'use-case-menu',
         'solutionIndustry' => 'industry-menu',
@@ -218,7 +218,22 @@ add_action('wp_head', __NAMESPACE__ . '\\db_assets', 1);
  * Theme assets
  */
 function assets() {
+	
+    
+    
+    
+	wp_register_style('swiper', get_template_directory_uri() . '/dist/styles/plugins/swiper.min.css', '', '4.5.1');
+    wp_register_script('swiper', get_template_directory_uri() . '/dist/scripts/plugins/swiper.min.js', '', '4.5.1',true);
+
+
+    wp_register_style('vidbacking', get_template_directory_uri() . '/dist/styles/plugins/jquery.vidbacking.css', '', '4.5.1');
+    wp_register_script('vidbacking', get_template_directory_uri() . '/dist/scripts/plugins/jquery.vidbacking.js', '', '4.5.1',true);
+
+
     wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), array(), time());
+
+    wp_enqueue_style('stylenew');
+    wp_enqueue_style('menucss');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
