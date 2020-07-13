@@ -1,0 +1,234 @@
+@media screen and (min-width: 767px) {
+    .menu-platform li:not(.megamenu){
+    	display:none !important;
+    }
+     .c-navbar--secondary li.disable a {
+    font-size: 18px;
+    font-family: Ubuntu Regular,sans-serif;
+    color:#606c78;
+   
+	}
+    .c-navbar--secondary li.disable a:hover{
+     color:#606c78;
+    }
+}
+
+.menu-links a:hover h4,.menu-links a:hover{
+color:#0094d4!important
+}
+
+@media screen and (max-width: 767px) {
+    .menu-platform .megamenu {
+    	display:none !important;
+    }
+}
+
+.threeTab__Detail--contentList {
+  
+    margin-top: 10px !important;
+  
+}
+
+@media screen and (max-width: 767px) {
+.menu-intro,.menu-links,.logo-pond,.header_tips {
+//display:none !important;
+
+}
+}
+
+.c-layout-header .c-mainbar {
+  	padding-bottom: 13px !important;
+    padding-top: 8px !important;
+   
+}
+
+.c-page-on-scroll .c-navbar--secondary {
+   
+    top: 75px !important;
+   
+}
+
+
+
+#certify {
+margin-top:60px !important;
+}
+
+.card_v2 .nav-tab .active .c-redirectLink {
+    margin-top:2px !important;
+padding-top:0px !important;
+}
+
+.card_v2 .media-body p{
+font-size:16px;
+line-height:26px;
+}
+
+
+.menu-intro>.c-link.dropdown-toggle {
+	
+	padding-bottom:0px;
+}
+
+.menu-intro>.c-link.dropdown-toggle:first-child {
+	
+	display:none;
+}
+.menu-links>.c-link.dropdown-toggle:first-child {
+
+	display:none;
+}
+
+
+    
+
+	.menu-platform .menu-links .other_links .col-xs-3 {
+	    padding-right: 0px; 
+        padding-left: 0px; 
+       
+	}
+    
+    .menu-platform .menu-links .other_links .col-xs-3 {
+	   
+        text-align:left;
+	}
+    
+     .menu-platform .menu-links .other_links .col-xs-3 a{
+	   
+       color:#5c6c79;
+	}
+.menu-platform .menu-links .other_links .col-xs-3 a:hover{
+	   
+       color:#5c6c79;
+	}
+
+
+@media screen and (min-width: 991px) {
+
+	.menu-platform .dropdown-menu .menu-item {
+   
+        margin-right: 0px !important; 
+	}
+
+
+	
+ 
+	.menu-platform .menu-intro {
+		/*左侧介绍部分样式*/
+		background-color: #01567d;
+		padding:40px;
+		color:#fff;
+	}
+
+	.menu-platform .menu-intro h3 {
+    margin-top:0px;
+		line-height: 36px;
+		font-size: 28px;
+		color: #fff;
+	}
+	.menu-platform .menu-intro .subtitle {
+		line-height: 16px;
+		text-align: left;
+		font-size: 14px;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+    
+    .menu-platform .menu-intro .btn {
+    	font-size: 14px;
+        line-height: 14px;
+        padding: 12px 20px;
+        border-radius: 4px;
+    
+    }
+
+
+
+
+
+	
+    
+
+  
+    
+    
+	.megamenu_sublink .other_links_item a {
+		font-size: 16px;
+        color: #00567c;
+        font-family: Ubuntu Regular,sans-serif;
+    
+        font-style: normal;
+        color: #454545;
+	}
+
+
+	    
+
+}
+
+
+.c-navbar--secondary li.menu-item--home {
+  
+    border-bottom: unset !important;
+   
+}
+
+
+.c-navbar--secondary li.menu-item--home {
+    position: relative;
+   
+}
+.c-navbar--secondary li.menu-item--home.c-active  a:before{
+   /* padding-left: 10px !important;
+    padding-right: 10px !important;
+    border-bottom: 3px solid #329fd8 !important;*/
+    
+    content: "";
+    height: 3px;
+    background: #329fd8;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+}
+
+.c-navbar--secondary li.current-page-ancestor:not(.menu-item--home) a:before, .c-navbar--secondary li.current_page_item:not(.menu-item--home) a:before ,.c-navbar--secondary li.c-active:not(.menu-item--home) a:before{
+   
+    bottom: 0px !important;
+}
+
+.c-navbar--secondary li {
+    float: left !important;
+}
+
+
+
+
+
+.three-column-layout:nth-of-type(1) {
+    padding-bottom: 0px !important;
+}
+
+
+.avatar-top .avatar {
+    max-width: 120px;
+    height: auto;
+    margin-bottom: 6rem;
+}
+.avatar-top .bio--small {
+    margin-left: 0;
+    padding-left: 0;
+    padding: 0;
+    text-align: center;
+    background: transparent;
+}
+
+
+.siderbar_modules .c-content-list-1 {
+   
+    margin-top: 0px;
+    margin-bottom: 35px;
+}
+
+
+
